@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import './App.scss'
+import { useState } from 'react';
+import './App.scss';
+
+// const TEST_VAR = import.meta.env.VITE_TEST_VAR;
 
 function App() {
   const [ count, setCount ] = useState(0);
