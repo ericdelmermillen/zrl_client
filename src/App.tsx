@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useAppContext } from './contexts/AppContext';
 import './App.scss';
 
-// const TEST_VAR = import.meta.env.VITE_TEST_VAR;
 
 function App() {
-  const [ count, setCount ] = useState(0);
+  const { 
+    isLoggedIn,
+    setIsLoggedIn,
+    colorMode, 
+    // setColorMode 
+  } = useAppContext();
+
+  console.log(`colorMode: ${colorMode}`);
+  console.log(`isLoggedIn: ${isLoggedIn}`);
+  
 
   return (
     <>
       <div className="App">
-        <h1>Vite + React</h1>
         <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
+          <button 
+            onClick={() => setIsLoggedIn(c => !c)}
+          >
+            {`isLoggedIn: ${isLoggedIn ? 'true' : 'false'}`}
           </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
         </div>
       </div>
     </>
