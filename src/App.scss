@@ -1,10 +1,60 @@
-#root {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+@use "./partials/variables.scss" as vars;
+@use "./partials/mixins.scss" as mx;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	// font-family: var(--body-font);
+	margin: 0;
+	padding: 0;
 }
 
-.App {
-	border: 2px solid red;
+html {
+	-webkit-text-size-adjust: 100%; /* Prevents automatic text resizing */
+	scroll-behavior: smooth;
+	text-size-adjust: 100%;
+	font-size: 16px; /* Ensures consistent base font size */
+}
+
+body {
+	& {
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		// background: var(--neutralBG);
+		// color: var(--text-color);
+		text-rendering: optimizeLegibility;
+	}
+}
+
+a {
+	// color: var(--text-color);
+	text-decoration: none;
+}
+
+ul,
+ol {
+	list-style-type: none;
+}
+
+input {
+	// gooogle chrome auto fill styling override
+	&:-webkit-autofill {
+		-webkit-box-shadow: none !important;
+		// background-color: none !important;
+		box-shadow: none !important;
+		// caret-color: var(--text-color);
+		// transition: background-color 5000s ease-in-out 0s;
+	}
+}
+
+img {
+	display: block;
+}
+
+.app {
+	& {
+		border: 2px solid red;
+		min-height: calc(100vh + 1px);
+	}
 }

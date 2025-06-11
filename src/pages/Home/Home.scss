@@ -1,0 +1,15 @@
+@use "../../partials/variables" as vars;
+@use "../../partials/mixins" as mx;
+
+.home {
+	& {
+		// background: var(--background-color);
+		// @include mx.page;
+		width: 100%;
+	}
+
+	// &__main {
+	// 	margin-top: 100vh;
+	// 	position: relative;
+	// }
+}
