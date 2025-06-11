@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
 import { Routes, Route, 
   // useNavigate
@@ -7,7 +8,7 @@ import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
 
 
-const App = () => {
+const App = (): JSX.Element => {
   const { 
     isLoggedIn,
     setIsLoggedIn,
@@ -19,15 +20,13 @@ const App = () => {
 
 
   return (
-    <div className={`app ${colorMode || 'light'}`}>
-      {/* <div className="app" data-color-mode={colorMode}> */}
+    <div className="app" data-color-mode={colorMode}>
 
       <div 
       // className={`loading ${isLoading ? "isLoading" : ""}`}
       ></div>
 
       <div className="app__inner">
-
 
         <button onClick={() => setIsLoggedIn((prev) => !prev)}>
           {`isLoggedIn: ${isLoggedIn}`}
@@ -43,7 +42,6 @@ const App = () => {
           </Routes>
 
       </div>
-
 
     </div>
   )};
