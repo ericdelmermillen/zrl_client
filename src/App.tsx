@@ -1,8 +1,9 @@
+import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
 import './App.scss';
 
 
-function App() {
+const App = (): JSX.Element => {
   const { 
     isLoggedIn,
     setIsLoggedIn,
@@ -10,22 +11,16 @@ function App() {
     // setColorMode 
   } = useAppContext();
 
-  console.log(`colorMode: ${colorMode}`);
-  console.log(`isLoggedIn: ${isLoggedIn}`);
-  
 
   return (
-    <>
-      <div className="App">
-        <div className="card">
-          <button 
-            onClick={() => setIsLoggedIn(c => !c)}
-          >
-            {`isLoggedIn: ${isLoggedIn ? 'true' : 'false'}`}
-          </button>
-        </div>
+    <div className={`App ${colorMode || 'light'}`}>
+      <div className="card">
+        <button onClick={() => setIsLoggedIn((prev) => !prev)}>
+          {`isLoggedIn: ${isLoggedIn}`}
+        </button>
       </div>
-    </>
-  )};
+    </div>
+  );
+};
 
 export default App;
