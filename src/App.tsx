@@ -6,6 +6,7 @@ import { Routes, Route,
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
+import Nav from './components/Nav/Nav';
 
 
 const App = (): JSX.Element => {
@@ -13,7 +14,7 @@ const App = (): JSX.Element => {
     isLoading,
     // setIsLoading,
     isLoggedIn,
-    setIsLoggedIn,
+    // setIsLoggedIn,
     colorMode, 
     // setColorMode 
   } = useAppContext();
@@ -28,9 +29,26 @@ const App = (): JSX.Element => {
 
       <div className="app__inner">
 
-        <button onClick={() => setIsLoggedIn((prev) => !prev)}>
+        <Nav>
+            {isLoggedIn
+              ? 
+                (
+                  <button
+                    className="app__logout--nav"
+                    // onClick={handleLogout}
+                    aria-label="Logout"
+                  >
+                    Logout
+                  </button>
+                )
+              : null
+            }
+
+        </Nav>
+
+        {/* <button onClick={() => setIsLoggedIn((prev) => !prev)}>
           {`isLoggedIn: ${isLoggedIn}`}
-        </button>
+        </button> */}
 
 
           <Routes>

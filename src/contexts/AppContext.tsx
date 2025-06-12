@@ -23,7 +23,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     localStorage.getItem("colorMode") === "dark" ? "dark" : "light"
   );
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
-  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
 
   const contextValues = useMemo(() => ({
     isLoading, 
