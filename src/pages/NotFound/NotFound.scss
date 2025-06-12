@@ -10,6 +10,9 @@
 
 	&__inner {
 		@include mx.inner;
+		border: 2px solid green;
+		align-items: center;
+		justify-content: center;
 	}
 
 	// &__text {

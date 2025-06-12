@@ -83,13 +83,14 @@
 		}
 	}
 
-	// &__logout {
-	// 	display: none;
+	&__logout {
+		display: none;
+		border: 2px solid red;
 
-	// 	@media (min-width: vars.$tablet) {
-	// 		display: block;
-	// 	}
-	// }
+		@media (min-width: vars.$tablet) {
+			display: block;
+		}
+	}
 
 	&__toggle-button {
 		cursor: pointer;

@@ -5,6 +5,9 @@
 	& {
 		// background: var(--background-color);
 		background: yellow;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		@include mx.page;
 	}
 

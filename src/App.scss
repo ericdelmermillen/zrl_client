@@ -58,7 +58,17 @@ img {
 	}
 
 	&__inner {
-		border: 2px solid red;
 		@include mx.page;
+		min-height: 200vh;
+	}
+
+	&__logout--nav {
+		display: none;
+
+		@media (min-width: vars.$tablet) {
+			border: 1px solid var(--text-color-bright) !important;
+			color: var(--text-color-bright) !important;
+			@include mx.adminButton;
+		}
 	}
 }

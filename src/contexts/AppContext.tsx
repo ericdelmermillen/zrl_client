@@ -4,12 +4,20 @@ import type { ReactNode } from "react";
 type ColorMode = "light" | "dark";
 
 interface AppContextValue {
+  // state and state setting 
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   colorMode: ColorMode;
   setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>;
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollYPos: number;
+  setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  prevScrollYPos: number;
+  setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  // functions
+  showNav: () => void;
+  hideNav: () => void;
 };
 
 interface AppContextProviderProps {
@@ -25,6 +33,51 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
 
+  const [ scrollYPos, setScrollYPos ] = useState<number>(window.scrollY);
+  const [ prevScrollYPos, setPrevScrollYPos ] = useState<number>(window.scrollY);
+
+
+  const handleUpdateScrollYPos = (): void => {
+    setPrevScrollYPos(scrollYPos);
+    setScrollYPos(window.scrollY);
+  };
+
+
+  const showNav = (): void => {
+    document.getElementById("nav")?.classList.remove("hide");
+  };
+
+  const hideNav = (): void => {
+    document.getElementById("nav")?.classList.add("hide");
+  };
+
+
+  // useEffect to check local storage for colorMode
+  useEffect(() => {
+    localStorage.setItem("colorMode", colorMode);
+  }, [colorMode]);
+
+
+      // useEffect for updating of scrollYPos
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if(!ticking) {
+        requestAnimationFrame(() => {
+          handleUpdateScrollYPos();
+          // setShowSideNav(false);
+          ticking = false;
+        });
+        ticking = true;
+      };
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollYPos]);
+
+  
+
   const contextValues = useMemo(() => ({
     isLoading, 
     setIsLoading,
@@ -32,11 +85,27 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setIsLoggedIn,
     colorMode,
     setColorMode,
-  }), [isLoading, setIsLoading, isLoggedIn, setIsLoggedIn, colorMode, setColorMode]);
+    scrollYPos, 
+    setScrollYPos,
+    prevScrollYPos, 
+    setPrevScrollYPos,
+    showNav,
+    hideNav
+  }), [
+  isLoading,
+  setIsLoading,
+  isLoggedIn,
+  setIsLoggedIn,
+  colorMode,
+  setColorMode,
+  scrollYPos,
+  setScrollYPos,
+  prevScrollYPos,
+  setPrevScrollYPos,
+  showNav,
+  hideNav,
+]);
 
-  useEffect(() => {
-    localStorage.setItem("colorMode", colorMode);
-  }, [colorMode]);
 
   return (
     <AppContext.Provider value={contextValues}>

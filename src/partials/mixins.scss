@@ -100,3 +100,49 @@
 	min-height: calc((100vh - vars.$navHeight) + 1px);
 	width: 100%;
 }
+
+@mixin hoverClickGrow {
+	transform: scale(1.025);
+	transform: scale(1.01);
+	transition: all 0.25s ease-in-out;
+}
+
+@mixin hoverClickShrink {
+	transform: scale(0.99);
+	transition: all 0.25s ease-in;
+}
+
+@mixin adminButton {
+	background: none;
+	border: 1px solid var(--text-color);
+	border-radius: var(--border-radius);
+	color: var(--text-color);
+	cursor: pointer;
+	display: block;
+	font-size: var(--font-size-fine);
+	font-weight: 500;
+	letter-spacing: 2px;
+	margin-inline-start: 2rem;
+	padding-block: 0.5rem;
+	padding-inline: 1rem;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		@include hoverClickGrow;
+	}
+
+	&:active {
+		@include hoverClickShrink;
+	}
+
+	&:disabled {
+		opacity: 0.8;
+
+		&:hover {
+			cursor: default;
+			transform: scale(1);
+			user-select: none;
+		}
+	}
+}
