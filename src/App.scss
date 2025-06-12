@@ -54,7 +54,11 @@ img {
 
 .app {
 	& {
+		@include mx.appLayout;
+	}
+
+	&__inner {
 		border: 2px solid red;
-		min-height: calc(100vh + 1px);
+		@include mx.page;
 	}
 }

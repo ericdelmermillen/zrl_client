@@ -10,6 +10,8 @@ import './App.scss';
 
 const App = (): JSX.Element => {
   const { 
+    isLoading,
+    // setIsLoading,
     isLoggedIn,
     setIsLoggedIn,
     colorMode, 
@@ -22,9 +24,7 @@ const App = (): JSX.Element => {
   return (
     <div className="app" data-color-mode={colorMode}>
 
-      <div 
-      // className={`loading ${isLoading ? "isLoading" : ""}`}
-      ></div>
+      <div className={`loading ${isLoading ? "isLoading" : ""}`}></div>
 
       <div className="app__inner">
 

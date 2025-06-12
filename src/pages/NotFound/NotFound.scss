@@ -3,22 +3,23 @@
 
 .notFound {
 	& {
-		// @include mx.page;
-		width: 100%;
+		// background: var(--background-color);
+		// background: blue;
+		@include mx.page;
 	}
 
-	// &__inner {
-	// 	@include mx.wallpaperContainer;
+	&__inner {
+		@include mx.inner;
+	}
+
+	// &__text {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	// font-size: var(--heading-small);
+	// 	gap: 2rem;
+	// 	justify-content: center;
+	// 	text-align: center;
 	// }
-
-	&__text {
-		display: flex;
-		flex-direction: column;
-		// font-size: var(--heading-small);
-		gap: 2rem;
-		justify-content: center;
-		text-align: center;
-	}
 
 	// &__sub-heading {
 	// 	font-size: var(--font-size-small);

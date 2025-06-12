@@ -4,11 +4,11 @@
 .home {
 	& {
 		// background: var(--background-color);
-		// @include mx.page;
-		width: 100%;
+		background: yellow;
+		@include mx.page;
 	}
 
-	// &__main {
+	// 	&__main {
 	// 	margin-top: 100vh;
 	// 	position: relative;
 	// }

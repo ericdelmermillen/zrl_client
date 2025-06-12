@@ -8,6 +8,8 @@ interface AppContextValue {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   colorMode: ColorMode;
   setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 interface AppContextProviderProps {
@@ -20,14 +22,17 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ colorMode, setColorMode ] = useState<ColorMode>(() =>
     localStorage.getItem("colorMode") === "dark" ? "dark" : "light"
   );
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
 
   const contextValues = useMemo(() => ({
+    isLoading, 
+    setIsLoading,
     isLoggedIn,
     setIsLoggedIn,
     colorMode,
     setColorMode,
-  }), [isLoggedIn, setIsLoggedIn, colorMode, setColorMode]);
+  }), [isLoading, setIsLoading, isLoggedIn, setIsLoggedIn, colorMode, setColorMode]);
 
   useEffect(() => {
     localStorage.setItem("colorMode", colorMode);
