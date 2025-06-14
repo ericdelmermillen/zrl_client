@@ -58,8 +58,8 @@ img {
 	}
 
 	&__inner {
+		// min-height: calc(100vh + 1px);
 		@include mx.page;
-		min-height: 200vh;
 	}
 
 	&__logout--nav {

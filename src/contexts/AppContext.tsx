@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type ColorMode = "light" | "dark";
 
@@ -18,6 +18,7 @@ interface AppContextValue {
   // functions
   showNav: () => void;
   hideNav: () => void;
+  logoutUser: () => void;
 };
 
 interface AppContextProviderProps {
@@ -51,6 +52,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     document.getElementById("nav")?.classList.add("hide");
   };
 
+  const logoutUser = (): void => {
+    setIsLoggedIn(false);
+  };
+
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
@@ -75,10 +80,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollYPos]);
-
   
 
-  const contextValues = useMemo(() => ({
+  const contextValues = {
     isLoading, 
     setIsLoading,
     isLoggedIn,
@@ -90,21 +94,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     prevScrollYPos, 
     setPrevScrollYPos,
     showNav,
-    hideNav
-  }), [
-  isLoading,
-  setIsLoading,
-  isLoggedIn,
-  setIsLoggedIn,
-  colorMode,
-  setColorMode,
-  scrollYPos,
-  setScrollYPos,
-  prevScrollYPos,
-  setPrevScrollYPos,
-  showNav,
-  hideNav,
-]);
+    hideNav,
+    logoutUser
+  };
 
 
   return (

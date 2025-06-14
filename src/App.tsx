@@ -1,12 +1,13 @@
 import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
-import { Routes, Route, 
-  // useNavigate
- } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
+import Nav from './components/Nav/Nav';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
-import Nav from './components/Nav/Nav';
+
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 
 const App = (): JSX.Element => {
@@ -17,9 +18,18 @@ const App = (): JSX.Element => {
     // setIsLoggedIn,
     colorMode, 
     // setColorMode 
+    logoutUser
   } = useAppContext();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+     const handleLogout = () => {
+    logoutUser();
+    navigate("/");
+    setTimeout(() => {
+      // setShowSideNav(false);
+    }, MIN_LOADING_INTERVAL);
+   };
 
 
   return (
@@ -35,7 +45,7 @@ const App = (): JSX.Element => {
                 (
                   <button
                     className="app__logout--nav"
-                    // onClick={handleLogout}
+                    onClick={handleLogout}
                     aria-label="Logout"
                   >
                     Logout
@@ -46,18 +56,15 @@ const App = (): JSX.Element => {
 
         </Nav>
 
-        {/* <button onClick={() => setIsLoggedIn((prev) => !prev)}>
-          {`isLoggedIn: ${isLoggedIn}`}
-        </button> */}
+        <Routes>
 
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/*" element={<NotFound />} />
 
-          <Routes>
+        </Routes>
 
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/*" element={<NotFound />} />
-
-          </Routes>
+        <Footer />
 
       </div>
 

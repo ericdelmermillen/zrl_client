@@ -5,14 +5,14 @@ const Home: FC = () => {
   return (
     <div className="home">
       <div className="home__inner">
-        <h1 className="home__h1">You're on home, yo'!</h1>      
-          {/* <Header /> */}
-          <main className="home__main">
-            {/* <BlogFeed /> */}
-            {/* <Services /> */}
-            {/* <ContactForm /> */}
-          </main>
-        </div>
+        {/* <Header /> */}
+        <main className="home__main">
+          <h1 className="home__h1">You're on home, yo'!</h1>      
+          {/* <BlogFeed /> */}
+          {/* <Services /> */}
+          {/* <ContactForm /> */}
+        </main>
+      </div>
     </div>
   )};
 

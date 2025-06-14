@@ -1,6 +1,4 @@
-import { 
-  // useEffect,
-   type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts"
@@ -37,7 +35,6 @@ const Nav: FC<NavProps> = ({ children }) => {
     <>
       <nav id="nav" className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
         <div className="nav__content">
-
 
         <Link to={"/"}>
           <div 
