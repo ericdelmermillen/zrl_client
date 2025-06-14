@@ -17,6 +17,8 @@ const Nav: FC<NavProps> = ({ children }) => {
     setIsLoading,
     scrollYPos,
     prevScrollYPos,
+    // showSideNav,
+    setShowSideNav
    } = useAppContext();
 
   const { pathname } = useLocation();
@@ -29,6 +31,8 @@ const Nav: FC<NavProps> = ({ children }) => {
       setIsLoading(false);
     }, MIN_LOADING_INTERVAL);
   };
+
+  const handleSetShowSideNavTrue = (): void => {setShowSideNav(true)}
    
   
   return (
@@ -41,6 +45,7 @@ const Nav: FC<NavProps> = ({ children }) => {
             className="nav__logo-box"
             onClick={isOnHome 
               ? handleScrollToTop
+              // why undefined and not null?
               : undefined}
           >
             <Logo className={"nav__logo"}/>
@@ -51,7 +56,7 @@ const Nav: FC<NavProps> = ({ children }) => {
 
             <li className="nav__item">
               <Link 
-                className={"nav__link"}
+                className={`nav__link ${isOnHome ? "active" : ""}`}
                 to={"/home"}
               >
                 HOME
@@ -81,7 +86,7 @@ const Nav: FC<NavProps> = ({ children }) => {
           <div 
             className="nav__toggle-button" 
             aria-label="Toggle Menu"
-            // onClick={handleSetShowSideNavTrue}
+            onClick={handleSetShowSideNavTrue}
           >
             <div className="nav__toggle-icon"></div>
             <div className="nav__toggle-icon"></div>

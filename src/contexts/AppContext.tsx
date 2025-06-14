@@ -15,6 +15,8 @@ interface AppContextValue {
   setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
   prevScrollYPos: number;
   setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  showSideNav: boolean;
+  setShowSideNav: React.Dispatch<React.SetStateAction<boolean>>
   // functions
   showNav: () => void;
   hideNav: () => void;
@@ -36,6 +38,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ scrollYPos, setScrollYPos ] = useState<number>(window.scrollY);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState<number>(window.scrollY);
+
+  const [ showSideNav, setShowSideNav ] = useState<boolean>(false);
 
 
   const handleUpdateScrollYPos = (): void => {
@@ -70,7 +74,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       if(!ticking) {
         requestAnimationFrame(() => {
           handleUpdateScrollYPos();
-          // setShowSideNav(false);
+          setShowSideNav(false);
           ticking = false;
         });
         ticking = true;
@@ -95,7 +99,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setPrevScrollYPos,
     showNav,
     hideNav,
-    logoutUser
+    logoutUser,
+    showSideNav, 
+    setShowSideNav
   };
 
 
@@ -108,7 +114,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
 const useAppContext = () => {
   const context = useContext(AppContext);
-  if (!context) {
+  if(!context) {
     throw new Error("useAppContext must be used within an AppContextProvider");
   };
   return context;

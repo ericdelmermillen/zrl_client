@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
 import NotFound from './pages/NotFound/NotFound';
+import SideNav from './components/SideNav/SideNav';
 import './App.scss';
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
@@ -18,18 +19,20 @@ const App = (): JSX.Element => {
     // setIsLoggedIn,
     colorMode, 
     // setColorMode 
-    logoutUser
+    logoutUser,
+    // showSideNav,
+    setShowSideNav
   } = useAppContext();
 
   const navigate = useNavigate();
 
-     const handleLogout = () => {
+  const handleLogout = () => {
     logoutUser();
     navigate("/");
     setTimeout(() => {
-      // setShowSideNav(false);
+      setShowSideNav(false);
     }, MIN_LOADING_INTERVAL);
-   };
+  };
 
 
   return (
@@ -40,13 +43,31 @@ const App = (): JSX.Element => {
       <div className="app__inner">
 
         <Nav>
+          {isLoggedIn
+            ? 
+              (
+                <button
+                  className="app__logout--nav"
+                  onClick={handleLogout}
+                  aria-label="Logout"
+                >
+                  Logout
+                </button>
+              )
+            : null
+          }
+
+        </Nav>
+
+        <SideNav>
+          <div className="app__sideNav-children">
+
             {isLoggedIn
               ? 
                 (
                   <button
-                    className="app__logout--nav"
+                    className="app__logout--sideNav"
                     onClick={handleLogout}
-                    aria-label="Logout"
                   >
                     Logout
                   </button>
@@ -54,7 +75,10 @@ const App = (): JSX.Element => {
               : null
             }
 
-        </Nav>
+            {/* <ColorModeToggle inputId={"sideNavColorModeToggle"} /> */}
+            
+          </div>
+        </SideNav>
 
         <Routes>
 

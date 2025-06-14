@@ -28,15 +28,15 @@
 		width: 100%;
 	}
 
-	// 	&__logo-box {
-	// 	align-items: center;
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	height: vars.$navHeight;
-	// 	width: 4rem;
-	// }
+	&__logo-box {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		height: vars.$navHeight;
+		width: 4rem;
+	}
 
-	// 	&__logo {
+	// &__logo {
 	// 	fill: var(--text-color-bright);
 	// 	height: 1rem;
 	// 	margin-top: 4px;
@@ -55,23 +55,26 @@
 	}
 
 	&__link {
-		// color: var(--text-color-bright);
-		// @include mx.navLink;
+		color: var(--text-color-bright);
+		@include mx.navLink;
 
-		// &:hover {
-		// 	&::after {
-		// 		@include mx.afterAccent;
-		// 	}
-		// }
+		&:hover {
+			&::after {
+				@include mx.afterAccent;
+				background: red;
+			}
+		}
 		color: green;
 	}
 
 	&__link.active {
 		position: relative;
 
-		// &::after {
-		// 	@include mx.afterAccent;
-		// }
+		&::after {
+			@include mx.afterAccent;
+			// not being applied on Home or /
+			background: red;
+		}
 	}
 
 	&__colorModeToggle {
@@ -85,7 +88,6 @@
 
 	&__logout {
 		display: none;
-		border: 2px solid red;
 
 		@media (min-width: vars.$tablet) {
 			display: block;

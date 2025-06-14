@@ -68,14 +68,14 @@
 	&__copyright {
 		align-items: center;
 		display: flex;
-		// font-family: var(--body-font);
-		// font-size: var(--font-size-xs);
+		font-family: var(--body-font);
+		font-size: var(--font-size-xs);
 		justify-content: center;
 		letter-spacing: 1px;
 		text-align: center;
 
 		@media (min-width: vars.$smallTablet) {
-			// font-size: var(--font-size-small);
+			font-size: var(--font-size-sm);
 			width: 100%;
 		}
 
