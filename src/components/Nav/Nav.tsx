@@ -40,17 +40,17 @@ const Nav: FC<NavProps> = ({ children }) => {
       <nav id="nav" className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
         <div className="nav__content">
 
-        <Link to={"/"}>
-          <div 
-            className="nav__logo-box"
-            onClick={isOnHome 
-              ? handleScrollToTop
-              // why undefined and not null?
-              : undefined}
-          >
-            <Logo className={"nav__logo"}/>
-          </div>
-        </Link>
+          <Link to={"/"}>
+            <div 
+              className="nav__logo-box"
+              onClick={isOnHome 
+                ? handleScrollToTop
+                // why undefined and not null?
+                : undefined}
+            >
+              <Logo className={"nav__logo"}/>
+            </div>
+          </Link>
         
           <ul className="nav__links">
 
@@ -93,9 +93,9 @@ const Nav: FC<NavProps> = ({ children }) => {
             <div className="nav__toggle-icon"></div>
           </div>
 
+          {children}
         </div>
         
-          {children}
         
       </nav>
     </>

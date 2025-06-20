@@ -13,6 +13,7 @@
 	width: 100%;
 	z-index: 3;
 	border: 2px solid blue;
+	background: pink;
 
 	&.hide {
 		margin-top: -5rem;
@@ -26,6 +27,9 @@
 		max-width: vars.$ultraWide;
 		padding-inline: 2rem;
 		width: 100%;
+		max-width: vars.$ultraWide;
+		margin-inline: auto;
+		border: 2px dotted #333;
 	}
 
 	&__logo-box {

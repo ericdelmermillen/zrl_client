@@ -40,8 +40,6 @@ const App = (): JSX.Element => {
 
       <div className={`loading ${isLoading ? "isLoading" : ""}`}></div>
 
-      <div className="app__inner">
-
         <Nav>
           {isLoggedIn
             ? 
@@ -58,6 +56,8 @@ const App = (): JSX.Element => {
           }
 
         </Nav>
+      <div className="app__inner">
+
 
         <SideNav>
           <div className="app__sideNav-children">
