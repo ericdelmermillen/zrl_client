@@ -181,3 +181,45 @@
 	position: absolute;
 	right: 0;
 }
+
+// vertical accent bar
+@mixin accentBar {
+	background: orange;
+	border-bottom-right-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+	height: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(calc(-50% + calc(vars.$navHeight / 2)));
+	width: 0.751rem;
+
+	@media (min-width: vars.$largeTablet) {
+		width: 1.25rem;
+	}
+}
+
+@mixin accentBarLeft {
+	@include accentBar();
+
+	& {
+		left: 0;
+	}
+}
+
+@mixin accentBarRight {
+	@include accentBar();
+	& {
+		right: 0;
+	}
+}
+
+// @mixin accentBarRight @extends accentBarLeft {
+// 	height: 50%;
+// 	width: 1.25rem;
+// 	background: orange;
+// 	position: absolute;
+// 	top: 50%;
+// 	transform: translateY(calc(-50% + calc(vars.$navHeight / 2)));
+// 	border-top-right-radius: 0.25rem;
+// 	border-bottom-right-radius: 0.25rem;
+// }
