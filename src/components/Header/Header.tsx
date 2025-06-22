@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import { type FC, useEffect, useState } from "react";
 import "./Header.scss";
 
 const solutions: string[] = [" Small Business", "Enterprise", "Startups"];
@@ -23,6 +23,7 @@ useEffect(() => {
     <>
       <header className="header">
         <div className="header__inner">
+          <div className="header__overlay"></div>
           <div className="header__accentBar"></div>
           <div className="header__text">
             <h1 className="header__heading">Software Solutions</h1>

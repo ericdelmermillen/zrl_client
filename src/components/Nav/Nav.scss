@@ -5,6 +5,8 @@
 	align-items: center;
 	// background: var(--background-nav-footer);
 	// box-shadow: var(--navFooter-box-shadow);
+	background: pink;
+	// border: 2px solid blue;
 	display: flex;
 	height: vars.$navHeight;
 	position: fixed;
@@ -12,8 +14,6 @@
 	top: 0;
 	width: 100%;
 	z-index: 3;
-	border: 2px solid blue;
-	background: pink;
 
 	&.hide {
 		margin-top: -5rem;
@@ -25,10 +25,9 @@
 		justify-content: center;
 		height: 100%;
 		max-width: vars.$ultraWide;
+		margin-inline: auto;
 		padding-inline: 2rem;
 		width: 100%;
-		max-width: vars.$ultraWide;
-		margin-inline: auto;
 		// border: 2px dotted #333;
 	}
 
@@ -76,7 +75,7 @@
 
 		&::after {
 			@include mx.afterAccent;
-			// not being applied on Home or /
+
 			background: red;
 		}
 	}

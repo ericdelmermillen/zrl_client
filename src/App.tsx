@@ -58,7 +58,6 @@ const App = (): JSX.Element => {
         </Nav>
       <div className="app__inner">
 
-
         <SideNav>
           <div className="app__sideNav-children">
 

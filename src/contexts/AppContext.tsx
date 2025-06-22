@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 
 type ColorMode = "light" | "dark";
 
@@ -46,7 +46,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setPrevScrollYPos(scrollYPos);
     setScrollYPos(window.scrollY);
   };
-
 
   const showNav = (): void => {
     document.getElementById("nav")?.classList.remove("hide");

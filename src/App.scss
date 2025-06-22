@@ -41,10 +41,10 @@ input {
 	// gooogle chrome auto fill styling override
 	&:-webkit-autofill {
 		-webkit-box-shadow: none !important;
-		// background-color: none !important;
+		background-color: none !important;
 		box-shadow: none !important;
-		// caret-color: var(--text-color);
-		// transition: background-color 5000s ease-in-out 0s;
+		caret-color: var(--text-color);
+		transition: background-color 5000s ease-in-out 0s;
 	}
 }
 
@@ -58,7 +58,6 @@ img {
 	}
 
 	&__inner {
-		// min-height: calc(100vh + 1px);
 		@include mx.page;
 	}
 
@@ -87,8 +86,8 @@ img {
 		display: none;
 
 		@media (min-width: vars.$tablet) {
-			border: 1px solid var(--text-color-bright) !important;
-			color: var(--text-color-bright) !important;
+			// border: 1px solid var(--text-color-bright) !important;
+			// color: var(--text-color-bright) !important;
 			@include mx.adminButton;
 		}
 	}
