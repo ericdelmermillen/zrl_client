@@ -1,15 +1,16 @@
 import type { FC } from "react";
+import type { CarouselItem } from "../Carousel/Carousel"; 
 import Carousel from "../Carousel/Carousel";
 import "./Partners.scss";
 
-const carouselItems = [
-  {itemName: "HTML"},
-  {itemName: "CSS"},
-  {itemName: "JS"},
-  {itemName: "SSG"},
-  {itemName: "webdev"},
-  {itemName: "animation"},
-  {itemName: "UI/UX"}
+const carouselItems: CarouselItem[] = [
+  { itemName: "HTML" },
+  { itemName: "CSS" },
+  { itemName: "JS" },
+  { itemName: "SSG" },
+  { itemName: "webdev" },
+  { itemName: "animation" },
+  { itemName: "UI/UX"}
 ];
 
 const Partners: FC = () => {
@@ -19,11 +20,17 @@ const Partners: FC = () => {
         <h1 className="partners__heading">
           Our Partners
         </h1>
+        {/* replace with items for either the company's:
+              tech stack items 
+              or partners 
+              or possibly services 
+        */}
         <Carousel 
           carouselItems={carouselItems}
           itemClassName={"partners__partnerItem"}
-          direction={"right"}
-          secondsPerLoop={15}
+          direction={"left"}
+          carouselAriaLabel={"Horizontally scrolling list of web development topics"}
+          secondsPerLoop={12}
         />
       </div>
     </>

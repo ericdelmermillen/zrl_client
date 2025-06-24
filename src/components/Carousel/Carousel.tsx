@@ -1,91 +1,81 @@
-import { type FC, useEffect, useRef } from 'react';
+import { type FC, useRef, useEffect } from 'react';
 import "./Carousel.scss";
 
-// add more properties to help with accessibility and SEO
-interface CarouselItem {
+// Define and export the item type for reuse
+export interface CarouselItem {
   itemName: string;
-};
+}
 
 interface CarouselProps {
   carouselItems: CarouselItem[];
   itemClassName?: string;
   direction?: "left" | "right";
   secondsPerLoop?: number;
-};
+  carouselAriaLabel?: string
+}
 
-  const Carousel: FC<CarouselProps> = ({ 
-    carouselItems, 
-    itemClassName = "carousel__item",
-    direction = "left", 
-    secondsPerLoop = 25 
-  }) => {
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
-  
+const Carousel: FC<CarouselProps> = ({
+  carouselItems,
+  direction = "left",
+  itemClassName = "carousel__item",
+  secondsPerLoop = 25,
+  carouselAriaLabel = "Horizontally scrolling list of items"
+}) => {
+
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const scrollerRef = useRef<HTMLUListElement | null>(null);
+
   useEffect(() => {
+    const carousel = carouselRef.current;
     const scroller = scrollerRef.current;
-    const carousel = document.getElementById("carousel");
 
-    if(!scroller || !carousel) {
-      return;
-    };
+    if (!carousel || !scroller) return;
 
     // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
     if(prefersReducedMotion) {
       return;
     };
 
-    scroller.setAttribute("data-animated", "true");
+    carousel.setAttribute("data-animated", "true");
 
-    const items = Array.from(carousel.children);
-
+    const items = Array.from(scroller.children);
     items.forEach((item) => {
       const clone = item.cloneNode(true) as HTMLElement;
       clone.setAttribute("aria-hidden", "true");
-      carousel.appendChild(clone);
+      scroller.appendChild(clone);
     });
-
   }, []);
 
   return (
-    <div 
-      className="carousel" 
-      data-speed="fast" 
-      ref={scrollerRef}
+    <div
+      className="carousel"
+      ref={carouselRef}
       data-direction={direction}
-      aria-label="Scrolling list of web development topics"
+      aria-label={carouselAriaLabel}
       role="region"
     >
-      
       <div className="carousel__inner">
-
-        <ul 
-          id="carousel" 
-          className="carousel__track" 
+        <ul
+          ref={scrollerRef}
+          className="carousel__track"
           role="list"
-          style={{
-            animationDuration: `${secondsPerLoop}s`,
-          }}
+          style={{ animationDuration: `${secondsPerLoop}s` }}
         >
-
-          {carouselItems.map(item =>
-          
-            <li 
-              key={item.itemName}
+          {carouselItems.map((item, idx) => (
+            <li
+              key={`${item.itemName}-${idx}`}
               className={itemClassName}
-              aria-describedby={`desc-${item.itemName}`}
+              aria-describedby={`desc-${item.itemName}-${idx}`}
               role="listitem"
             >
               {item.itemName}
             </li>
-          
-          )}
-
+          ))}
         </ul>
       </div>
-      
     </div>
-  )};
+  );
+};
 
 export default Carousel;
