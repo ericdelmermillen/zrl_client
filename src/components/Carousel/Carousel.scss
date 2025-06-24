@@ -1,0 +1,63 @@
+@use "../../partials/variables" as vars;
+@use "../../partials/mixins" as mx;
+
+.carousel {
+	& {
+		border: 2px dotted #333;
+	}
+
+	&[data-animated="true"] {
+		-webkit-mask: linear-gradient(
+			90deg,
+			transparent,
+			white 20%,
+			white 80%,
+			transparent
+		);
+		overflow: hidden;
+
+		mask: linear-gradient(
+			90deg,
+			transparent,
+			white 10%,
+			white 90%,
+			transparent
+		);
+	}
+
+	&[data-animated="true"] &__track {
+		animation: scroll var(--_animation-duration, 40s)
+			var(--_animation-direction, forwards) linear infinite;
+		flex-wrap: nowrap;
+		width: max-content;
+	}
+
+	&[data-direction="right"] {
+		--_animation-direction: reverse;
+	}
+
+	&[data-direction="left"] {
+		--_animation-direction: forwards;
+	}
+
+	&__track {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		padding-block: 2rem;
+	}
+
+	&__item {
+		background: yellow;
+		border-radius: 0.5rem;
+		box-shadow: 0 0.5rem 1rem -0.25rem #333;
+		color: blue;
+		padding: 1rem;
+	}
+}
+
+@keyframes scroll {
+	to {
+		transform: translate(calc(-50% - 0.5rem));
+	}
+}

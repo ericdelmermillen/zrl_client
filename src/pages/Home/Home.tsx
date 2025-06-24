@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import Header from "../../components/Header/Header";
 import "./Home.scss";
+import PartnerCarousel from "../../components/Partners/Partners";
 
 const Home: FC = () => {
   return (
@@ -9,7 +10,7 @@ const Home: FC = () => {
         <div className="home__inner">
           <Header />
           <main className="home__main">
-            <h1 className="home__h1">You're on home, yo'!</h1>      
+            <PartnerCarousel />
           </main>
         </div>
       </div>
