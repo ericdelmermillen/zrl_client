@@ -2,9 +2,9 @@
 @use "../../partials/mixins" as mx;
 
 .carousel {
-	& {
-		border: 2px dotted #333;
-	}
+	// & {
+	// 	border: 2px dotted #333;
+	// }
 
 	&[data-animated="true"] {
 		-webkit-mask: linear-gradient(

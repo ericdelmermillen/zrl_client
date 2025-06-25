@@ -1,0 +1,65 @@
+@use "../../partials/variables" as vars;
+@use "../../partials/mixins" as mx;
+
+.moreInformation {
+	& {
+		color: #333;
+	}
+
+	&__inner {
+		border: 2px dashed #333;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		@media (min-width: vars.$tablet) {
+			flex-direction: row;
+			justify-content: flex-start;
+		}
+	}
+
+	&__text {
+		border: 2px solid blue;
+		padding-inline: 2rem;
+		width: 100%;
+	}
+
+	&__heading {
+		color: purple;
+	}
+
+	&__formSection {
+		border: 2px solid green;
+		width: 100%;
+	}
+
+	&__form {
+		padding-inline: 2rem;
+	}
+
+	&__solutions {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__solution {
+		border: 2px solid green;
+		align-items: center;
+		display: flex;
+	}
+
+	&__solutionCheck {
+		align-items: center;
+		border: 2px solid red;
+		color: blue;
+		display: flex;
+		font-size: 2rem;
+		height: 4rem;
+		justify-content: center;
+		padding-inline: 1rem;
+	}
+
+	&__solutionSpan {
+		font-weight: bold;
+	}
+}
