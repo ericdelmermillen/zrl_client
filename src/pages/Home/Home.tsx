@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import Header from "../../components/Header/Header";
-import MoreInformation from "../../components/MoreInformation/MoreInformation";
+import MoreInfo from "../../components/MoreInfo/MoreInfo";
 import PartnerCarousel from "../../components/Partners/Partners";
 import "./Home.scss";
 
@@ -12,7 +12,7 @@ const Home: FC = () => {
           <Header />
           <main className="home__main">
             <PartnerCarousel />
-            <MoreInformation />
+            <MoreInfo />
           </main>
         </div>
       </div>
