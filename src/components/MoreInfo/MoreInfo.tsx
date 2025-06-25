@@ -1,5 +1,6 @@
 import { type FC } from 'react';
 import { FaCheck } from "react-icons/fa";
+import MoreInfoForm from '../MoreInfoForm/MoreInfoForm';
 import "./MoreInfo.scss";
 
 const MoreInfo:FC = () => {
@@ -35,17 +36,7 @@ const MoreInfo:FC = () => {
             
           </div>
 
-          <section className="moreInfo__formSection">
-
-            <form className="moreInfo__form">
-              <h2>More Info Form</h2>
-
-              <button className="moreInfo__submit">
-                Submit
-              </button>
-
-            </form>
-          </section>
+          <MoreInfoForm />
 
         </div>
       </section>
