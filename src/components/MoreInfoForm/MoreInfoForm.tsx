@@ -2,7 +2,9 @@ import {
   type FC,
   type ChangeEvent,
   useState, 
+  useRef
 } from 'react';
+import { isValidEmail } from '../../../utils/utils';
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it
@@ -17,13 +19,17 @@ const MoreInfoForm: FC = () => {
   const [ phone, setPhone ] =useState<string>("");
   const [ agreeToTerms, setAgreeToTerms ] =useState<boolean>(true);
 
+  // input validation state
+  const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
+
+  const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
+
+  const emailRef = useRef<HTMLInputElement | null>(null);
+
+
 
   const handleUpdateName = (e: ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value);
-  };
-
-  const handleUpdateEmail = (e: ChangeEvent<HTMLInputElement>): void => {
-    setEmail(e.target.value);
   };
 
   const handleUpdatePhone = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -34,11 +40,31 @@ const MoreInfoForm: FC = () => {
   setAgreeToTerms(e.target.checked);
 };
 
+
+const handleEmailChange = (): boolean => {
+  const emailValue = emailRef.current?.value ?? '';
+  const emailIsValid = isValidEmail(emailValue);
+
+  setEmail(emailValue);
+  setEmailIsValid(emailIsValid);
+
+  return emailIsValid;
+};
+
   const handleSubmit = (): void => {
-    console.log(name)
-    console.log(email)
-    console.log(phone)
-    console.log(agreeToTerms)
+    // console.log(name)
+    // console.log(email)
+    // console.log(phone)
+    // console.log(agreeToTerms)
+    setInitialFormCheck(true)
+
+    if(!handleEmailChange()) {
+      // toast.error("Email is invalid");
+      // errors++;
+      console.log("invalid Email")
+    };
+
+
 
   };
 
@@ -74,11 +100,17 @@ const MoreInfoForm: FC = () => {
             <input 
               id="moreInfoFormEmail"
               type="text" 
-              className="moreInfoForm__input moreInfoForm__input--email" 
+              className={
+                `moreInfoForm__input moreInfoForm__input--email 
+                  ${initialFormCheck && !emailIsValid 
+                    ? "invalid" 
+                    : ""}`
+              } 
               autoComplete="email"
               placeholder="Enter Email"
               value={email}
-              onChange={handleUpdateEmail}
+              ref={emailRef}
+              onChange={handleEmailChange}
             />
           </div>
 
