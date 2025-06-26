@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
@@ -88,6 +89,53 @@ const App = (): JSX.Element => {
         </Routes>
 
         <Footer />
+
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false} // Newest toast at the bottom
+          gutter={8} // Space between toasts
+          containerStyle={{ top: 20, right: 20 }}
+          toastOptions={{
+            duration: 3000,
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+            style: {
+              background: '#333',
+              color: '#fff',
+              padding: '16px',
+            },
+            success: {
+              duration: 3000,
+              iconTheme: {
+                primary: 'white',
+                secondary: 'green',
+              },
+              style: {
+                background: 'green',
+                color: '#fff',
+              },
+            },
+            error: {
+              duration: 3000,
+              icon: '🔥',
+              style: {
+                background: 'red',
+                color: '#fff',
+              },
+            },
+            loading: {
+              duration: Infinity,
+              icon: '⏳',
+              style: {
+                background: '#007bff',
+                color: '#fff',
+              },
+            },
+          }}
+        />
+
 
       </div>
 

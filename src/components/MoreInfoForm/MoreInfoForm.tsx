@@ -5,6 +5,8 @@ import {
   useRef
 } from 'react';
 import { isValidEmail } from '../../../utils/utils';
+import { isValidPhoneNumber } from 'libphonenumber-js';
+import toast from 'react-hot-toast';
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it
@@ -14,35 +16,38 @@ import "./MoreInfoForm.scss";
 
 const MoreInfoForm: FC = () => {
 
-  const [ name, setName ] =useState<string>("");
-  const [ email, setEmail ] =useState<string>("");
-  const [ phone, setPhone ] =useState<string>("");
-  const [ agreeToTerms, setAgreeToTerms ] =useState<boolean>(true);
+  const [ name, setName ] = useState<string>("");
+  const [ email, setEmail ] = useState<string>("");
+  const [ phone, setPhone ] = useState<string>("");
+  const [ agreeToTerms, setAgreeToTerms ] = useState<boolean>(true);
 
   // input validation state
-  const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
-
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
+  
+  const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
+  const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
+  const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
 
+
+  const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
+  const phoneRef = useRef<HTMLInputElement | null>(null);
 
+// ***
 
-
-  const handleUpdateName = (e: ChangeEvent<HTMLInputElement>): void => {
-    setName(e.target.value);
+  const handleNameChange = () => {
+    const nameValue = nameRef.current?.value ?? "";
+    const isValidLength = nameValue.trim().length >= 2;
+  
+    setName(nameValue);
+    setNameIsValid(isValidLength);
+  
+    return isValidLength;
   };
-
-  const handleUpdatePhone = (e: ChangeEvent<HTMLInputElement>): void => {
-    setPhone(e.target.value);
-  };
-
-  const handleUpdateAgreeToTerms = (e: ChangeEvent<HTMLInputElement>): void => {
-  setAgreeToTerms(e.target.checked);
-};
 
 
 const handleEmailChange = (): boolean => {
-  const emailValue = emailRef.current?.value ?? '';
+  const emailValue = emailRef.current?.value ?? "";
   const emailIsValid = isValidEmail(emailValue);
 
   setEmail(emailValue);
@@ -51,19 +56,63 @@ const handleEmailChange = (): boolean => {
   return emailIsValid;
 };
 
+const handlePhoneChange = (): boolean => {
+  const phoneValue = phoneRef.current?.value ?? "";
+  const phoneNumberIsValid = isValidPhoneNumber(phoneValue);
+
+  setPhone(phoneValue);
+  setPhoneIsValid(phoneNumberIsValid);
+
+  return phoneNumberIsValid;
+};
+
+const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
+  console.log(e.target.checked)
+  setAgreeToTerms(e.target.checked);
+
+  // return phoneNumberIsValid;
+  return true;
+};
+
+
+  // ***
+
   const handleSubmit = (): void => {
-    // console.log(name)
-    // console.log(email)
-    // console.log(phone)
-    // console.log(agreeToTerms)
-    setInitialFormCheck(true)
+    setInitialFormCheck(true);
+    // setIsLoading(true);
+    
+    let errors = 0;
 
     if(!handleEmailChange()) {
-      // toast.error("Email is invalid");
-      // errors++;
-      console.log("invalid Email")
+      toast.error("Email is invalid");
+      errors++;
     };
 
+    if(!handleNameChange()) {
+      toast.error("Name is invalid");
+      errors++;
+    };
+
+    // need to get phone number with any non-numeric characters stripped when it is time to post
+    if(!handlePhoneChange()) {
+      toast.error("Phone is invalid");
+      errors++;
+    };
+    
+    if(!agreeToTerms) {
+      toast.error("Please agree to the Privacy Policy");
+      errors++;
+    };
+
+
+    if(errors) {
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      // }, MIN_LOADING_INTERVAL);
+      return;
+    };
+
+    // endpoint call if no errors
 
 
   };
@@ -83,11 +132,16 @@ const handleEmailChange = (): boolean => {
             <input 
               id="moreInfoFormName"
               type="text" 
-              className="moreInfoForm__input moreInfoForm__input--name" 
+              className={
+                `moreInfoForm__input moreInfoForm__input--name
+                  ${initialFormCheck && !nameIsValid
+                      ? "invalid" : ""
+                  }` }
               autoComplete="name"
               placeholder="Enter Name"
               value={name}
-              onChange={handleUpdateName}
+              ref={nameRef}
+              onChange={handleNameChange}
             />
 
           </div>
@@ -123,12 +177,17 @@ const handleEmailChange = (): boolean => {
             <input 
               id="moreInfoFormPhone"
               type="tel" 
-              className="moreInfoForm__input moreInfoForm__input--phone" 
+              className={
+                `moreInfoForm__input moreInfoForm__input--phone
+                  ${initialFormCheck && !phoneIsValid
+                      ? "invalid" : ""}  
+              `} 
               inputMode="numeric"
               autoComplete="tel"
               placeholder="Enter Phone"
               value={phone}
-              onChange={handleUpdatePhone}
+              ref={phoneRef}
+              onChange={handlePhoneChange}
             />
           
           </div>
@@ -142,19 +201,30 @@ const handleEmailChange = (): boolean => {
             <input 
               id="moreInfoFormTerms"
               type="checkbox" 
-              className="moreInfoForm__input moreInfoForm__input--terms" 
+              className={`moreInfoForm__input moreInfoForm__input--terms
+                ${initialFormCheck && !agreeToTerms
+                  ? "invalid" : ""
+                }`} 
               checked={agreeToTerms}
-              onChange={handleUpdateAgreeToTerms}
+              onChange={handleTermsChange}
             />
+
+            <span className="moreInfoForm__termsText">Agree to the privacy terms</span>
 
           </div>
       
-          <button 
-            className="moreInfoForm__submit"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+          <div className="moreInfoForm__submit">
+            <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
+              Submit
+            </label>
+              
+            <button 
+              className={`moreInfoForm__submitButton ${!agreeToTerms ? "disabled" : ""}`}
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
 
         </form>
       </section>
