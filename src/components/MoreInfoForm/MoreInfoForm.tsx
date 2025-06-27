@@ -5,7 +5,7 @@ import {
   useRef
 } from 'react';
 import { isValidEmail } from '../../../utils/utils';
-import { isValidPhoneNumber } from 'libphonenumber-js';
+import { isValidPhoneNumber } from "../../../utils/utils";
 import toast from 'react-hot-toast';
 import { useAppContext } from "../../contexts/AppContext";
 import "./MoreInfoForm.scss";
@@ -70,7 +70,7 @@ const handlePhoneChange = (): boolean => {
 };
 
 const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
-  console.log(e.target.checked)
+  // console.log(e.target.checked)
   setAgreeToTerms(e.target.checked);
 
   // return phoneNumberIsValid;
@@ -130,7 +130,11 @@ const handleAgreeToTerms = (): void => {
     <>
       <section className="moreInfoForm__section">
             
-        <form className="moreInfoForm__form" onSubmit={(e) => {e.preventDefault()}}>
+        <form 
+          className="moreInfoForm__form" 
+          onSubmit={(e) => {e.preventDefault()}}
+          name="moreInfoForm"
+        >
 
           <div className="moreInfoForm__name">
             <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
@@ -159,15 +163,12 @@ const handleAgreeToTerms = (): void => {
             <label htmlFor="moreInfoFormEmail" className="moreInfoForm__label">
               Email
             </label>
-            <input 
+
+            <input
               id="moreInfoFormEmail"
-              type="text" 
-              className={
-                `moreInfoForm__input moreInfoForm__input--email 
-                  ${initialFormCheck && !emailIsValid 
-                    ? "invalid" 
-                    : ""}`
-              } 
+              type="email"
+              name="email"
+              className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
               autoComplete="email"
               placeholder="Enter Email"
               value={email}
@@ -235,6 +236,7 @@ const handleAgreeToTerms = (): void => {
               
             <button 
               className={`moreInfoForm__submitButton ${!agreeToTerms ? "disabled" : ""}`}
+              type="submit"
               onClick={handleSubmit}
             >
               Submit
