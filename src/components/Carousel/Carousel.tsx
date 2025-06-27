@@ -26,26 +26,26 @@ const Carousel: FC<CarouselProps> = ({
   const scrollerRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-    const carousel = carouselRef.current;
-    const scroller = scrollerRef.current;
+  const carousel = carouselRef.current;
+  const scroller = scrollerRef.current;
 
-    if (!carousel || !scroller) return;
+  if (!carousel || !scroller) return;
 
-    // // Respect prefers-reduced-motion
-    // const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // if(prefersReducedMotion) {
-    //   return;
-    // };
+  carousel.setAttribute("data-animated", "true");
 
-    carousel.setAttribute("data-animated", "true");
-
-    const items = Array.from(scroller.children);
+  const items = Array.from(scroller.children);
+  
+  // Clone items twice to ensure a seamless loop at wide widths
+  for (let i = 0; i < 2; i++) {
     items.forEach((item) => {
       const clone = item.cloneNode(true) as HTMLElement;
       clone.setAttribute("aria-hidden", "true");
       scroller.appendChild(clone);
     });
-  }, []);
+  }
+}, []);
+
+
 
   return (
     <div
@@ -75,7 +75,6 @@ const Carousel: FC<CarouselProps> = ({
         </ul>
       </div>
     </div>
-  );
-};
+  )};
 
 export default Carousel;

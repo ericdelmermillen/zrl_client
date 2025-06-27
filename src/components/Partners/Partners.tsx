@@ -13,6 +13,8 @@ const carouselItems: CarouselItem[] = [
   { itemName: "UI/UX"}
 ];
 
+// dynamically set secondsPerLoop prop based on screen width
+
 const Partners: FC = () => {
   return (
     <>
@@ -30,7 +32,7 @@ const Partners: FC = () => {
           itemClassName={"partners__partnerItem"}
           direction={"left"}
           carouselAriaLabel={"Horizontally scrolling list of web development topics"}
-          secondsPerLoop={12}
+          secondsPerLoop={15}
         />
       </div>
     </>
