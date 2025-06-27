@@ -31,11 +31,11 @@ const Carousel: FC<CarouselProps> = ({
 
     if (!carousel || !scroller) return;
 
-    // Respect prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(prefersReducedMotion) {
-      return;
-    };
+    // // Respect prefers-reduced-motion
+    // const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // if(prefersReducedMotion) {
+    //   return;
+    // };
 
     carousel.setAttribute("data-animated", "true");
 
