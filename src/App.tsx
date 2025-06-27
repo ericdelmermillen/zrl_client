@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
+import Modal from './components/Modal/Modal';
 import Nav from './components/Nav/Nav';
 import NotFound from './pages/NotFound/NotFound';
 import SideNav from './components/SideNav/SideNav';
@@ -22,7 +23,8 @@ const App = (): JSX.Element => {
     // setColorMode 
     logoutUser,
     // showSideNav,
-    setShowSideNav
+    setShowSideNav,
+    modalType
   } = useAppContext();
 
   const navigate = useNavigate();
@@ -41,22 +43,23 @@ const App = (): JSX.Element => {
 
       <div className={`loading ${isLoading ? "isLoading" : ""}`}></div>
 
-        <Nav>
-          {isLoggedIn
-            ? 
-              (
-                <button
-                  className="app__logout--nav"
-                  onClick={handleLogout}
-                  aria-label="Logout"
-                >
-                  Logout
-                </button>
-              )
-            : null
-          }
+      <Nav>
+        {isLoggedIn
+          ? 
+            (
+              <button
+                className="app__logout--nav"
+                onClick={handleLogout}
+                aria-label="Logout"
+              >
+                Logout
+              </button>
+            )
+          : null
+        }
 
-        </Nav>
+      </Nav>
+
       <div className="app__inner">
 
         <SideNav>
@@ -79,6 +82,16 @@ const App = (): JSX.Element => {
             
           </div>
         </SideNav>
+
+        <Modal>
+
+          {modalType === "privacy"
+            ? <p>Privacy Policy</p>
+            : modalType === "terms"
+            ? <p>Terms & Conditions</p>
+            : null
+          }
+        </Modal>
 
         <Routes>
 

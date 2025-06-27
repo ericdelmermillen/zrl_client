@@ -7,6 +7,7 @@ import {
 import { isValidEmail } from '../../../utils/utils';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import toast from 'react-hot-toast';
+import { useAppContext } from "../../contexts/AppContext";
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it
@@ -15,6 +16,8 @@ import "./MoreInfoForm.scss";
 
 
 const MoreInfoForm: FC = () => {
+
+  const { handleSetModalType } = useAppContext()
 
   const [ name, setName ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");
@@ -73,6 +76,11 @@ const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
   // return phoneNumberIsValid;
   return true;
 };
+
+const handleAgreeToTerms = (): void => {
+  // setShowModal(true)
+  handleSetModalType("privacy")
+}
 
 
   // ***
@@ -208,8 +216,15 @@ const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
               checked={agreeToTerms}
               onChange={handleTermsChange}
             />
-
-            <span className="moreInfoForm__termsText">Agree to the privacy terms</span>
+            <span className="moreInfoForm__termsText">
+              Agree to the{" "}
+              <span
+                className="moreInfoTerms__privacy"
+                onClick={handleAgreeToTerms}
+              >
+                privacy policy
+              </span>
+            </span>
 
           </div>
       

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useState, useEffect, useContext, createContext } from "react";
 
 type ColorMode = "light" | "dark";
+type ModalType = "privacy" | "terms";
 
 interface AppContextValue {
   // state and state setting 
@@ -17,10 +18,15 @@ interface AppContextValue {
   setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
   showSideNav: boolean;
   setShowSideNav: React.Dispatch<React.SetStateAction<boolean>>
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+  modalType: ModalType | null;
+  setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
   // functions
   showNav: () => void;
   hideNav: () => void;
   logoutUser: () => void;
+  handleSetModalType: (modalType: ModalType) => void;
 };
 
 interface AppContextProviderProps {
@@ -40,6 +46,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ prevScrollYPos, setPrevScrollYPos ] = useState<number>(window.scrollY);
 
   const [ showSideNav, setShowSideNav ] = useState<boolean>(false);
+  const [ showModal, setShowModal ] = useState<boolean>(false);
+
+  const [ modalType, setModalType ] = useState<ModalType | null>(null);
+
 
 
   const handleUpdateScrollYPos = (): void => {
@@ -59,6 +69,20 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setIsLoggedIn(false);
   };
 
+const handleSetModalType = (modalType: ModalType): void => {
+  setShowModal(true);
+
+  if(modalType === "privacy") {
+    console.log("modalType === privacy")
+  };
+  
+  if(modalType === "terms") {
+    console.log("modalType === terms")
+  };
+
+  setModalType(modalType)
+
+};
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
@@ -74,6 +98,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         requestAnimationFrame(() => {
           handleUpdateScrollYPos();
           setShowSideNav(false);
+          setShowModal(false);
+          setModalType(null);
           ticking = false;
         });
         ticking = true;
@@ -100,7 +126,12 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     hideNav,
     logoutUser,
     showSideNav, 
-    setShowSideNav
+    setShowSideNav,
+    showModal, 
+    setShowModal,
+    modalType, 
+    setModalType,
+    handleSetModalType
   };
 
 
