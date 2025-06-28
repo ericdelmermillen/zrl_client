@@ -1,14 +1,9 @@
-import { 
-  type FC,
-  type ChangeEvent,
-  useState, 
-  useRef
-} from 'react';
+import { type FC, type ChangeEvent, useState, useRef } from 'react';
+import { useAppContext } from "../../contexts/AppContext";
 import { isValidEmail } from '../../../utils/utils';
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
 import toast from 'react-hot-toast';
-import { useAppContext } from "../../contexts/AppContext";
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it
@@ -31,9 +26,8 @@ const MoreInfoForm: FC = () => {
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
 
-
-  const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
 
   const handleNameChange = () => {
@@ -47,36 +41,36 @@ const MoreInfoForm: FC = () => {
   };
 
 
-const handleEmailChange = (): boolean => {
-  const emailValue = emailRef.current?.value ?? "";
-  const emailIsValid = isValidEmail(emailValue);
+  const handleEmailChange = (): boolean => {
+    const emailValue = emailRef.current?.value ?? "";
+    const emailIsValid = isValidEmail(emailValue);
 
-  setEmail(emailValue);
-  setEmailIsValid(emailIsValid);
+    setEmail(emailValue);
+    setEmailIsValid(emailIsValid);
 
-  return emailIsValid;
-};
+    return emailIsValid;
+  };
 
-const handlePhoneChange = (): boolean => {
-  const phoneValue = phoneRef.current?.value ?? "";
-  const phoneNumberIsValid = isValidPhoneNumber(phoneValue);
+  const handlePhoneChange = (): boolean => {
+    const phoneValue = phoneRef.current?.value ?? "";
+    const phoneNumberIsValid = isValidPhoneNumber(phoneValue);
 
-  setPhone(phoneValue);
-  setPhoneIsValid(phoneNumberIsValid);
+    setPhone(phoneValue);
+    setPhoneIsValid(phoneNumberIsValid);
 
-  return phoneNumberIsValid;
-};
+    return phoneNumberIsValid;
+  };
 
-const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
-  setAgreeToTerms(e.target.checked);
+  const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
+    setAgreeToTerms(e.target.checked);
 
-  // return phoneNumberIsValid;
-  return true;
-};
+    // return phoneNumberIsValid;
+    return true;
+  };
 
-const handleAgreeToTerms = (): void => {
-  handleSetModalType("privacy")
-}
+  const handleAgreeToTerms = (): void => {
+    handleSetModalType("privacy");
+  };
 
 
   // ***
@@ -124,12 +118,12 @@ const handleAgreeToTerms = (): void => {
 
   return (
     <>
-      <section className="moreInfoForm__section">
+      <article className="moreInfoForm__section">
             
         <form 
           className="moreInfoForm__form" 
-          onSubmit={(e) => {e.preventDefault()}}
           name="moreInfoForm"
+          onSubmit={(e) => {e.preventDefault()}}
         >
 
           <div className="moreInfoForm__name">
@@ -162,9 +156,9 @@ const handleAgreeToTerms = (): void => {
 
             <input
               id="moreInfoFormEmail"
+              className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
               type="email"
               name="email"
-              className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
               autoComplete="email"
               placeholder="Enter Email"
               value={email}
@@ -208,8 +202,8 @@ const handleAgreeToTerms = (): void => {
               type="checkbox" 
               className={`moreInfoForm__input moreInfoForm__input--terms
                 ${initialFormCheck && !agreeToTerms
-                  ? "invalid" : ""
-                }`} 
+                  ? "invalid" 
+                  : ""}`} 
               checked={agreeToTerms}
               onChange={handleTermsChange}
             />
@@ -240,7 +234,7 @@ const handleAgreeToTerms = (): void => {
           </div>
 
         </form>
-      </section>
+      </article>
 
     </>
   )};
