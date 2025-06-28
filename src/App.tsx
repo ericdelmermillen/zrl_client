@@ -149,7 +149,6 @@ const App = (): JSX.Element => {
           }}
         />
 
-
       </div>
 
     </div>

@@ -4,8 +4,8 @@
 .carousel {
 	& {
 		// border: 2px dotted #333;
-		max-width: vars.$ultraWide;
 		margin-inline: auto;
+		max-width: vars.$ultraWide;
 	}
 
 	&[data-animated="true"] {
@@ -44,9 +44,8 @@
 
 	&__track {
 		display: flex;
-		// gap tied to keyframes calc: 0.5rem is half this value: use custom property
 		flex-wrap: nowrap;
-		gap: 1rem;
+		gap: vars.$carouselGap;
 		padding-block: 2rem;
 		// will-change: transform; // possible fix to flicker on Safari (no change)
 		// transform: translateZ(0); // possible fix to flicker on Safari (no change)
@@ -66,7 +65,6 @@
 
 @keyframes scroll {
 	to {
-		// 0.5rem represents half of gap for track: use custom property
-		transform: translate(calc(-50% - 0.5rem));
+		transform: translateX(calc(-50% - #{vars.$carouselGap} / 2));
 	}
 }

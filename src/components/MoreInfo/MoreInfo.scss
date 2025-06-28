@@ -17,45 +17,4 @@
 			justify-content: flex-start;
 		}
 	}
-
-	&__text {
-		border: 2px solid blue;
-		padding-inline: 2rem;
-		width: 100%;
-		min-height: 100vh;
-	}
-
-	&__heading {
-		color: purple;
-	}
-
-	&__form {
-		padding-inline: 2rem;
-	}
-
-	&__solutions {
-		display: flex;
-		flex-direction: column;
-	}
-
-	&__solution {
-		border: 2px solid green;
-		align-items: center;
-		display: flex;
-	}
-
-	&__solutionCheck {
-		align-items: center;
-		border: 2px solid red;
-		color: blue;
-		display: flex;
-		font-size: 2rem;
-		height: 4rem;
-		justify-content: center;
-		padding-inline: 1rem;
-	}
-
-	&__solutionSpan {
-		font-weight: bold;
-	}
 }

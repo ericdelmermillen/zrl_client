@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import type { CarouselItem } from "../Carousel/Carousel"; 
 import Carousel from "../Carousel/Carousel";
 import "./Partners.scss";
@@ -51,7 +51,9 @@ const Partners: FC = () => {
 
       <div className="partners__inner">
 
-        <h1 className="partners__heading">Our Partners</h1>
+        <h1 className="partners__heading">
+          Our Partners
+        </h1>
 
         <Carousel 
           itemClassName="partners__partnerItem"

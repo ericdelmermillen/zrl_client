@@ -18,7 +18,6 @@ interface CarouselProps {
 };
 
 
-
 const Carousel: FC<CarouselProps> = ({
   carouselItems,
   direction = "left",
@@ -35,7 +34,9 @@ useEffect(() => {
   const carousel = carouselRef.current;
   const scroller = scrollerRef.current;
 
-  if (!carousel || !scroller) return;
+  if (!carousel || !scroller) {
+    return;
+  };
 
   // Prevent animation if user prefers reduced motion
   if (prefersReducedMotion || isSafari) {
@@ -69,8 +70,8 @@ useEffect(() => {
     >
       <div className="carousel__inner">
         <ul
-          ref={scrollerRef}
           className={`carousel__track ${prefersReducedMotion ? "reducedMotion" : ""}`}
+          ref={scrollerRef}
           role="list"
           style={{ animationDuration: `${secondsPerLoop}s` }}
         >
