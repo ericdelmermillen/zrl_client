@@ -21,15 +21,10 @@ const Modal: FC<ModalProps> = ( { children }) => {
   return (
     <>
       <div className={`modal ${showModal ? "show" : ""}`}>
-        <div 
-          className="modal__overlay"
-          onClick={handleSetShowModalFalse}
-          ></div>
-
+        <div className="modal__overlay" onClick={handleSetShowModalFalse}></div>
         <div className="modal__content">
           {children}
         </div>
-
       </div>   
     </>
   )};

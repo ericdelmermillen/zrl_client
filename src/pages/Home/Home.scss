@@ -4,9 +4,9 @@
 .home {
 	& {
 		// background: var(--background-color);
+		align-items: center;
 		display: flex;
 		justify-content: center;
-		align-items: center;
 		@include mx.page;
 		// border: 2px solid red;
 	}
@@ -17,9 +17,9 @@
 
 	&__main {
 		background: orange;
-		position: relative;
-		min-width: 100%;
 		min-height: 100vh;
+		min-width: 100%;
+		position: relative;
 		// display: flex;
 		// justify-content: center;
 		// align-items: center;
