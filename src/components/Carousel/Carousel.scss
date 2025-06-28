@@ -2,9 +2,11 @@
 @use "../../partials/mixins" as mx;
 
 .carousel {
-	// & {
-	// 	border: 2px dotted #333;
-	// }
+	& {
+		border: 2px dotted #333;
+		max-width: vars.$ultraWide;
+		margin-inline: auto;
+	}
 
 	&[data-animated="true"] {
 		-webkit-mask: linear-gradient(
@@ -42,9 +44,14 @@
 
 	&__track {
 		display: flex;
-		flex-wrap: wrap;
+		// gap tied to keyframes calc: 0.5rem is half this value: use custom property
+		flex-wrap: nowrap;
 		gap: 1rem;
 		padding-block: 2rem;
+
+		&.reducedMotion {
+			justify-content: center;
+		}
 	}
 
 	&__item {
@@ -52,12 +59,12 @@
 		border-radius: 0.5rem;
 		box-shadow: 0 0.5rem 1rem -0.25rem #333;
 		color: blue;
-		padding: 1rem;
 	}
 }
 
 @keyframes scroll {
 	to {
+		// 0.5rem represents half of gap for track: use custom property
 		transform: translate(calc(-50% - 0.5rem));
 	}
 }

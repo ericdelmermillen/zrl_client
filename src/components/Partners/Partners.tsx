@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC, useEffect, useState } from "react";
 import type { CarouselItem } from "../Carousel/Carousel"; 
 import Carousel from "../Carousel/Carousel";
 import "./Partners.scss";
@@ -10,32 +10,58 @@ const carouselItems: CarouselItem[] = [
   { itemName: "SSG" },
   { itemName: "webdev" },
   { itemName: "animation" },
-  { itemName: "UI/UX"}
+  { itemName: "UI/UX" }
 ];
 
-// dynamically set secondsPerLoop prop based on screen width
+
+const getLoopDuration = (width: number): number => {
+  if (width >= 1024) {
+    return 18;
+  };
+
+  if (width >= 768) {
+    return 18;
+  };
+  
+  if (width >= 540) {
+    return 15;
+  };
+  
+  return 12;
+};
 
 const Partners: FC = () => {
+  const [ windowWidth, setWindowWidth ] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const secondsPerLoop = getLoopDuration(windowWidth);
+
   return (
-    <>
-      <div className="partners">
-        <h1 className="partners__heading">
-          Our Partners
-        </h1>
-        {/* replace with items for either the company's:
-              tech stack items 
-              or partners 
-              or possibly services 
-        */}
+    <div className="partners">
+
+      <div className="partners__inner">
+
+        <h1 className="partners__heading">Our Partners</h1>
+
         <Carousel 
+          itemClassName="partners__partnerItem"
           carouselItems={carouselItems}
-          itemClassName={"partners__partnerItem"}
-          direction={"left"}
-          carouselAriaLabel={"Horizontally scrolling list of web development topics"}
-          secondsPerLoop={15}
-        />
+          secondsPerLoop={secondsPerLoop}
+          direction="left"
+          carouselAriaLabel="Horizontally scrolling list of web development topics"
+          />
       </div>
-    </>
+    </div>
   )};
 
 export default Partners;

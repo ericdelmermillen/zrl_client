@@ -1,18 +1,19 @@
 import { type FC, useRef, useEffect } from 'react';
 import "./Carousel.scss";
 
-// Define and export the item type for reuse
 export interface CarouselItem {
   itemName: string;
-}
+};
 
 interface CarouselProps {
   carouselItems: CarouselItem[];
   itemClassName?: string;
   direction?: "left" | "right";
   secondsPerLoop?: number;
-  carouselAriaLabel?: string
-}
+  carouselAriaLabel?: string;
+};
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const Carousel: FC<CarouselProps> = ({
   carouselItems,
@@ -25,26 +26,33 @@ const Carousel: FC<CarouselProps> = ({
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const scrollerRef = useRef<HTMLUListElement | null>(null);
 
-  useEffect(() => {
+
+useEffect(() => {
   const carousel = carouselRef.current;
   const scroller = scrollerRef.current;
 
   if (!carousel || !scroller) return;
 
+  // Prevent animation if user prefers reduced motion
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  };
+
+  // Get the original set of items
+  const originalItems = Array.from(scroller.children);
+
+  // Clone the full set exactly once for seamless looping
+  const clones = originalItems.map((item) => {
+    const clone = item.cloneNode(true) as HTMLElement;
+    clone.setAttribute("aria-hidden", "true");
+    return clone;
+  });
+
+  clones.forEach(clone => scroller.appendChild(clone));
+
+  // Now that everything is set up, enable animation
   carousel.setAttribute("data-animated", "true");
-
-  const items = Array.from(scroller.children);
-  
-  // Clone items twice to ensure a seamless loop at wide widths
-  for (let i = 0; i < 2; i++) {
-    items.forEach((item) => {
-      const clone = item.cloneNode(true) as HTMLElement;
-      clone.setAttribute("aria-hidden", "true");
-      scroller.appendChild(clone);
-    });
-  }
 }, []);
-
 
 
   return (
@@ -58,7 +66,7 @@ const Carousel: FC<CarouselProps> = ({
       <div className="carousel__inner">
         <ul
           ref={scrollerRef}
-          className="carousel__track"
+          className={`carousel__track ${prefersReducedMotion ? "reducedMotion" : ""}`}
           role="list"
           style={{ animationDuration: `${secondsPerLoop}s` }}
         >

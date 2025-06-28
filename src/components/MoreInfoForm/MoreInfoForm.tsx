@@ -5,14 +5,14 @@ import {
   useRef
 } from 'react';
 import { isValidEmail } from '../../../utils/utils';
+// ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
 import toast from 'react-hot-toast';
 import { useAppContext } from "../../contexts/AppContext";
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it
-// need validation for input field data (name, email, phone)
-// need styling for invalid inputs after first submit: must update isValid styles on update after initial submit
+// need validation for phone number for as many possible countries/conventions possible
 
 
 const MoreInfoForm: FC = () => {
@@ -35,8 +35,6 @@ const MoreInfoForm: FC = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
-
-// ***
 
   const handleNameChange = () => {
     const nameValue = nameRef.current?.value ?? "";
@@ -70,7 +68,6 @@ const handlePhoneChange = (): boolean => {
 };
 
 const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
-  // console.log(e.target.checked)
   setAgreeToTerms(e.target.checked);
 
   // return phoneNumberIsValid;
@@ -78,7 +75,6 @@ const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
 };
 
 const handleAgreeToTerms = (): void => {
-  // setShowModal(true)
   handleSetModalType("privacy")
 }
 
