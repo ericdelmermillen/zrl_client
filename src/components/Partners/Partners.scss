@@ -5,16 +5,19 @@
 	& {
 		// border: 2px dashed red;
 		color: red;
-		height: 14rem;
+		// height: 14rem;
+		overflow-x: hidden;
 	}
 
 	&__inner {
 		padding-block: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	&__heading {
 		margin-bottom: 2rem;
-		text-align: center;
 	}
 
 	&__partnerItem {

@@ -48,6 +48,8 @@
 		flex-wrap: nowrap;
 		gap: 1rem;
 		padding-block: 2rem;
+		// will-change: transform; // possible fix to flicker on Safari (no change)
+		// transform: translateZ(0); // possible fix to flicker on Safari (no change)
 
 		&.reducedMotion {
 			justify-content: center;

@@ -1,6 +1,10 @@
 import { type FC, useRef, useEffect } from 'react';
 import "./Carousel.scss";
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+
 export interface CarouselItem {
   itemName: string;
 };
@@ -13,7 +17,7 @@ interface CarouselProps {
   carouselAriaLabel?: string;
 };
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 
 const Carousel: FC<CarouselProps> = ({
   carouselItems,
@@ -34,7 +38,7 @@ useEffect(() => {
   if (!carousel || !scroller) return;
 
   // Prevent animation if user prefers reduced motion
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (prefersReducedMotion || isSafari) {
     return;
   };
 
