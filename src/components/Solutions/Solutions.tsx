@@ -1,12 +1,19 @@
 import { type FC } from 'react';
-import "./Solutions.scss";
 import Solution from '../Solution/Solution';
 import solution_1 from "../../assets/images/solution-1.jpg"
 import solution_2 from "../../assets/images/solution-2.jpg"
 import solution_3 from "../../assets/images/solution-3.jpg"
 import solution_4 from "../../assets/images/solution-4.jpg"
+import "./Solutions.scss";
 
-const solutions = [
+interface SolutionData {
+  image: string;
+  title: string;
+  text: string;
+  tag: string;
+};
+
+const solutions: SolutionData[] = [
   { 
     image: solution_1, 
     title: "ERP Solutions",
@@ -31,12 +38,12 @@ const solutions = [
     text: "Our WMS software solution optimizes your warehouse operations and improves inventory management. Gain real-time visibility, automate processes, and reduce costs to ensure efficient logistics.",
     tag: "MARKETING",
   }
-]
+];
 
-const Solutions:FC = () => {
+const Solutions: FC = () => {
   return (
     <>
-      <div className="solutions" id="solutions">
+      <section className="solutions" id="solutions">
         <div className="solutions__inner">
           <h2 className="solutions__heading">
             Solutions
@@ -45,7 +52,7 @@ const Solutions:FC = () => {
             Zidgy Road Labs Provides Software Solutions For Business Acceleration
           </p>
 
-          <div className="solutions__solution-container">
+          <div className="solutions__container">
 
             {solutions.map((solution, idx) =>
 
@@ -62,7 +69,7 @@ const Solutions:FC = () => {
 
         </div>
 
-      </div>
+      </section>
       
     </>
   )};

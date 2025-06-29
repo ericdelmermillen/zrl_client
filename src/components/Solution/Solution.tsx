@@ -11,7 +11,7 @@ interface SolutionProps {
 const Solution: FC<SolutionProps> = ({ img, title, text, tag }) => {
   return (
     <>
-      <div className="solution">
+      <article className="solution">
         <div className="solution__inner">
           <img 
             className="solution__image"
@@ -23,7 +23,7 @@ const Solution: FC<SolutionProps> = ({ img, title, text, tag }) => {
           <span className="solution__tag">{tag}</span>
         </div>
 
-      </div>
+      </article>
       
     </>
   )};
