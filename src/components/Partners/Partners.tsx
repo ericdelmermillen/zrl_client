@@ -51,9 +51,9 @@ const Partners: FC = () => {
 
       <div className="partners__inner">
 
-        <h1 className="partners__heading">
+        <h2 className="partners__heading">
           Our Partners
-        </h1>
+        </h2>
 
         <Carousel 
           itemClassName="partners__partnerItem"

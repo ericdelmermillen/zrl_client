@@ -2,6 +2,7 @@ import { useEffect, type FC } from "react";
 import Header from "../../components/Header/Header";
 import MoreInfo from "../../components/MoreInfo/MoreInfo";
 import PartnerCarousel from "../../components/Partners/Partners";
+import Solutions from "../../components/Solutions/Solutions";
 import "./Home.scss";
 
 const Home: FC = () => {
@@ -20,6 +21,7 @@ const Home: FC = () => {
           <main className="home__main">
             <PartnerCarousel />
             <MoreInfo />
+            <Solutions />
           </main>
         </div>
       </div>

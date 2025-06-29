@@ -1,0 +1,35 @@
+@use "../../partials/variables" as vars;
+@use "../../partials/mixins" as mx;
+
+.solution {
+	& {
+		border: 2px solid red;
+		min-height: 20rem;
+		// height: 20rem;
+		width: 50%;
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		padding-top: 2rem;
+		flex-direction: column;
+		padding-inline: 2rem;
+	}
+
+	&__heading {
+		color: green;
+		margin-bottom: 2rem;
+	}
+
+	&__subheading {
+		font-weight: 600;
+		margin-bottom: 2rem;
+	}
+
+	&__solution-container {
+		width: 100%;
+		height: 20rem;
+		border: 2px dashed #333;
+	}
+}
