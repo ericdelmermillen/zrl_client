@@ -2,8 +2,11 @@ import { useEffect, type FC } from "react";
 import { scrollToTop } from "../../../utils/utils";
 // import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
+import { useLocation } from "react-router-dom";
 
 const NotFound: FC = () => {
+  const { pathname } = useLocation();
+  console.log(pathname)
 
 
   // scroll to top on mount
@@ -11,11 +14,10 @@ const NotFound: FC = () => {
     scrollToTop();
   }, []);
 
-  // update title of page
+  // useEffect to update title of page
   useEffect(() => {
       document.title = "Zidgy Road Lab's Not Found Page";
   }, []);
-  
   
   return (
     <>

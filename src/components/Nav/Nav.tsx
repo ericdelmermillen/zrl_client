@@ -1,7 +1,9 @@
 import { type FC, type ReactNode } from "react";
 import { useAppContext } from "../../contexts/AppContext.tsx";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { scrollToTop } from "../../../utils/utils.ts"
+import { Link, useLocation } from "react-router-dom";
+import { scrollToTop, 
+  // addClassToDiv 
+} from "../../../utils/utils.ts";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
@@ -32,7 +34,12 @@ const Nav: FC<NavProps> = ({ children }) => {
     }, MIN_LOADING_INTERVAL);
   };
 
-  const handleSetShowSideNavTrue = (): void => {setShowSideNav(true)}
+  const handleSetShowSideNavTrue = (): void => {setShowSideNav(true)};
+
+  const handleHideNav = (): void => {
+    // addClassToDiv("nav", "hide")
+    console.log("hiding nav")
+  }
    
   
   return (
@@ -59,27 +66,70 @@ const Nav: FC<NavProps> = ({ children }) => {
                 className={`nav__link ${isOnHome ? "active" : ""}`}
                 to={"/home"}
               >
-                HOME
+                Home
               </Link>
             </li>
 
-            <li className="nav__item">
-              <NavLink className="nav__link" to={"/projects"}>
-                PROJECTS
-              </NavLink>
+            <li 
+              className="nav__item"
+              onClick={handleHideNav}
+            >
+              <a 
+                href="#solutions"
+                className="nav__link"
+              >
+                Solutions
+                </a>
             </li>
 
+            <li 
+              className="nav__item"
+              onClick={handleHideNav}
+            >
+              <a 
+                href="#evaluationAndDeployment"
+                className="nav__link"
+              >
+                Details
+                </a>
+            </li>
+
+            <li 
+              className="nav__item"
+              onClick={handleHideNav}
+            >
+              <a 
+                href="#expertise"
+                className="nav__link"
+              >
+                Expertise
+                </a>
+            </li>
+
+          {/* 
+            <li 
+              className="nav__item"
+              onClick={handleHideNav}
+            >
+              <a 
+                href="#pricing"
+                className="nav__link"
+              >
+                Pricing
+                </a>
+            </li> 
+          */}
+
+          
+          {/* 
             <li className="nav__item">
               <NavLink className="nav__link" to={"/blog"}>
                 BLOG
               </NavLink>
-            </li>
+            </li> 
+          
+          */}
 
-            <li className="nav__item">
-              <NavLink className="nav__link" to={"/contact"}>
-                CONTACT
-              </NavLink>
-            </li>
 
           </ul>
 

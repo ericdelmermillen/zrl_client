@@ -6,7 +6,12 @@ import "./MoreInfo.scss";
 const MoreInfo:FC = () => {
   return (
     <>
-      <section className="moreInfo" aria-labelledby="more-info-heading">
+      <section 
+        className="moreInfo" 
+        aria-labelledby="more-info-heading"
+        id="moreInfo"
+        // id="solutions"
+      >
         <div className="moreInfo__inner">
           <MoreInfoText />
           <MoreInfoForm />

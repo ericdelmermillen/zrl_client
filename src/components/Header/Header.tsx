@@ -33,9 +33,15 @@ useEffect(() => {
             <p className="header__lead">
               Boost your business with cutting-edge software solutions tailored to the needs of modern entrerprises.
             </p>
-            <button className="header__button">
+            {/* <button 
+              className="header__button"
+            >
               Learn More
-            </button>
+            </button> */}
+
+            <a href="#moreInfo" className="header__button">
+              Learn More
+            </a>
           </div>
 
 

@@ -35,14 +35,24 @@ const isValidPhoneNumber = (phone: string): boolean => {
   const exchangeCode = num.slice(3, 6);
   if (['0', '1'].includes(areaCode[0]) || ['0', '1'].includes(exchangeCode[0])) {
     return false;
-  }
+  };
 
   return true;
+};
+
+const addClassToDiv = (divID: string, className: string): void => {
+  document.getElementById(divID)?.classList.add(className);
+};
+
+const removeClassFromDiv = (divID: string, className: string): void => {
+  document.getElementById(divID)?.classList.remove(className);
 };
 
 
 export {
   scrollToTop,
   isValidEmail,
-  isValidPhoneNumber
+  isValidPhoneNumber,
+  addClassToDiv,
+  removeClassFromDiv
 };
