@@ -224,3 +224,11 @@
 	white-space: nowrap;
 	width: 1px;
 }
+
+@mixin cardImg {
+	aspect-ratio: 16/9;
+	max-width: 100%;
+	object-fit: cover;
+	object-position: center center;
+	width: 100%;
+}

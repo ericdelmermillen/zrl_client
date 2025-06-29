@@ -32,5 +32,10 @@
 		border: 2px dashed #333;
 		display: flex;
 		flex-wrap: wrap;
+		flex-direction: column;
+
+		@media (min-width: vars.$tablet) {
+			flex-direction: row;
+		}
 	}
 }
