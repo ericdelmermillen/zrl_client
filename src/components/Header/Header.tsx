@@ -31,13 +31,8 @@ useEffect(() => {
               For <span className="header__solution">{solutions[solutionIdx]}</span>
             </h2>
             <p className="header__lead">
-              Boost your business with cutting-edge software solutions tailored to the needs of modern entrerprises.
+              Boost your business with cutting-edge software solutions tailored to the needs of modern enterprises.
             </p>
-            {/* <button 
-              className="header__button"
-            >
-              Learn More
-            </button> */}
 
             <a href="#moreInfo" className="header__button">
               Learn More
