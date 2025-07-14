@@ -65,6 +65,9 @@ const Nav: FC<NavProps> = ({ children }) => {
               <Link 
                 className={`nav__link ${isOnHome ? "active" : ""}`}
                 to={"/home"}
+                onClick={isOnHome 
+                ? handleScrollToTop
+                : undefined}
               >
                 Home
               </Link>

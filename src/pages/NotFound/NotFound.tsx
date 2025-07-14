@@ -2,12 +2,8 @@ import { useEffect, type FC } from "react";
 import { scrollToTop } from "../../../utils/utils";
 // import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
-import { useLocation } from "react-router-dom";
 
 const NotFound: FC = () => {
-  const { pathname } = useLocation();
-  console.log(pathname)
-
 
   // scroll to top on mount
   useEffect(() => {
@@ -30,6 +26,7 @@ const NotFound: FC = () => {
             <h3 className="notFound__sub-heading">Page Not Found</h3>
           </div>
         </div>
+        
       </div>
     </>
   )};
