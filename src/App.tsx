@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import DropdownNav from './components/DropdownNav/DropdownNav';
 import Footer from './components/Footer/Footer';
@@ -97,7 +97,8 @@ const App = (): JSX.Element => {
         <Routes>
 
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/*" element={<NotFound />} />
 
         </Routes>

@@ -1,10 +1,9 @@
 import { type FC, useEffect, useRef, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppContext.js";
+import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils";
 import "./DropdownNav.scss";
 
-// const MIN_LOADING_INTERVAL = import.meta.env.VIT_MIN_LOADING_INTERVAL;
 
 // *** will need to render logout button for admin here
 // *** possibly need to render color mode toggler here
@@ -32,38 +31,41 @@ const DropdownNav: FC<DropdownNavProps> = ({ children }) => {
     scrollYPos, 
     prevScrollYPos, 
     showDropdownNavOptions, 
-    setShowDropdownNavOptions,
-    handleNavigateHome
+    setShowDropdownNavOptions
   } = useAppContext();
 
   const innerRef = useRef<HTMLDivElement | null>(null);
 
+  const navigate = useNavigate();
+
   // define acceptable strings in a type later
 
   // ***
-
-  const navigate = useNavigate();
-
-  const handleUpdateSelectValue = (option: SelectOption): void => {
-    if(option.optionName.toLowerCase() === "home") {
-      handleNavigateHome();
-      scrollToTop()
-    };
-
-    if(option.optionName.toLowerCase() === "solutions") {
-      navigate("/#solutions");
-    };
+  const handleUpdateSelectValue = (e: React.MouseEvent, option: SelectOption): void => {
+    e.preventDefault();
     
-    if(option.optionName.toLowerCase() === "details") {
-      navigate("/#details");
-    };
-    
-    if(option.optionName.toLowerCase() === "expertise") {
-      navigate("/#expertise");
-    };
+    const link = document.createElement('a');
+    link.href = `/#${option.optionName.toLowerCase()}`;
 
+    document.body.appendChild(link);
+
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        if(option.optionName.toLowerCase() === "home") {
+          navigate("/");
+          scrollToTop();
+        } else {
+          link.click();
+        };
+      });
+      // make this an env variable for timing
+    }, 500);
     setShowDropdownNavOptions(false);
   };
+
+
+
+
   
   const handleTouchOff = (): void => {
     setShowDropdownNavOptions(false);
@@ -85,7 +87,7 @@ const DropdownNav: FC<DropdownNavProps> = ({ children }) => {
     <>
       <nav className={`dropdownNav ${showDropdownNavOptions ? "tall" : "short"}`}>
         <div ref={innerRef} className={`dropdownNav__inner ${showDropdownNavOptions ? "tall" : ""}`}>
-          <div className={`dropdownNav__select ${showDropdownNavOptions ? "tall" : ""}`}>
+          <ul className={`dropdownNav__select ${showDropdownNavOptions ? "tall" : ""}`}>
             <div className={`dropdownNav__selectValue ${!showDropdownNavOptions ? "short" : ""}`} >
 
               <span className="dropdownNav__visually-hidden-label">
@@ -95,25 +97,16 @@ const DropdownNav: FC<DropdownNavProps> = ({ children }) => {
 
             {dropdownNavOptions.map(option => 
 
-              <a 
-                href={option.optionName.toLowerCase() !== "home" ? `#${option.optionName.toLocaleLowerCase()}` : ""}
-                className="dropdownNav__link"
-                key={option.id}
-                onClick={() => handleUpdateSelectValue(option)}
-              >
-                <div 
-                  className={`dropdownNav__option`} 
-                  key={option.id} 
-                  onClick={() => handleUpdateSelectValue(option)}
-                >
+              <li key={option.id}>
+                  <div className={`dropdownNav__option`} onClick={(e) => handleUpdateSelectValue(e, option)}>
                     {`${option.optionName}`}
-                </div>
-              </a>
+                  </div>
+              </li>
             )}
 
             { children }
 
-          </div>
+          </ul>
         </div>
       </nav>
       <div 

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { useState, useEffect, useContext, createContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
@@ -25,7 +24,6 @@ interface AppContextValue {
   showNav: () => void;
   hideNav: () => void;
   logoutUser: () => void;
-  handleNavigateHome: () => void;
   handleSetModalType: (modalType: ModalType) => void;
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
@@ -54,8 +52,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
-  const navigate = useNavigate();
-
 
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
@@ -70,10 +66,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     document.getElementById("nav-container")?.classList.add("hide");
   };
 
-
-  const handleNavigateHome = (): void => {
-    navigate("/home");
-  };
 
   const logoutUser = (): void => {
     setIsLoggedIn(false);
@@ -139,8 +131,7 @@ const handleSetModalType = (modalType: ModalType): void => {
     setModalType,
     handleSetModalType,
     showDropdownNavOptions, 
-    setShowDropdownNavOptions,
-    handleNavigateHome
+    setShowDropdownNavOptions
   };
 
 

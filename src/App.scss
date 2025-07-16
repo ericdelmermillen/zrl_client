@@ -42,6 +42,10 @@ ol {
 	list-style-type: none;
 }
 
+li {
+	list-style: none;
+}
+
 input {
 	// gooogle chrome auto fill styling override
 	&:-webkit-autofill {
