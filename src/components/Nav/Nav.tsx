@@ -19,7 +19,7 @@ const Nav: FC<NavProps> = ({ children }) => {
     setIsLoading,
     scrollYPos,
     prevScrollYPos,
-    // showDropdownNavOptions, 
+    showDropdownNavOptions, 
     setShowDropdownNavOptions,
     hideNav
    } = useAppContext();
@@ -118,7 +118,7 @@ const Nav: FC<NavProps> = ({ children }) => {
           </ul>
 
           <div 
-            className="nav__toggle-button" 
+            className={`nav__toggle-button ${showDropdownNavOptions ? "open" : ""}`}
             aria-label="Toggle Menu"
             onClick={handleToggleShowDropdownNavTrue}
           >

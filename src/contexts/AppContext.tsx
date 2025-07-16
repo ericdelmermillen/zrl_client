@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
+import { scrollToTop } from "../../utils/utils";
 
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
@@ -20,14 +21,13 @@ interface AppContextValue {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
   modalType: ModalType | null;
   setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
+  showDropdownNavOptions: boolean;
+  setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   // functions
   showNav: () => void;
   hideNav: () => void;
   logoutUser: () => void;
   handleSetModalType: (modalType: ModalType) => void;
-  showDropdownNavOptions: boolean;
-  setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
-
 };
 
 interface AppContextProviderProps {
@@ -37,17 +37,14 @@ interface AppContextProviderProps {
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
-  const [ colorMode, setColorMode ] = useState<ColorMode>(() =>
-    localStorage.getItem("colorMode") === "dark" ? "dark" : "light"
-  );
+  const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
 
-  const [ scrollYPos, setScrollYPos ] = useState<number>(window.scrollY);
-  const [ prevScrollYPos, setPrevScrollYPos ] = useState<number>(window.scrollY);
+  const [scrollYPos, setScrollYPos] = useState(0);
+  const [prevScrollYPos, setPrevScrollYPos] = useState(0);
 
   const [ showModal, setShowModal ] = useState<boolean>(false);
-
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
@@ -58,40 +55,43 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setScrollYPos(window.scrollY);
   };
 
-  const showNav = (): void => {
-    document.getElementById("nav-container")?.classList.remove("hide");
-  };
+  const showNav = (): void => document.getElementById("nav-container")?.classList.remove("hide");
   
-  const hideNav = (): void => {
-    document.getElementById("nav-container")?.classList.add("hide");
+  const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
+
+  const logoutUser = (): void => setIsLoggedIn(false);
+
+
+  const handleSetModalType = (modalType: ModalType): void => {
+    setShowModal(true);
+
+    // finish when I have content for both modals
+    if(modalType === "privacy") {
+      console.log("modalType === privacy");
+    };
+    
+    if(modalType === "terms") {
+      console.log("modalType === terms");
+    };
+
+    setModalType(modalType);
   };
-
-
-  const logoutUser = (): void => {
-    setIsLoggedIn(false);
-  };
-
-const handleSetModalType = (modalType: ModalType): void => {
-  setShowModal(true);
-
-  if(modalType === "privacy") {
-    console.log("modalType === privacy")
-  };
-  
-  if(modalType === "terms") {
-    console.log("modalType === terms")
-  };
-
-  setModalType(modalType)
-};
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
-    localStorage.setItem("colorMode", colorMode);
+  const validModes = ["light", "dark"];
+  const storedMode = localStorage.getItem("colorMode");
+
+    if (!storedMode || !validModes.includes(storedMode)) {
+      localStorage.setItem("colorMode", "light");
+    } else {
+      localStorage.setItem("colorMode", colorMode);
+    };
+
   }, [colorMode]);
 
 
-      // useEffect for updating of scrollYPos
+  // useEffect for updating of scrollYPos
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -109,9 +109,15 @@ const handleSetModalType = (modalType: ModalType): void => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollYPos]);
+
+  // useEffect to scroll to top on mount
+  useEffect(() => {
+    scrollToTop();
+  }, [])
   
 
   const contextValues = {
+    // state
     isLoading, 
     setIsLoading,
     isLoggedIn,
@@ -122,16 +128,17 @@ const handleSetModalType = (modalType: ModalType): void => {
     setScrollYPos,
     prevScrollYPos, 
     setPrevScrollYPos,
+    showModal, 
+    setShowModal,
+    showDropdownNavOptions, 
+    setShowDropdownNavOptions,
+    // functions
     showNav,
     hideNav,
     logoutUser,
-    showModal, 
-    setShowModal,
     modalType, 
     setModalType,
-    handleSetModalType,
-    showDropdownNavOptions, 
-    setShowDropdownNavOptions
+    handleSetModalType
   };
 
 
@@ -150,5 +157,10 @@ const useAppContext = () => {
   return context;
 };
 
-export { AppContextProvider, useAppContext };
-// export type { ColorMode, AppContextValue, AppContextProviderProps };
+export { 
+  AppContextProvider, 
+  useAppContext, 
+  type ColorMode, 
+  type AppContextValue, 
+  type AppContextProviderProps 
+};

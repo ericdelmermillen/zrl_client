@@ -59,7 +59,7 @@ const DropdownNav: FC<DropdownNavProps> = ({ children }) => {
         };
       });
       // make this an env variable for timing
-    }, 500);
+    }, 700);
     setShowDropdownNavOptions(false);
   };
 

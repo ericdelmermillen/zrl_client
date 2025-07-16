@@ -87,6 +87,7 @@
 	}
 }
 
+// layout
 @mixin appLayout {
 	align-items: center;
 	box-shadow: var(--box-shadow);
@@ -114,16 +115,9 @@
 	width: 100%;
 }
 
-@mixin hoverClickGrow {
-	transform: scale(1.025);
-	transform: scale(1.01);
-	transition: all 0.25s ease-in-out;
-}
+// buttons, links and interactions
 
-@mixin hoverClickShrink {
-	transform: scale(0.99);
-	transition: all 0.25s ease-in;
-}
+// need general button mixin
 
 @mixin adminButton {
 	background: none;
@@ -160,10 +154,7 @@
 	}
 }
 
-@mixin hoverClickGrowIcon {
-	transform: scale(1.15);
-	@include hoverClickGrow;
-}
+// need button link
 
 @mixin navLink {
 	font-family: var(--heading-font);
@@ -172,6 +163,23 @@
 	position: relative;
 }
 
+@mixin hoverClickGrow {
+	transform: scale(1.025);
+	transform: scale(1.01);
+	transition: all 0.25s ease-in-out;
+}
+
+@mixin hoverClickShrink {
+	transform: scale(0.99);
+	transition: all 0.25s ease-in;
+}
+
+@mixin hoverClickGrowIcon {
+	transform: scale(1.15);
+	@include hoverClickGrow;
+}
+
+// accents and decorations
 @mixin afterAccent {
 	background: var(--accent-color);
 	bottom: -0.6rem;
@@ -182,7 +190,6 @@
 	right: 0;
 }
 
-// vertical accent bar
 @mixin accentBar {
 	background: orange;
 	border-bottom-right-radius: 0.25rem;
@@ -208,11 +215,13 @@
 
 @mixin accentBarRight {
 	@include accentBar();
+
 	& {
 		right: 0;
 	}
 }
 
+// labels and accessibility
 @mixin hiddenLabel {
 	border: 0;
 	clip: rect(0, 0, 0, 0);
@@ -225,6 +234,11 @@
 	width: 1px;
 }
 
+// visually hidden
+
+// srOnlyFocusable
+
+// basic UI elements
 @mixin cardImg {
 	aspect-ratio: 16/9;
 	max-width: 100%;

@@ -104,6 +104,24 @@
 		@media (min-width: vars.$tablet) {
 			display: none;
 		}
+
+		&.open {
+			.nav__toggle-icon:nth-child(1) {
+				transform: translateY(0.5rem) rotate(405deg);
+				transform: translateY(0.5rem) rotate(225deg);
+				// transform: translateY(0.5rem) rotate(45deg);
+			}
+
+			.nav__toggle-icon:nth-child(2) {
+				opacity: 0;
+			}
+
+			.nav__toggle-icon:nth-child(3) {
+				transform: translateY(-0.5rem) rotate(-405deg);
+				transform: translateY(-0.5rem) rotate(-225deg);
+				// transform: translateY(-0.5rem) rotate(-45deg);
+			}
+		}
 	}
 
 	&__toggle-icon {
@@ -112,5 +130,7 @@
 		border-radius: 2px;
 		min-width: 100%;
 		width: 2rem;
+		transition: transform 0.5s ease, opacity 0.25s ease; // <- move transitions here
+		// transition: transform 0.25s ease, opacity 0.25s ease; // <- move transitions here
 	}
 }

@@ -12,7 +12,6 @@ import './App.scss';
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
-
 const App = (): JSX.Element => {
   const { 
     isLoading,
@@ -85,7 +84,6 @@ const App = (): JSX.Element => {
       <div className="app__inner">
 
         <Modal>
-
           {modalType === "privacy"
             ? <p>Privacy Policy</p>
             : modalType === "terms"
@@ -97,7 +95,6 @@ const App = (): JSX.Element => {
         <Routes>
 
           <Route path="/" element={<Home />} />
-          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/*" element={<NotFound />} />
 
