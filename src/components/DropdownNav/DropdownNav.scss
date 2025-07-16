@@ -1,0 +1,144 @@
+@use "../../partials/mixins.scss" as mx;
+@use "../../partials/variables.scss" as vars;
+
+.dropdownNav {
+	border: 2px dashed #333;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	height: 3rem;
+	margin-inline-end: 0;
+	margin-top: auto;
+	min-width: 100%;
+	padding: 0;
+	position: absolute;
+	z-index: 2;
+
+	@media (min-width: vars.$tablet) {
+		display: none;
+	}
+
+	&.tall {
+		z-index: 2;
+	}
+
+	&__inner {
+		background: pink;
+		border: 2px dashed red;
+		max-height: 3rem;
+		-ms-overflow-style: none;
+		overflow-y: auto;
+		position: absolute;
+		scrollbar-width: none;
+		transition: max-height 0.5s ease-in-out;
+		width: 100%;
+	}
+
+	&.tall &__inner {
+		max-height: 40rem;
+
+		@media (min-width: vars.$largeTablet) {
+			max-height: 30rem;
+			transition: max-height 0.5s ease-in-out;
+		}
+	}
+
+	&.short &__inner {
+		overflow-y: hidden;
+	}
+
+	&__select {
+		color: var(--text-color);
+		cursor: pointer;
+	}
+
+	&__visually-hidden-label {
+		// make this a mixin for visually hidden elements
+		border: 0;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+
+	&__selectValue {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		min-height: 3rem;
+		position: relative;
+	}
+
+	&__option {
+		align-items: center;
+		background: var(--background-color);
+		border-bottom: 2px solid var(--text-color);
+		display: flex;
+		height: 4rem;
+		justify-content: center;
+		outline: none;
+		position: relative;
+
+		@media (min-width: vars.$largeTablet) {
+			background: var(--navAndFooterBG);
+			border-bottom: none;
+			height: 3rem;
+			text-transform: uppercase;
+		}
+	}
+
+	/* Hide scrollbar for WebKit browsers (Safari and Chrome) */
+	&__inner::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide the scrollbar */
+	&::-webkit-scrollbar {
+		width: 0;
+	}
+
+	&__down {
+		align-items: center;
+		display: flex;
+		height: 3rem;
+		position: absolute;
+		right: 0;
+		top: 0;
+		// inset: 0;
+		justify-content: center;
+		width: 3rem;
+
+		&__stroke {
+			stroke: var(--text-color);
+		}
+	}
+
+	&__down-icon {
+		height: 14px;
+		width: 14px;
+	}
+
+	&__down-stroke {
+		stroke: var(--text-color);
+		stroke-width: 20px;
+	}
+
+	&__touchOffDiv {
+		display: none;
+		height: 100dvh;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100vw;
+
+		&.show {
+			cursor: auto;
+			display: block;
+			z-index: 1;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useState, useEffect, useContext, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
@@ -16,8 +17,6 @@ interface AppContextValue {
   setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
   prevScrollYPos: number;
   setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
-  showSideNav: boolean;
-  setShowSideNav: React.Dispatch<React.SetStateAction<boolean>>
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
   modalType: ModalType | null;
@@ -26,7 +25,11 @@ interface AppContextValue {
   showNav: () => void;
   hideNav: () => void;
   logoutUser: () => void;
+  handleNavigateHome: () => void;
   handleSetModalType: (modalType: ModalType) => void;
+  showDropdownNavOptions: boolean;
+  setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
+
 };
 
 interface AppContextProviderProps {
@@ -45,11 +48,13 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ scrollYPos, setScrollYPos ] = useState<number>(window.scrollY);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState<number>(window.scrollY);
 
-  const [ showSideNav, setShowSideNav ] = useState<boolean>(false);
   const [ showModal, setShowModal ] = useState<boolean>(false);
 
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
 
+  const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
 
   const handleUpdateScrollYPos = (): void => {
@@ -58,11 +63,16 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   };
 
   const showNav = (): void => {
-    document.getElementById("nav")?.classList.remove("hide");
+    document.getElementById("nav-container")?.classList.remove("hide");
+  };
+  
+  const hideNav = (): void => {
+    document.getElementById("nav-container")?.classList.add("hide");
   };
 
-  const hideNav = (): void => {
-    document.getElementById("nav")?.classList.add("hide");
+
+  const handleNavigateHome = (): void => {
+    navigate("/home");
   };
 
   const logoutUser = (): void => {
@@ -81,7 +91,6 @@ const handleSetModalType = (modalType: ModalType): void => {
   };
 
   setModalType(modalType)
-
 };
 
   // useEffect to check local storage for colorMode
@@ -97,7 +106,6 @@ const handleSetModalType = (modalType: ModalType): void => {
       if(!ticking) {
         requestAnimationFrame(() => {
           handleUpdateScrollYPos();
-          setShowSideNav(false);
           setShowModal(false);
           setModalType(null);
           ticking = false;
@@ -125,13 +133,14 @@ const handleSetModalType = (modalType: ModalType): void => {
     showNav,
     hideNav,
     logoutUser,
-    showSideNav, 
-    setShowSideNav,
     showModal, 
     setShowModal,
     modalType, 
     setModalType,
-    handleSetModalType
+    handleSetModalType,
+    showDropdownNavOptions, 
+    setShowDropdownNavOptions,
+    handleNavigateHome
   };
 
 

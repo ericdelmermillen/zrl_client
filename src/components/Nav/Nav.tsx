@@ -19,8 +19,9 @@ const Nav: FC<NavProps> = ({ children }) => {
     setIsLoading,
     scrollYPos,
     prevScrollYPos,
-    // showSideNav,
-    setShowSideNav
+    // showDropdownNavOptions, 
+    setShowDropdownNavOptions,
+    hideNav
    } = useAppContext();
 
   const { pathname } = useLocation();
@@ -28,23 +29,29 @@ const Nav: FC<NavProps> = ({ children }) => {
 
   const handleScrollToTop = () => {
     setIsLoading(true);
+    // timing for closing NavDropdownMenu?
+    setShowDropdownNavOptions(false);
     scrollToTop();
     setTimeout(() => {
       setIsLoading(false);
     }, MIN_LOADING_INTERVAL);
   };
 
-  const handleSetShowSideNavTrue = (): void => {setShowSideNav(true)};
+  const handleToggleShowDropdownNavTrue = (): void => setShowDropdownNavOptions(prev => !prev);
+
 
   const handleHideNav = (): void => {
-    // addClassToDiv("nav", "hide")
-    console.log("hiding nav")
+    setTimeout(() => {
+      hideNav()
+    }, MIN_LOADING_INTERVAL)
   }
    
   
   return (
     <>
-      <nav id="nav" className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
+      <nav 
+      // id="nav" 
+      className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
         <div className="nav__content">
 
           <Link to={"/"}>
@@ -52,7 +59,6 @@ const Nav: FC<NavProps> = ({ children }) => {
               className="nav__logo-box"
               onClick={isOnHome 
                 ? handleScrollToTop
-                // why undefined and not null?
                 : undefined}
             >
               <Logo className={"nav__logo"}/>
@@ -109,37 +115,12 @@ const Nav: FC<NavProps> = ({ children }) => {
                 </a>
             </li>
 
-          {/* 
-            <li 
-              className="nav__item"
-              onClick={handleHideNav}
-            >
-              <a 
-                href="#pricing"
-                className="nav__link"
-              >
-                Pricing
-                </a>
-            </li> 
-          */}
-
-          
-          {/* 
-            <li className="nav__item">
-              <NavLink className="nav__link" to={"/blog"}>
-                BLOG
-              </NavLink>
-            </li> 
-          
-          */}
-
-
           </ul>
 
           <div 
             className="nav__toggle-button" 
             aria-label="Toggle Menu"
-            onClick={handleSetShowSideNavTrue}
+            onClick={handleToggleShowDropdownNavTrue}
           >
             <div className="nav__toggle-icon"></div>
             <div className="nav__toggle-icon"></div>
