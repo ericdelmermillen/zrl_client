@@ -1,17 +1,12 @@
 import { type FC, type ReactNode, useEffect, useRef } from "react";
 import { useAppContext } from "../../contexts/AppContext.js";
 import { useLocation } from "react-router-dom";
+import type { NavOption } from "../../interfaces/interfaces";
 import "./DropdownNav.scss";
 
 
 // *** will need to render logout button for admin here
 // *** possibly need to render color mode toggler here
-
-
-interface NavOption {
-  id: number;
-  optionName: string;
-}
 
 interface DropdownNavProps {
   navOptions: NavOption[]; // not optional and properly typed
@@ -41,36 +36,35 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
     // Reset scroll position to top
     if(innerRef.current) {
       innerRef.current.scrollTop = 0;
-    }
+    };
   };
 
   // useEffect to close dropdown on scroll
   useEffect(() => {
     if(scrollYPos > prevScrollYPos) {
       setShowDropdownNavOptions(false);
-    }
+    };
   }, [scrollYPos, prevScrollYPos]);
   
   return (
     <>
       <nav className={`dropdownNav ${showDropdownNavOptions ? "tall" : "short"}`}>
         <div ref={innerRef} className={`dropdownNav__inner ${showDropdownNavOptions ? "tall" : ""}`}>
-          <ul className={`dropdownNav__options ${showDropdownNavOptions ? "tall" : ""}`}>
-            <li className={`dropdownNav__option dropdownNav__option--hidden ${!showDropdownNavOptions ? "short" : ""}`} >
+          <ul className={`dropdownNav__links ${showDropdownNavOptions ? "tall" : ""}`}>
+            <li className="dropdownNav__link dropdownNav__link--hidden" >
               Dropdown Nav Menu
             </li>
 
             {navOptions.map(option => 
 
-              <li key={option.id}>
-                  <div 
-                    className={`dropdownNav__option`} 
-                    onClick={isOnHome 
-                      ? () => navLinkClick(option.optionName)
-                      : () => notFoundNavLinkClick(option.optionName)}
-                  >
-                    {`${option.optionName}`}
-                  </div>
+              <li 
+                className="dropdownNav__link"
+                key={option.id}
+                onClick={isOnHome 
+                  ? () => navLinkClick(option.optionName)
+                  : () => notFoundNavLinkClick(option.optionName)}
+              >
+                {`${option.optionName}`}
               </li>
             )}
 

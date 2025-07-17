@@ -6,24 +6,27 @@ import { scrollToTop,
 } from "../../../utils/utils.ts";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
+import type { NavOption } from "@/interfaces/interfaces.ts";
 
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 interface NavProps {
   children?: ReactNode;
+  navOptions: NavOption[]
 };
 
-const Nav: FC<NavProps> = ({ children }) => {
-    const { 
+const Nav: FC<NavProps> = ({ children, navOptions }) => {
+  const { 
     setIsLoading,
     scrollYPos,
     prevScrollYPos,
-    // navLinkClick,
+    navLinkClick,
+    notFoundNavLinkClick,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
     // hideNav
-   } = useAppContext();
+  } = useAppContext();
 
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
@@ -44,12 +47,6 @@ const Nav: FC<NavProps> = ({ children }) => {
     }, 250);
   };
 
-
-  const handleNavLinkClick = (to: string) => {
-    // navLinkClick(to)
-    console.log(to)
-  }
-   
   
   return (
     <>
@@ -69,13 +66,20 @@ const Nav: FC<NavProps> = ({ children }) => {
         
           <ul className="nav__links">
 
-            <li className="nav__link" onClick={() => handleNavLinkClick("/")}>Home</li>
 
-            <li className="nav__link" onClick={() => handleNavLinkClick("solutions")}>Solutions</li>
+            {navOptions.map(option => 
 
-            <li className="nav__link" onClick={() => handleNavLinkClick("details")}>Details</li>
-
-            <li className="nav__link" onClick={() => handleNavLinkClick("expertise")}>Expertise</li>
+              <li key={option.id}>
+                <div 
+                  className={`nav__link`} 
+                  onClick={isOnHome 
+                    ? () => navLinkClick(option.optionName)
+                    : () => notFoundNavLinkClick(option.optionName)}
+                >
+                  {`${option.optionName}`}
+                </div>
+              </li>
+            )}
 
           </ul>
 

@@ -47,15 +47,15 @@
 		overflow-y: hidden;
 	}
 
-	&__options {
+	&__links {
 		color: var(--text-color);
-		cursor: pointer;
 	}
 
-	&__option {
+	&__link {
 		align-items: center;
 		background: var(--background-color);
 		border-bottom: 2px solid var(--text-color);
+		cursor: pointer;
 		display: flex;
 		height: 4rem;
 		justify-content: center;
@@ -76,12 +76,6 @@
 			white-space: nowrap;
 			width: 1px;
 		}
-	}
-
-	&__link {
-		user-select: none;
-		pointer-events: none;
-		display: none;
 	}
 
 	/* Hide scrollbar for WebKit browsers (Safari and Chrome) */

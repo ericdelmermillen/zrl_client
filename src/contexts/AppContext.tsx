@@ -86,7 +86,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         };
       });
       // make this an env variable for timing
-    }, 700);
+    }, 500);
     setShowDropdownNavOptions(false);
   };
 

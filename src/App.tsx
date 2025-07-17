@@ -52,7 +52,7 @@ const App = (): JSX.Element => {
       >
         <div className="app__nav-background"></div>
 
-        <Nav>
+        <Nav navOptions={navOptions}>
           {isLoggedIn
             ? 
               (
