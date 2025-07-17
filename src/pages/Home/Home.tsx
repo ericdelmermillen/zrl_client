@@ -1,4 +1,4 @@
-import { useEffect, type FC } from "react";
+import { type FC, useEffect,} from "react";
 import Header from "../../components/Header/Header";
 import MoreInfo from "../../components/MoreInfo/MoreInfo";
 import PartnerCarousel from "../../components/Partners/Partners";
@@ -11,7 +11,6 @@ const Home: FC = () => {
     document.title = "Zidgy Road Labs | Professional Web Development Services";
   }, []);
     
-  
   
   return (
     <>

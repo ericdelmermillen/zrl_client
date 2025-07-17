@@ -8,7 +8,7 @@ import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
 
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+// const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 interface NavProps {
   children?: ReactNode;
@@ -19,13 +19,19 @@ const Nav: FC<NavProps> = ({ children }) => {
     setIsLoading,
     scrollYPos,
     prevScrollYPos,
+    // navLinkClick,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
-    hideNav
+    // hideNav
    } = useAppContext();
 
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
+
+
+  const handleToggleShowDropdownNavTrue = (): void => setShowDropdownNavOptions(prev => !prev);
+
+
 
   const handleScrollToTop = () => {
     setIsLoading(true);
@@ -34,24 +40,20 @@ const Nav: FC<NavProps> = ({ children }) => {
     scrollToTop();
     setTimeout(() => {
       setIsLoading(false);
-    }, MIN_LOADING_INTERVAL);
+    // }, MIN_LOADING_INTERVAL);
+    }, 250);
   };
 
-  const handleToggleShowDropdownNavTrue = (): void => setShowDropdownNavOptions(prev => !prev);
 
-
-  const handleHideNav = (): void => {
-    setTimeout(() => {
-      hideNav()
-    }, MIN_LOADING_INTERVAL)
+  const handleNavLinkClick = (to: string) => {
+    // navLinkClick(to)
+    console.log(to)
   }
    
   
   return (
     <>
-      <nav 
-      // id="nav" 
-      className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
+      <nav className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
         <div className="nav__content">
 
           <Link to={"/"}>
@@ -67,53 +69,13 @@ const Nav: FC<NavProps> = ({ children }) => {
         
           <ul className="nav__links">
 
-            <li className="nav__item">
-              <Link 
-                className={`nav__link ${isOnHome ? "active" : ""}`}
-                to={"/home"}
-                onClick={isOnHome 
-                ? handleScrollToTop
-                : undefined}
-              >
-                Home
-              </Link>
-            </li>
+            <li className="nav__link" onClick={() => handleNavLinkClick("/")}>Home</li>
 
-            <li 
-              className="nav__item"
-              onClick={handleHideNav}
-            >
-              <a 
-                href="#solutions"
-                className="nav__link"
-              >
-                Solutions
-                </a>
-            </li>
+            <li className="nav__link" onClick={() => handleNavLinkClick("solutions")}>Solutions</li>
 
-            <li 
-              className="nav__item"
-              onClick={handleHideNav}
-            >
-              <a 
-                href="#evaluationAndDeployment"
-                className="nav__link"
-              >
-                Details
-                </a>
-            </li>
+            <li className="nav__link" onClick={() => handleNavLinkClick("details")}>Details</li>
 
-            <li 
-              className="nav__item"
-              onClick={handleHideNav}
-            >
-              <a 
-                href="#expertise"
-                className="nav__link"
-              >
-                Expertise
-                </a>
-            </li>
+            <li className="nav__link" onClick={() => handleNavLinkClick("expertise")}>Expertise</li>
 
           </ul>
 

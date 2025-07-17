@@ -47,30 +47,9 @@
 		overflow-y: hidden;
 	}
 
-	&__select {
+	&__options {
 		color: var(--text-color);
 		cursor: pointer;
-	}
-
-	&__visually-hidden-label {
-		// make this a mixin for visually hidden elements
-		border: 0;
-		clip: rect(0, 0, 0, 0);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		white-space: nowrap;
-		width: 1px;
-	}
-
-	&__selectValue {
-		align-items: center;
-		display: flex;
-		justify-content: center;
-		min-height: 3rem;
-		position: relative;
 	}
 
 	&__option {
@@ -88,6 +67,14 @@
 			border-bottom: none;
 			height: 3rem;
 			text-transform: uppercase;
+		}
+
+		&--hidden {
+			margin-inline: auto;
+			min-height: 3rem;
+			position: relative;
+			white-space: nowrap;
+			width: 1px;
 		}
 	}
 

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useState, useEffect, createContext, useContext } from "react";
 import { scrollToTop } from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
@@ -23,8 +24,10 @@ interface AppContextValue {
   setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  navLinkClick: (optionName: string) => void;
   // functions
   showNav: () => void;
+  notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;
   logoutUser: () => void;
   handleSetModalType: (modalType: ModalType) => void;
@@ -49,6 +52,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
 
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
@@ -57,10 +62,43 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const showNav = (): void => document.getElementById("nav-container")?.classList.remove("hide");
   
-  const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
+  const hideNav = (): void => {
+    console.log(("hiding nav"))
+    document.getElementById("nav-container")?.classList.add("hide");
+  };
 
   const logoutUser = (): void => setIsLoggedIn(false);
 
+
+  const navLinkClick = (optionName: string): void => {
+    const link = document.createElement('a');
+    link.href = `/#${optionName.toLowerCase()}`;
+
+    document.body.appendChild(link);
+
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        if(optionName.toLowerCase() === "home") {
+          navigate("/");
+          scrollToTop();
+        } else {
+          link.click();
+        };
+      });
+      // make this an env variable for timing
+    }, 700);
+    setShowDropdownNavOptions(false);
+  };
+
+  const notFoundNavLinkClick = (to: string): void => {
+    navigate("/");
+
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        navLinkClick(to.toLowerCase())
+      });
+    }, 250);
+   };
 
   const handleSetModalType = (modalType: ModalType): void => {
     setShowModal(true);
@@ -132,7 +170,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setShowModal,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
+    navLinkClick,
     // functions
+    notFoundNavLinkClick,
     showNav,
     hideNav,
     logoutUser,

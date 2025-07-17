@@ -12,6 +12,13 @@ import './App.scss';
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
+const navOptions = [
+  {id: 1, optionName: "HOME"},
+  {id: 2, optionName: "SOLUTIONS"},
+  {id: 3, optionName: "DETAILS"},
+  {id: 4, optionName: "EXPERTISE"}
+];
+
 const App = (): JSX.Element => {
   const { 
     isLoading,
@@ -62,7 +69,7 @@ const App = (): JSX.Element => {
 
         </Nav>
 
-        <DropdownNav>
+        <DropdownNav navOptions={navOptions}>
           {isLoggedIn
             ? 
               (
