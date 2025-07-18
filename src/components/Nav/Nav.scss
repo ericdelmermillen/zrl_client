@@ -51,6 +51,7 @@
 
 	&__link {
 		color: var(--text-color-bright);
+		cursor: pointer;
 		@include mx.navLink;
 
 		&:hover {
@@ -107,9 +108,8 @@
 
 		&.open {
 			.nav__toggle-icon:nth-child(1) {
-				transform: translateY(0.5rem) rotate(405deg);
-				transform: translateY(0.5rem) rotate(225deg);
-				// transform: translateY(0.5rem) rotate(45deg);
+				// transform: translateY(0.5rem) rotate(405deg);
+				transform: translateY(0.55rem) rotate(225deg);
 			}
 
 			.nav__toggle-icon:nth-child(2) {
@@ -117,9 +117,8 @@
 			}
 
 			.nav__toggle-icon:nth-child(3) {
-				transform: translateY(-0.5rem) rotate(-405deg);
-				transform: translateY(-0.5rem) rotate(-225deg);
-				// transform: translateY(-0.5rem) rotate(-45deg);
+				// transform: translateY(-0.5rem) rotate(-405deg);
+				transform: translateY(-0.55rem) rotate(-225deg);
 			}
 		}
 	}
@@ -131,6 +130,7 @@
 		min-width: 100%;
 		width: 2rem;
 		transition: transform 0.5s ease, opacity 0.25s ease; // <- move transitions here
+		transform-origin: center;
 		// transition: transform 0.25s ease, opacity 0.25s ease; // <- move transitions here
 	}
 }

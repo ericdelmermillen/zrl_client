@@ -100,7 +100,7 @@
 
 @mixin page {
 	max-width: vars.$ultraWide;
-	min-height: calc(100vh - vars.$navHeight);
+	min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
 	width: 100%;
 }
 
@@ -111,7 +111,7 @@
 	flex-direction: column;
 	margin-inline: auto;
 	max-width: vars.$ultraWide;
-	min-height: calc((100vh - vars.$navHeight) + 1px);
+	min-height: calc((100vh - (vars.$navHeight + vars.$footerHeightMobile)));
 	width: 100%;
 }
 

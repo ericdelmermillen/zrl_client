@@ -55,10 +55,11 @@
 		align-items: center;
 		background: var(--background-color);
 		border-bottom: 2px solid var(--text-color);
-		cursor: pointer;
+		// cursor: pointer;
 		display: flex;
 		height: 4rem;
 		justify-content: center;
+		margin-inline: auto;
 		outline: none;
 		position: relative;
 
@@ -76,6 +77,12 @@
 			white-space: nowrap;
 			width: 1px;
 		}
+	}
+
+	&__link-text {
+		// border: 2px solid red;
+		// line-height: 1.5;
+		cursor: pointer;
 	}
 
 	/* Hide scrollbar for WebKit browsers (Safari and Chrome) */

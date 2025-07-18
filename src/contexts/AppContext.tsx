@@ -83,10 +83,14 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           scrollToTop();
         } else {
           link.click();
+          hideNav();
         };
       });
       // make this an env variable for timing
-    }, 500);
+    // }, 500);
+    // }, 400);
+    // }, 350);
+    }, 300);
     setShowDropdownNavOptions(false);
   };
 

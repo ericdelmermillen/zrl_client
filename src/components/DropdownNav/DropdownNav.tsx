@@ -64,7 +64,9 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
                   ? () => navLinkClick(option.optionName)
                   : () => notFoundNavLinkClick(option.optionName)}
               >
-                {`${option.optionName}`}
+                <span className="dropdownNav__link-text">
+                  {`${option.optionName}`}
+                </span>
               </li>
             )}
 

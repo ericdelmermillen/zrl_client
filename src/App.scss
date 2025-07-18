@@ -136,13 +136,13 @@ img {
 			@media (min-width: vars.$tablet) {
 				// border: 1px solid var(--text-color-bright) !important;
 				// color: var(--text-color-bright) !important;
-				border: 2px solid red;
+				// border: 2px solid red;
 				@include mx.adminButton;
 			}
 		}
 
 		&--dropdown-nav {
-			border: 2px solid #000;
+			// border: 2px solid #000;
 			margin-inline: auto !important;
 			@include mx.adminButton;
 		}
