@@ -5,7 +5,7 @@
 *::before,
 *::after {
 	box-sizing: border-box;
-	// font-family: var(--body-font);
+	font-family: var(--body-font);
 	margin: 0;
 	padding: 0;
 }
@@ -19,19 +19,18 @@ html {
 
 body {
 	& {
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-		// background: var(--neutralBG);
-		// color: var(--text-color);
+		background: var(--neutralBG);
+		color: var(--text-color);
 		// font-family
+		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
 	}
 }
 
 a {
-	// color: var(--text-color);
-	text-decoration: none;
 	color: inherit;
+	text-decoration: none;
 
 	&:visited {
 		color: inherit;
@@ -51,14 +50,14 @@ input,
 button,
 textarea,
 select {
-	font: inherit;
-	color: inherit;
+	appearance: none;
 	background: none;
 	border: none;
+	color: inherit;
+	font: inherit;
 	outline: none;
-	appearance: none;
-	-webkit-appearance: none;
 	-moz-appearance: none;
+	-webkit-appearance: none;
 
 	&:hover {
 		cursor: pointer; // for buttons and clickable inputs
@@ -99,15 +98,11 @@ img {
 
 	&__nav-container {
 		align-items: center;
-		// background: var(--background-nav-footer);
-		// box-shadow: var(--navFooter-box-shadow);
-		background: pink;
-		// border: 2px solid blue;
 		display: flex;
 		height: vars.$navHeight;
 		position: fixed;
-		transition: all 500ms ease-in-out;
 		top: 0;
+		transition: all 500ms ease-in-out;
 		width: 100%;
 		z-index: 3;
 
@@ -126,7 +121,7 @@ img {
 	}
 
 	&__inner {
-		@include mx.page;
+		@include mx.inner;
 	}
 
 	&__logout {
@@ -134,15 +129,11 @@ img {
 			display: none;
 
 			@media (min-width: vars.$tablet) {
-				// border: 1px solid var(--text-color-bright) !important;
-				// color: var(--text-color-bright) !important;
-				// border: 2px solid red;
 				@include mx.adminButton;
 			}
 		}
 
 		&--dropdown-nav {
-			// border: 2px solid #000;
 			margin-inline: auto !important;
 			@include mx.adminButton;
 		}

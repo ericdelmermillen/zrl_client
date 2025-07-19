@@ -7,6 +7,7 @@ import "./Home.scss";
 
 const Home: FC = () => {
 
+  // useEffect to set page's title
   useEffect(() => {
     document.title = "Zidgy Road Labs | Professional Web Development Services";
   }, []);

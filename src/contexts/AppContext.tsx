@@ -3,6 +3,9 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { scrollToTop } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 
+const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
+const NOT_FOUND_NAV_CLICK_DELAY = import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY;
+
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
 
@@ -54,7 +57,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const navigate = useNavigate();
 
-
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
     setScrollYPos(window.scrollY);
@@ -62,13 +64,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const showNav = (): void => document.getElementById("nav-container")?.classList.remove("hide");
   
-  const hideNav = (): void => {
-    console.log(("hiding nav"))
-    document.getElementById("nav-container")?.classList.add("hide");
-  };
+  const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
 
   const logoutUser = (): void => setIsLoggedIn(false);
-
 
   const navLinkClick = (optionName: string): void => {
     const link = document.createElement('a');
@@ -86,11 +84,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           hideNav();
         };
       });
-      // make this an env variable for timing
-    // }, 500);
-    // }, 400);
-    // }, 350);
-    }, 300);
+    }, NAV_CLICK_DELAY);
     setShowDropdownNavOptions(false);
   };
 
@@ -101,7 +95,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       requestAnimationFrame(() => {
         navLinkClick(to.toLowerCase())
       });
-    }, 250);
+    }, NOT_FOUND_NAV_CLICK_DELAY);
    };
 
   const handleSetModalType = (modalType: ModalType): void => {
@@ -121,8 +115,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
-  const validModes = ["light", "dark"];
-  const storedMode = localStorage.getItem("colorMode");
+    const validModes = ["light", "dark"];
+    const storedMode = localStorage.getItem("colorMode");
 
     if (!storedMode || !validModes.includes(storedMode)) {
       localStorage.setItem("colorMode", "light");
@@ -174,14 +168,14 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setShowModal,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
-    navLinkClick,
+    modalType, 
+    setModalType,
     // functions
+    navLinkClick,
     notFoundNavLinkClick,
     showNav,
     hideNav,
     logoutUser,
-    modalType, 
-    setModalType,
     handleSetModalType
   };
 

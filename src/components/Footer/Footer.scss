@@ -3,14 +3,15 @@
 
 .footer {
 	& {
-		// background: var(--background-nav-footer);
-		// box-shadow: var(--navFooterBoxShadow);
-		// color: var(--text-color-bright);
-		// margin-top: auto;
-		// position: relative;
 		border-top: 2px solid red;
 		width: 100%;
 		z-index: 1;
+		// height: vars.$footerHeightMobile;
+		background: orange;
+
+		@media (min-width: vars.$tablet) {
+			height: vars.$footerHeight;
+		}
 	}
 
 	&__content {
@@ -50,9 +51,9 @@
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: 1.5rem;
-			height: 5rem;
+			// height: 5rem;
 			padding: 0;
-			width: 5rem;
+			// width: 5rem;
 		}
 
 		&:hover {

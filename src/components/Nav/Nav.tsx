@@ -1,9 +1,7 @@
 import { type FC, type ReactNode } from "react";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { Link, useLocation } from "react-router-dom";
-import { scrollToTop, 
-  // addClassToDiv 
-} from "../../../utils/utils.ts";
+import { scrollToTop } from "../../../utils/utils.ts";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 import type { NavOption } from "@/interfaces/interfaces.ts";

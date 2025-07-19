@@ -6,6 +6,8 @@
 		// background: var(--background-color);
 		// background: blue;
 		@include mx.page;
+		// border: 2px solid red;
+		background: yellow;
 	}
 
 	&__inner {

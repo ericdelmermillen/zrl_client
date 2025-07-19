@@ -100,8 +100,12 @@
 
 @mixin page {
 	max-width: vars.$ultraWide;
-	min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
+	min-height: calc(100vh - vars.$footerHeightMobile);
 	width: 100%;
+
+	@media (min-width: vars.$tablet) {
+		min-height: calc(100vh - vars.$footerHeight);
+	}
 }
 
 @mixin inner {
@@ -111,8 +115,12 @@
 	flex-direction: column;
 	margin-inline: auto;
 	max-width: vars.$ultraWide;
-	min-height: calc((100vh - (vars.$navHeight + vars.$footerHeightMobile)));
+	min-height: calc(100vh - vars.$footerHeightMobile);
 	width: 100%;
+
+	@media (min-width: vars.$tablet) {
+		min-height: calc(100vh - vars.$footerHeight);
+	}
 }
 
 // buttons, links and interactions
@@ -164,19 +172,18 @@
 }
 
 @mixin hoverClickGrow {
-	transform: scale(1.025);
 	transform: scale(1.01);
 	transition: all 0.25s ease-in-out;
-}
-
-@mixin hoverClickShrink {
-	transform: scale(0.99);
-	transition: all 0.25s ease-in;
 }
 
 @mixin hoverClickGrowIcon {
 	transform: scale(1.15);
 	@include hoverClickGrow;
+}
+
+@mixin hoverClickShrink {
+	transform: scale(0.99);
+	transition: all 0.25s ease-in;
 }
 
 // accents and decorations
