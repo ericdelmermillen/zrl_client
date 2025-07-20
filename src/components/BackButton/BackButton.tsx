@@ -7,7 +7,7 @@ const BackButton: FC = () => {
   const navigate = useNavigate();
 
   const handleBackClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // optional, if needed
+    e.preventDefault();
     navigate(-1);
   };
   

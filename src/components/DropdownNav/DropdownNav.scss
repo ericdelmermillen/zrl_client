@@ -2,7 +2,6 @@
 @use "../../partials/variables.scss" as vars;
 
 .dropdownNav {
-	border: 2px dashed #333;
 	bottom: 0;
 	display: flex;
 	justify-content: center;
@@ -24,7 +23,6 @@
 
 	&__inner {
 		background: pink;
-		border: 2px dashed red;
 		max-height: 3rem;
 		-ms-overflow-style: none;
 		overflow-y: auto;
@@ -55,7 +53,6 @@
 		align-items: center;
 		background: var(--background-color);
 		border-bottom: 2px solid var(--text-color);
-		// cursor: pointer;
 		display: flex;
 		height: 4rem;
 		justify-content: center;
@@ -80,8 +77,6 @@
 	}
 
 	&__link-text {
-		// border: 2px solid red;
-		// line-height: 1.5;
 		cursor: pointer;
 	}
 

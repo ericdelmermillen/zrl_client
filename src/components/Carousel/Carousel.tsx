@@ -17,7 +17,6 @@ interface CarouselProps {
   carouselAriaLabel?: string;
 };
 
-
 const Carousel: FC<CarouselProps> = ({
   carouselItems,
   direction = "left",
@@ -30,34 +29,34 @@ const Carousel: FC<CarouselProps> = ({
   const scrollerRef = useRef<HTMLUListElement | null>(null);
 
 
-useEffect(() => {
-  const carousel = carouselRef.current;
-  const scroller = scrollerRef.current;
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    const scroller = scrollerRef.current;
 
-  if (!carousel || !scroller) {
-    return;
-  };
+    if (!carousel || !scroller) {
+      return;
+    };
 
-  // Prevent animation if user prefers reduced motion
-  if (prefersReducedMotion || isSafari) {
-    return;
-  };
+    // Prevent animation if user prefers reduced motion
+    if (prefersReducedMotion || isSafari) {
+      return;
+    };
 
-  // Get the original set of items
-  const originalItems = Array.from(scroller.children);
+    // Get the original set of items
+    const originalItems = Array.from(scroller.children);
 
-  // Clone the full set exactly once for seamless looping
-  const clones = originalItems.map((item) => {
-    const clone = item.cloneNode(true) as HTMLElement;
-    clone.setAttribute("aria-hidden", "true");
-    return clone;
-  });
+    // Clone the full set exactly once for seamless looping
+    const clones = originalItems.map((item) => {
+      const clone = item.cloneNode(true) as HTMLElement;
+      clone.setAttribute("aria-hidden", "true");
+      return clone;
+    });
 
-  clones.forEach(clone => scroller.appendChild(clone));
+    clones.forEach(clone => scroller.appendChild(clone));
 
-  // Now that everything is set up, enable animation
-  carousel.setAttribute("data-animated", "true");
-}, []);
+    // enable animation
+    carousel.setAttribute("data-animated", "true");
+  }, []);
 
 
   return (

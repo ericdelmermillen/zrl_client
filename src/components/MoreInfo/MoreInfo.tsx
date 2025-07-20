@@ -10,7 +10,6 @@ const MoreInfo:FC = () => {
         className="moreInfo" 
         aria-labelledby="more-info-heading"
         id="moreInfo"
-        // id="solutions"
       >
         <div className="moreInfo__inner">
           <MoreInfoText />

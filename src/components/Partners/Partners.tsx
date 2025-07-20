@@ -40,7 +40,6 @@ const Partners: FC = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -51,9 +50,7 @@ const Partners: FC = () => {
 
       <div className="partners__inner">
 
-        <h2 className="partners__heading">
-          Our Partners
-        </h2>
+        <h2 className="partners__heading">Our Partners</h2>
 
         <Carousel 
           itemClassName="partners__partnerItem"

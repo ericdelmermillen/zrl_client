@@ -3,20 +3,17 @@
 
 .header {
 	& {
-		background: yellow;
 		height: 100vh;
 		max-width: vars.$ultraWide;
 	}
 
 	// *** overlay for Header
-
 	&__overlay {
-		background: rgba(0, 0, 0, 0.15); // dark overlay
 		background: linear-gradient(
-			to top,
+			to center,
 			rgba(0, 0, 0, 0.4) 0%,
-			rgba(0, 0, 0, 0.25) 60%,
-			rgba(0, 0, 0, 0.05) 100%
+			rgba(0, 0, 0, 0.3) 60%,
+			rgba(0, 0, 0, 0.15) 100%
 		);
 		background-size: cover;
 		inset: 0;
@@ -25,12 +22,9 @@
 		z-index: 0;
 	}
 
-	// ***
-
 	// header base styles
 	&__inner {
 		align-items: center;
-		// border: 5px solid #fff;
 		display: flex;
 		height: 100%;
 		position: relative;
@@ -45,12 +39,11 @@
 	}
 
 	// header with placeholder pic
-	&__inner {
-		background-position: -80% top;
-		background-repeat: no-repeat;
-		background: url("../../assets/images/header-background.jpg");
-		background-position: 85% bottom;
-	}
+	// &__inner {
+	// 	background-repeat: no-repeat;
+	// 	background: url("../../assets/images/header-background.jpg");
+	// 	background-position: 75% center;
+	// }
 
 	// header pic 1
 	&__inner {
@@ -149,7 +142,6 @@
 	}
 
 	&__text {
-		// border: 2px solid green;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
@@ -158,7 +150,7 @@
 		padding-inline-end: 2rem;
 		padding-inline-start: 3rem;
 		margin-inline: auto;
-		// margin-top: -3rem;
+		// margin-top: -2rem;
 		position: relative;
 		z-index: 1;
 

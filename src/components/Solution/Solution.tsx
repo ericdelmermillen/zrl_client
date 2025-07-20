@@ -24,7 +24,6 @@ const Solution: FC<SolutionProps> = ({ img, title, text, tag }) => {
         </div>
 
       </article>
-      
     </>
   )};
 

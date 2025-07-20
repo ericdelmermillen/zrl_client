@@ -2,6 +2,17 @@ import{ type FC } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import "./MoreInfoText.scss";
 
+const solutions = [
+  {
+    title: "Customized Solutions:",
+    description: "Our solutions are designed to meet your specific business needs, ensuring maximum efficiency and productivity.",
+  },
+  {
+    title: "Seamless Integration:",
+    description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows.",
+  },
+];
+
 const MoreInfoText:FC = () => {
   return (
     <>
@@ -13,24 +24,23 @@ const MoreInfoText:FC = () => {
             We provide innovative software solutions that empower businesses to thrive in the digital era.
           </p>
 
-          <ul className="moreInfoText__solutions">
+           <ul className="moreInfoText__solutions">
 
-            <li className="moreInfoText__solution">
-              <i className="moreInfoText__solutionCheck"><FaCheck /></i>
-              <span className="moreInfoText__solutionText">
-                <span className="moreInfoText__solutionSpan">Customized Solutions:</span> Our solutions are designed to meet your specific business needs, ensuring maximum efficiency and productivity.
-              </span>
-            </li>
-
-            <li className="moreInfoText__solution">
-              <i className="moreInfoText__solutionCheck"><FaCheck /></i>
-              <span className="moreInfoText__solutionText">
-                <span className="moreInfoText__solutionSpan">Seamless Integration:</span> We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows.
-              </span>
-            </li>
-
-          </ul>
-          
+            {solutions.map((solution, index) => (
+              <li className="moreInfoText__solution" key={index}>
+                <i className="moreInfoText__solutionCheck">
+                  <FaCheck />
+                </i>
+                <span className="moreInfoText__solutionText">
+                  <span className="moreInfoText__solutionSpan">
+                    {solution.title}
+                  </span>{" "}
+                  {solution.description}
+                </span>
+              </li>
+            ))}
+            
+        </ul>
         </div>
       </article>
       

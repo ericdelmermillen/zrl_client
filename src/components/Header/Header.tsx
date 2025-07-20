@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import "./Header.scss";
 
 const solutions: string[] = [" Small Business", "Enterprise", "Startups"];
@@ -38,7 +38,6 @@ useEffect(() => {
               Learn More
             </a>
           </div>
-
 
         </div>
       </header>

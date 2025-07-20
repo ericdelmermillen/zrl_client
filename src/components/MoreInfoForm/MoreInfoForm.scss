@@ -1,3 +1,6 @@
+@use "../../partials/variables" as vars;
+@use "../../partials/mixins" as mx;
+
 .moreInfoForm {
 	&__section {
 		// height for testing
@@ -66,9 +69,13 @@
 		}
 	}
 
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
 	&__submitButton {
 		&.disabled {
-			color: orange;
+			color: red !important;
 		}
 	}
 }

@@ -3,18 +3,14 @@
 
 .notFound {
 	& {
-		// background: var(--background-color);
-		// background: blue;
-		@include mx.page;
-		// border: 2px solid red;
 		background: yellow;
+		@include mx.page;
 	}
 
 	&__inner {
-		@include mx.inner;
-		// border: 2px solid green;
 		align-items: center;
 		justify-content: center;
+		@include mx.inner;
 	}
 
 	// &__text {

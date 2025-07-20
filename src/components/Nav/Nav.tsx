@@ -1,13 +1,13 @@
 import { type FC, type ReactNode } from "react";
+import type { NavOption } from "../../interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
-import type { NavOption } from "@/interfaces/interfaces.ts";
 
 
-// const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 interface NavProps {
   children?: ReactNode;
@@ -22,27 +22,23 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     navLinkClick,
     notFoundNavLinkClick,
     showDropdownNavOptions, 
-    setShowDropdownNavOptions,
-    // hideNav
+    setShowDropdownNavOptions
   } = useAppContext();
 
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
 
 
-  const handleToggleShowDropdownNavTrue = (): void => setShowDropdownNavOptions(prev => !prev);
-
+  const handleToggleShowDropdownNav = (): void => setShowDropdownNavOptions(prev => !prev);
 
 
   const handleScrollToTop = () => {
     setIsLoading(true);
-    // timing for closing NavDropdownMenu?
     setShowDropdownNavOptions(false);
     scrollToTop();
     setTimeout(() => {
       setIsLoading(false);
-    // }, MIN_LOADING_INTERVAL);
-    }, 250);
+    }, MIN_LOADING_INTERVAL);
   };
 
   
@@ -54,16 +50,13 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
           <Link to={"/"}>
             <div 
               className="nav__logo-box"
-              onClick={isOnHome 
-                ? handleScrollToTop
-                : undefined}
+              onClick={isOnHome ? handleScrollToTop: undefined}
             >
               <Logo className={"nav__logo"}/>
             </div>
           </Link>
         
           <ul className="nav__links">
-
 
             {navOptions.map(option => 
 
@@ -84,7 +77,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
           <div 
             className={`nav__toggle-button ${showDropdownNavOptions ? "open" : ""}`}
             aria-label="Toggle Menu"
-            onClick={handleToggleShowDropdownNavTrue}
+            onClick={handleToggleShowDropdownNav}
           >
             <div className="nav__toggle-icon"></div>
             <div className="nav__toggle-icon"></div>
@@ -93,7 +86,6 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
           {children}
         </div>
-        
         
       </nav>
     </>

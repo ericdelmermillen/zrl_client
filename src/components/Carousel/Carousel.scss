@@ -2,36 +2,52 @@
 @use "../../partials/mixins" as mx;
 
 .carousel {
-	& {
-		// border: 2px dotted #333;
-		margin-inline: auto;
-		max-width: vars.$ultraWide;
-	}
+	position: relative;
+	margin-inline: auto;
+	width: 100%;
+	max-width: vars.$ultraWide;
+	overflow: hidden; // Ensure items overflow the sides inside the container
 
 	&[data-animated="true"] {
-		-webkit-mask: linear-gradient(
-			90deg,
-			transparent,
-			white 20%,
-			white 80%,
-			transparent
-		);
-		overflow: hidden;
+		position: relative;
 
-		mask: linear-gradient(
+		// Fade effect both sides — exact same on left/right
+		-webkit-mask-image: linear-gradient(
 			90deg,
-			transparent,
+			transparent 0%,
 			white 10%,
 			white 90%,
-			transparent
+			transparent 100%
 		);
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: 100% 100%;
+
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0%,
+			white 10%,
+			white 90%,
+			transparent 100%
+		);
+		mask-repeat: no-repeat;
+		mask-size: 100% 100%;
+	}
+
+	&__track {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: vars.$carouselGap;
+		padding-block: 2rem;
+		width: max-content;
+
+		&.reducedMotion {
+			justify-content: center;
+		}
 	}
 
 	&[data-animated="true"] &__track {
 		animation: scroll var(--_animation-duration, 40s)
 			var(--_animation-direction, forwards) linear infinite;
-		flex-wrap: nowrap;
-		width: max-content;
 	}
 
 	&[data-direction="right"] {
@@ -42,24 +58,12 @@
 		--_animation-direction: forwards;
 	}
 
-	&__track {
-		display: flex;
-		flex-wrap: nowrap;
-		gap: vars.$carouselGap;
-		padding-block: 2rem;
-		// will-change: transform; // possible fix to flicker on Safari (no change)
-		// transform: translateZ(0); // possible fix to flicker on Safari (no change)
-
-		&.reducedMotion {
-			justify-content: center;
-		}
-	}
-
 	&__item {
 		background: yellow;
 		border-radius: 0.5rem;
 		box-shadow: 0 0.5rem 1rem -0.25rem #333;
 		color: blue;
+		min-width: 200px; // Make sure items have width
 	}
 }
 

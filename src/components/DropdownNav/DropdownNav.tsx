@@ -1,4 +1,4 @@
-import { type FC, type ReactNode, useEffect, useRef } from "react";
+import { type FC, type ReactNode, useRef, useEffect } from "react";
 import { useAppContext } from "../../contexts/AppContext.js";
 import { useLocation } from "react-router-dom";
 import type { NavOption } from "../../interfaces/interfaces";
@@ -29,7 +29,6 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
   const { pathname } = useLocation();
   const isOnHome = pathname === "/";
 
-  
   const handleTouchOff = (): void => {
     setShowDropdownNavOptions(false);
 
@@ -75,10 +74,9 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
           </ul>
         </div>
       </nav>
+      
       <div 
-        className={`dropdownNav__touchOffDiv ${showDropdownNavOptions 
-          ? "show"
-          : ""}`}
+        className={`dropdownNav__touchOffDiv ${showDropdownNavOptions ? "show": ""}`}
         onClick={handleTouchOff}
       ></div> 
     </>

@@ -70,7 +70,6 @@ const Solutions: FC = () => {
         </div>
 
       </section>
-      
     </>
   )};
 
