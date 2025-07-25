@@ -3,6 +3,8 @@ import { scrollToTop } from "../../../utils/utils";
 import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
 
+// import Day_2 from "../../assets/svgs/Day_2"
+
 const NotFound: FC = () => {
 
   // scroll to top on mount
@@ -20,6 +22,7 @@ const NotFound: FC = () => {
       <div className="notFound">
         <div className="notFound__inner">
           <BackButton />
+          {/* <Day_2 className={"floatingButton__colorMode--day"}/> */}
 
           <div className="notFound__text">
           <h1 className="notFound__h1">Ain't nothin' here, yo'!</h1>

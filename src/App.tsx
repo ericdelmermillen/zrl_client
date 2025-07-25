@@ -9,6 +9,7 @@ import Modal from './components/Modal/Modal';
 import Nav from './components/Nav/Nav';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
+import FloatingButton from './components/FloatingButton/FloatingButton';
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
@@ -106,6 +107,8 @@ const App = (): JSX.Element => {
           <Route path="/*" element={<NotFound />} />
 
         </Routes>
+
+        <FloatingButton />
 
         <Footer />
 

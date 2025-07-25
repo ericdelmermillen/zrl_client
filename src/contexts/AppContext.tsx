@@ -30,6 +30,7 @@ interface AppContextValue {
   navLinkClick: (optionName: string) => void;
   // functions
   showNav: () => void;
+  toggleColorMode: () => void;
   notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;
   logoutUser: () => void;
@@ -67,6 +68,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
 
   const logoutUser = (): void => setIsLoggedIn(false);
+
+  const toggleColorMode = () : void => {
+    setColorMode(prev => prev === "light" ? "dark" : "light")
+  }
 
   const navLinkClick = (optionName: string): void => {
     const link = document.createElement('a');
@@ -171,6 +176,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     modalType, 
     setModalType,
     // functions
+    toggleColorMode,
     navLinkClick,
     notFoundNavLinkClick,
     showNav,
