@@ -39,11 +39,11 @@
 	}
 
 	// header with placeholder pic
-	// &__inner {
-	// 	background-repeat: no-repeat;
-	// 	background: url("../../assets/images/header-background.jpg");
-	// 	background-position: 75% center;
-	// }
+	&__inner {
+		background-repeat: no-repeat;
+		background: url("../../assets/images/header-background.jpg");
+		background-position: 75% center;
+	}
 
 	// header pic 1
 	&__inner {
@@ -55,6 +55,7 @@
 	}
 
 	// header pic 2
+	// cube: G
 	// &__inner {
 	// 	background: url("../../assets/images/header_2.jpg");
 	// 	background-position-x: 50%;
@@ -64,6 +65,7 @@
 	// }
 
 	// header pic 3
+	// paint
 	// &__inner {
 	// 	background: url("../../assets/images/header_3.jpg");
 	// 	background-position-x: 80%;
@@ -73,22 +75,24 @@
 	// }
 
 	// header pic 4
-	// &__inner {
-	// 	background: url("../../assets/images/header_4.jpg");
-	// 	background-position-x: 80%;
-	// 	background-position-y: center;
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// }
+	// circuit: G
+	&__inner {
+		background: url("../../assets/images/header_4.jpg");
+		background-position-x: 80%;
+		background-position-y: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 
 	// header pic 5
-	// &__inner {
-	// 	background: url("../../assets/images/header_5.jpg");
-	// 	background-position-x: 80%;
-	// 	background-position-y: center;
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// }
+	// nope
+	&__inner {
+		background: url("../../assets/images/header_5.jpg");
+		background-position-x: 80%;
+		background-position-y: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 
 	// header pic 6
 	// &__inner {
@@ -100,9 +104,11 @@
 	// }
 
 	// header pic 7
+	// robot: G
 	// &__inner {
 	// 	background: url("../../assets/images/header_7.jpg");
 	// 	background-position-x: 20%;
+	// 	background-position-y: center;
 	// 	background-position-y: center;
 	// 	background-repeat: no-repeat;
 	// 	background-size: cover;
@@ -118,6 +124,7 @@
 	// }
 
 	// header pic 9
+	// blob: G
 	// &__inner {
 	// 	background: url("../../assets/images/header_9.jpg");
 	// 	background-position-x: 30%;
