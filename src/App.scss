@@ -128,7 +128,7 @@ img {
 		&--nav {
 			display: none;
 
-			@media (min-width: vars.$tablet) {
+			@media (min-width: vars.$mediumTablet) {
 				@include mx.adminButton;
 			}
 		}
