@@ -1,11 +1,10 @@
-@use "./partials/_variables.scss" as vars;
 @use "./partials/_mixins.scss" as mx;
+@use "./partials/_variables.scss" as vars;
 
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
-	font-family: var(--body-font);
 	margin: 0;
 	padding: 0;
 }
@@ -21,10 +20,10 @@ body {
 	& {
 		background: var(--neutralBG);
 		color: var(--text-color);
-		// font-family
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
+		font-family: var(--body-font);
 	}
 }
 
@@ -128,7 +127,7 @@ img {
 		&--nav {
 			display: none;
 
-			@media (min-width: vars.$mediumTablet) {
+			@media (min-width: vars.$tablet) {
 				@include mx.adminButton;
 			}
 		}

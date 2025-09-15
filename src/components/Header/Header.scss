@@ -185,6 +185,7 @@
 	&__lead {
 		font-size: 1.25rem;
 		margin-bottom: 1rem;
+		// font-family: var(--body-font);
 
 		@media (min-width: vars.$tablet) {
 			max-width: 80%;
