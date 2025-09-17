@@ -1,10 +1,182 @@
+// @use "../../partials/_variables" as vars;
+// @use "../../partials/_mixins" as mx;
+
+// .header {
+// 	& {
+// 		height: 100vh;
+// 	}
+
+// 	// *** overlay for Header
+// 	&__overlay {
+// 		background: linear-gradient(
+// 			to center,
+// 			rgba(0, 0, 0, 0.4) 0%,
+// 			rgba(0, 0, 0, 0.3) 60%,
+// 			rgba(0, 0, 0, 0.15) 100%
+// 		);
+// 		background-size: cover;
+// 		inset: 0;
+// 		opacity: 25%;
+// 		position: absolute;
+// 		z-index: 0;
+// 	}
+
+// 	&__inner {
+// 		align-items: center;
+// 		background-repeat: no-repeat;
+// 		background-size: cover;
+// 		display: flex;
+// 		height: 100%;
+// 		justify-content: center;
+// 		position: relative;
+
+// 		// background: linear-gradient(
+// 		// 	// 180deg,
+// 		// 	-145deg,
+// 		// 	// vertical gradient, top → bottom
+// 		// 	#13244f 25%,
+// 		// 	// darkish blue at top (light source area)
+// 		// 	#0f1a3f 75%,
+// 		// 	// slightly darker midtone
+// 		// 	#05122b 90% // very dark blue at bottom
+// 		// );
+// 		// Vibrant dark blue gradient with light from above
+// 		&__inner {
+// 			align-items: center;
+// 			display: flex;
+// 			justify-content: center;
+// 			height: 100%;
+// 			position: relative;
+// 			background-repeat: no-repeat;
+// 			background-size: cover;
+
+// 			// Multi-layered gradient background
+// 			// Multi-layered gradient background
+// 			background: radial-gradient(
+// 					circle at 50% 10%,
+// 					rgba(90, 160, 255, 0.6) 0%,
+// 					// bright refracted glow near top center
+// 					transparent 40%
+// 				),
+// 				radial-gradient(
+// 					circle at 80% 30%,
+// 					rgba(200, 80, 255, 0.25) 0%,
+// 					// faint purple dispersion (diamond prism effect)
+// 					transparent 50%
+// 				),
+// 				radial-gradient(
+// 					circle at 20% 60%,
+// 					rgba(0, 255, 200, 0.15) 0%,
+// 					// teal-green sparkle hint
+// 					transparent 45%
+// 				),
+// 				linear-gradient(
+// 					180deg,
+// 					#4da6ff 0%,
+// 					// cyan top highlight
+// 					#3b6eff 15%,
+// 					// vibrant blue
+// 					#2a4d9e 35%,
+// 					// cooler mid-blue
+// 					#1e2b66 55%,
+// 					// deep indigo
+// 					#301d5c 70%,
+// 					// purple shimmer for refraction
+// 					#0d1638 85%,
+// 					// almost black-blue
+// 					#020814 100% // abyss
+// 				);
+
+// 			background-blend-mode: screen, lighten, overlay, normal;
+// 		}
+// 		// text columns
+// 		@media (min-width: vars.$tablet) {
+// 			background-position-x: 30%;
+// 			justify-content: flex-start;
+// 			padding-inline: 3rem;
+// 			padding-inline: 10%;
+// 		}
+// 	}
+
+// 	&__accentBar {
+// 		@include mx.accentBarLeft;
+// 	}
+
+// 	&__text {
+// 		align-items: center;
+// 		display: flex;
+// 		flex-direction: column;
+// 		height: 100%;
+// 		justify-content: center;
+// 		line-height: 1.5;
+// 		// margin-inline: auto;
+// 		margin-top: 2rem;
+// 		position: relative;
+// 		text-align: center;
+// 		z-index: 1;
+
+// 		@media (min-width: vars.$tablet) {
+// 			align-items: start;
+// 			text-align: start;
+// 			width: 50%;
+// 		}
+
+// 		@media (min-width: vars.$largeTablet) {
+// 			padding-inline: 5rem;
+// 		}
+// 	}
+
+// 	&__heading {
+// 		font-size: 1.75rem;
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			font-size: 2rem;
+// 		}
+// 	}
+
+// 	&__subheading {
+// 		font-size: 1.75rem;
+// 		margin-bottom: 1.25rem;
+// 		white-space: nowrap;
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			font-size: 2rem;
+// 		}
+// 	}
+
+// 	&__solution {
+// 		color: green;
+// 		font-size: inherit;
+// 	}
+
+// 	&__lead {
+// 		font-size: 1.25rem;
+// 		font-weight: 600;
+// 		line-height: var(--line-height-lg);
+// 		margin-bottom: 2.5rem;
+// 		max-width: min(80%, 20rem);
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			max-width: 25rem;
+// 		}
+
+// 		@media (min-width: vars.$tablet) {
+// 			max-width: 80%;
+// 		}
+// 	}
+
+// 	&__button {
+// 		margin-inline: auto;
+// 		width: 8rem;
+// 	}
+// }
+
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
 .header {
 	& {
 		height: 100vh;
-		max-width: vars.$ultraWide;
 	}
 
 	// *** overlay for Header
@@ -22,103 +194,58 @@
 		z-index: 0;
 	}
 
-	// header with bg pic
 	&__inner {
 		align-items: center;
-		// background: url("../../assets/images/header.jpg");
-		background: url("../../assets/images/header_4.jpg");
-		background-position-y: center;
-		background-position-x: center;
+		display: flex;
+		justify-content: center;
+		height: 100%;
+		position: relative;
 		background-repeat: no-repeat;
 		background-size: cover;
-		display: flex;
-		height: 100%;
-		justify-content: center;
-		position: relative;
-		overflow: hidden;
 
-		@media (min-width: vars.$tablet) and (min-height: 500px) {
-			background-position-x: calc(100% + 1200px); // for larger screens
-		}
+		// Multi-layered 3D gradient background
+		background: radial-gradient(
+				circle at 70% 20%,
+				rgba(90, 160, 255, 0.1) 0%,
+				// bright refracted glow near top center
+				transparent 20%
+			),
+			radial-gradient(
+				circle at 80% 50%,
+				rgba(20, 80, 255, 0.25) 0%,
+				// faint purple dispersion (diamond prism effect)
+				transparent 60%
+			),
+			radial-gradient(
+				circle at 20% 60%,
+				rgba(0, 255, 200, 0.15) 0%,
+				// teal-green sparkle hint
+				transparent 45%
+			),
+			linear-gradient(
+				180deg,
+				#4da6ff 0%,
+				// cyan top highlight
+				#3b6eff 15%,
+				// vibrant blue
+				#2a4d9e 35%,
+				// cooler mid-blue
+				#1e2b66 55%,
+				// deep indigo
+				#301d5c 70%,
+				// purple shimmer for refraction
+				#0d1638 85%,
+				// almost black-blue
+				#020814 98% // abyss
+			);
 
-		@media (min-width: vars.$tablet) and (min-height: 550px) {
-			background-position-x: calc(100% + 1350px); // for larger screens
-		}
+		background-blend-mode: screen, lighten, overlay, normal;
 
-		@media (min-width: vars.$tablet) and (min-height: 600px) {
-			background-position-x: calc(100% + 1450px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 650px) {
-			background-position-x: calc(100% + 1550px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 700px) {
-			background-position-x: calc(100% + 1700px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 750px) {
-			background-position-x: calc(100% + 1800px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 800px) {
-			background-position-x: calc(100% + 1950px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 850px) {
-			background-position-x: calc(100% + 2050px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 900px) {
-			background-position-x: calc(100% + 2200px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 950px) {
-			background-position-x: calc(100% + 2300px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1000px) {
-			background-position-x: calc(100% + 2450px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1050px) {
-			background-position-x: calc(100% + 2600px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1100px) {
-			background-position-x: calc(100% + 2700px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1150px) {
-			background-position-x: calc(100% + 2850px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1200px) {
-			background-position-x: calc(100% + 3000px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1250px) {
-			background-position-x: calc(100% + 3100px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1300px) {
-			background-position-x: calc(100% + 3200px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1350px) {
-			background-position-x: calc(100% + 3300px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1400px) {
-			background-position-x: calc(100% + 3500px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1450px) {
-			background-position-x: calc(100% + 3600px); // for larger screens
-		}
-
-		@media (min-width: vars.$tablet) and (min-height: 1500px) {
-			background-position-x: calc(100% + 3750px); // for larger screens
+		// text columns
+		@media (min-width: vars.$tablet) {
+			background-position-x: 30%;
+			justify-content: flex-start;
+			padding-inline: 10%;
 		}
 	}
 
@@ -127,31 +254,21 @@
 	}
 
 	&__text {
+		align-items: center;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		justify-content: center;
 		line-height: 1.5;
-		padding-inline-end: 2rem;
-		padding-inline-start: 3rem;
-		margin-inline: auto;
-		// margin-top: -2rem;
+		margin-top: 2rem;
 		position: relative;
+		text-align: center;
 		z-index: 1;
 
-		@media (min-width: vars.$smallTablet) {
-			color: blue;
-			width: 80%;
-		}
-
-		@media (min-width: vars.$smallTablet) {
-			padding-inline: 2rem;
-		}
-
 		@media (min-width: vars.$tablet) {
-			// padding-inline: 5rem;
-			margin-inline: 0;
-			// width: 50%;
+			align-items: start;
+			text-align: start;
+			width: 50%;
 		}
 
 		@media (min-width: vars.$largeTablet) {
@@ -169,7 +286,7 @@
 
 	&__subheading {
 		font-size: 1.75rem;
-		margin-bottom: 1rem;
+		margin-bottom: 1.25rem;
 		white-space: nowrap;
 
 		@media (min-width: vars.$smallTablet) {
@@ -184,8 +301,14 @@
 
 	&__lead {
 		font-size: 1.25rem;
-		margin-bottom: 1rem;
-		// font-family: var(--body-font);
+		font-weight: 600;
+		line-height: var(--line-height-lg);
+		margin-bottom: 2.5rem;
+		max-width: min(80%, 20rem);
+
+		@media (min-width: vars.$smallTablet) {
+			max-width: 25rem;
+		}
 
 		@media (min-width: vars.$tablet) {
 			max-width: 80%;
@@ -193,6 +316,7 @@
 	}
 
 	&__button {
+		margin-inline: auto;
 		width: 8rem;
 	}
 }
