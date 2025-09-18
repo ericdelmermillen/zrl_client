@@ -1,5 +1,4 @@
 import { type FC, useState, useEffect } from "react";
-// import header_image from "../../assets/images/header_1.jpg"
 import "./Header.scss";
 
 const solutions: string[] = [" Small Business", "Enterprise", "Startups"];
