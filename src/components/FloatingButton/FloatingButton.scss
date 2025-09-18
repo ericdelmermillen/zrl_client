@@ -24,6 +24,11 @@
 		font-size: 3rem;
 		height: 2.75rem;
 		margin-bottom: 0.25rem;
+		width: 2.75rem;
+
+		// &:hover {
+		// 	scale: 1.05;
+		// }
 	}
 
 	&__colorMode-toggle {
@@ -39,6 +44,10 @@
 		padding: 0.25rem;
 		position: relative;
 		width: 3rem;
+
+		// &:hover {
+		// 	scale: 1.05;
+		// }
 
 		&--day,
 		&--night {
