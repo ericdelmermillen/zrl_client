@@ -1,5 +1,6 @@
 import { type FC, useEffect,} from "react";
-import Header from "../../components/Header/Header";
+// import Header_1 from "../../components/Header_1/Header_1";
+import Header_2 from "../../components/Header_2/Header_2";
 import MoreInfo from "../../components/MoreInfo/MoreInfo";
 import PartnerCarousel from "../../components/Partners/Partners";
 import Solutions from "../../components/Solutions/Solutions";
@@ -17,7 +18,8 @@ const Home: FC = () => {
     <>
       <div className="home">
         <div className="home__inner">
-          <Header />
+          {/* <Header_1 /> */}
+          <Header_2 />
           <main className="home__main">
             <PartnerCarousel />
             <MoreInfo />

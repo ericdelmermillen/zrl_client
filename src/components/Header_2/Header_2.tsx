@@ -1,9 +1,9 @@
 import { type FC, useState, useEffect } from "react";
-import "./Header.scss";
+import "./Header_2.scss";
 
 const solutions: string[] = [" Small Business", "Enterprise", "Startups"];
 
-const Header: FC = () => {
+const Header_2: FC = () => {
   const [ solutionIdx, setSolutionIdx ] = useState<number>(0);
 
   // useEffect to setInterval for rotating solutionIdx
@@ -45,4 +45,4 @@ useEffect(() => {
     </>
   )};
 
-export default Header;
+export default Header_2;
