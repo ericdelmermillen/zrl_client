@@ -119,6 +119,7 @@
 
 	&__heading {
 		font-size: 1.75rem;
+		text-wrap: nowrap;
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: 2rem;
