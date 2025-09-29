@@ -10,7 +10,9 @@
 		z-index: 1;
 
 		@media (min-width: vars.$tablet) {
-			height: vars.$footerHeight;
+			// height: vars.$footerHeight;
+			// hacky fix
+			height: calc(vars.$footerHeight + 2px);
 		}
 	}
 

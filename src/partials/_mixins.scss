@@ -3,6 +3,73 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
+// 🎨 Suggested Color Scheme
+// Primary
+
+// #2f608d (medium blue – brand anchor, buttons, links, navbar background)
+
+// #5b8db5 (lighter blue for hover states, highlights)
+
+// Secondary / Accents
+
+// #d9985f (warm orange accent – CTAs, icons, highlights)
+
+// #b88155 (deeper accent for hover states, small borders, active states)
+
+// Light Backgrounds
+
+// #fdfdfa (base background – body, sections)
+
+// #f3f3ec (alternate section background for subtle contrast)
+
+// Dark Backgrounds
+
+// #011140 (hero/nav background option – strong and professional)
+
+// #182438 (card headers, footer, left accent div)
+
+// Text Colors
+
+// #0d0d0d (primary text on light backgrounds)
+
+// #fdfdfa (primary text on dark backgrounds)
+
+// #6f5f5a (secondary text, muted paragraphs)
+
+// Borders & Neutral Elements
+
+// #ccd3d6 (soft border, dividers, input outlines)
+
+// #8096a6 (icons, less dominant UI elements)
+
+// 🖼 Layout Usage
+
+// Nav bar: #011140 with white text (#fdfdfa), hover/active links in #5b8db5.
+
+// Left 2rem accent bar: #182438 with small highlights in #d9985f (a stripe, icon, or subtle glow).
+
+// Above the fold background: light neutral like #fdfdfa, letting your header image dominate.
+
+// Buttons:
+
+// Primary → #2f608d background, #fdfdfa text. Hover → #5b8db5.
+
+// Secondary → #d9985f background, #fdfdfa text. Hover → #b88155.
+
+// Cards / sections: Alternate between #fdfdfa and #f3f3ec for background so sections don’t blend.
+
+// Footer: #182438 background, #fdfdfa text, link hovers in #5b8db5.
+
+// ✅ Why this works
+
+// The blues (#2f608d, #5b8db5) establish trust and professionalism.
+
+// The warm accents (#d9985f, #b88155) add energy without clashing.
+
+// The light neutrals (#fdfdfa, #f3f3ec) keep it airy and modern.
+
+// The dark tones (#011140, #182438) ground the design and give depth.
+
 .app {
 	--body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--heading-font: "Poppins", "Trebuchet MS", Helvetica, Arial, sans-serif;
@@ -81,6 +148,9 @@
 
 	&[data-color-mode="light"] {
 		color: red;
+		--navFooter-bg: #011140;
+		--nav-link-color: #cc8142;
+		--accent-color: #d68b49;
 	}
 
 	&[data-color-mode="dark"] {
@@ -167,9 +237,10 @@
 // need button link
 
 @mixin navLink {
-	// font-family: var(--heading-font);
-	font-weight: 500;
-	letter-spacing: 4px;
+	font-family: var(--heading-font);
+	font-size: 1.125rem;
+	font-weight: 600;
+	letter-spacing: 6px;
 	position: relative;
 }
 
@@ -192,15 +263,39 @@
 @mixin afterAccent {
 	background: var(--accent-color);
 	bottom: -0.6rem;
+	bottom: -0.55rem;
+	bottom: -0.5rem;
+	bottom: -0.45rem;
+	bottom: -0.4rem;
+	bottom: -0.35rem;
 	content: "";
-	height: 2.5px;
+	height: 2.25px;
+	// transform: translateX(-50%);
+	// height: 2px;
 	left: 0;
+	// left: 50%;
 	position: absolute;
 	right: 0;
+	// width: 95%;
 }
 
 @mixin accentBar {
-	background: orange;
+	background: var(--accent-color);
+	background: #b88155;
+	background: #5b8db5;
+	background: #2f608d;
+	background: #000626;
+	background: #5b8db5;
+	background: #5b8db5;
+	//
+	background: #d5b28a;
+	background: #b98256;
+	background: #aa9687;
+	background: #d9985f;
+	background: #f2efdf;
+	background: #be7d4e;
+	background: linear-gradient(180deg, #fcb045, #fd1d1d, #833ab4);
+	// background: #be7d4e;
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 	height: 50%;
