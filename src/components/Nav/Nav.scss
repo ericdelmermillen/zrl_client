@@ -69,14 +69,35 @@
 		}
 	}
 
-	// &__colorModeToggle {
-	// 	display: none;
+	&__socials {
+		// border: 2px solid red;
+		display: flex;
+		gap: 1.75rem;
+	}
 
-	// 	@media (min-width: vars.$tablet) {
-	// 		display: block;
-	// 		margin-inline-start: 1rem;
-	// 	}
-	// }
+	&__social {
+		align-items: center;
+		background: var(--accent-color);
+		background: var(--nav-link-color);
+		border-radius: 50%;
+		color: var(--button-text);
+
+		display: flex;
+		height: 1.7rem;
+		justify-content: center;
+		margin-top: 0.25rem;
+		width: 1.7rem;
+
+		// &:hover {
+		// 	cursor: pointer;
+		// }
+
+		&--facebook {
+			padding: 0.5rem;
+			padding: 0.7rem;
+			padding-top: 0.9rem;
+		}
+	}
 
 	&__logout {
 		display: none;

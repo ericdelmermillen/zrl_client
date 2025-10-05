@@ -3,6 +3,8 @@ import type { NavOption } from "../../interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";
+import { FaFacebookF } from "react-icons/fa6";
+import { IoLogoTwitter } from "react-icons/io";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
@@ -17,6 +19,7 @@ interface NavProps {
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
     setIsLoading,
+    isLoggedIn,
     scrollYPos,
     prevScrollYPos,
     navLinkClick,
@@ -70,7 +73,25 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
                   {`${option.optionName}`}
                 </div>
               </li>
-            )}
+            )
+            }
+            {!isLoggedIn ?
+
+              <div className="nav__socials">
+                <div className="nav__social nav__social--facebook">
+                  <a href="" className="nav__social--link">
+                    <FaFacebookF className="nav__social--icon"/>
+                  </a>
+                </div>
+       
+                <div className="nav__social nav__social--twitter">
+                  <IoLogoTwitter className="nav__social--icon"/>
+                </div>
+              </div>
+
+              : null
+
+            }
 
           </ul>
 
