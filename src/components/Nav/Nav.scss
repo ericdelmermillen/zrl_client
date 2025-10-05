@@ -31,7 +31,7 @@
 
 	&__logo {
 		// *** will use an SVG logo later
-		color: var(--nav-link-color);
+		color: var(--accent-color);
 		font-family: var(--heading-font);
 		font-size: 1.25rem;
 		font-weight: 600;
@@ -41,7 +41,7 @@
 
 	&__links {
 		display: none;
-		color: var(--nav-link-color);
+		color: var(--accent-color);
 
 		@media (min-width: vars.$mediumTablet) {
 			align-items: center;
@@ -70,7 +70,7 @@
 
 	&__social {
 		align-items: center;
-		background: var(--button-bg-color);
+		background: var(--accent-color);
 		border-radius: 50%;
 		color: var(--button-text-color);
 		display: flex;
@@ -125,7 +125,7 @@
 	}
 
 	&__toggle-icon {
-		border: 1.45px solid var(--button-bg-color);
+		border: 1.45px solid var(--accent-color);
 		border-radius: 2px;
 		min-width: 100%;
 		transform-origin: center;

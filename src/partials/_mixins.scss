@@ -92,6 +92,9 @@
 	--border-radius: 4px;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	--text-shadow-bright: 5px 5px 6px rgba(0, 0, 0, 0.7);
+	// ***
+	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+	--header-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 
 	// Timing Variables
 	--transition-interval-lightbox: 450ms;
@@ -148,13 +151,11 @@
 
 	&[data-color-mode="light"] {
 		color: red;
-		--navFooter-bg: #011140;
-		--nav-link-color: #c18a4f;
-		--button-bg-color: var(--nav-link-color);
-		--accent-color: #af7645;
-		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+		--accent-color: #c18a4f;
 		--button-text-color: #f1f0ea;
+		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+		--navFooter-bg: #011140;
 	}
 
 	&[data-color-mode="dark"] {
@@ -239,7 +240,8 @@
 }
 
 @mixin rounded-button {
-	background: var(--button-bg-color);
+	background: var(--accent-color);
+
 	border: none;
 	border-radius: 2rem;
 	color: var(--button-text-color);
@@ -301,11 +303,6 @@
 // accents and decorations
 @mixin afterAccent {
 	background: var(--accent-color);
-	bottom: -0.6rem;
-	bottom: -0.55rem;
-	bottom: -0.5rem;
-	bottom: -0.45rem;
-	bottom: -0.4rem;
 	bottom: -0.35rem;
 	content: "";
 	height: 2.25px;
@@ -313,7 +310,6 @@
 	// transform: translateX(-50%);
 	// height: 2px;
 	left: 0;
-	// left: 50%;
 	position: absolute;
 	right: 0;
 	// width: 95%;
@@ -321,458 +317,6 @@
 
 @mixin accentBar {
 	background: var(--accent-color);
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* bright yellow start */ #fef2a0 0%,
-	// 	/* pale yellow */ #fde07c 5%,
-	// 	/* bright yellow */ #fbcd57 8%,
-	// 	/* golden yellow */ #fcb045 12%,
-	// 	/* golden yellow-orange */ #f8ac4b 15%,
-	// 	/* lighter amber */ #f2a451 18%,
-	// 	/* soft orange */ #e9984b 22%,
-	// 	/* warm gold */ #e39048 25%,
-	// 	/* golden orange */ #d9985f 28%,
-	// 	/* rich amber */ #d66d4f 32%,
-	// 	/* RED BAND START - more stops for variation */ #e0433f 34%,
-	// 	#dc2e2e 36%,
-	// 	#e22f2d 38%,
-	// 	#e93a33 40%,
-	// 	#f12f2f 42%,
-	// 	#fd1d1d 45%,
-	// 	#ff2f2f 48%,
-	// 	#f43b3b 50%,
-
-	// 	// /* fiery red end */ /* magenta transition */ #b04ea4 53%,
-	// 	#a153a8 56%,
-	// 	#8f3fb3 59%,
-	// 	#833ab4 62%,
-	// 	#705aa3 66%,
-
-	// 	/* purple-blue transition */ #5e75a3 70%,
-	// 	#5478b5 74%,
-	// 	#4e7dbb 78%,
-	// 	#496cb2 82%,
-	// 	#4263aa 86%,
-	// 	#3f5fae 90%,
-	// 	#3b5ab0 95%,
-	// 	#3a57ad 100% /* purple-blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* bright yellow start */ #fef2a0 0%,
-	// 	/* pale yellow */ #fde07c 3%,
-	// 	/* bright yellow */ #fbcd57 6%,
-	// 	/* golden yellow */ #fcb045 10%,
-	// 	/* golden yellow-orange */ #f8ac4b 14%,
-	// 	/* lighter amber */ #f2a451 18%,
-	// 	/* soft orange */ #e9984b 22%,
-	// 	/* warm gold */ #e39048 26%,
-	// 	/* golden orange */ #d9985f 30%,
-	// 	/* rich amber */ #d6a26a 34%,
-
-	// 	/* magenta transition */ #b04ea4 38%,
-	// 	#a153a8 42%,
-	// 	#963fb1 46%,
-	// 	#8f3fb3 50%,
-	// 	#833ab4 54%,
-	// 	#775aa8 58%,
-	// 	#705aa3 62%,
-
-	// 	/* purple-blue transition */ #5e75a3 66%,
-	// 	#5478b5 70%,
-	// 	#4e7dbb 74%,
-	// 	#496cb2 78%,
-	// 	#4563ad 82%,
-	// 	#4263aa 86%,
-	// 	#3f5fae 90%,
-	// 	#3b5ab0 94%,
-	// 	#3a57ad 100% /* purple-blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* bright yellow start */ #fef2a0 0%,
-	// 	#fde07c 3%,
-	// 	#fbcd57 6%,
-	// 	#fcb045 10%,
-	// 	#f8ac4b 14%,
-	// 	#f2a451 18%,
-	// 	#e9984b 22%,
-	// 	#e39048 26%,
-	// 	#d9985f 30%,
-	// 	#d6a26a 34%,
-
-	// 	/* soft magenta transition */ #b4739e 38%,
-	// 	#a876a8 42%,
-	// 	#9c7fb2 46%,
-	// 	#9188bc 50%,
-	// 	#857fc1 54%,
-
-	// 	/* blue-purple blend */ #6f8eb7 58%,
-	// 	#5e95b5 62%,
-	// 	#519bbc 66%,
-	// 	#449fc4 70%,
-	// 	#3c9ecb 74%,
-	// 	#349ed1 78%,
-	// 	#2ca1d8 82%,
-	// 	#27a3dd 86%,
-	// 	#21a6e3 90%,
-	// 	#1ca9e8 94%,
-	// 	#17acee 100% /* bright blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* bright yellow start */ #fef2a0 0%,
-	// 	#fde07c 3%,
-	// 	#fbcd57 6%,
-	// 	#fcb045 10%,
-	// 	#f8ac4b 14%,
-	// 	#f2a451 18%,
-	// 	#e9984b 22%,
-	// 	#e39048 26%,
-	// 	#d9985f 30%,
-	// 	#d6a26a 34%,
-
-	// 	/* soft magenta transition */ #b4739e 38%,
-	// 	#a876a8 42%,
-	// 	#9c7fb2 46%,
-	// 	#9188bc 50%,
-	// 	#857fc1 54%,
-
-	// 	/* balanced purple-blue */ #6f8eb7 58%,
-	// 	#5e95b5 62%,
-	// 	#519bbc 66%,
-	// 	#449fc4 70%,
-	// 	#3c9ecb 74%,
-	// 	#387fb0 78%,
-	// 	#33699d 82%,
-	// 	#2f5a8b 86%,
-	// 	#2b4d7b 90%,
-	// 	#27426b 94%,
-	// 	#23375c 100% /* moderate purple-blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* softened yellow start */ #f9e48b 0%,
-	// 	#f6d976 3%,
-	// 	#f4cd5f 6%,
-	// 	#f2c248 10%,
-	// 	#efb941 14%,
-	// 	#edac3b 18%,
-	// 	#eaa536 22%,
-	// 	#e79e32 26%,
-	// 	#e5992f 30%,
-	// 	#e2942d 34%,
-
-	// 	/* soft magenta transition */ #b4739e 38%,
-	// 	#a876a8 42%,
-	// 	#9c7fb2 46%,
-	// 	#9188bc 50%,
-	// 	#857fc1 54%,
-
-	// 	/* balanced purple-blue */ #6f8eb7 58%,
-	// 	#5e95b5 62%,
-	// 	#519bbc 66%,
-	// 	#449fc4 70%,
-	// 	#3c9ecb 74%,
-	// 	#387fb0 78%,
-	// 	#33699d 82%,
-	// 	#2f5a8b 86%,
-	// 	#2b4d7b 90%,
-	// 	#27426b 94%,
-	// 	#23375c 100% /* moderate purple-blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top blues: subtle variation */ #3b608d 0%,
-	// 	#426d93 4%,
-	// 	#4b78a0 8%,
-	// 	#5182aa 12%,
-	// 	#5790b4 16%,
-	// 	#5e9cbd 20%,
-	// 	#64a5c3 24%,
-	// 	#6bafca 28%,
-	// 	#71b7cf 32%,
-	// 	#77c0d5 36%,
-
-	// 	/* soft purple-blue transition */ #6f8eb7 40%,
-	// 	#668fbf 44%,
-	// 	#5e95b5 48%,
-	// 	#559bc4 52%,
-	// 	#4d9fc9 56%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 60%,
-	// 	#3c9ecb 64%,
-	// 	#387fb0 68%,
-	// 	#33699d 72%,
-	// 	#2f5a8b 76%,
-	// 	#2b4d7b 80%,
-	// 	#27426b 84%,
-	// 	#23375c 88%,
-	// 	#1f2f4f 92%,
-	// 	#1b263f 96%,
-	// 	#171f30 100% /* deep blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top flat with subtle golden hint */ #3b608d 0%,
-	// 	#3c6390 6%,
-	// 	#3e668f 12%,
-
-	// 	/* gradual blue variations */ #426d93 18%,
-	// 	#4b78a0 24%,
-	// 	#5182aa 30%,
-	// 	#5790b4 36%,
-	// 	#5e9cbd 42%,
-	// 	#64a5c3 48%,
-	// 	#6bafca 54%,
-
-	// 	/* soft purple-blue transition */ #6f8eb7 58%,
-	// 	#668fbf 62%,
-	// 	#5e95b5 66%,
-	// 	#559bc4 70%,
-	// 	#4d9fc9 74%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 78%,
-	// 	#3c9ecb 82%,
-	// 	#387fb0 86%,
-	// 	#33699d 88%,
-	// 	#2f5a8b 90%,
-	// 	#2b4d7b 92%,
-	// 	#27426b 94%,
-	// 	#23375c 96%,
-	// 	#1f2f4f 98%,
-	// 	#171f30 100% /* deep blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top flat with subtle, muted golden hint */ #3a5d87 0%,
-	// 	#3c618a 6%,
-	// 	#3d638d 12%,
-
-	// 	/* gradual blue variations */ #426b92 18%,
-	// 	#48749c 24%,
-	// 	#4e7fa6 30%,
-	// 	#5489b0 36%,
-	// 	#5b94ba 42%,
-	// 	#619fc3 48%,
-	// 	#68a9cd 54%,
-
-	// 	/* soft purple-blue transition */ #6c8db3 58%,
-	// 	#638fb9 62%,
-	// 	#5b95b3 66%,
-	// 	#529bbd 70%,
-	// 	#4a9fc2 74%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 78%,
-	// 	#3b9dc9 82%,
-	// 	#3680af 86%,
-	// 	#31669c 88%,
-	// 	#2e598b 90%,
-	// 	#2a4d7b 92%,
-	// 	#26426c 94%,
-	// 	#22375d 96%,
-	// 	#1e2f50 98%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top soft golden hint */ #3b5f8b 0%,
-	// 	#3c618f 6%,
-	// 	#3e648f 12%,
-	// 	#416a92 18%,
-
-	// 	/* gradual blue variations */ #476f9b 24%,
-	// 	#4c77a5 30%,
-	// 	#5180ae 36%,
-	// 	#5789b7 42%,
-	// 	#5d93c0 48%,
-	// 	#64a0c9 54%,
-
-	// 	/* soft purple-blue transition */ #6b8eb5 58%,
-	// 	#638fb8 62%,
-	// 	#5b95b3 66%,
-	// 	#529bbc 70%,
-	// 	#4a9fc2 74%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 78%,
-	// 	#3b9dc8 82%,
-	// 	#3680af 86%,
-	// 	#31669c 88%,
-	// 	#2e598b 90%,
-	// 	#2a4d7b 92%,
-	// 	#26426c 94%,
-	// 	#22375d 96%,
-	// 	#1e2f50 98%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top more golden */ #3c618f 0%,
-	// 	#3f6592 6%,
-	// 	#426a94 12%,
-	// 	#466e97 18%,
-	// 	#4b739b 24%,
-
-	// 	/* gradual blue variations */ #507aa0 30%,
-	// 	#5482a4 36%,
-	// 	#598bb0 42%,
-	// 	#5f95b7 48%,
-	// 	#65a0c0 54%,
-
-	// 	/* soft purple-blue transition */ #6b8eb5 58%,
-	// 	#638fb8 62%,
-	// 	#5b95b3 66%,
-	// 	#529bbc 70%,
-	// 	#4a9fc2 74%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 78%,
-	// 	#3b9dc8 82%,
-	// 	#3680af 86%,
-	// 	#31669c 88%,
-	// 	#2e598b 90%,
-	// 	#2a4d7b 92%,
-	// 	#26426c 94%,
-	// 	#22375d 96%,
-	// 	#1e2f50 98%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top strong golden hues */ #3f6493 0%,
-	// 	#436898 4%,
-	// 	#476e9c 8%,
-	// 	#4b729f 12%,
-	// 	#4f78a3 16%,
-	// 	#537da7 20%,
-	// 	#5882ac 24%,
-
-	// 	/* gradual blue variations */ #5d87b0 28%,
-	// 	#618db4 32%,
-	// 	#6592b8 36%,
-	// 	#6998bc 40%,
-	// 	#6b8eb5 44%,
-	// 	#668fb8 48%,
-	// 	#5b95b3 52%,
-	// 	#529bbc 56%,
-
-	// 	/* balanced deeper purple-blue */ #4a9fc2 60%,
-	// 	#449fc4 64%,
-	// 	#3b9dc8 68%,
-	// 	#3680af 72%,
-	// 	#31669c 76%,
-	// 	#2e598b 80%,
-	// 	#2a4d7b 84%,
-	// 	#26426c 88%,
-	// 	#22375d 92%,
-	// 	#1e2f50 96%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top golden-orange hues */ #fce9b5 0%,
-	// 	// /* soft warm yellow */ #fad47f 4%,
-	// 	/* pale golden */ #f9c963 8%,
-	// 	// /* warm yellow-gold */ #f8bd4a 12%,
-	// 	// /* soft orange-gold */ #f7b536 16%,
-	// 	// /* muted orange */ #f5ac23 20%,
-	// 	// /* slightly deeper orange */ #f3a312 24%,
-	// 	// /* warm amber transition */ /* gentle transition to blues */ #5d8eb8 28%,
-	// 	#6095be 32%,
-	// 	#649bc4 36%,
-	// 	#68a2ca 40%,
-	// 	#6c8eb5 44%,
-	// 	#638fb8 48%,
-	// 	#5b95b3 52%,
-	// 	#529bbc 56%,
-
-	// 	/* balanced deeper purple-blue */ #4a9fc2 60%,
-	// 	#449fc4 64%,
-	// 	#3b9dc8 68%,
-	// 	#3680af 72%,
-	// 	#31669c 76%,
-	// 	#2e598b 80%,
-	// 	#2a4d7b 84%,
-	// 	#26426c 88%,
-	// 	#22375d 92%,
-	// 	#1e2f50 96%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	// background: linear-gradient(
-	// 	-107deg,
-	// 	/* top subtle golden hint */ #3b608d 0%,
-	// 	#3e6490 6%,
-	// 	#416994 12%,
-
-	// 	/* gradual blues */ #456f9a 18%,
-	// 	#4a749f 24%,
-	// 	#4f7aa4 30%,
-	// 	#5382aa 36%,
-	// 	#5789b0 42%,
-	// 	#5d91b7 48%,
-	// 	#6399be 54%,
-
-	// 	/* soft purple-blue transition */ #6b8eb5 58%,
-	// 	#638fb8 62%,
-	// 	#5b95b3 66%,
-	// 	#529bbc 70%,
-	// 	#4a9fc2 74%,
-
-	// 	/* balanced deeper purple-blue */ #449fc4 78%,
-	// 	#3b9dc8 82%,
-	// 	#3680af 86%,
-	// 	#31669c 88%,
-	// 	#2e598b 90%,
-	// 	#2a4d7b 92%,
-	// 	#26426c 94%,
-	// 	#22375d 96%,
-	// 	#1e2f50 98%,
-	// 	#171f30 100% /* deep muted blue finish */
-	// );
-
-	background: linear-gradient(
-		-107deg,
-		/* top subtle golden tint */ #f9e4a5 0%,
-		// /* very soft golden-yellow */ #f4d992 5%,
-		#3b608d 12%,
-
-		/* main blue starts blending in */ /* gradual blue variations */ #426d93 18%,
-		#4b78a0 24%,
-		#5182aa 30%,
-		#5790b4 36%,
-		#5e9cbd 42%,
-		#64a5c3 48%,
-		#6bafca 54%,
-
-		/* soft purple-blue transition */ #6f8eb7 58%,
-		#668fbf 62%,
-		#5e95b5 66%,
-		#559bc4 70%,
-		#4d9fc9 74%,
-
-		/* deeper purple-blue */ #449fc4 78%,
-		#3c9ecb 82%,
-		#387fb0 86%,
-		#33699d 88%,
-		#2f5a8b 90%,
-		#2b4d7b 92%,
-		#27426b 94%,
-		#23375c 96%,
-		#1f2f4f 98%,
-		#171f30 100% /* deep muted blue finish */
-	);
-
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 	height: 50%;
@@ -781,7 +325,7 @@
 	transform: translateY(calc(-50% + calc(vars.$navHeight / 2)));
 	// width: 0.75rem !important;
 	// width: 5rem !important;
-	width: 1.25rem;
+	width: 1.125rem;
 	// width: 7rem !important;
 	box-shadow: var(--accentBarShadow);
 	// border: 2px solid red !important;

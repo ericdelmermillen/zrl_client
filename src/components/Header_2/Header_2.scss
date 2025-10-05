@@ -101,6 +101,7 @@
 
 	&__accentBar {
 		@include mx.accentBarLeft;
+		box-shadow: var(--header-overlay-shadow);
 	}
 
 	&__text {
@@ -131,6 +132,7 @@
 		text-wrap: nowrap;
 		font-family: var(--heading-font);
 		letter-spacing: var(--letter-spacing-2xl);
+		text-shadow: var(--header-overlay-shadow);
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: 2rem;
@@ -143,6 +145,7 @@
 		margin-bottom: 1.25rem;
 		white-space: nowrap;
 		letter-spacing: var(--letter-spacing-2xl);
+		text-shadow: var(--header-overlay-shadow);
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: 2rem;
@@ -174,6 +177,7 @@
 
 	&__button {
 		margin-inline: auto;
+		box-shadow: var(--header-overlay-shadow);
 		// width: 8rem;
 		@include mx.rounded-button;
 	}
