@@ -4,7 +4,7 @@ import { useAppContext } from "../../contexts/AppContext.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";
 import { FaFacebookF } from "react-icons/fa6";
-import { IoLogoTwitter } from "react-icons/io";
+import { RiTwitterXLine } from "react-icons/ri";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
@@ -79,13 +79,27 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
               <div className="nav__socials">
                 <div className="nav__social nav__social--facebook">
-                  <a href="" className="nav__social--link">
-                    <FaFacebookF className="nav__social--icon"/>
+                  <a 
+                    href="https://www.facebook.com/ZidgyRoadLabs"
+                    className="nav__social--link"
+                    target="_blank"
+                  >
+                    <FaFacebookF 
+                      className="nav__social--icon nav__social--icon-facebook"
+                    />
                   </a>
                 </div>
        
-                <div className="nav__social nav__social--twitter">
-                  <IoLogoTwitter className="nav__social--icon"/>
+                <div className="nav__social nav__social--twitter-x">
+                  <a 
+                    href="https://x.com/zidgyroadlabs"
+                    className="nav__social--link"
+                    target="_blank"
+                  >
+                    <RiTwitterXLine 
+                      className="nav__social--icon nav__social--icon-twitter-x"
+                    />
+                  </a>
                 </div>
               </div>
 

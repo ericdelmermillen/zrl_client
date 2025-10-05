@@ -160,5 +160,7 @@
 	&__button {
 		margin-inline: auto;
 		width: 8rem;
+		// @include rounded-button;
+		display: none;
 	}
 }

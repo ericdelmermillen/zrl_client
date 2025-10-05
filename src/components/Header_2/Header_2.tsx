@@ -7,14 +7,14 @@ const Header_2: FC = () => {
   const [ solutionIdx, setSolutionIdx ] = useState<number>(0);
 
   // useEffect to setInterval for rotating solutionIdx
-useEffect(() => {
-  const interval = setInterval(() => {
-    setSolutionIdx(prev =>
-      prev === solutions.length - 1 
-        ? 0 
-        : prev + 1
-    );
-  }, 2000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSolutionIdx(prev =>
+        prev === solutions.length - 1 
+          ? 0 
+          : prev + 1
+      );
+    }, 2000);
 
   return () => clearInterval(interval);
 }, []);
@@ -35,7 +35,8 @@ useEffect(() => {
             </p>
 
             <a href="#moreInfo" className="header__button">
-              Learn More
+              {/* Learn More */}
+              LEARN MORE
             </a>
           </div>
 

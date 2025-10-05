@@ -150,10 +150,11 @@
 		color: red;
 		--navFooter-bg: #011140;
 		--nav-link-color: #c18a4f;
+		--button-bg-color: var(--nav-link-color);
 		--accent-color: #af7645;
 		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-		--button-text: #f1f0ea;
+		--button-text-color: #f1f0ea;
 	}
 
 	&[data-color-mode="dark"] {
@@ -234,6 +235,41 @@
 			transform: scale(1);
 			user-select: none;
 		}
+	}
+}
+
+@mixin rounded-button {
+	background: var(--button-bg-color);
+	border: none;
+	border-radius: 2rem;
+	color: var(--button-text-color);
+	cursor: pointer;
+	font-family: var(--heading-font);
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: var(--letter-spacing-2xl);
+	// display: inline-block;
+	padding: 1rem 2rem;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+
+	// &:hover {
+	// 	transform: translateY(-1px);
+	// 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	// }
+
+	// &:active {
+	// 	transform: translateY(0);
+	// }
+
+	// &:focus {
+	// 	outline: 2px solid rgba(0, 123, 255, 0.5);
+	// 	outline-offset: 2px;
+	// }
+
+	&:visited {
+		color: var(--button-text-color);
 	}
 }
 
