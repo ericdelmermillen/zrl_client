@@ -1,9 +1,12 @@
+import { useAppContext } from "../../contexts/AppContext";
 import { type FC, useState, useEffect } from "react";
 import "./Header_2.scss";
 
-const solutions: string[] = [" Small Business", "Enterprise", "Startups"];
+const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
 const Header_2: FC = () => {
+  const { windowWidth } = useAppContext();
+
   const [ solutionIdx, setSolutionIdx ] = useState<number>(0);
 
   // useEffect to setInterval for rotating solutionIdx
@@ -26,12 +29,17 @@ const Header_2: FC = () => {
           <div className="header__overlay"></div>
           <div className="header__accentBar"></div>
           <div className="header__text">
-            <h1 className="header__heading">Software Solutions</h1>
-            <h2 className="header__subheading">
-              For <span className="header__solution">{solutions[solutionIdx]}</span>
-            </h2>
+            <div className="header__text-inner">
+              <h1 className="header__heading">Software Solutions</h1>
+              <h2 className="header__subheading">
+                <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 768 
+                  ? "SMEs"
+                  : solutions[solutionIdx]
+                }</span>
+              </h2>
+            </div>
             <p className="header__lead">
-              Boost your business with cutting-edge software solutions tailored to the needs of modern enterprises.
+              Build better, faster, smarter with software solutions crafted for your unique needs.
             </p>
 
             <a href="#moreInfo" className="header__button">

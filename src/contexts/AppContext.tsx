@@ -19,6 +19,8 @@ interface AppContextValue {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   scrollYPos: number;
   setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  windowWidth: number;
+  setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
   prevScrollYPos: number;
   setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
   showModal: boolean;
@@ -48,8 +50,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
 
-  const [scrollYPos, setScrollYPos] = useState(0);
-  const [prevScrollYPos, setPrevScrollYPos] = useState(0);
+  const [ scrollYPos, setScrollYPos ] = useState(0);
+  const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
+  const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 
   const [ showModal, setShowModal ] = useState<boolean>(false);
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
@@ -151,10 +154,29 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollYPos]);
 
+  // useEffect for updating window width
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Set initial width
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   // useEffect to scroll to top on mount
   useEffect(() => {
     scrollToTop();
-  }, [])
+  }, []);
+
   
 
   const contextValues = {
@@ -168,6 +190,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     scrollYPos, 
     setScrollYPos,
     prevScrollYPos, 
+    windowWidth,
+    setWindowWidth,
     setPrevScrollYPos,
     showModal, 
     setShowModal,

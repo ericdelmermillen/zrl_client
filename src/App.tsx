@@ -108,7 +108,7 @@ const App = (): JSX.Element => {
 
         </Routes>
 
-        <FloatingButton />
+        {/* <FloatingButton /> */}
 
         <Footer />
 
