@@ -412,21 +412,22 @@
 }
 
 @mixin accentBar {
-	background: var(--accent-color);
+	background: var(--navFooter-bg);
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
+	box-shadow: var(--accentBarShadow);
 	height: 50%;
 	position: absolute;
 	top: 50%;
 	transform: translateY(calc(-50% + calc(vars.$navHeight / 2)));
 	width: 1rem;
-	width: 0.75rem;
-	// width: 7rem !important;
-	box-shadow: var(--accentBarShadow);
-	// border: 2px solid red !important;
 
-	@media (min-width: vars.$largeTablet) {
-		width: 1.25rem;
+	@media (min-width: vars.$smallTablet) {
+		width: 1.125rem;
+	}
+
+	@media (min-width: vars.$tablet) {
+		width: 1.5rem;
 	}
 }
 

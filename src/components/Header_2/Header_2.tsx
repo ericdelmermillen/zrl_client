@@ -30,9 +30,9 @@ const Header_2: FC = () => {
           <div className="header__accentBar"></div>
           <div className="header__text">
             <div className="header__text-inner">
-              <h1 className="header__heading">Software Solutions</h1>
+              <h1 className="header__heading"><span className="header__software">Software</span> Solutions</h1>
               <h2 className="header__subheading">
-                <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 768 
+                <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 480 
                   ? "SMEs"
                   : solutions[solutionIdx]
                 }</span>
@@ -43,7 +43,6 @@ const Header_2: FC = () => {
             </p>
 
             <a href="#moreInfo" className="header__button">
-              {/* Learn More */}
               LEARN MORE
             </a>
           </div>
