@@ -97,6 +97,10 @@
 			width: 70%;
 		}
 
+		@media (min-width: vars.$mediumTablet) {
+			margin-top: 3rem;
+		}
+
 		@media (min-width: vars.$largeTablet) {
 			align-items: start;
 			text-align: start;
@@ -161,6 +165,11 @@
 		@media (min-width: vars.$smallTablet) {
 			font-size: var(--text-size-3xl);
 		}
+
+		@media (min-width: vars.$mediumTablet) {
+			font-size: var(--text-size-3xl);
+			margin-bottom: 0;
+		}
 	}
 
 	&__break {
@@ -171,8 +180,6 @@
 
 	&__solution {
 		font-family: var(--heading-font);
-		font-size: 2rem;
-		font-size: 1.75rem;
 		font-size: var(--text-size-2xl);
 		font-weight: 500;
 		letter-spacing: var(--letter-spacing-lg);
@@ -182,6 +189,10 @@
 			font-size: var(--text-size-3xl);
 			letter-spacing: var(--letter-spacing-lg);
 		}
+
+		// @media (min-width: vars.$mediumTablet) {
+		// 	color: red;
+		// }
 
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
@@ -194,6 +205,10 @@
 		@media (min-width: vars.$smallTablet) {
 			margin-bottom: 0.5rem;
 		}
+
+		// @media (min-width: vars.$mediumTablet) {
+		// 	border: 2px solid red;
+		// }
 
 		@media (min-width: vars.$tablet) {
 			margin-bottom: 1rem;
@@ -223,10 +238,17 @@
 			margin-bottom: 2.25rem;
 			max-width: 80%;
 		}
+
+		@media (min-width: vars.$mediumTablet) {
+			font-size: var(--text-size-xl);
+			letter-spacing: var(--letter-spacing-2xl);
+			line-height: var(--line-height-lg);
+			margin-bottom: 2.5rem;
+			max-width: 80%;
+		}
 	}
 
 	&__button {
-		margin-inline: auto;
 		box-shadow: var(--header-small-text-shadow);
 		@include mx.rounded-button;
 	}
