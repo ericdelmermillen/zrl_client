@@ -69,7 +69,7 @@
 		// text columns
 		@media (min-width: vars.$largeTablet) {
 			justify-content: flex-start;
-			padding-inline: 10%;
+			// padding-inline: 10%;
 		}
 	}
 
@@ -102,20 +102,22 @@
 		}
 
 		@media (min-width: vars.$largeTablet) {
+			// border: 2px solid red;
 			align-items: start;
+			padding-inline-start: 10rem;
 			text-align: start;
+			// margin-inline-start: 10%;
+			// margin-inline-start: 5%;
+			// max-width: 32rem;
+			// border: 2px solid red;
 			width: 50%;
-		}
-
-		@media (min-width: vars.$largeTablet) {
-			padding-inline: 5rem;
 		}
 	}
 
 	&__heading {
 		font-family: var(--heading-font);
 		font-size: var(--text-size-2xl);
-		letter-spacing: var(--letter-spacing-xl);
+		letter-spacing: var(--letter-spacing-2xl);
 		line-height: var(--line-height-2xl);
 		font-weight: 600;
 		line-height: var(--line-height-sm);
@@ -130,9 +132,14 @@
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
 		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-3xl);
+		}
 	}
 
 	&__for {
+		font-family: var(--heading-font);
 		font-size: var(--text-size-2xl);
 		font-weight: 600;
 		letter-spacing: var(--letter-spacing-xl);
@@ -143,6 +150,10 @@
 
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-3xl);
 		}
 	}
 
@@ -155,9 +166,9 @@
 	}
 
 	&__subheading {
-		font-family: inherit;
+		font-family: var(--heading-font);
 		font-size: var(--text-size-xl);
-		font-weight: 500;
+		font-weight: 600;
 		letter-spacing: var(--letter-spacing-2xl);
 		margin-bottom: 0.5rem;
 		text-shadow: var(--header-text-shadow);
@@ -168,6 +179,11 @@
 
 		@media (min-width: vars.$mediumTablet) {
 			font-size: var(--text-size-3xl);
+			margin-bottom: 0;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-2xl);
 			margin-bottom: 0;
 		}
 	}
@@ -196,6 +212,10 @@
 
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-3xl);
 		}
 	}
 
@@ -250,6 +270,7 @@
 
 	&__button {
 		box-shadow: var(--header-small-text-shadow);
+		margin-inline: auto;
 		@include mx.rounded-button;
 	}
 }

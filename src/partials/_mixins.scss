@@ -1,7 +1,5 @@
 @use "./_variables" as vars;
-// web fonts being used from google for now due to issue converting google fonts via transfonter
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+@use "../assets/fonts.scss";
 
 // 🎨 Suggested Color Scheme
 // Primary
@@ -71,8 +69,8 @@
 // The dark tones (#011140, #182438) ground the design and give depth.
 
 .app {
-	--body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--heading-font: "Poppins", "Trebuchet MS", Helvetica, Arial, sans-serif;
+	--body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	// letter spacing
 	--letter-spacing-xs: 0.2px;
 	--letter-spacing-sm: 0.4px;
