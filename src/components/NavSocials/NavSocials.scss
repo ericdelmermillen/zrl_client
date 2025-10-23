@@ -1,0 +1,30 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.navSocials {
+	& {
+		display: flex;
+		gap: 1.85rem;
+	}
+
+	&__social {
+		align-items: center;
+		background: var(--accent-color);
+		border-radius: 50%;
+		color: var(--button-text-color);
+		display: flex;
+		height: 1.7rem;
+		justify-content: center;
+		margin-top: 0.25rem;
+		position: relative;
+		width: 1.7rem;
+	}
+
+	&__icon {
+		margin-top: 0.25rem;
+
+		&--facebook {
+			margin-inline-start: -0.025em;
+		}
+	}
+}

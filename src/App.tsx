@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import LogoutButton from './components/LogoutButton/LogoutButton';
 import Modal from './components/Modal/Modal';
 import Nav from './components/Nav/Nav';
+import NavSocials from './components/NavSocials/NavSocials';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
 
@@ -67,7 +68,10 @@ const App = (): JSX.Element => {
                   <LogoutButton />
                 </div>
               )
-            : null
+            : 
+              <div className="app__dropdown-nav app__dropdown-nav--socials">
+                <NavSocials />
+              </div>
           }
         </DropdownNav>
 
