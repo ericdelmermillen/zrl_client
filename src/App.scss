@@ -129,14 +129,14 @@ img {
 			display: none;
 
 			@media (min-width: vars.$mediumTablet) {
-				@include mx.adminButton;
-				color: var(--nav-link-color);
+				display: block;
+				margin-inline-start: 1.5rem;
+				margin-inline-start: 2rem;
 			}
 		}
 
-		&--dropdown-nav {
-			margin-inline: auto !important;
-			@include mx.adminButton;
-		}
+		// &--dropdown-nav {
+		// 	border: 2px dotted #333 !important;
+		// }
 	}
 }

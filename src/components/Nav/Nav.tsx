@@ -73,8 +73,9 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
                   {`${option.optionName}`}
                 </div>
               </li>
-            )
+              )
             }
+            
             {!isLoggedIn ?
 
               <div className="nav__socials">

@@ -1,15 +1,16 @@
 import type { JSX } from 'react';
 import { useAppContext } from './contexts/AppContext';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import DropdownNav from './components/DropdownNav/DropdownNav';
+// import FloatingButton from './components/FloatingButton/FloatingButton';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
+import LogoutButton from './components/LogoutButton/LogoutButton';
 import Modal from './components/Modal/Modal';
 import Nav from './components/Nav/Nav';
 import NotFound from './pages/NotFound/NotFound';
 import './App.scss';
-import FloatingButton from './components/FloatingButton/FloatingButton';
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
@@ -30,16 +31,8 @@ const App = (): JSX.Element => {
     // setColorMode 
     prevScrollYPos,
     scrollYPos,
-    logoutUser,
     modalType
   } = useAppContext();
-
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/");
-  };
 
 
   return (
@@ -57,13 +50,9 @@ const App = (): JSX.Element => {
           {isLoggedIn
             ? 
               (
-                <button
-                  className="app__logout app__logout--nav"
-                  onClick={handleLogout}
-                  aria-label="Logout"
-                >
-                  Logout
-                </button>
+                <div className="app__logout app__logout--nav ">
+                  <LogoutButton />
+                </div>
               )
             : null
           }
@@ -74,20 +63,15 @@ const App = (): JSX.Element => {
           {isLoggedIn
             ? 
               (
-                <button
-                  className="app__logout app__logout--dropdown-nav"
-                  onClick={handleLogout}
-                  aria-label="Logout"
-                >
-                  Logout
-                </button>
+                <div className="app__logout app__logout--dropdown-nav">
+                  <LogoutButton />
+                </div>
               )
             : null
           }
         </DropdownNav>
 
       </div>
-
 
       <div className="app__inner">
 

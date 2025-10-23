@@ -1,0 +1,39 @@
+@use "../../partials/_variables.scss" as vars;
+@use "../../partials/_mixins" as mx;
+
+.logoutButton {
+	& {
+		align-items: center;
+		color: var(--accent-color);
+		display: flex;
+		font-size: 2rem;
+		height: 3rem;
+		justify-content: center;
+		margin-inline: auto;
+	}
+
+	&__content {
+		align-items: center;
+		display: flex;
+		gap: 0.125rem;
+		justify-content: center;
+	}
+
+	&__text {
+		@include mx.navLink;
+
+		@media (min-width: vars.$mediumTablet) {
+			display: none;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			display: block;
+		}
+	}
+
+	&__icon {
+		font-size: 2rem;
+		height: 2rem;
+		margin-top: -0.25rem;
+	}
+}
