@@ -93,6 +93,14 @@
 			max-width: 50%;
 			width: 50%;
 		}
+
+		@media (min-width: vars.$ultraWide) {
+			align-items: end;
+			margin-top: 2.5rem;
+			max-width: 50%;
+			width: 50%;
+			padding-inline-end: 8rem;
+		}
 	}
 
 	&__text {

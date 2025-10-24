@@ -5,9 +5,6 @@ import type { NavOption } from "../../interfaces/interfaces";
 import "./DropdownNav.scss";
 
 
-// *** will need to render logout button for admin here
-// *** possibly need to render color mode toggler here
-
 interface DropdownNavProps {
   navOptions: NavOption[]; // not optional and properly typed
   children: ReactNode;
@@ -68,8 +65,7 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
                 </span>
               </li>
             )}
-
-            { children }
+              <li className="dropdownNav__link">{ children }</li>
 
           </ul>
         </div>

@@ -17,8 +17,12 @@
 		height: 100%;
 		margin-inline: auto;
 		max-width: vars.$ultraWide;
-		padding-inline: 2rem;
+		padding-inline: 3rem;
 		width: 100%;
+
+		@media (min-width: vars.$desktop) {
+			padding-inline: 8rem;
+		}
 	}
 
 	&__logo-box {

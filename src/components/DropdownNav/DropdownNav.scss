@@ -22,23 +22,20 @@
 	}
 
 	&__inner {
-		background: pink;
+		background: var(--navFooter-bg);
 		max-height: 3rem;
 		-ms-overflow-style: none;
 		overflow-y: auto;
+		padding-bottom: 1.5rem;
 		position: absolute;
 		scrollbar-width: none;
-		transition: max-height 0.5s ease-in-out;
+		transition: max-height 0.6s ease-out;
 		width: 100%;
 	}
 
 	&.tall &__inner {
+		box-shadow: var(--accentBarShadow);
 		max-height: 40rem;
-
-		@media (min-width: vars.$largeTablet) {
-			max-height: 30rem;
-			transition: max-height 0.5s ease-in-out;
-		}
 	}
 
 	&.short &__inner {
@@ -52,13 +49,15 @@
 	&__link {
 		align-items: center;
 		background: var(--background-color);
+		color: var(--accent-color);
 		border-bottom: 2px solid var(--text-color);
 		display: flex;
-		height: 4rem;
+		height: 4.5rem;
 		justify-content: center;
 		margin-inline: auto;
 		outline: none;
 		position: relative;
+		@include mx.navLink;
 
 		@media (min-width: vars.$largeTablet) {
 			background: var(--navAndFooterBG);
@@ -78,6 +77,13 @@
 
 	&__link-text {
 		cursor: pointer;
+		position: relative;
+
+		&:hover {
+			&::after {
+				@include mx.afterAccent;
+			}
+		}
 	}
 
 	/* Hide scrollbar for WebKit browsers (Safari and Chrome) */
