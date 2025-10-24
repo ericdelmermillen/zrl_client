@@ -28,8 +28,10 @@ const Header_2: FC = () => {
         <div className="header__inner">
           <div className="header__overlay"></div>
           <div className="header__accentBar"></div>
-          <div className="header__text">
-            <div className="header__text-inner">
+
+          <div className="header__left">
+
+            <div className="header__text">
               <h1 className="header__heading"><span className="header__software">Software</span> Solutions</h1>
               <h2 className="header__subheading">
                 <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 480 
@@ -37,15 +39,17 @@ const Header_2: FC = () => {
                   : solutions[solutionIdx]
                 }</span>
               </h2>
-            </div>
-            <p className="header__lead">
-              Build better, faster, smarter with software solutions crafted for your unique needs.
-            </p>
+              <p className="header__lead">
+                Build better, faster, smarter with software solutions crafted for your unique needs.
+              </p>
 
-            <a href="#moreInfo" className="header__button">
-              LEARN MORE
-            </a>
+              <a href="#moreInfo" className="header__button">
+                LEARN MORE
+              </a>
+            </div>
+            
           </div>
+          <div className="header__right"></div>
 
         </div>
       </header>

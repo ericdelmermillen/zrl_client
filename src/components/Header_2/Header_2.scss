@@ -30,6 +30,7 @@
 	// *** inner for Header--web
 	&__inner {
 		align-items: center;
+		// border: 4px dashed #333;
 		background-repeat: no-repeat !important;
 		background-size: cover !important;
 		display: flex;
@@ -65,12 +66,6 @@
 		background: url("../../assets/images/header_1v.jpg");
 		background-position-x: center;
 		background-position-y: bottom;
-
-		// text columns
-		@media (min-width: vars.$largeTablet) {
-			justify-content: flex-start;
-			// padding-inline: 10%;
-		}
 	}
 
 	&__accentBar {
@@ -78,7 +73,7 @@
 		@include mx.accentBarLeft;
 	}
 
-	&__text {
+	&__left {
 		align-items: center;
 		color: var(--header-text-color);
 		display: flex;
@@ -90,26 +85,31 @@
 		position: relative;
 		text-align: center;
 		z-index: 1;
+		width: 100%;
 
-		@media (min-width: vars.$tablet) {
+		@media (min-width: vars.$desktop) {
+			align-items: end;
 			margin-top: 2.5rem;
-			max-width: 35rem;
-			width: 70%;
+			max-width: 50%;
+			width: 50%;
 		}
+	}
 
-		@media (min-width: vars.$mediumTablet) {
-			margin-top: 3rem;
-		}
+	&__text {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		max-width: 35rem;
 
 		@media (min-width: vars.$largeTablet) {
-			// border: 2px solid red;
-			align-items: start;
-			padding-inline-start: 10rem;
-			text-align: start;
-			// margin-inline-start: 10%;
-			// margin-inline-start: 5%;
-			// max-width: 32rem;
-			// border: 2px solid red;
+		}
+	}
+
+	&__right {
+		display: none;
+
+		@media (min-width: vars.$desktop) {
+			display: block;
 			width: 50%;
 		}
 	}
@@ -133,9 +133,13 @@
 			font-size: var(--text-size-4xl);
 		}
 
-		@media (min-width: vars.$largeTablet) {
-			font-size: var(--text-size-3xl);
-		}
+		// @media (min-width: vars.$largeTablet) {
+		// 	font-size: var(--text-size-3xl);
+		// }
+
+		// @media (min-width: vars.$desktop) {
+		// 	font-size: var(--text-size-4xl);
+		// }
 	}
 
 	&__for {
@@ -152,15 +156,15 @@
 			font-size: var(--text-size-4xl);
 		}
 
-		@media (min-width: vars.$largeTablet) {
-			font-size: var(--text-size-3xl);
+		@media (min-width: vars.$desktop) {
+			font-size: var(--text-size-4xl);
 		}
 	}
 
 	&__software {
 		display: none;
 
-		@media (min-width: vars.$smallTablet) {
+		@media (min-width: vars.$mediumTablet) {
 			display: inline;
 		}
 	}
@@ -183,8 +187,7 @@
 		}
 
 		@media (min-width: vars.$largeTablet) {
-			font-size: var(--text-size-2xl);
-			margin-bottom: 0;
+			margin-bottom: 1rem;
 		}
 	}
 
@@ -206,32 +209,8 @@
 			letter-spacing: var(--letter-spacing-lg);
 		}
 
-		// @media (min-width: vars.$mediumTablet) {
-		// 	color: red;
-		// }
-
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
-		}
-
-		@media (min-width: vars.$largeTablet) {
-			font-size: var(--text-size-3xl);
-		}
-	}
-
-	&__text-inner {
-		margin-bottom: 0.25rem;
-
-		@media (min-width: vars.$smallTablet) {
-			margin-bottom: 0.5rem;
-		}
-
-		// @media (min-width: vars.$mediumTablet) {
-		// 	border: 2px solid red;
-		// }
-
-		@media (min-width: vars.$tablet) {
-			margin-bottom: 1rem;
 		}
 	}
 
@@ -261,6 +240,21 @@
 
 		@media (min-width: vars.$mediumTablet) {
 			font-size: var(--text-size-xl);
+			letter-spacing: var(--letter-spacing-2xl);
+			line-height: var(--line-height-lg);
+			margin-bottom: 2.5rem;
+			max-width: 80%;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-xl);
+			letter-spacing: var(--letter-spacing-2xl);
+			line-height: var(--line-height-xl);
+			margin-bottom: 2.5rem;
+			max-width: 80%;
+		}
+
+		@media (min-width: vars.$desktop) {
 			letter-spacing: var(--letter-spacing-2xl);
 			line-height: var(--line-height-lg);
 			margin-bottom: 2.5rem;
