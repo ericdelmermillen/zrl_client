@@ -4,36 +4,52 @@
 .moreInfoForm {
 	&__section {
 		// height for testing
+		border: 2px solid red;
 		min-height: 100vh;
+		padding-block: 4rem;
+		padding-inline: 1rem;
 		width: 100%;
 	}
 
 	&__form {
-		align-items: flex-start;
-		border: 2px solid green;
+		align-items: center;
+		// border: 2px solid green;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		width: 100%;
 	}
 
-	&__submit {
+	&__field {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1.5rem;
 		margin-inline: auto;
-		margin-top: auto;
+		width: 100%;
+
+		// &--phone {
+
+		// }
 	}
 
+	// ***
 	&__input {
-		-webkit-appearance: none;
-		appearance: none;
-		background: #fff;
+		@include mx.input;
+		border: 2px solid blue;
+		// -webkit-appearance: none;
+		// appearance: none;
+		// background: #fff;
 
 		&.invalid {
 			background: yellow;
 		}
 
 		&--terms {
-			height: 2rem;
+			height: 1.125rem;
 			position: relative;
-			width: 2rem;
+			margin-inline-end: 0.5rem;
+			width: 1.125rem;
 
 			&:checked::after {
 				border-bottom: 2px solid #000;
@@ -49,31 +65,29 @@
 		}
 	}
 
-	&__terms {
-		align-items: center;
-		border: 2px solid red;
-		display: flex;
-		gap: 1rem;
-
-		&Text {
-			& .moreInfoTerms__privacy {
-				cursor: pointer;
-				font-weight: 600;
-				text-decoration: underline;
-				transition: color 0.2s ease;
-
-				&:hover {
-					text-decoration: none;
-				}
-			}
-		}
-	}
-
 	&__label {
 		@include mx.hiddenLabel;
 	}
 
+	&__privacy {
+		color: var(--accent-color);
+		text-decoration: underline;
+	}
+
+	&__submit {
+		display: flex;
+		margin-inline: auto;
+		margin-top: auto;
+		// border: 2px solid red;
+		width: 100%;
+	}
+
 	&__submitButton {
+		max-width: 25rem;
+		margin-inline: auto;
+		width: 100%;
+		@include mx.rounded-button;
+
 		&.disabled {
 			color: red !important;
 		}

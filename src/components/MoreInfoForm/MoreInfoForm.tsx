@@ -126,7 +126,7 @@ const MoreInfoForm: FC = () => {
           onSubmit={(e) => {e.preventDefault()}}
         >
 
-          <div className="moreInfoForm__name">
+          <div className="moreInfoForm__field moreInfoForm__field--name">
             <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
               Name
             </label>
@@ -148,7 +148,7 @@ const MoreInfoForm: FC = () => {
 
           </div>
 
-          <div className="moreInfoForm__email">
+          <div className="moreInfoForm__field moreInfoForm__field--email">
 
             <label htmlFor="moreInfoFormEmail" className="moreInfoForm__label">
               Email
@@ -167,7 +167,7 @@ const MoreInfoForm: FC = () => {
             />
           </div>
 
-          <div className="moreInfoForm__phone">
+          <div className="moreInfoForm__field moreInfoForm__field--phone">
 
             <label htmlFor="moreInfoFormPhone" className="moreInfoForm__label">
               Phone
@@ -191,8 +191,7 @@ const MoreInfoForm: FC = () => {
           
           </div>
 
-          <div className="moreInfoForm__terms">
-
+          <div className="moreInfoForm__field moreInfoForm__field--terms">
             <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
               Terms
             </label>
@@ -204,20 +203,20 @@ const MoreInfoForm: FC = () => {
                 ${initialFormCheck && !agreeToTerms
                   ? "invalid" 
                   : ""}`} 
-              checked={agreeToTerms}
-              onChange={handleTermsChange}
-            />
+                  checked={agreeToTerms}
+                  onChange={handleTermsChange}
+                  />
             <span className="moreInfoForm__termsText">
               Agree to the{" "}
               <span
-                className="moreInfoTerms__privacy"
+                className="moreInfoForm__privacy"
                 onClick={handleAgreeToTerms}
-              >
+                >
                 privacy policy
               </span>
             </span>
 
-          </div>
+          </div> 
       
           <div className="moreInfoForm__submit">
             <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
@@ -229,7 +228,7 @@ const MoreInfoForm: FC = () => {
               type="submit"
               onClick={handleSubmit}
             >
-              Submit
+              SUBMIT
             </button>
           </div>
 
