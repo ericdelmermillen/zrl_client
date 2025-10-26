@@ -3,9 +3,7 @@
 
 .moreInfo {
 	& {
-		color: #333;
-		border: 2px dashed #333;
-		// padding-top: 4rem;
+		color: var(--text-color);
 	}
 
 	&__inner {

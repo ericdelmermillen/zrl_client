@@ -224,6 +224,7 @@
 
 	&__lead {
 		font-size: var(--text-size-md);
+		font-size: var(--text-size-lg);
 		font-weight: 600;
 		letter-spacing: var(--letter-spacing-lg);
 		line-height: var(--line-height-lg);
@@ -232,7 +233,6 @@
 		text-shadow: var(--header-small-text-shadow);
 
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--text-size-lg);
 			letter-spacing: var(--letter-spacing-xl);
 			margin-bottom: 2rem;
 			max-width: 25rem;

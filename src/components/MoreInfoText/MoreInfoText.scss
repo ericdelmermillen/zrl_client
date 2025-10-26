@@ -3,19 +3,23 @@
 
 .moreInfoText {
 	& {
-		// border: 2px solid blue;
-		min-height: 100vh;
-		padding-block: 4rem;
+		padding-bottom: 1rem;
 		padding-inline: 2rem;
+		padding-top: 4rem;
 		width: 100%;
+
+		@media (min-width: vars.$mediumTablet) {
+			padding-block: 4rem;
+			padding-inline: 3rem;
+		}
 	}
 
-	// &__inner {
-	// 	border: 2px solid red;
-	// }
+	&__inner {
+		margin-inline: auto;
+		max-width: 28rem;
+	}
 
 	&__heading {
-		// color: purple;
 		font-family: var(--heading-font);
 		font-size: var(--text-size-lg);
 		letter-spacing: var(--letter-spacing-lg);
@@ -29,7 +33,6 @@
 	}
 
 	&__subheading {
-		// color: white;
 		font-size: var(--text-size-md);
 		letter-spacing: var(--letter-spacing-lg);
 		line-height: var(--line-height-md);
@@ -48,17 +51,19 @@
 		font-size: var(--text-size-md);
 		letter-spacing: var(--letter-spacing-md);
 		line-height: var(--line-height-md);
-		// border: 2px solid green;
 	}
 
 	&__solutionCheck {
 		align-items: center;
-		// border: 2px solid red;
 		color: var(--accent-color);
 		display: flex;
 		font-size: 1.125rem;
 		justify-content: center;
 		padding-inline-end: 0.75rem;
+
+		@media (min-width: vars.$smallTablet) {
+			padding-inline-end: 1rem;
+		}
 	}
 
 	&__solutionSpan {

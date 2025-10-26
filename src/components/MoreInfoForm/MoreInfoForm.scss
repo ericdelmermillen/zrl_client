@@ -3,21 +3,30 @@
 
 .moreInfoForm {
 	&__section {
-		// height for testing
-		border: 2px solid red;
-		min-height: 100vh;
-		padding-block: 4rem;
+		padding-bottom: 4rem;
 		padding-inline: 1rem;
+		padding-top: 1.5rem;
 		width: 100%;
+
+		@media (min-width: vars.$tablet) {
+			padding-block: 4rem;
+			padding-inline: 2rem;
+		}
+
+		@media (min-width: vars.$mediumTablet) {
+		}
 	}
 
 	&__form {
 		align-items: center;
-		// border: 2px solid green;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		width: 100%;
+
+		@media (min-width: vars.$mediumTablet) {
+			padding-inline: 1rem;
+		}
 	}
 
 	&__field {
@@ -26,29 +35,24 @@
 		justify-content: center;
 		margin-bottom: 1.5rem;
 		margin-inline: auto;
+		max-width: 28rem;
 		width: 100%;
-
-		// &--phone {
-
-		// }
 	}
 
-	// ***
 	&__input {
+		// need a bg color for the inputs: will remove border after
 		@include mx.input;
 		border: 2px solid blue;
-		// -webkit-appearance: none;
-		// appearance: none;
-		// background: #fff;
 
 		&.invalid {
+			// need invalid border/outline styling for invalid state: will remove yellow bg later
 			background: yellow;
 		}
 
 		&--terms {
 			height: 1.125rem;
-			position: relative;
 			margin-inline-end: 0.5rem;
+			position: relative;
 			width: 1.125rem;
 
 			&:checked::after {
@@ -78,18 +82,19 @@
 		display: flex;
 		margin-inline: auto;
 		margin-top: auto;
-		// border: 2px solid red;
 		width: 100%;
 	}
 
 	&__submitButton {
-		max-width: 25rem;
 		margin-inline: auto;
+		max-width: 25rem;
 		width: 100%;
 		@include mx.rounded-button;
 
 		&.disabled {
-			color: red !important;
+			// need disabled stylings
+			opacity: 0.5;
+			pointer-events: none;
 		}
 	}
 }
