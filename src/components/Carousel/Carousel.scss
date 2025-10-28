@@ -1,6 +1,8 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
+// media break point for prefers reduced motion for horizontal scroll
+
 .carousel {
 	position: relative;
 	margin-inline: auto;

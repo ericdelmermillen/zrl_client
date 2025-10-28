@@ -5,6 +5,8 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 
+// media break point for prefers reduced motion for horizontal scroll
+
 export interface CarouselItem {
   itemName: string;
 };

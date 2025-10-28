@@ -112,6 +112,25 @@ img {
 
 	&__nav-background {
 		background: var(--navFooter-bg);
+		background: red;
+		// background: #3b608d;
+		// background: #3a5374;
+		// background: #2f608d;
+		// background: #2e608d;
+		background: #2e608c;
+		background: #2c4463;
+		background: #303949;
+		background: #26364c;
+		background: #25364d;
+		// darl mode option
+		background: var(--navFooter-bg);
+		// background: #d27834;
+		// background: #1c5a91;
+		// background: #b0cdda;
+		// background: #d4dcdc;
+		// background: #e2e7e3;
+		// background: #fdfdfa;
+		// background: #fcfcfb;
 		box-shadow: var(--navBoxShadow);
 		height: 100%;
 		inset: 0;

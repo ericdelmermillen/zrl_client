@@ -91,7 +91,7 @@
 	// border & box shadow
 	--border-radius: 4px;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-	// ***
+	// *** Header Overlay
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.65);
@@ -101,16 +101,17 @@
 	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.85);
 	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
 	--header-overlay-shadow: 5px 5px 5px rgba(0, 0, 0, 0.95);
+	//
 	--header-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 	--header-small-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-	--header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-	--header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
-	--header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
-	--header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
+	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
 	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.75);
-	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
-	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
-	--header-small-text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
+	// --header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
+	// --header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
+	// --header-small-text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
 	// --header-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
 	// --header-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	// --header-text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -232,6 +233,16 @@
 		--secondary-accent-color: #4e739c;
 		--secondary-accent-color: #303949;
 		--secondary-accent-color: var((--navFooter-bg));
+		--secondary-accent-color: #b97c4c;
+		--secondary-accent-color: #b97c4c;
+		--secondary-accent-color: #cc8854;
+		--secondary-accent-color: #d1864c;
+		--secondary-accent-color: #da884a;
+		--secondary-accent-color: #e68d49;
+		--secondary-accent-color: #d27834;
+		// --secondary-accent-color: #de7d33;
+		// --secondary-accent-color: #b4652a;
+		// --secondary-accent-color: #c7681f;
 		//
 		--button-text-color: #f1f0ea;
 		--header-overlay: linear-gradient(
@@ -240,10 +251,18 @@
 			rgba(0, 0, 0, 0.25) 25%,
 			rgba(0, 0, 0, 0.275) 75%
 		);
+		--header-overlay: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.9) 0%,
+			rgba(0, 0, 0, 0.65) 25%,
+			rgba(0, 0, 0, 0.15) 90%
+		);
 		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 		--navFooter-bg: #011140;
 
-		--navFooter-bg: #c18a4f;
+		--navFooter-bg: #182438;
+
+		--navLink-color: #fff;
 		--accent-color: #011140;
 
 		--header-text-color: #ffffff;
@@ -302,7 +321,7 @@
 
 @mixin adminButton {
 	background: none;
-	border: 1px solid var(--text-color);
+	// border: 1px solid var(--text-color);
 	border-radius: var(--border-radius);
 	color: var(--text-color);
 	cursor: pointer;
@@ -336,7 +355,7 @@
 }
 
 @mixin rounded-button {
-	background: var(--navFooter-bg);
+	background: var(--secondary-accent-color);
 	border: none;
 	border-radius: 2rem;
 	color: var(--button-text-color);
@@ -397,6 +416,7 @@
 // need button link
 
 @mixin navLink {
+	color: var(--navLink-color);
 	font-family: var(--heading-font);
 	font-size: var(--text-size-md);
 	font-weight: 600;
@@ -435,7 +455,16 @@
 }
 
 @mixin accentBar {
-	background: var(--navFooter-bg);
+	background: var(--secondary-accent-color);
+	// background: #b97c4c;
+	// background: #d5b28a;
+	// background: #aa9687;
+	// background: #b94c5e;
+	// background: #b9a54c;
+	// background: #24384e;
+	// background: #182f4e;
+	// background: #3aafb9;
+	// background: #eaeaea;
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 	box-shadow: var(--accentBarShadow);
@@ -472,7 +501,6 @@
 
 // ***
 @mixin input {
-	align-self: stretch;
 	background: none;
 	border: none;
 	border-bottom: 2px solid var(--text-color);

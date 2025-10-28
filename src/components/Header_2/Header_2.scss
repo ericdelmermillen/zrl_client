@@ -17,12 +17,18 @@
 		background: var(--header-overlay);
 		background-size: cover;
 		inset: 0;
-		opacity: 50%;
-		opacity: 55%;
-		opacity: 57.5%;
+		opacity: 0%;
+		// opacity: 50%;
+		// opacity: 55%;
+		// opacity: 57.5%;
 		opacity: 60%;
-		opacity: 65%;
-		opacity: 75%;
+		// opacity: 65%;
+		// opacity: 70%;
+		// opacity: 75%;
+		// opacity: 80%;
+		// opacity: 85%;
+		// opacity: 90%;
+		// opacity: 95%;
 		position: absolute;
 		z-index: 0;
 	}
@@ -107,7 +113,9 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		color: #fff;
 		max-width: 35rem;
+		// margin-top: -2rem;
 
 		@media (min-width: vars.$largeTablet) {
 		}
@@ -206,6 +214,8 @@
 	}
 
 	&__solution {
+		// color: red;
+		// color: var(--secondary-accent-color);
 		font-family: var(--heading-font);
 		font-size: var(--text-size-2xl);
 		font-weight: 500;
@@ -229,6 +239,7 @@
 		letter-spacing: var(--letter-spacing-lg);
 		line-height: var(--line-height-lg);
 		margin-bottom: 1.5rem;
+		margin-bottom: 2.5rem;
 		max-width: min(90%, 25rem);
 		text-shadow: var(--header-small-text-shadow);
 
