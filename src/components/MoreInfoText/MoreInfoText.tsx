@@ -1,6 +1,7 @@
 import{ type FC } from 'react';
-import { FaCheck } from 'react-icons/fa6';
+import BulletCheck from '../BulletCheck/BulletCheck';
 import "./MoreInfoText.scss";
+
 
 const solutions = [
   {
@@ -10,8 +11,9 @@ const solutions = [
   {
     title: "Seamless Integration:",
     description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows.",
-  },
+  }
 ];
+
 
 const MoreInfoText:FC = () => {
   return (
@@ -26,21 +28,16 @@ const MoreInfoText:FC = () => {
 
            <ul className="moreInfoText__solutions">
 
-            {solutions.map((solution, index) => (
-              <li className="moreInfoText__solution" key={index}>
-                <i className="moreInfoText__solutionCheck">
-                  <FaCheck />
-                </i>
-                <span className="moreInfoText__solutionText">
-                  <span className="moreInfoText__solutionSpan">
-                    {solution.title}
-                  </span>{" "}
-                  {solution.description}
-                </span>
-              </li>
-            ))}
+              {solutions.map((solution, idx) => (
+
+                <BulletCheck 
+                  key={idx}
+                  bulletHeading={solution.title}
+                  bulletBlurb={solution.description}
+                />
+              ))}
             
-        </ul>
+            </ul>
         </div>
       </article>
       

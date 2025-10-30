@@ -1,0 +1,36 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.bulletCheck {
+	& {
+		align-items: center;
+		display: flex;
+		font-size: var(--text-size-md);
+		letter-spacing: var(--letter-spacing-md);
+		line-height: var(--line-height-md);
+	}
+
+	&__check {
+		align-items: center;
+		color: var(--accent-color);
+		display: flex;
+		font-size: 1.125rem;
+		justify-content: center;
+		padding-inline-end: 0.75rem;
+
+		@media (min-width: vars.$smallTablet) {
+			padding-inline-end: 1rem;
+		}
+	}
+
+	&__heading {
+		display: block;
+		font-size: 1.125rem;
+		font-weight: bold;
+		white-space: nowrap;
+	}
+
+	&__blurb {
+		opacity: 1;
+	}
+}
