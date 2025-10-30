@@ -1,13 +1,12 @@
 import { useAppContext } from "../../contexts/AppContext";
-import { type FC, useState, useEffect } from "react";
+import { type FC, type CSSProperties, useState, useEffect } from "react";
 import "./Header_2.scss";
 
 const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
-const accentBarDirection = "left";
 
-const styleObj: React.CSSProperties = {};
-styleObj[accentBarDirection] = 0;
+const styleObj: CSSProperties = { "left": 0 };
+
 
 const Header_2: FC = () => {
   const { windowWidth } = useAppContext();

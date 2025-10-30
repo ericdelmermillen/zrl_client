@@ -477,15 +477,6 @@
 
 @mixin accentBar {
 	background: var(--secondary-accent-color);
-	// background: #b97c4c;
-	// background: #d5b28a;
-	// background: #aa9687;
-	// background: #b94c5e;
-	// background: #b9a54c;
-	// background: #24384e;
-	// background: #182f4e;
-	// background: #3aafb9;
-	// background: #eaeaea;
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 	box-shadow: var(--accentBarShadow);
@@ -504,20 +495,12 @@
 	}
 }
 
-@mixin accentBarLeft {
-	@include accentBar();
-
-	& {
-		left: 0;
-	}
-}
-
-@mixin accentBarRight {
-	@include accentBar();
-
-	& {
-		right: 0;
-	}
+@mixin accentBarDetail {
+	@include accentBar;
+	height: 80%;
+	margin: 0;
+	top: 10%;
+	transform: translateY(0%);
 }
 
 // ***
