@@ -18,10 +18,14 @@
 		background-size: cover;
 		inset: 0;
 		opacity: 0%;
+		opacity: 30%;
+		opacity: 35%;
+		opacity: 40%;
+		opacity: 45%;
 		// opacity: 50%;
 		// opacity: 55%;
 		// opacity: 57.5%;
-		opacity: 60%;
+		// opacity: 60%;
 		// opacity: 65%;
 		// opacity: 70%;
 		// opacity: 75%;
@@ -76,7 +80,8 @@
 
 	&__accentBar {
 		box-shadow: var(--header-text-shadow);
-		@include mx.accentBarLeft;
+		margin-top: -1rem;
+		@include mx.accentBar;
 	}
 
 	&__left {
@@ -111,13 +116,21 @@
 
 	&__text {
 		align-items: center;
+		color: var(--header-text-color);
 		display: flex;
 		flex-direction: column;
-		color: #fff;
-		max-width: 35rem;
-		// margin-top: -2rem;
+		max-width: 18rem;
+
+		@media (min-width: vars.$smallTablet) {
+			max-width: 20rem;
+		}
+
+		@media (min-width: vars.$tablet) {
+			max-width: 32rem;
+		}
 
 		@media (min-width: vars.$largeTablet) {
+			max-width: 35rem;
 		}
 	}
 
@@ -133,7 +146,7 @@
 	&__heading {
 		font-family: var(--heading-font);
 		font-size: var(--text-size-2xl);
-		letter-spacing: var(--letter-spacing-2xl);
+		letter-spacing: var(--letter-spacing-4xl);
 		line-height: var(--line-height-2xl);
 		font-weight: 600;
 		line-height: var(--line-height-sm);
@@ -235,8 +248,7 @@
 	&__lead {
 		font-size: var(--text-size-md);
 		font-size: var(--text-size-lg);
-		font-weight: 600;
-		letter-spacing: var(--letter-spacing-lg);
+		font-weight: 700;
 		line-height: var(--line-height-lg);
 		margin-bottom: 1.5rem;
 		margin-bottom: 2.5rem;
@@ -244,14 +256,14 @@
 		text-shadow: var(--header-small-text-shadow);
 
 		@media (min-width: vars.$smallTablet) {
-			letter-spacing: var(--letter-spacing-xl);
+			letter-spacing: var(--letter-spacing-2xl);
 			margin-bottom: 2rem;
 			max-width: 25rem;
 		}
 
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-xl);
-			letter-spacing: var(--letter-spacing-2xl);
+			letter-spacing: var(--letter-spacing-3xl);
 			line-height: var(--line-height-md);
 			margin-bottom: 2.25rem;
 			max-width: 80%;
@@ -274,7 +286,7 @@
 		}
 
 		@media (min-width: vars.$desktop) {
-			letter-spacing: var(--letter-spacing-2xl);
+			letter-spacing: var(--letter-spacing-3xl);
 			line-height: var(--line-height-lg);
 			margin-bottom: 2.5rem;
 			max-width: 80%;

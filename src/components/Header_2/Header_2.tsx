@@ -4,6 +4,11 @@ import "./Header_2.scss";
 
 const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
+const accentBarDirection = "left";
+
+const styleObj: React.CSSProperties = {};
+styleObj[accentBarDirection] = 0;
+
 const Header_2: FC = () => {
   const { windowWidth } = useAppContext();
 
@@ -27,7 +32,7 @@ const Header_2: FC = () => {
       <header className="header">
         <div className="header__inner">
           <div className="header__overlay"></div>
-          <div className="header__accentBar"></div>
+          <div className="header__accentBar" style={styleObj}></div>
 
           <div className="header__left">
 

@@ -78,6 +78,8 @@
 	--letter-spacing-lg: 1px;
 	--letter-spacing-xl: 1.5px;
 	--letter-spacing-2xl: 2px;
+	--letter-spacing-3xl: 3px;
+	--letter-spacing-4xl: 4px;
 	--letter-spacing-nav-items: 6px;
 
 	// line height
@@ -109,6 +111,10 @@
 	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
 	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.75);
+	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
+	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.85);
+	--header-small-text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.85);
+	--header-small-text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.85);
 	// --header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
 	// --header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
 	// --header-small-text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
@@ -125,7 +131,12 @@
 		0 6px 10px rgba(0, 0, 0, 0.25);
 	// --header-text-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.6);
 	// --header-text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-	// --header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+	--header-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.95);
+	--header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.95);
+	--header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.8);
+	--header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+	--header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
 	// --header-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
 	// Timing Variables
@@ -244,6 +255,7 @@
 		// --secondary-accent-color: #b4652a;
 		// --secondary-accent-color: #c7681f;
 		//
+
 		--button-text-color: #f1f0ea;
 		--header-overlay: linear-gradient(
 			to top,
@@ -251,11 +263,17 @@
 			rgba(0, 0, 0, 0.25) 25%,
 			rgba(0, 0, 0, 0.275) 75%
 		);
+		// --header-overlay: linear-gradient(
+		// 	to top,
+		// 	rgba(0, 0, 0, 0.9) 0%,
+		// 	rgba(0, 0, 0, 0.65) 25%,
+		// 	rgba(0, 0, 0, 0.15) 90%
+		// );
 		--header-overlay: linear-gradient(
 			to top,
-			rgba(0, 0, 0, 0.9) 0%,
-			rgba(0, 0, 0, 0.65) 25%,
-			rgba(0, 0, 0, 0.15) 90%
+			rgba(21, 12, 2, 0.8) 0%,
+			rgba(45, 28, 5, 0.65) 25%,
+			rgba(26, 98, 241, 0.33) 90%
 		);
 		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 		--navFooter-bg: #011140;
@@ -268,6 +286,8 @@
 		--header-text-color: #ffffff;
 		--header-text-color: #fdfdfa;
 		--header-text-color: #f5f2e4;
+
+		// --header-text-color: red;
 		// --header-text-color: #f2f2f2;
 		// --header-text-color: #f4f2e5;
 		// --header-text-color: #dee1dd;
@@ -442,6 +462,7 @@
 // accents and decorations
 @mixin afterAccent {
 	background: var(--accent-color);
+	background: var(--secondary-accent-color);
 	bottom: -0.35rem;
 	content: "";
 	height: 2.25px;
