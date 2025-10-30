@@ -1,11 +1,17 @@
 import { type FC } from 'react';
 import { FaCheck } from 'react-icons/fa6';
+import details_1 from "../../assets/images/details-1.jpg"
 import "./Details.scss";
 
 
 const accentBarDirection: "left" | "right" = "left";
 
-const styleObj: React.CSSProperties = {
+const detailStyleObj: React.CSSProperties = {
+  // flexDirection: "row-reverse"
+  flexDirection: "row"
+};
+
+const accentBarStyleObj: React.CSSProperties = {
   [accentBarDirection]: 0,
 };
 
@@ -20,8 +26,8 @@ const Details:FC = () => {
           </h2>
 
 
-          <div className="detail">
-            <div className="detail__accentBar" style={styleObj}></div>
+          <div className="detail" style={detailStyleObj}>
+            <div className="detail__accentBar" style={accentBarStyleObj}></div>
             <div className="detail__text">
 
               <h3 className="detail__heading">
@@ -61,6 +67,16 @@ const Details:FC = () => {
               </ul>
 
             </div> 
+
+              <div className="detail__cardImage">
+
+                <img 
+                  className="detail__image" 
+                  src={details_1} 
+                  alt="" 
+                  />
+
+              </div>
 
           </div>
 

@@ -21,9 +21,10 @@
 }
 
 .detail {
-	border: 2px dashed #333;
+	// border: 2px dashed #333;
 	background: yellow;
 	display: flex;
+	// flex-direction: row-reverse;
 	width: 100%;
 	min-height: 30rem;
 	position: relative;
@@ -95,8 +96,26 @@
 	}
 
 	&__solutionSpan {
-		// display: block;
+		display: block;
 		font-weight: bold;
 		white-space: nowrap;
+	}
+
+	&__cardImage {
+		padding-block: 2rem;
+		padding-inline: 1rem;
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__image {
+		// border: 2px solid red;
+		border-radius: 8px;
+		object-fit: cover;
+		overflow: hidden;
+		height: 98%;
+		width: 100%;
 	}
 }
