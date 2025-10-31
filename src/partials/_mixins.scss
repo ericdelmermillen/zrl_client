@@ -496,11 +496,16 @@
 }
 
 @mixin accentBarDetail {
-	@include accentBar;
-	height: 80%;
-	margin: 0;
-	top: 10%;
-	transform: translateY(0%);
+	display: none;
+
+	@media (min-width: vars.$largeTablet) {
+		@include accentBar;
+		display: block;
+		height: 80%;
+		margin: 0;
+		top: 10%;
+		transform: translateY(0%);
+	}
 }
 
 // ***
