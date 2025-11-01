@@ -1,5 +1,5 @@
-import { type FC, useState, useEffect } from 'react';
-import BulletCheck from '../BulletCheck/BulletCheck';
+import { type FC } from 'react';
+import Detail from '../Detail/Detail';
 import detailsImg_1 from "../../assets/images/details-1.jpg";
 import detailsImg_2 from "../../assets/images/details-2.jpg";
 import "./Details.scss";
@@ -16,9 +16,10 @@ const details = [
       {
         bulletHeading: "Seamless Integration:",
         bulletBlurb: "Our team ensures smooth integration of the software into your existing infrastructure, minimizing disruptions",
-      }
+      },
     ],
-    detailImg: detailsImg_1
+    detailImg: detailsImg_1,
+    imgDesc: "description of first details image"
   },
   {
     detailHeading: "Maintenance & Support",
@@ -31,68 +32,34 @@ const details = [
       {
         bulletHeading: "Timely Updates:",
         bulletBlurb: "We ensure your software is up to date with the latest features, security patches, and enhancements.",
-      }
+      },
     ],
-    detailImg: detailsImg_2
-  },
+    detailImg: detailsImg_2,
+    imgDesc: "description of second details image"
+  }
 ];
 
-const Details: FC = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+const Details: FC = () => {
 
   return (
     <div className="details" id="details">
       <div className="details__inner">
         <h2 className="details__heading">Details</h2>
 
-        {details.map((detail, detailIdx) => {
-          const detailStyleObj: React.CSSProperties = {
-            display: "flex",
-            flexDirection: windowWidth < 1080
-              ? "column"
-              : detailIdx % 2 === 0
-                ? "row"
-                : "row-reverse",
-          };
-
-          const accentBarStyleObj: React.CSSProperties = detailIdx % 2 === 0
-            ? { left: 0 }
-            : { right: 0 };
-
-          return (
-            <div className="detail" style={detailStyleObj} key={detailIdx}>
-              <div className="detail__accentBar" style={accentBarStyleObj}></div>
-
-              <div className="detail__text">
-                <h3 className="detail__heading">{detail.detailHeading}</h3>
-                <p className="detail__lead">{detail.detailLead}</p>
-
-                <ul className="detail__points">
-                  {detail.bullets.map((bullet, bulletIdx) => (
-                    <BulletCheck
-                      key={bulletIdx}
-                      bulletHeading={bullet.bulletHeading}
-                      bulletBlurb={bullet.bulletBlurb}
-                    />
-                  ))}
-                </ul>
-              </div>
-
-              <div className="detail__cardImage">
-                <img className="detail__image" src={detail.detailImg} alt="" />
-              </div>
-            </div>
-          );
-        })}
+        {details.map((detail, idx) => (
+          <Detail
+            key={idx}
+            idx={idx}
+            detailHeading={detail.detailHeading}
+            detailLead={detail.detailLead}
+            bullets={detail.bullets}
+            detailImg={detail.detailImg}
+            imgDesc={detail.imgDesc}
+          />
+        ))}
       </div>
     </div>
-  );
-};
+  )};
 
 export default Details;
