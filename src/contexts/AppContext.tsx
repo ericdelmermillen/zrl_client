@@ -3,8 +3,6 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { scrollToTop } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 
-const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
-const NOT_FOUND_NAV_CLICK_DELAY = import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY;
 
 type ColorMode = "light" | "dark";
 type ModalType = "privacy" | "terms";
@@ -59,6 +57,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
+  const NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
+  const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
+
   const navigate = useNavigate();
 
   const handleUpdateScrollYPos = (): void => {
@@ -91,6 +92,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           link.click();
           hideNav();
         };
+        console.log(NAV_CLICK_DELAY)
       });
     }, NAV_CLICK_DELAY);
     setShowDropdownNavOptions(false);

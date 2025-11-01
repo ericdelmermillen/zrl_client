@@ -8,8 +8,6 @@ import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
 
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
-
 interface NavProps {
   children?: ReactNode;
   navOptions: NavOption[]
@@ -38,9 +36,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     setIsLoading(true);
     setShowDropdownNavOptions(false);
     scrollToTop();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, MIN_LOADING_INTERVAL);
+    setIsLoading(false);
   };
 
   
