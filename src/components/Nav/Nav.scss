@@ -17,7 +17,7 @@
 		height: 100%;
 		margin-inline: auto;
 		max-width: vars.$ultraWide;
-		padding-inline: 3rem;
+		padding-inline: 6rem;
 		width: 100%;
 
 		@media (min-width: vars.$desktop) {
@@ -93,7 +93,7 @@
 		display: none;
 		color: var(--accent-color);
 
-		@media (min-width: vars.$mediumTablet) {
+		@media (min-width: vars.$largeTablet) {
 			align-items: center;
 			display: flex;
 			gap: 2rem;
@@ -129,7 +129,7 @@
 		top: 0.9rem;
 		width: 2rem;
 
-		@media (min-width: vars.$mediumTablet) {
+		@media (min-width: vars.$largeTablet) {
 			display: none;
 		}
 

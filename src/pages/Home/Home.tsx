@@ -28,6 +28,7 @@ const Home: FC = () => {
             <Solutions />
             <Details />
             <Expertise />
+            {/* <Values /> */}
           </main>
         </div>
       </div>

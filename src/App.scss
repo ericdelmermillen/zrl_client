@@ -147,7 +147,7 @@ img {
 		&--nav {
 			display: none;
 
-			@media (min-width: vars.$mediumTablet) {
+			@media (min-width: vars.$largeTablet) {
 				display: block;
 				margin-inline-start: 1.5rem;
 				margin-inline-start: 2rem;

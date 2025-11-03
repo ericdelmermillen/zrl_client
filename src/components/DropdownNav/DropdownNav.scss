@@ -13,7 +13,7 @@
 	position: absolute;
 	z-index: 2;
 
-	@media (min-width: vars.$mediumTablet) {
+	@media (min-width: vars.$largeTablet) {
 		display: none;
 	}
 
