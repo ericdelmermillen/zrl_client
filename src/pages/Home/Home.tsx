@@ -6,6 +6,7 @@ import PartnerCarousel from "../../components/Partners/Partners";
 import Solutions from "../../components/Solutions/Solutions";
 import "./Home.scss";
 import Details from "../../components/Details/Details";
+import Expertise from "../../components/Expertise/Expertise";
 
 const Home: FC = () => {
 
@@ -26,6 +27,7 @@ const Home: FC = () => {
             <MoreInfo />
             <Solutions />
             <Details />
+            <Expertise />
           </main>
         </div>
       </div>

@@ -43,7 +43,7 @@ const details = [
 const Details: FC = () => {
 
   return (
-    <div className="details" id="details">
+    <section className="details" id="details">
       <div className="details__inner">
         <h2 className="details__heading">Details</h2>
 
@@ -59,7 +59,7 @@ const Details: FC = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   )};
 
 export default Details;
