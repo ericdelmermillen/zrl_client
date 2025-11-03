@@ -4,14 +4,15 @@
 .expertise {
 	& {
 		background: yellow;
+		border: 2px dotted red;
 		border: 2px solid green;
 		min-height: 100vh;
+		padding-block: 2rem;
 		// padding-block: 2rem;
 	}
 
 	&__inner {
 		align-items: center;
-		border: 2px dotted red;
 		display: flex;
 		flex-direction: column;
 		padding-inline: 2rem;
