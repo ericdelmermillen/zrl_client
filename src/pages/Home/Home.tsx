@@ -1,12 +1,13 @@
 import { type FC, useEffect,} from "react";
 // import Header_1 from "../../components/Header_1/Header_1";
+import Details from "../../components/Details/Details";
+import Expertise from "../../components/Expertise/Expertise";
 import Header_2 from "../../components/Header_2/Header_2";
 import MoreInfo from "../../components/MoreInfo/MoreInfo";
 import PartnerCarousel from "../../components/Partners/Partners";
 import Solutions from "../../components/Solutions/Solutions";
+import Subscribe from "../../components/Subscribe/Subscribe";
 import "./Home.scss";
-import Details from "../../components/Details/Details";
-import Expertise from "../../components/Expertise/Expertise";
 
 const Home: FC = () => {
 
@@ -29,6 +30,7 @@ const Home: FC = () => {
             <Details />
             <Expertise />
             {/* <Values /> */}
+            <Subscribe />
           </main>
         </div>
       </div>
