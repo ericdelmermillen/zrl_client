@@ -376,10 +376,9 @@
 	}
 }
 
-@mixin rounded-button {
+@mixin button {
 	background: var(--secondary-accent-color);
 	border: none;
-	border-radius: 2rem;
 	color: var(--button-text-color);
 	cursor: pointer;
 	font-family: var(--heading-font);
@@ -433,6 +432,10 @@
 		letter-spacing: var(--letter-spacing-xl);
 		padding: var(--btn-padding-xl);
 	}
+}
+@mixin rounded-button {
+	@include button;
+	border-radius: 2rem;
 }
 
 // need button link

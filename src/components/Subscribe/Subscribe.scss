@@ -27,6 +27,7 @@
 
 	&__form {
 		display: flex;
+		flex-direction: column;
 		border: 2px solid blue;
 		min-width: 100%;
 	}
@@ -37,10 +38,23 @@
 
 	&__input {
 		@include mx.input;
+		border: 2px solid green;
+
+		&.invalid {
+			// need invalid border/outline styling for invalid state: will remove yellow bg later
+			background: yellow;
+		}
+	}
+
+	&__form-field {
+		display: flex;
+		width: 100%;
 	}
 
 	&__submit {
 		border: 2px dashed #333;
 		margin-inline-start: auto;
+		justify-content: end;
+		@include mx.button;
 	}
 }

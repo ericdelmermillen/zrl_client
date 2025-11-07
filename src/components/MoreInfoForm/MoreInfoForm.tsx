@@ -11,7 +11,6 @@ import "./MoreInfoForm.scss";
 
 
 const MoreInfoForm: FC = () => {
-
   const { handleSetModalType } = useAppContext()
 
   const [ name, setName ] = useState<string>("");
@@ -157,7 +156,6 @@ const MoreInfoForm: FC = () => {
             <input
               id="moreInfoFormEmail"
               className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
-              type="email"
               name="email"
               autoComplete="email"
               placeholder="Enter Email"
@@ -205,7 +203,7 @@ const MoreInfoForm: FC = () => {
                   : ""}`} 
                   checked={agreeToTerms}
                   onChange={handleTermsChange}
-                  />
+            />
             <span className="moreInfoForm__termsText">
               Agree to the{" "}
               <span
