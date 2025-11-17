@@ -104,32 +104,36 @@ const Subscribe: FC = () => {
               </div>
             </div>
 
-          <div className="subscribe__form-field subscribe__form-field--terms">
-            <label htmlFor="subscribeFormTerms" className="subscribe__label">
-              Terms
-            </label>
+            <div className="subscribe__form-field subscribe__form-field--terms">
+              <label htmlFor="subscribeFormTerms" className="subscribe__label">
+                Terms
+              </label>
 
-            <input 
-              id="subscribeFormTerms"
-              type="checkbox" 
-              className={`subscribe__input subscribe__input--terms
-                ${initialFormCheck && !agreeToTerms
-                  ? "invalid" 
-                  : ""}`} 
-                  checked={agreeToTerms}
-                  onChange={handleTermsChange}
-            />
-            <span className="subscribe__termsText">
-              Agree to the{" "}
-              <span
-                className="subscribe__privacy"
-                onClick={handleAgreeToTerms}
-                >
-                privacy policy
-              </span>
-            </span>
+              <div className="subscribe__checkbox-container">              
 
-          </div> 
+                <input 
+                  id="subscribeFormTerms"
+                  type="checkbox" 
+                  className={`subscribe__input subscribe__input--terms
+                    ${initialFormCheck && !agreeToTerms
+                      ? "invalid" 
+                      : ""}`} 
+                      checked={agreeToTerms}
+                      onChange={handleTermsChange}
+                />
+                <span className="subscribe__termsText">
+                  Agree to the{" "}
+                  <span
+                    className="subscribe__privacy"
+                    onClick={handleAgreeToTerms}
+                    >
+                    privacy policy
+                  </span>
+                </span>
+
+              </div>
+
+            </div> 
 
             
           </form>

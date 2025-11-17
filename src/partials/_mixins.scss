@@ -433,9 +433,12 @@
 		padding: var(--btn-padding-xl);
 	}
 }
+
 @mixin rounded-button {
 	@include button;
-	border-radius: 2rem;
+	& {
+		border-radius: 2rem;
+	}
 }
 
 // need button link

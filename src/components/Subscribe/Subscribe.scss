@@ -44,11 +44,48 @@
 			// need invalid border/outline styling for invalid state: will remove yellow bg later
 			background: yellow;
 		}
+
+		&--terms {
+			border-radius: 4px;
+			height: 1.25rem;
+			margin-inline-end: 0.5rem;
+			position: relative;
+			width: 1.25rem;
+			padding: 0.55rem;
+			padding-inline: 0.5rem;
+			margin-inline-end: 0.5rem;
+
+			&:checked::after {
+				border-bottom: 2px solid #000;
+				border-right: 2px solid #000;
+				content: "";
+				height: 0.7rem;
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -50%) rotate(45deg);
+				width: 0.33rem;
+			}
+		}
 	}
 
 	&__form-field {
 		display: flex;
 		width: 100%;
+	}
+
+	&__checkbox-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		margin-top: 0.5rem;
+	}
+
+	&__privacy {
+		color: var(--accent-color);
+		cursor: pointer;
+		text-decoration: underline;
 	}
 
 	&__submit {

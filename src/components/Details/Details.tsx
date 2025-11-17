@@ -1,46 +1,48 @@
 import { type FC } from 'react';
 import Detail from '../Detail/Detail';
+// import { useAppContext } from "../../contexts/AppContext";
 import detailsImg_1 from "../../assets/images/details-1.jpg";
 import detailsImg_2 from "../../assets/images/details-2.jpg";
 import "./Details.scss";
 
-const details = [
-  {
-    detailHeading: "Evaluation & Deployment",
-    detailLead: "We offer comprehensive evaluation and deployment services to ensure a smooth and successful implementation of our software solutions.",
-    bullets: [
-      {
-        bulletHeading: "Evaluation & Deployment:",
-        bulletBlurb: "We tailor our solutions to align with your unique business needs",
-      },
-      {
-        bulletHeading: "Seamless Integration:",
-        bulletBlurb: "Our team ensures smooth integration of the software into your existing infrastructure, minimizing disruptions",
-      },
-    ],
-    detailImg: detailsImg_1,
-    imgDesc: "description of first details image"
-  },
-  {
-    detailHeading: "Maintenance & Support",
-    detailLead: "We provide comprehensive maintenance and support services to ensure the smooth and uninterrupted operation of your software solutions.",
-    bullets: [
-      {
-        bulletHeading: "Proactive Maintenance:",
-        bulletBlurb: "We proactively monitor and maintain your software solutions to prevent issues and optimize performance.",
-      },
-      {
-        bulletHeading: "Timely Updates:",
-        bulletBlurb: "We ensure your software is up to date with the latest features, security patches, and enhancements.",
-      },
-    ],
-    detailImg: detailsImg_2,
-    imgDesc: "description of second details image"
-  }
-];
-
-
 const Details: FC = () => {
+  // const { windowWidth } = useAppContext();
+
+  const details = [
+    {
+      // detailHeading: windowWidth < 480 ? "Evaluation" : "Evaluation & Deployment",
+      detailHeading: "Evaluation & Deployment",
+      detailLead: "We offer comprehensive evaluation and deployment services to ensure a smooth and successful implementation of our software solutions.",
+      bullets: [
+        {
+          bulletHeading: "Evaluation & Deployment:",
+          bulletBlurb: "We tailor our solutions to align with your unique business needs",
+        },
+        {
+          bulletHeading: "Seamless Integration:",
+          bulletBlurb: "Our team ensures smooth integration of the software into your existing infrastructure, minimizing disruptions",
+        },
+      ],
+      detailImg: detailsImg_1,
+      imgDesc: "description of first details image"
+    },
+    {
+      detailHeading: "Maintenance & Support",
+      detailLead: "We provide comprehensive maintenance and support services to ensure the smooth and uninterrupted operation of your software solutions.",
+      bullets: [
+        {
+          bulletHeading: "Proactive Maintenance:",
+          bulletBlurb: "We proactively monitor and maintain your software solutions to prevent issues and optimize performance.",
+        },
+        {
+          bulletHeading: "Timely Updates:",
+          bulletBlurb: "We ensure your software is up to date with the latest features, security patches, and enhancements.",
+        },
+      ],
+      detailImg: detailsImg_2,
+      imgDesc: "description of second details image"
+    }
+  ];
 
   return (
     <section className="details" id="details">
