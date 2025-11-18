@@ -516,6 +516,26 @@
 	}
 }
 
+@mixin sectionHeading {
+	font-family: var(--heading-font);
+	font-size: var(--text-size-lg);
+	letter-spacing: var(--letter-spacing-lg);
+	margin-bottom: 2rem;
+	position: relative;
+	white-space: nowrap;
+
+	@media (min-width: vars.$tablet) {
+		margin-inline: auto;
+		display: inline-block;
+		margin-inline: auto;
+	}
+
+	&::after {
+		width: 3rem;
+		@include afterAccent;
+	}
+}
+
 // ***
 @mixin input {
 	background: none;

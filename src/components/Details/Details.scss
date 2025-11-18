@@ -3,7 +3,6 @@
 
 .details {
 	& {
-		border: 2px solid blue;
 		padding-block: 2rem;
 		background: yellow;
 	}
@@ -15,7 +14,6 @@
 	}
 
 	&__heading {
-		color: green;
-		margin-bottom: 2rem;
+		@include mx.sectionHeading;
 	}
 }

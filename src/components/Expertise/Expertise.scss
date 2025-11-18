@@ -19,8 +19,7 @@
 	}
 
 	&__heading {
-		color: green;
-		margin-bottom: 2rem;
+		@include mx.sectionHeading;
 	}
 
 	&__lead {

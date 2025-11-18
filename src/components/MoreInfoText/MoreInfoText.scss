@@ -20,23 +20,14 @@
 	}
 
 	&__heading {
-		font-family: var(--heading-font);
-		font-size: var(--text-size-lg);
-		letter-spacing: var(--letter-spacing-lg);
-		position: relative;
-		white-space: nowrap;
-
-		&::after {
-			width: 3rem;
-			@include mx.afterAccent;
-		}
+		@include mx.sectionHeading;
 	}
 
-	&__subheading {
+	&__lead {
 		font-size: var(--text-size-md);
 		letter-spacing: var(--letter-spacing-lg);
 		line-height: var(--line-height-md);
-		padding-block: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	&__solutions {

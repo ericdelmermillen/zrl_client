@@ -15,7 +15,7 @@
 	}
 
 	&__heading {
-		margin-bottom: 2rem;
+		@include mx.sectionHeading;
 	}
 
 	&__partnerItem {

@@ -22,7 +22,7 @@ const MoreInfoText:FC = () => {
         <div className="moreInfoText__inner">
           <h2 className='moreInfoText__heading'>Get More Information</h2>
 
-          <p className="moreInfoText__subheading">
+          <p className="moreInfoText__lead">
             We provide innovative software solutions that empower businesses to thrive in the digital era.
           </p>
 
