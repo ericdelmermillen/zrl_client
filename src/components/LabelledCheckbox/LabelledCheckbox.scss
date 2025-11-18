@@ -13,6 +13,11 @@
 		@include mx.hiddenLabel;
 	}
 
+	&__text {
+		font-size: var(--text-size-base);
+		letter-spacing: var(--letter-spacing-sm);
+	}
+
 	&__input {
 		@include mx.checkboxInput;
 	}

@@ -81,7 +81,7 @@ const Subscribe: FC = () => {
                 onChange={handleEmailChange}
               />
 
-              <div className="">
+              <div className="subscribe__button-container">
 
                 <button 
                   type="submit"

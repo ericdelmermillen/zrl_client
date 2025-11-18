@@ -28,7 +28,7 @@
 	&__form {
 		display: flex;
 		flex-direction: column;
-		border: 2px solid blue;
+		// border: 2px solid blue;
 		min-width: 100%;
 	}
 
@@ -40,19 +40,62 @@
 		@include mx.input;
 		& {
 			border: 2px solid blue;
+			width: 100%;
 		}
 	}
 
 	&__form-field {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		margin-bottom: 1rem;
 		width: 100%;
+		border: 2px solid green;
+
+		@media (min-width: vars.$smallTablet) {
+			flex-direction: row;
+		}
+
+		@media (min-width: vars.$mediumTablet) {
+			flex-direction: row;
+			padding-inline: 2rem;
+		}
+	}
+
+	&__button-container {
+		border: 2px solid red;
+		width: 100%;
+
+		@media (min-width: vars.$smallTablet) {
+			width: auto;
+			display: flex;
+		}
 	}
 
 	&__submit {
 		border: 2px dashed #333;
-		margin-inline-start: auto;
-		justify-content: end;
-		@include mx.button;
+		// margin-inline-start: auto;
+		margin-top: 1rem;
+		flex-basis: 1;
+		width: 100%;
+		@include mx.rounded-button;
+
+		@media (min-width: vars.$smallTablet) {
+			@include mx.button;
+			& {
+				border-radius: 0;
+				max-width: 6rem;
+				// max-width: 8rem;
+				width: 6rem;
+				height: 3rem;
+				margin-block: 0;
+				// margin-bottom: 1rem;
+
+				@media (min-width: vars.$tablet) {
+					max-width: 8rem;
+					width: 8rem;
+				}
+			}
+		}
 	}
 }

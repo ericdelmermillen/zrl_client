@@ -39,6 +39,10 @@
 		width: 100%;
 	}
 
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
 	&__input {
 		// need a bg color for the inputs: will remove border after
 		@include mx.input;
@@ -48,8 +52,12 @@
 	&__submit {
 		display: flex;
 		margin-inline: auto;
-		margin-top: auto;
+		margin-top: 2rem;
 		width: 100%;
+
+		@media (min-width: vars.$smallPhone) {
+			border: 2px solid red;
+		}
 	}
 
 	&__submitButton {
