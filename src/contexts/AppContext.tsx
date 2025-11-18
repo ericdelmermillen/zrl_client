@@ -231,6 +231,7 @@ export {
   AppContextProvider, 
   useAppContext, 
   type ColorMode, 
+  type ModalType,    
   type AppContextValue, 
   type AppContextProviderProps 
 };

@@ -1,5 +1,6 @@
-import { type FC, type ChangeEvent, useState, useRef } from 'react';
+import { type FC, useState, useRef } from 'react';
 import { useAppContext } from "../../contexts/AppContext";
+import LabelledCheckbox from '../LabelledCheckbox/LabelledCheckbox';
 import { isValidEmail } from '../../../utils/utils';
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
@@ -11,7 +12,7 @@ import "./MoreInfoForm.scss";
 
 
 const MoreInfoForm: FC = () => {
-  const { handleSetModalType } = useAppContext()
+  const { handleSetModalType } = useAppContext();
 
   const [ name, setName ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");
@@ -60,19 +61,6 @@ const MoreInfoForm: FC = () => {
     return phoneNumberIsValid;
   };
 
-  const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
-    setAgreeToTerms(e.target.checked);
-
-    // return phoneNumberIsValid;
-    return true;
-  };
-
-  const handleAgreeToTerms = (): void => {
-    handleSetModalType("privacy");
-  };
-
-
-  // ***
 
   const handleSubmit = (): void => {
     setInitialFormCheck(true);
@@ -137,7 +125,7 @@ const MoreInfoForm: FC = () => {
                 `moreInfoForm__input moreInfoForm__input--name
                   ${initialFormCheck && !nameIsValid
                       ? "invalid" : ""
-                  }` }
+                  }`}
               autoComplete="name"
               placeholder="Enter Name"
               value={name}
@@ -189,32 +177,17 @@ const MoreInfoForm: FC = () => {
           
           </div>
 
-          <div className="moreInfoForm__field moreInfoForm__field--terms">
-            <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
-              Terms
-            </label>
-
-            <input 
-              id="moreInfoFormTerms"
-              type="checkbox" 
-              className={`moreInfoForm__input moreInfoForm__input--terms
-                ${initialFormCheck && !agreeToTerms
-                  ? "invalid" 
-                  : ""}`} 
-                  checked={agreeToTerms}
-                  onChange={handleTermsChange}
-            />
-            <span className="moreInfoForm__termsText">
-              Agree to the{" "}
-              <span
-                className="moreInfoForm__privacy"
-                onClick={handleAgreeToTerms}
-                >
-                privacy policy
-              </span>
-            </span>
-
-          </div> 
+          <LabelledCheckbox 
+            labelId={"moreInfoFormTerms"}
+            labelText={"Terms"}
+            isChecked={agreeToTerms}
+            setIsChecked={setAgreeToTerms}
+            isValid={initialFormCheck}
+            modalType={"privacy"}
+            spanStub={"Agree to the "}
+            spanLinkText={"privacy policy"}
+            onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+          />
       
           <div className="moreInfoForm__submit">
             <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">

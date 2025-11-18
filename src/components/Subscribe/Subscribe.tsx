@@ -1,7 +1,8 @@
-import { type FC, type ChangeEvent, useState, useRef } from 'react';
+import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../contexts/AppContext";
-import { isValidEmail } from '../../../utils/utils';
-import toast from 'react-hot-toast';
+import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
+import { isValidEmail } from "../../../utils/utils";
+import toast from "react-hot-toast";
 import "./Subscribe.scss";
 
 // need email validation handling including invalid stylings
@@ -9,11 +10,11 @@ import "./Subscribe.scss";
 // agree to terms?
 
 const Subscribe: FC = () => {
-  const { handleSetModalType } = useAppContext()
+  const { handleSetModalType } = useAppContext();
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>("");
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
-  const [ agreeToTerms, setAgreeToTerms ] = useState<boolean>(true);
+  const [ agreeToPrivacy, setAgreeToPrivacy ] = useState<boolean>(true);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   
@@ -27,18 +28,6 @@ const Subscribe: FC = () => {
 
     return emailIsValid;
   };
-
-  const handleAgreeToTerms = (): void => {
-    handleSetModalType("privacy");
-  };
-
-  
-  const handleTermsChange = (e: ChangeEvent<HTMLInputElement>): boolean => {
-      setAgreeToTerms(e.target.checked);
-  
-      // return phoneNumberIsValid;
-      return true;
-    };
 
   const handleSubmit = () => {
     setInitialFormCheck(true);
@@ -61,6 +50,7 @@ const Subscribe: FC = () => {
 
     // TODO: Add submission logic (e.g. API call or toast message)
     console.log("Subscription form submitted");
+    setEmail("")
   };
 
   return (
@@ -104,37 +94,17 @@ const Subscribe: FC = () => {
               </div>
             </div>
 
-            <div className="subscribe__form-field subscribe__form-field--terms">
-              <label htmlFor="subscribeFormTerms" className="subscribe__label">
-                Terms
-              </label>
-
-              <div className="subscribe__checkbox-container">              
-
-                <input 
-                  id="subscribeFormTerms"
-                  type="checkbox" 
-                  className={`subscribe__input subscribe__input--terms
-                    ${initialFormCheck && !agreeToTerms
-                      ? "invalid" 
-                      : ""}`} 
-                      checked={agreeToTerms}
-                      onChange={handleTermsChange}
-                />
-                <span className="subscribe__termsText">
-                  Agree to the{" "}
-                  <span
-                    className="subscribe__privacy"
-                    onClick={handleAgreeToTerms}
-                    >
-                    privacy policy
-                  </span>
-                </span>
-
-              </div>
-
-            </div> 
-
+            <LabelledCheckbox 
+              labelId={"subscribeFormTerms"}
+              labelText={"privacy policy"}
+              isChecked={agreeToPrivacy}
+              setIsChecked={setAgreeToPrivacy}
+              isValid={initialFormCheck}
+              modalType={"privacy"}
+              spanStub={"Agree to the "}
+              spanLinkText={"privacy policy"}
+              onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+            />
             
           </form>
 
