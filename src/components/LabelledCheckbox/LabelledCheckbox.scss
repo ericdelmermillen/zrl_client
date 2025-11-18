@@ -16,6 +16,11 @@
 	&__text {
 		font-size: var(--text-size-base);
 		letter-spacing: var(--letter-spacing-sm);
+
+		@media (min-width: vars.$smallTablet) {
+			font-size: var(--text-size-md);
+			letter-spacing: var(--letter-spacing-md);
+		}
 	}
 
 	&__input {

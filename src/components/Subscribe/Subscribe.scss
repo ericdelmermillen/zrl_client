@@ -3,32 +3,30 @@
 
 .subscribe {
 	& {
+		align-items: center;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		padding-inline: 2rem;
 		padding-block: 4rem;
+		padding-inline: 2rem;
 	}
 
 	&__heading {
 		color: blue;
-		text-align: center;
 		margin-bottom: 2rem;
+		text-align: center;
 	}
 
 	&__lead {
 		font-size: 1.25rem;
 		line-height: var(--line-height-base);
-		border: 2px solid red;
+		margin-bottom: 2rem;
 		max-width: 45rem;
 		text-align: center;
-		margin-bottom: 2rem;
 	}
 
 	&__form {
 		display: flex;
 		flex-direction: column;
-		// border: 2px solid blue;
 		min-width: 100%;
 	}
 
@@ -39,57 +37,54 @@
 	&__input {
 		@include mx.input;
 		& {
-			border: 2px solid blue;
+			outline: 2px solid blue;
 			width: 100%;
 		}
 	}
 
 	&__form-field {
+		align-items: center;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		margin-bottom: 1rem;
 		width: 100%;
-		border: 2px solid green;
-
-		@media (min-width: vars.$smallTablet) {
-			flex-direction: row;
-		}
 
 		@media (min-width: vars.$mediumTablet) {
 			flex-direction: row;
+			height: 5rem;
 			padding-inline: 2rem;
 		}
 	}
 
 	&__button-container {
-		border: 2px solid red;
 		width: 100%;
 
-		@media (min-width: vars.$smallTablet) {
-			width: auto;
+		@media (min-width: vars.$tablet) {
+			padding-inline: 2rem;
+		}
+
+		@media (min-width: vars.$mediumTablet) {
 			display: flex;
+			padding-inline: 0;
+			width: auto;
 		}
 	}
 
 	&__submit {
 		border: 2px dashed #333;
-		// margin-inline-start: auto;
 		margin-top: 1rem;
-		flex-basis: 1;
 		width: 100%;
 		@include mx.rounded-button;
 
-		@media (min-width: vars.$smallTablet) {
+		@media (min-width: vars.$mediumTablet) {
 			@include mx.button;
 			& {
 				border-radius: 0;
-				max-width: 6rem;
-				// max-width: 8rem;
-				width: 6rem;
 				height: 3rem;
 				margin-block: 0;
-				// margin-bottom: 1rem;
+				max-width: 6rem;
+				padding-block: 0;
+				width: 6rem;
 
 				@media (min-width: vars.$tablet) {
 					max-width: 8rem;
