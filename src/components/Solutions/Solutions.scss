@@ -16,7 +16,7 @@
 
 	&__heading {
 		margin-bottom: 2rem;
-		@include mx.sectionHeading;
+		@include mx.sectionHeadingWithAccent;
 	}
 
 	&__subheading {

@@ -530,9 +530,19 @@
 		margin-inline: auto;
 	}
 
-	&::after {
-		width: 3rem;
-		@include afterAccent;
+	// &::after {
+	// 	width: 3rem;
+	// 	@include afterAccent;
+	// }
+}
+
+@mixin sectionHeadingWithAccent {
+	@include sectionHeading;
+	& {
+		&::after {
+			width: 3rem;
+			@include afterAccent;
+		}
 	}
 }
 
