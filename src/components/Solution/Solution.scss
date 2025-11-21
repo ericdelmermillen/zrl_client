@@ -17,13 +17,12 @@
 	}
 
 	&__image {
-		margin-bottom: 1rem;
 		@include mx.cardImg;
 	}
 
 	&__title {
 		color: #fff;
-		margin-bottom: 1rem;
+		margin-block: 1rem;
 	}
 
 	&__text {

@@ -18,7 +18,7 @@
 	&__accentBar {
 		box-shadow: var(--header-text-shadow);
 		margin-top: -1rem;
-		@include mx.accentBarDetail;
+		// @include mx.accentBarDetail;
 	}
 
 	&__text {
@@ -36,11 +36,6 @@
 		font-size: 2rem;
 		margin-bottom: 2rem;
 		position: relative;
-
-		&::after {
-			width: 3rem;
-			@include mx.afterAccent;
-		}
 	}
 
 	&__lead {
@@ -73,14 +68,6 @@
 	}
 
 	&__image {
-		border: 2px solid blue;
-		border-radius: 8px;
-		height: 98%;
-		object-fit: cover;
-		overflow: hidden;
-		width: 100%;
-
-		@media (min-width: vars.$largeTablet) {
-		}
+		@include mx.cardImg;
 	}
 }

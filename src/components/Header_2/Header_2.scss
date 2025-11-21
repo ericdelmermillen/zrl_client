@@ -22,17 +22,6 @@
 		opacity: 35%;
 		opacity: 40%;
 		opacity: 45%;
-		// opacity: 50%;
-		// opacity: 55%;
-		// opacity: 57.5%;
-		// opacity: 60%;
-		// opacity: 65%;
-		// opacity: 70%;
-		// opacity: 75%;
-		// opacity: 80%;
-		// opacity: 85%;
-		// opacity: 90%;
-		// opacity: 95%;
 		position: absolute;
 		z-index: 0;
 	}
@@ -161,14 +150,6 @@
 		@media (min-width: vars.$tablet) {
 			font-size: var(--text-size-4xl);
 		}
-
-		// @media (min-width: vars.$largeTablet) {
-		// 	font-size: var(--text-size-3xl);
-		// }
-
-		// @media (min-width: vars.$desktop) {
-		// 	font-size: var(--text-size-4xl);
-		// }
 	}
 
 	&__for {
@@ -205,6 +186,7 @@
 		letter-spacing: var(--letter-spacing-2xl);
 		margin-bottom: 0.5rem;
 		text-shadow: var(--header-text-shadow);
+		// color: blue;
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: var(--text-size-3xl);

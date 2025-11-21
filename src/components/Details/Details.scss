@@ -8,9 +8,7 @@
 	}
 
 	&__inner {
-		align-items: center;
-		display: flex;
-		flex-direction: column;
+		@include mx.sectionLayout;
 	}
 
 	&__heading {

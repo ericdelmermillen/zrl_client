@@ -8,10 +8,7 @@
 	}
 
 	&__inner {
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-		padding-inline: 2rem;
+		@include mx.sectionLayout;
 	}
 
 	&__heading {
@@ -19,9 +16,8 @@
 		@include mx.sectionHeadingWithAccent;
 	}
 
-	&__subheading {
-		font-weight: 600;
-		margin-bottom: 2rem;
+	&__lead {
+		@include mx.sectionLead;
 	}
 
 	&__container {

@@ -48,7 +48,7 @@ const Solutions: FC = () => {
           <h2 className="solutions__heading">
             Solutions
           </h2>
-          <p className="solutions__subheading">
+          <p className="solutions__lead">
             Zidgy Road Labs Provides Software Solutions For Business Acceleration
           </p>
 

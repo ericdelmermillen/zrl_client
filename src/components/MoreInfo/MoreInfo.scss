@@ -7,9 +7,10 @@
 	}
 
 	&__inner {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: center;
+		@include mx.sectionLayout;
 
 		@media (min-width: vars.$tablet) {
 			flex-direction: row;

@@ -11,10 +11,7 @@
 	}
 
 	&__inner {
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-		padding-inline: 2rem;
+		@include mx.sectionLayout;
 	}
 
 	&__heading {

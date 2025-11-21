@@ -11,8 +11,10 @@
 	}
 
 	&__inner {
-		display: flex;
-		flex-direction: column;
+		@include mx.sectionLayout;
+		& {
+			max-width: 45rem;
+		}
 	}
 
 	&__heading {
@@ -20,11 +22,7 @@
 	}
 
 	&__lead {
-		font-size: var(--text-size-md);
-		letter-spacing: var(--letter-spacing-lg);
-		line-height: var(--line-height-md);
-		margin-bottom: 1rem;
-		max-width: 45rem;
+		@include mx.sectionLead;
 
 		@media (min-width: vars.$tablet) {
 			text-align: center;

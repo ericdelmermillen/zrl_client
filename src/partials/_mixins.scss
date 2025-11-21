@@ -516,6 +516,15 @@
 	}
 }
 
+@mixin sectionLayout {
+	align-items: center;
+	border: 2px dashed #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-inline: 2rem;
+}
+
 @mixin sectionHeading {
 	font-family: var(--heading-font);
 	font-size: var(--text-size-lg);
@@ -529,20 +538,25 @@
 		display: inline-block;
 		margin-inline: auto;
 	}
-
-	// &::after {
-	// 	width: 3rem;
-	// 	@include afterAccent;
-	// }
 }
 
 @mixin sectionHeadingWithAccent {
 	@include sectionHeading;
-	& {
-		&::after {
-			width: 3rem;
-			@include afterAccent;
-		}
+	&::after {
+		width: 3rem;
+		@include afterAccent;
+	}
+}
+
+@mixin sectionLead {
+	color: green;
+	font-size: var(--text-size-md);
+	letter-spacing: var(--letter-spacing-lg);
+	line-height: var(--line-height-md);
+	margin-bottom: 1rem;
+
+	@media (min-width: vars.$smallTablet) {
+		opacity: 1;
 	}
 }
 
@@ -648,8 +662,10 @@
 // basic UI elements
 @mixin cardImg {
 	aspect-ratio: 16/9;
+	border-radius: 8px;
 	max-width: 100%;
 	object-fit: cover;
 	object-position: center center;
+	overflow: hidden;
 	width: 100%;
 }
