@@ -7,10 +7,9 @@
 		overflow: hidden;
 		position: fixed;
 		text-align: center;
-		top: 0;
+		top: calc(vars.$navHeight / 3);
 		width: min(120vw, vars.$ultraWide);
 		z-index: 0;
-		// z-index: -1;
 	}
 
 	&__inner {

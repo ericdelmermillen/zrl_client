@@ -1,32 +1,37 @@
 import { type FC, useEffect, useState, memo } from "react";
 import { useAppContext } from "../../contexts/AppContext";
-import { BsCpuFill, BsHddNetworkFill } from "react-icons/bs";
-import { FaCode, FaRegObjectUngroup } from "react-icons/fa6";
-import { FaDatabase, FaServer } from "react-icons/fa";
+import { AiOutlineException } from "react-icons/ai";
+import { BiSolidCommentError } from "react-icons/bi";
+import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
+import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
+import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
+import { GiLightningArc } from "react-icons/gi";
 import { GrTechnology } from "react-icons/gr";
-import { LiaMicrochipSolid } from "react-icons/lia";
 import { LuBinary } from "react-icons/lu";
-import { MdUsb } from "react-icons/md";
-import { PiNetworkFill } from "react-icons/pi";
-import { VscGitMerge } from "react-icons/vsc";
+import { MdOutlineSyncProblem } from "react-icons/md";
+import { TbError404 } from "react-icons/tb";
 import "./WallPaper.scss";
 
-// Type for each icon component
+
 type IconType = FC<{ className?: string }>;
 
-const iconOptions: IconType[] = [
-  FaCode,
-  PiNetworkFill,
-  BsHddNetworkFill,
-  VscGitMerge,
-  BsCpuFill,
-  FaDatabase,
-  FaServer,
-  MdUsb,
-  LuBinary,
-  FaRegObjectUngroup,
+const iconOptions: IconType[] = [  
   GrTechnology,
-  LiaMicrochipSolid,
+  FaCode,
+  BsLightningChargeFill,
+  BsShieldExclamation,
+  GiLightningArc,
+  TbError404,
+  FaBugs,
+  BiSolidCommentError,
+  LuBinary,
+  BsCpuFill,
+  FaCogs,
+  FaRobot,
+  FaMicrochip,
+  FaExclamationTriangle,
+  MdOutlineSyncProblem,
+  AiOutlineException
 ];
 
 // Random icons for one row
@@ -45,6 +50,7 @@ interface WallPaperRowProps {
 
 const WallPaperRow: FC<WallPaperRowProps> = ({ className, colorMode, rowIcons }) => (
   <div className={className}>
+
     {rowIcons.map((IconComponent, idx) => (
       <div
         key={idx}
@@ -52,12 +58,13 @@ const WallPaperRow: FC<WallPaperRowProps> = ({ className, colorMode, rowIcons })
       >
         <IconComponent className="wallpaper__icon" />
       </div>
+
     ))}
   </div>
 );
 
 const WallPaper: FC = memo(() => {
-  const [iconsMatrix, setIconsMatrix] = useState<IconType[][]>([]);
+  const [ iconsMatrix, setIconsMatrix ] = useState<IconType[][]>([]);
   const { colorMode } = useAppContext();
 
   const itemsPerRow = (() => {
@@ -97,6 +104,7 @@ const WallPaper: FC = memo(() => {
   return (
     <div className="wallpaper">
       <div className="wallpaper__inner">
+        
         {iconsMatrix.map((rowIcons, idx) => (
           <WallPaperRow
             key={idx}
@@ -105,6 +113,7 @@ const WallPaper: FC = memo(() => {
             rowIcons={rowIcons}
           />
         ))}
+
       </div>
     </div>
   );
