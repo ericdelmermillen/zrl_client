@@ -3,14 +3,12 @@
 
 .notFound {
 	& {
-		background: pink;
+		// background: pink;
 		@include mx.page;
 	}
 
 	&__inner {
-		align-items: center;
-		justify-content: center;
-		@include mx.inner;
+		@include mx.wallpaperContainer;
 	}
 
 	// &__text {

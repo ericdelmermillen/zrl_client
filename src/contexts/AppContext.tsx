@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useState, useEffect, createContext, useContext } from "react";
 import { scrollToTop } from "../../utils/utils";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 type ColorMode = "light" | "dark";
@@ -44,6 +44,10 @@ interface AppContextProviderProps {
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isOnHome = location.pathname === "/";
+
   const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
@@ -57,10 +61,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
-  const NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
+  const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
-
-  const navigate = useNavigate();
 
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);

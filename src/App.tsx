@@ -11,6 +11,7 @@ import Modal from './components/Modal/Modal';
 import Nav from './components/Nav/Nav';
 import NavSocials from './components/NavSocials/NavSocials';
 import NotFound from './pages/NotFound/NotFound';
+import WallPaper from "./components/WallPaper/WallPaper"
 import './App.scss';
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
@@ -92,7 +93,14 @@ const App = (): JSX.Element => {
 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route
+            path="/*"
+            element={
+              <NotFound>
+                <WallPaper />
+              </NotFound>
+            }
+          />
 
         </Routes>
 

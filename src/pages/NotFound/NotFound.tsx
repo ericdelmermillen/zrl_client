@@ -1,11 +1,16 @@
-import { useEffect, type FC } from "react";
+import { type FC, type ReactNode, useEffect } from "react";
 import { scrollToTop } from "../../../utils/utils";
 import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
 
 // import Day_2 from "../../assets/svgs/Day_2"
 
-const NotFound: FC = () => {
+
+interface NotFoundProps {
+  children?: ReactNode;
+}
+
+const NotFound: FC<NotFoundProps> = ({ children }) => {
 
   // scroll to top on mount
   useEffect(() => {
@@ -22,6 +27,7 @@ const NotFound: FC = () => {
       <div className="notFound">
         <div className="notFound__inner">
           <BackButton />
+          {children}
           {/* <Day_2 className={"floatingButton__colorMode--day"}/> */}
 
           <div className="notFound__text">

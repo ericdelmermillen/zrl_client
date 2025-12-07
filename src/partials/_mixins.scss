@@ -337,6 +337,18 @@
 	}
 }
 
+@mixin wallpaperContainer {
+	align-items: center;
+	background: var(--neutral-bg-2);
+	display: flex;
+	justify-content: center;
+	min-height: calc(100vh - vars.$navHeight);
+	padding-bottom: 2rem;
+	padding-top: calc(vars.$navHeight + 2rem);
+	position: relative;
+	width: 100%;
+}
+
 // buttons, links and interactions
 
 // need general button mixin
