@@ -94,7 +94,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           link.click();
           hideNav();
         };
-        console.log(NAV_CLICK_DELAY)
+        // console.log(NAV_CLICK_DELAY)
       });
     }, NAV_CLICK_DELAY);
     setShowDropdownNavOptions(false);
