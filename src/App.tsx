@@ -1,18 +1,28 @@
-import type { JSX } from 'react';
-import { useAppContext } from './contexts/AppContext';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import DropdownNav from './components/DropdownNav/DropdownNav';
-// import FloatingButton from './components/FloatingButton/FloatingButton';
-import Footer from './components/Footer/Footer';
-import Home from './pages/Home/Home';
-import LogoutButton from './components/LogoutButton/LogoutButton';
-import Modal from './components/Modal/Modal';
-import Nav from './components/Nav/Nav';
-import NavSocials from './components/NavSocials/NavSocials';
-import NotFound from './pages/NotFound/NotFound';
+import type { JSX } from "react";
+import { type IconType } from "./types/types";
+import { useAppContext } from "./contexts/AppContext";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import DropdownNav from "./components/DropdownNav/DropdownNav";
+// import FloatingButton from "./components/FloatingButton/FloatingButton";
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import LogoutButton from "./components/LogoutButton/LogoutButton";
+import Modal from "./components/Modal/Modal";
+import Nav from "./components/Nav/Nav";
+import NavSocials from "./components/NavSocials/NavSocials";
+import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
-import './App.scss';
+import { AiOutlineException } from "react-icons/ai";
+import { BiSolidCommentError } from "react-icons/bi";
+import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
+import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
+import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
+import { GiLightningArc } from "react-icons/gi";
+import { MdOutlineSyncProblem } from "react-icons/md";
+import { TbError404 } from "react-icons/tb";
+import "./App.scss";
+
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
@@ -21,7 +31,26 @@ const navOptions = [
   {id: 2, optionName: "DETAILS"},
   {id: 3, optionName: "EXPERTISE"},
   {id: 4, optionName: "VALUES"}
+]
+
+const notFoundIconOptions: IconType[] = [  
+  AiOutlineException,
+  BsCpuFill,
+  BiSolidCommentError,
+  BsLightningChargeFill,
+  BsShieldExclamation,
+  FaBugs,
+  FaCode,
+  FaCogs,
+  FaMicrochip,
+  FaRobot,
+  GiLightningArc,
+  TbError404,
+  FaExclamationTriangle,
+  MdOutlineSyncProblem,
 ];
+
+
 
 const App = (): JSX.Element => {
   const { 
@@ -97,7 +126,8 @@ const App = (): JSX.Element => {
             path="/*"
             element={
               <NotFound>
-                <WallPaper />
+                <WallPaper 
+                customIcons={notFoundIconOptions}/>
               </NotFound>
             }
           />
@@ -116,39 +146,39 @@ const App = (): JSX.Element => {
           toastOptions={{
             duration: 3000,
             ariaProps: {
-              role: 'status',
-              'aria-live': 'polite',
+              role: "status",
+              "aria-live": "polite",
             },
             style: {
-              background: '#333',
-              color: '#fff',
-              padding: '16px',
+              background: "#333",
+              color: "#fff",
+              padding: "16px",
             },
             success: {
               duration: 3000,
               iconTheme: {
-                primary: 'white',
-                secondary: 'green',
+                primary: "white",
+                secondary: "green",
               },
               style: {
-                background: 'green',
-                color: '#fff',
+                background: "green",
+                color: "#fff",
               },
             },
             error: {
               duration: 3000,
-              icon: '🔥',
+              icon: "🔥",
               style: {
-                background: 'red',
-                color: '#fff',
+                background: "red",
+                color: "#fff",
               },
             },
             loading: {
               duration: Infinity,
-              icon: '⏳',
+              icon: "⏳",
               style: {
-                background: '#007bff',
-                color: '#fff',
+                background: "#007bff",
+                color: "#fff",
               },
             },
           }}

@@ -1,47 +1,22 @@
 import { type FC, useEffect, useState, memo } from "react";
+import { type IconType } from "../../types/types";
 import { useAppContext } from "../../contexts/AppContext";
-import { AiOutlineException } from "react-icons/ai";
-import { BiSolidCommentError } from "react-icons/bi";
-import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
-import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
-import { GiLightningArc } from "react-icons/gi";
+import { BsCpuFill, BsHddNetworkFill } from "react-icons/bs";
+import { FaDatabase, FaServer } from "react-icons/fa";
+import { FaCode, FaRegObjectUngroup } from "react-icons/fa6";
 import { GrTechnology } from "react-icons/gr";
+import { LiaMicrochipSolid } from "react-icons/lia";
 import { LuBinary } from "react-icons/lu";
-import { MdOutlineSyncProblem } from "react-icons/md";
-import { TbError404 } from "react-icons/tb";
+import { MdUsb } from "react-icons/md";
+import { PiNetworkFill } from "react-icons/pi";
+import { VscGitMerge } from "react-icons/vsc";
 import "./WallPaper.scss";
 
 
-type IconType = FC<{ className?: string }>;
+interface WallPaperProps {
+  customIcons?: IconType[];
+}
 
-const iconOptions: IconType[] = [  
-  GrTechnology,
-  FaCode,
-  BsLightningChargeFill,
-  BsShieldExclamation,
-  GiLightningArc,
-  TbError404,
-  FaBugs,
-  BiSolidCommentError,
-  LuBinary,
-  BsCpuFill,
-  FaCogs,
-  FaRobot,
-  FaMicrochip,
-  FaExclamationTriangle,
-  MdOutlineSyncProblem,
-  AiOutlineException
-];
-
-// Random icons for one row
-const getRandomIconsForRow = (itemsPerRow: number): IconType[] =>
-  Array.from({ length: itemsPerRow }, () => {
-    const randomIdx = Math.floor(Math.random() * iconOptions.length);
-    return iconOptions[randomIdx];
-  });
-
-// Props for a single row
 interface WallPaperRowProps {
   className: string;
   colorMode: "light" | "dark";
@@ -54,7 +29,7 @@ const WallPaperRow: FC<WallPaperRowProps> = ({ className, colorMode, rowIcons })
     {rowIcons.map((IconComponent, idx) => (
       <div
         key={idx}
-        className={`wallpaper__item ${idx + 1 === 8 ? "x" : ""} ${colorMode === "light" ? "light" : "dark"}`}
+        className={`wallpaper__item ${colorMode === "light" ? "light" : "dark"}`}
       >
         <IconComponent className="wallpaper__icon" />
       </div>
@@ -63,9 +38,34 @@ const WallPaperRow: FC<WallPaperRowProps> = ({ className, colorMode, rowIcons })
   </div>
 );
 
-const WallPaper: FC = memo(() => {
+const WallPaper: FC<WallPaperProps> = memo(({ customIcons }) => {
+
   const [ iconsMatrix, setIconsMatrix ] = useState<IconType[][]>([]);
   const { colorMode } = useAppContext();
+
+  const defaultIcons: IconType[] = [  
+    BsCpuFill,
+    BsHddNetworkFill,
+    FaCode,
+    FaDatabase,
+    FaRegObjectUngroup,
+    FaServer,
+    GrTechnology,
+    LiaMicrochipSolid,
+    LuBinary,
+    MdUsb,
+    PiNetworkFill,
+    VscGitMerge
+  ];
+
+  const iconOptions = customIcons || defaultIcons;
+
+  const getRandomIconsForRow = (itemsPerRow: number): IconType[] =>
+  Array.from({ length: itemsPerRow }, () => {
+    const randomIdx = Math.floor(Math.random() * iconOptions.length);
+    return iconOptions[randomIdx];
+  });
+
 
   const itemsPerRow = (() => {
     const windowWidth = window.innerWidth;
