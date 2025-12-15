@@ -1,0 +1,12 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.login {
+	& {
+		@include mx.page;
+	}
+
+	&__inner {
+		@include mx.wallpaperContainer;
+	}
+}

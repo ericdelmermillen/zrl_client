@@ -19,9 +19,34 @@ import LogoutButton from "./components/LogoutButton/LogoutButton";
 import Modal from "./components/Modal/Modal";
 import Nav from "./components/Nav/Nav";
 import NavSocials from "./components/NavSocials/NavSocials";
+import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
+
+
+
+import { FaKey } from "react-icons/fa";
+import { IoFingerPrintOutline } from "react-icons/io5";
+import { TbFaceId } from "react-icons/tb";
+import { FaUserAlt } from "react-icons/fa";
+import { MdSecurity } from "react-icons/md";
+import { MdVerifiedUser } from "react-icons/md";
+import { FaIdCard } from "react-icons/fa";
+import { RiSettings5Fill } from "react-icons/ri";
+import { FaGlobeAmericas } from "react-icons/fa";
+import { TbCloudLock } from "react-icons/tb";
+import { FaLink } from "react-icons/fa6";
+import { PiTerminal } from "react-icons/pi";
+import { BiSolidLogInCircle } from "react-icons/bi";
+import { IoIosLock } from "react-icons/io";
+// import { FaUserCircle } from "react-icons/fa";
+import { FaUserSecret } from "react-icons/fa6";
+import { TbScan } from "react-icons/tb";
+import { MdOutlinePassword } from "react-icons/md";
+import { PiKeyhole } from "react-icons/pi";
+import { IoMdKey } from "react-icons/io";
+
 
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
@@ -32,6 +57,26 @@ const navOptions = [
   {id: 3, optionName: "EXPERTISE"},
   {id: 4, optionName: "VALUES"}
 ]
+
+const LoginIconOptions: IconType[] = [  
+  IoIosLock,
+  // FaKey,
+  IoMdKey,
+  IoFingerPrintOutline,
+  TbFaceId,
+  FaUserSecret,
+  MdSecurity,
+  FaIdCard,
+  RiSettings5Fill,
+  FaGlobeAmericas,
+  TbCloudLock,
+  FaLink,
+  PiTerminal,
+  BiSolidLogInCircle,
+  TbScan,
+  MdOutlinePassword,
+  PiKeyhole
+];
 
 const notFoundIconOptions: IconType[] = [  
   AiOutlineException,
@@ -47,7 +92,7 @@ const notFoundIconOptions: IconType[] = [
   GiLightningArc,
   TbError404,
   FaExclamationTriangle,
-  MdOutlineSyncProblem,
+  MdOutlineSyncProblem
 ];
 
 
@@ -122,6 +167,16 @@ const App = (): JSX.Element => {
 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route
+            path="/login"
+            element={
+              <Login>
+                <WallPaper 
+                customIcons={LoginIconOptions}
+                />
+              </Login>
+            }
+          />
           <Route
             path="/*"
             element={
