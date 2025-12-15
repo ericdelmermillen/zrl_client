@@ -29,7 +29,10 @@ const WallPaperRow: FC<WallPaperRowProps> = ({ className, colorMode, rowIcons })
     {rowIcons.map((IconComponent, idx) => (
       <div
         key={idx}
-        className={`wallpaper__item ${colorMode === "light" ? "light" : "dark"}`}
+        className={`wallpaper__item ${colorMode === "light" 
+          ? "light" 
+          : "dark"}`
+        }
       >
         <IconComponent className="wallpaper__icon" />
       </div>
@@ -61,10 +64,11 @@ const WallPaper: FC<WallPaperProps> = memo(({ customIcons }) => {
   const iconOptions = customIcons || defaultIcons;
 
   const getRandomIconsForRow = (itemsPerRow: number): IconType[] =>
-  Array.from({ length: itemsPerRow }, () => {
-    const randomIdx = Math.floor(Math.random() * iconOptions.length);
-    return iconOptions[randomIdx];
-  });
+    Array.from({ length: itemsPerRow }, () => {
+      const randomIdx = Math.floor(Math.random() * iconOptions.length);
+      return iconOptions[randomIdx];
+    }
+  );
 
 
   const itemsPerRow = (() => {
@@ -108,7 +112,10 @@ const WallPaper: FC<WallPaperProps> = memo(({ customIcons }) => {
         {iconsMatrix.map((rowIcons, idx) => (
           <WallPaperRow
             key={idx}
-            className={(idx + 1) % 2 === 0 ? "wallpaper__row wallpaper__row--even" : "wallpaper__row wallpaper__row--odd"}
+            className={(idx + 1) % 2 === 0 
+              ? "wallpaper__row wallpaper__row--even" 
+              : "wallpaper__row wallpaper__row--odd"
+            }
             colorMode={colorMode}
             rowIcons={rowIcons}
           />

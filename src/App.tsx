@@ -2,6 +2,14 @@ import type { JSX } from "react";
 import { type IconType } from "./types/types";
 import { useAppContext } from "./contexts/AppContext";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { AiOutlineException } from "react-icons/ai";
+import { BiSolidCommentError } from "react-icons/bi";
+import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
+import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
+import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
+import { GiLightningArc } from "react-icons/gi";
+import { MdOutlineSyncProblem } from "react-icons/md";
+import { TbError404 } from "react-icons/tb";
 import { Toaster } from "react-hot-toast";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
@@ -13,14 +21,6 @@ import Nav from "./components/Nav/Nav";
 import NavSocials from "./components/NavSocials/NavSocials";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
-import { AiOutlineException } from "react-icons/ai";
-import { BiSolidCommentError } from "react-icons/bi";
-import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
-import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
-import { GiLightningArc } from "react-icons/gi";
-import { MdOutlineSyncProblem } from "react-icons/md";
-import { TbError404 } from "react-icons/tb";
 import "./App.scss";
 
 
