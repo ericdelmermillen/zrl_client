@@ -3,13 +3,17 @@ import { type IconType } from "./types/types";
 import { useAppContext } from "./contexts/AppContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
-import { BiSolidCommentError } from "react-icons/bi";
+import { BiSolidCommentError, BiSolidLogInCircle } from "react-icons/bi";
 import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-import { FaCogs, FaExclamationTriangle } from "react-icons/fa";
-import { FaBugs, FaCode, FaMicrochip, FaRobot } from "react-icons/fa6";
+import { FaCogs, FaExclamationTriangle, FaGlobeAmericas, FaIdCard } from "react-icons/fa";
+import { FaBugs, FaCode, FaLink, FaMicrochip, FaRobot, FaUserSecret } from "react-icons/fa6";
 import { GiLightningArc } from "react-icons/gi";
-import { MdOutlineSyncProblem } from "react-icons/md";
-import { TbError404 } from "react-icons/tb";
+import { IoIosLock, IoMdKey } from "react-icons/io";
+import { IoFingerPrintOutline } from "react-icons/io5";
+import { MdOutlinePassword, MdOutlineSyncProblem, MdSecurity } from "react-icons/md";
+import { PiKeyhole, PiTerminal } from "react-icons/pi";
+import { RiSettings5Fill } from "react-icons/ri";
+import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
 import { Toaster } from "react-hot-toast";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
@@ -25,30 +29,6 @@ import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
 
 
-
-import { FaKey } from "react-icons/fa";
-import { IoFingerPrintOutline } from "react-icons/io5";
-import { TbFaceId } from "react-icons/tb";
-import { FaUserAlt } from "react-icons/fa";
-import { MdSecurity } from "react-icons/md";
-import { MdVerifiedUser } from "react-icons/md";
-import { FaIdCard } from "react-icons/fa";
-import { RiSettings5Fill } from "react-icons/ri";
-import { FaGlobeAmericas } from "react-icons/fa";
-import { TbCloudLock } from "react-icons/tb";
-import { FaLink } from "react-icons/fa6";
-import { PiTerminal } from "react-icons/pi";
-import { BiSolidLogInCircle } from "react-icons/bi";
-import { IoIosLock } from "react-icons/io";
-// import { FaUserCircle } from "react-icons/fa";
-import { FaUserSecret } from "react-icons/fa6";
-import { TbScan } from "react-icons/tb";
-import { MdOutlinePassword } from "react-icons/md";
-import { PiKeyhole } from "react-icons/pi";
-import { IoMdKey } from "react-icons/io";
-
-
-
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 const navOptions = [
@@ -60,7 +40,6 @@ const navOptions = [
 
 const LoginIconOptions: IconType[] = [  
   IoIosLock,
-  // FaKey,
   IoMdKey,
   IoFingerPrintOutline,
   TbFaceId,
@@ -94,7 +73,6 @@ const notFoundIconOptions: IconType[] = [
   FaExclamationTriangle,
   MdOutlineSyncProblem
 ];
-
 
 
 const App = (): JSX.Element => {
