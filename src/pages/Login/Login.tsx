@@ -1,5 +1,7 @@
 import { type FC, type ReactNode, useEffect } from "react";
+import { scrollToTop } from "../../../utils/utils";
 import BackButton from "../../components/BackButton/BackButton";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.scss"
 
 interface LoginProps {
@@ -8,10 +10,15 @@ interface LoginProps {
 
 const Login: FC<LoginProps> = ({ children }) => {
 
-    // useEffect to update title of page
-    useEffect(() => {
-        document.title = "Zidgy Road Lab's Admin Login Page";
-    }, []);
+  // scroll to top on mount
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  // useEffect to update title of page
+  useEffect(() => {
+      document.title = "Zidgy Road Lab's Admin Login Page";
+  }, []);
     
   
   return (
@@ -21,7 +28,10 @@ const Login: FC<LoginProps> = ({ children }) => {
           <BackButton />
           { children }
 
-          <h1 className="login__h1">Login Page</h1>
+          <div className="login__content">
+            <LoginForm />
+          </div>
+
           
         </div>
         

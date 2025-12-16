@@ -29,6 +29,8 @@ interface AppContextValue {
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
   // functions
+  // returns boolean?
+  loginUser: () => void
   showNav: () => void;
   toggleColorMode: () => void;
   notFoundNavLinkClick: (to: string) => void;
@@ -50,7 +52,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
-  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
 
   const [ scrollYPos, setScrollYPos ] = useState(0);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
@@ -124,6 +126,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     setModalType(modalType);
   };
+
+  const loginUser = () => {
+    console.log("logging you in now")
+  }
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
@@ -204,6 +210,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     modalType, 
     setModalType,
     // functions
+    loginUser,
     toggleColorMode,
     navLinkClick,
     notFoundNavLinkClick,

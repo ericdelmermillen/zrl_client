@@ -1,0 +1,83 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.loginForm {
+	& {
+		@include mx.formFullWidth;
+	}
+
+	&__inner {
+		@include mx.formFullWidthInner;
+	}
+
+	&__heading {
+		@include mx.formHeading;
+
+		&::after {
+			@include mx.afterAccent;
+		}
+	}
+
+	&__form {
+		@include mx.form;
+	}
+
+	&__field {
+		position: relative;
+	}
+
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
+	&__input {
+		@include mx.formFullWidthInput;
+
+		&:focus {
+			box-shadow: var(--box-shadow-input);
+			outline: none;
+		}
+
+		&::placeholder {
+			color: var(--text-color);
+			font-size: var(--font-size-fine);
+		}
+	}
+
+	&__error {
+		@include mx.formErrorMessage;
+	}
+
+	&__submit {
+		display: flex;
+		margin-inline: auto;
+		margin-top: auto;
+		max-width: 99%;
+		width: 99%;
+	}
+
+	&__button {
+		background: var(--accent-color);
+		border: none;
+		width: 100%;
+		@include mx.button;
+	}
+
+	.passwordInput {
+		&__icon {
+			background: none;
+			border: none;
+			cursor: pointer;
+			display: flex;
+			fill: var(--text-color);
+			margin-top: -3.5rem;
+			outline: none;
+			position: absolute;
+			right: 0.5rem;
+
+			&.hide {
+				display: none;
+			}
+		}
+	}
+}

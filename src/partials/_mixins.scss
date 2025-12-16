@@ -1,78 +1,13 @@
 @use "./_variables" as vars;
 @use "../assets/fonts.scss";
 
-// make HomePageSection mixin for basic layout of different sections of Home
-
-// 🎨 Suggested Color Scheme
-// Primary
-
-// #2f608d (medium blue – brand anchor, buttons, links, navbar background)
-
-// #5b8db5 (lighter blue for hover states, highlights)
-
-// Secondary / Accents
-
-// #d9985f (warm orange accent – CTAs, icons, highlights)
-
-// #b88155 (deeper accent for hover states, small borders, active states)
-
-// Light Backgrounds
-
-// #fdfdfa (base background – body, sections)
-
-// #f3f3ec (alternate section background for subtle contrast)
-
-// Dark Backgrounds
-
-// #011140 (hero/nav background option – strong and professional)
-
-// #182438 (card headers, footer, left accent div)
-
-// Text Colors
-
-// #0d0d0d (primary text on light backgrounds)
-
-// #fdfdfa (primary text on dark backgrounds)
-
-// #6f5f5a (secondary text, muted paragraphs)
-
-// Borders & Neutral Elements
-
-// #ccd3d6 (soft border, dividers, input outlines)
-
-// #8096a6 (icons, less dominant UI elements)
-
-// 🖼 Layout Usage
-
-// Nav bar: #011140 with white text (#fdfdfa), hover/active links in #5b8db5.
-
-// Left 2rem accent bar: #182438 with small highlights in #d9985f (a stripe, icon, or subtle glow).
-
-// Above the fold background: light neutral like #fdfdfa, letting your header image dominate.
-
-// Buttons:
-
-// Primary → #2f608d background, #fdfdfa text. Hover → #5b8db5.
-
-// Secondary → #d9985f background, #fdfdfa text. Hover → #b88155.
-
-// Cards / sections: Alternate between #fdfdfa and #f3f3ec for background so sections don’t blend.
-
-// Footer: #182438 background, #fdfdfa text, link hovers in #5b8db5.
-
-// ✅ Why this works
-
-// The blues (#2f608d, #5b8db5) establish trust and professionalism.
-
-// The warm accents (#d9985f, #b88155) add energy without clashing.
-
-// The light neutrals (#fdfdfa, #f3f3ec) keep it airy and modern.
-
-// The dark tones (#011140, #182438) ground the design and give depth.
-
 .app {
 	--heading-font: "Poppins", "Trebuchet MS", Helvetica, Arial, sans-serif;
 	--body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	// colors
+	// need this for palate
+	--neutral-bg-1: #e6eae7;
 	// letter spacing
 	--letter-spacing-xs: 0.2px;
 	--letter-spacing-sm: 0.4px;
@@ -188,7 +123,6 @@
 	// --text-color
 	// --border-radius
 	// --heading-font
-	// --accent-color
 	// --background-nav-footer
 	// --navFooterBoxShadow
 	// --text-color-bright(?)
@@ -199,63 +133,8 @@
 	&[data-color-mode="light"] {
 		color: red;
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-		--accent-color: #c18a4f;
+		--accent-color: #d27834;
 		//
-		--secondary-accent-color: #b9d0da;
-		--secondary-accent-color: #b8d0d9;
-		--secondary-accent-color: #adc0cd;
-		--secondary-accent-color: #c0d0d7;
-		--secondary-accent-color: #b0cdda;
-		--secondary-accent-color: #8fadbf;
-		--secondary-accent-color: #7f9aac;
-		--secondary-accent-color: #8095a5;
-		--secondary-accent-color: #8b9aa6;
-		--secondary-accent-color: #2e608d;
-		--secondary-accent-color: #2f608d;
-		--secondary-accent-color: #3b608d;
-		--secondary-accent-color: #182438;
-		--secondary-accent-color: #25364d;
-		--secondary-accent-color: #26364c;
-		--secondary-accent-color: #2c4463;
-		--secondary-accent-color: #3a5374;
-		--secondary-accent-color: #3a5374;
-		--secondary-accent-color: #2e608d;
-		--secondary-accent-color: #000626;
-		--secondary-accent-color: #000a26;
-		--secondary-accent-color: #182438;
-		--secondary-accent-color: #25364d;
-		--secondary-accent-color: #2c4463;
-		--secondary-accent-color: #1a1a4a;
-		--secondary-accent-color: #1e2a52;
-		--secondary-accent-color: #2a2358;
-		--secondary-accent-color: #252850;
-		--secondary-accent-color: #2d2b55;
-		--secondary-accent-color: #3a4468;
-		--secondary-accent-color: #4a5078;
-		--secondary-accent-color: #5a6085;
-		--secondary-accent-color: #2c1e4a;
-		--secondary-accent-color: #2d2a65;
-		--secondary-accent-color: #2c4463;
-		--secondary-accent-color: #25364d;
-		--secondary-accent-color: #303949;
-		--secondary-accent-color: #26364c;
-		--secondary-accent-color: #4e739c;
-		--secondary-accent-color: #5b8db5;
-		--secondary-accent-color: #5380ad;
-		--secondary-accent-color: #25364d;
-		--secondary-accent-color: #4e739c;
-		--secondary-accent-color: #303949;
-		--secondary-accent-color: var((--navFooter-bg));
-		--secondary-accent-color: #b97c4c;
-		--secondary-accent-color: #b97c4c;
-		--secondary-accent-color: #cc8854;
-		--secondary-accent-color: #d1864c;
-		--secondary-accent-color: #da884a;
-		--secondary-accent-color: #e68d49;
-		--secondary-accent-color: #d27834;
-		// --secondary-accent-color: #de7d33;
-		// --secondary-accent-color: #b4652a;
-		// --secondary-accent-color: #c7681f;
 		//
 
 		--button-text-color: #f1f0ea;
@@ -283,7 +162,6 @@
 		--navFooter-bg: #182438;
 
 		--navLink-color: #fff;
-		--accent-color: #011140;
 
 		--header-text-color: #ffffff;
 		--header-text-color: #fdfdfa;
@@ -337,6 +215,104 @@
 	}
 }
 
+// *** change this to use underscore thing
+@mixin headingGeneral {
+	font-family: var(--heading-font);
+	font-size: var(--font-size-xs);
+	font-weight: 600;
+	letter-spacing: var(--letter-spacing-large);
+	margin-bottom: 1rem;
+}
+
+@mixin form {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	margin-inline: auto;
+	max-width: vars.$largeTablet;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 100%;
+
+	@media (min-height: 600px) {
+		overflow-y: hidden;
+	}
+}
+
+@mixin formTall {
+	@include form;
+
+	@media (min-height: 750px) {
+		overflow-y: hidden;
+	}
+}
+
+@mixin formFullWidthInput {
+	background: none;
+	border: none;
+	border-bottom: 2px solid var(--text-color);
+	color: var(--text-color);
+	font-family: var(--body-font);
+	font-size: var(--font-size-xs);
+	line-height: var(--line-height-general);
+	margin-bottom: 1.5rem;
+	outline: none;
+	padding-block: 0.75rem;
+	padding-inline: 0.75rem;
+	position: relative;
+	resize: none;
+	width: 100%;
+
+	&::placeholder {
+		color: var(--text-color);
+		opacity: 0.5;
+	}
+
+	&:-webkit-autofill {
+		-webkit-box-shadow: none !important;
+		background-color: none !important;
+		box-shadow: none !important;
+		color: inherit;
+		transition: background-color 5000s ease-in-out 0s;
+	}
+
+	&:-webkit-autofill::first-line {
+		color: var(--text-color) !important;
+	}
+
+	&:active,
+	&:focus {
+		color: inherit;
+	}
+
+	&:focus {
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+		outline: none;
+	}
+}
+
+@mixin formHeading {
+	display: inline-block;
+	// *** update font variables
+	font-size: var(--font-size-smaller);
+	margin-bottom: 3rem;
+	position: relative;
+	@include headingGeneral;
+
+	@media (min-width: vars.$smallTablet) {
+		font-size: var(--font-size-small);
+	}
+
+	@media (min-width: vars.$tablet) {
+		font-size: var(--headline-medium);
+	}
+}
+
+@mixin formErrorMessage {
+	color: var(--error-color);
+	margin-top: -1.25rem;
+}
+
 @mixin wallpaperContainer {
 	align-items: center;
 	background: var(--neutral-bg-2);
@@ -347,6 +323,43 @@
 	padding-top: calc(vars.$navHeight + 2rem);
 	position: relative;
 	width: 100%;
+}
+
+@mixin formContent {
+	box-shadow: var(--box-shadow);
+	max-width: vars.$largeTablet;
+	width: 90%;
+
+	@media (min-width: vars.$desktop) {
+		width: 100%;
+	}
+}
+
+@mixin formFullWidth {
+	align-items: center;
+	background: var(--neutral-bg-1);
+	background: yellow;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin-inline: auto;
+	padding-inline: 2rem;
+	position: relative;
+	text-align: center;
+	z-index: 1;
+}
+
+@mixin formFullWidthInner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	max-width: vars.$tablet;
+	min-width: 100%;
+	padding-block: 3rem;
+
+	@media (min-width: vars.$smallTablet) {
+		padding-inline: 2rem;
+	}
 }
 
 // buttons, links and interactions
@@ -389,7 +402,7 @@
 }
 
 @mixin button {
-	background: var(--secondary-accent-color);
+	background: var(--accent-color);
 	border: none;
 	color: var(--button-text-color);
 	cursor: pointer;
@@ -482,7 +495,6 @@
 // accents and decorations
 @mixin afterAccent {
 	background: var(--accent-color);
-	background: var(--secondary-accent-color);
 	bottom: -0.35rem;
 	content: "";
 	height: 2.25px;
@@ -496,7 +508,7 @@
 }
 
 @mixin accentBar {
-	background: var(--secondary-accent-color);
+	background: var(--accent-color);
 	border-bottom-right-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 	box-shadow: var(--accentBarShadow);
@@ -665,6 +677,44 @@
 	position: absolute;
 	white-space: nowrap;
 	width: 1px;
+}
+
+@mixin button {
+	align-items: center;
+	background: var(--neutral-bg-1);
+	border: 2px solid var(--text-color);
+	color: var(--text-color);
+	cursor: pointer;
+	display: inline-flex;
+	font-size: var(--button-text-small);
+	font-weight: bold;
+	gap: 0.75rem;
+	font-weight: 200;
+	justify-content: center;
+	letter-spacing: 3px;
+	padding: 1rem 1.25rem;
+	transition: all 250 ease-in-out;
+
+	&:hover,
+	&:focus {
+		font-weight: 500;
+		outline: none;
+		@include hoverClickGrow;
+	}
+
+	&:active {
+		@include hoverClickShrink;
+	}
+
+	&:disabled {
+		opacity: 0.8;
+
+		&:hover {
+			transform: scale(1);
+			user-select: none;
+			cursor: default;
+		}
+	}
 }
 
 // visually hidden

@@ -9,4 +9,11 @@
 	&__inner {
 		@include mx.wallpaperContainer;
 	}
+
+	&__content {
+		@include mx.formContent;
+		& {
+			border: 2px solid red;
+		}
+	}
 }
