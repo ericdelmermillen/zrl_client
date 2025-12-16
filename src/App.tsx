@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { type IconType } from "./types/types";
+import { type IconType } from "./typing/types/types";
 import { useAppContext } from "./contexts/AppContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";

@@ -1,10 +1,8 @@
 import { type FC } from "react";
+import { type ClassNameInterface } from "../../typing/interfaces/interfaces";
 
-interface HideProps {
-  className?: string;
-}
 
-const Hide: FC<HideProps> = ({ className }) => {
+const Hide: FC<ClassNameInterface> = ({ className }) => {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

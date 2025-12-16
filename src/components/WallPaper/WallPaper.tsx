@@ -1,5 +1,5 @@
 import { type FC, useEffect, useState, memo } from "react";
-import { type IconType } from "../../types/types";
+import { type IconType } from "../../typing/types/types";
 import { useAppContext } from "../../contexts/AppContext";
 import { BsCpuFill, BsHddNetworkFill } from "react-icons/bs";
 import { FaDatabase, FaServer } from "react-icons/fa";

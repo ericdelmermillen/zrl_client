@@ -1,10 +1,7 @@
 import { type FC } from "react";
+import { type ClassNameInterface } from "../../typing/interfaces/interfaces";
 
-interface NightProps {
-  className?: string;
-}
-
-const Night_4: FC<NightProps> = ({ className }) => {
+const Night_4: FC<ClassNameInterface> = ({ className }) => {
   return (
     <>
       <svg

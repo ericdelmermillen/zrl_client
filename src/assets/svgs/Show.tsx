@@ -1,10 +1,8 @@
-import { type FC } from 'react';
+import { type FC } from "react";
+import { type ClassNameInterface } from "../../typing/interfaces/interfaces";
 
-interface ShowProps {
-  className?: string;
-}
 
-const Show: FC<ShowProps> = ({ className }) => {
+const Show: FC<ClassNameInterface> = ({ className }) => {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 

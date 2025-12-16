@@ -1,10 +1,8 @@
 import { type FC } from "react";
+import { type ClassNameInterface } from "../../typing/interfaces/interfaces";
 
-interface DayProps {
-  className?: string;
-}
 
-const Day_5: FC<DayProps> = ({ className }) => {
+const Day_5: FC<ClassNameInterface> = ({ className }) => {
   return (
     <>
       

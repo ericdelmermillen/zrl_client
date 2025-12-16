@@ -4,7 +4,6 @@ import "./Header_2.scss";
 
 const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
-
 const styleObj: CSSProperties = { "left": 0 };
 
 
