@@ -3,10 +3,10 @@ import {
   useRef, 
   useEffect, 
   type FC, 
-  type ReactNode, 
   type FormEvent, 
   type ChangeEvent 
 } from "react";
+import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
@@ -14,25 +14,14 @@ import Hide from "../../assets/svgs/Hide";
 import Show from "../../assets/svgs/Show";
 import "./LoginForm.scss";
 
-/* ---------------------------------------------
-   Browser detection
---------------------------------------------- */
+
 const isSafari: boolean =
   navigator.userAgent.toLowerCase().includes("safari") &&
   !navigator.userAgent.toLowerCase().includes("chrome") &&
   !navigator.userAgent.toLowerCase().includes("mozilla");
 
-/* ---------------------------------------------
-   Props
---------------------------------------------- */
-interface LoginFormProps {
-  children?: ReactNode;
-}
 
-/* ---------------------------------------------
-   Component
---------------------------------------------- */
-const LoginForm: FC<LoginFormProps> = ({ children }) => {
+const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);

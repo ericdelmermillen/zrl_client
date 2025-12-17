@@ -1,12 +1,10 @@
-import { type FC, type ReactNode } from 'react';
+import { type FC } from 'react';
+import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
 import "./Modal.scss";
 
-interface ModalProps {
-  children: ReactNode;
-};
 
-const Modal: FC<ModalProps> = ( { children }) => {
+const Modal: FC<ChildrenPropsInterface> = ( { children }) => {
   const { 
     showModal,
     setShowModal,

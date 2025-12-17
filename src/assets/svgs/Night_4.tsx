@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import { type ClassNameInterface } from "../../typing/interfaces/interfaces";
 
+
 const Night_4: FC<ClassNameInterface> = ({ className }) => {
   return (
     <>

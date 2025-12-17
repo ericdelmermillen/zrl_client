@@ -1,14 +1,12 @@
-import { type FC, type ReactNode, useEffect } from "react";
+import { type FC, useEffect } from "react";
+import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { scrollToTop } from "../../../utils/utils";
 import BackButton from "../../components/BackButton/BackButton";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.scss"
 
-interface LoginProps {
-  children?: ReactNode;
-}
 
-const Login: FC<LoginProps> = ({ children }) => {
+const Login: FC<ChildrenPropsInterface> = ({ children }) => {
 
   // scroll to top on mount
   useEffect(() => {
@@ -32,9 +30,7 @@ const Login: FC<LoginProps> = ({ children }) => {
             <LoginForm />
           </div>
 
-          
-        </div>
-        
+        </div>        
       </div>
     </>
   )};

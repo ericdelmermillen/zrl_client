@@ -1,14 +1,11 @@
-import { type FC, type ReactNode, useEffect } from "react";
+import { type FC, useEffect } from "react";
+import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { scrollToTop } from "../../../utils/utils";
 import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
 
 
-interface NotFoundProps {
-  children?: ReactNode;
-}
-
-const NotFound: FC<NotFoundProps> = ({ children }) => {
+const NotFound: FC<ChildrenPropsInterface> = ({ children }) => {
 
   // scroll to top on mount
   useEffect(() => {
