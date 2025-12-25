@@ -1,0 +1,20 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.admin {
+	& {
+		@include mx.page;
+	}
+
+	&__inner {
+		@include mx.wallpaperContainer;
+	}
+
+	&__content {
+		@include mx.formContent;
+	}
+
+	&__heading {
+		color: purple;
+	}
+}

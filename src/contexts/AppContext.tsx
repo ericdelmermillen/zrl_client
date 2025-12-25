@@ -17,7 +17,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
-  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
 
   const [ scrollYPos, setScrollYPos ] = useState(0);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);

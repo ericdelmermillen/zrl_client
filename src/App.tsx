@@ -27,6 +27,7 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
+import Admin from "./pages/Admin/Admin";
 
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
@@ -150,11 +151,28 @@ const App = (): JSX.Element => {
             element={
               <Login>
                 <WallPaper 
-                customIcons={LoginIconOptions}
+                  customIcons={LoginIconOptions}
                 />
               </Login>
             }
           />
+
+          {isLoggedIn
+
+            ? (
+                <Route
+                  path="/admin"
+                  element={
+                    <Admin>
+                      <WallPaper 
+                        customIcons={notFoundIconOptions}/>
+                    </Admin>
+                }/>
+              )
+            : null
+
+          }
+          
           <Route
             path="/*"
             element={
