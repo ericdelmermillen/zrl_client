@@ -1,18 +1,14 @@
-import { 
-  type FC, 
-  type FormEvent, 
-  type ChangeEvent,
-  useState, 
-  useRef, 
-  useEffect
-} from "react";
+import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
 import Hide from "../../assets/svgs/Hide";
 import Show from "../../assets/svgs/Show";
 import "./LoginForm.scss";
+
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 
 const isSafari: boolean =
@@ -22,83 +18,94 @@ const isSafari: boolean =
 
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [initialFormCheck, setInitialFormCheck] = useState<boolean>(false);
-  const [emailIsValid, setEmailIsValid] = useState<boolean>(true);
-  const [passwordIsValid, setPasswordIsValid] = useState<boolean>(true);
+  const { isLoading, setIsLoading, loginUser } = useAppContext();
+
+  const [ email, setEmail ] = useState<string>("");
+  const [ password, setPassword ] = useState<string>("");
+  const [ showPassword, setShowPassword ] = useState<boolean>(false);
+  const [ initialFormCheck, setInitialFormCheck ] = useState<boolean>(false);
+  const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
+  const [ passwordIsValid, setPasswordIsValid ] = useState<boolean>(true);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  
+  const navigate = useNavigate();
 
-  const { isLoading, loginUser } = useAppContext();
+  const handleTogglePasswordVisibility = (): void => setShowPassword(c => !c)
 
-  /* ---------------------------------------------
-     Handlers
-  --------------------------------------------- */
-  const handleTogglePasswordVisibility = (): void => {
-    setShowPassword(prev => !prev);
-  };
-
-  const handleEmailChange = (
-    e?: ChangeEvent<HTMLInputElement>
-  ): boolean => {
+  const handleEmailChange = (e?: ChangeEvent<HTMLInputElement>): boolean => {
     const emailValue =
       e?.target.value ?? emailRef.current?.value ?? "";
 
-    const valid = isValidEmail(emailValue);
+    const isValid = isValidEmail(emailValue);
 
     setEmail(emailValue);
-    setEmailIsValid(valid);
+    setEmailIsValid(isValid);
 
-    return valid;
+    return isValid;
   };
 
-  const handlePasswordChange = (
-    e?: ChangeEvent<HTMLInputElement>
-  ): boolean => {
+  const handlePasswordChange = (e?: ChangeEvent<HTMLInputElement>): boolean => {
     const passwordValue =
       e?.target.value ?? passwordRef.current?.value ?? "";
 
-    const valid = isValidPassword(passwordValue);
+    const isValid = isValidPassword(passwordValue);
 
     setPassword(passwordValue);
-    setPasswordIsValid(valid);
+    setPasswordIsValid(isValid);
 
-    return valid;
+    return isValid;
   };
 
-  const handleSubmit = async (
-    e: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    setIsLoading(true);
     setInitialFormCheck(true);
 
-    if (!handleEmailChange()) {
-      toast.error("Invalid email");
-      return;
-    }
+    let invalidInputs = 0;
 
-    if (!handlePasswordChange()) {
+    if(!handleEmailChange()) {
+      toast.error("Invalid email");
+      invalidInputs += 1;
+    };
+
+    if(!handlePasswordChange()) {
       toast.error("Invalid password");
+      invalidInputs += 1;
+    };
+
+    if(invalidInputs){
+      setIsLoading(false);
       return;
-    }
+    };
 
     // await loginUser(email, password);
-    loginUser()
+    
+    // const response = loginUser(email, password);
+
+    if(loginUser(email, password)) {
+      toast.success("Logging you in now...");
+      
+      setTimeout(() => {
+        setEmail("");
+        setPassword("");
+        navigate("/");
+      }, MIN_LOADING_INTERVAL)
+
+    } else {
+      toast.error("Email and/or Password incorrect");
+    };
+
+    setIsLoading(false)
   };
 
-  /* ---------------------------------------------
-     Effects
-  --------------------------------------------- */
+  // useEffect to focus email input on load
   useEffect(() => {
     emailRef.current?.focus();
   }, []);
 
-  /* ---------------------------------------------
-     Render
-  --------------------------------------------- */
+
   return (
     <section className="loginForm">
       <div className="loginForm__inner">
@@ -113,7 +120,6 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
         >
           {children}
 
-          {/* ---------------- Email ---------------- */}
           <div className="loginForm__field">
             <label htmlFor="email" className="loginForm__label">
               Email Address
@@ -146,7 +152,6 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
             )}
           </div>
 
-          {/* ---------------- Password ---------------- */}
           <div className="loginForm__field loginForm__field--password">
             <label htmlFor="password" className="loginForm__label">
               Password
@@ -194,7 +199,6 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
             )}
           </div>
 
-          {/* ---------------- Submit ---------------- */}
           <div className="loginForm__submit">
             <button
               type="submit"

@@ -1,47 +1,12 @@
-import type { ReactNode } from "react";
 import { useState, useEffect, createContext, useContext } from "react";
+import type { ColorMode, ModalType } from "../typing/types/types";
+import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
 import { scrollToTop } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
-type ColorMode = "light" | "dark";
-type ModalType = "privacy" | "terms";
-
-interface AppContextValue {
-  // state and state setting 
-  isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  colorMode: ColorMode;
-  setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>;
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  scrollYPos: number;
-  setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
-  windowWidth: number;
-  setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
-  prevScrollYPos: number;
-  setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-  modalType: ModalType | null;
-  setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
-  showDropdownNavOptions: boolean;
-  setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
-  navLinkClick: (optionName: string) => void;
-  // functions
-  // returns boolean?
-  loginUser: () => void
-  showNav: () => void;
-  toggleColorMode: () => void;
-  notFoundNavLinkClick: (to: string) => void;
-  hideNav: () => void;
-  logoutUser: () => void;
-  handleSetModalType: (modalType: ModalType) => void;
-};
-
-interface AppContextProviderProps {
-  children: ReactNode;
-};
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
@@ -75,7 +40,17 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   
   const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
 
-  const logoutUser = (): void => setIsLoggedIn(false);
+  const logoutUser = (): void => {
+    setIsLoading(true);
+    toast.success("Logging you out now.")
+    navigate("/")
+    setIsLoggedIn(false);
+
+    setTimeout(() => {
+      scrollToTop();
+      setIsLoading(false);
+    }, MIN_LOADING_INTERVAL);
+  };
 
   const toggleColorMode = () : void => {
     setColorMode(prev => prev === "light" ? "dark" : "light")
@@ -127,9 +102,17 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setModalType(modalType);
   };
 
-  const loginUser = () => {
-    console.log("logging you in now")
-  }
+  const loginUser = (email: string, password: string): boolean => {
+    
+    const expectedEmail = "ericdelmermillen@gmail.com";
+    const expectedPassword = "12345678";
+    
+    if(email === expectedEmail && password === expectedPassword) {
+      setIsLoggedIn(true);
+      return true;
+    };
+    return false;
+  };
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
@@ -187,7 +170,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     scrollToTop();
   }, []);
 
-  
 
   const contextValues = {
     // state
@@ -228,6 +210,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   );
 };
 
+// export this separately in hooks dir later
 const useAppContext = () => {
   const context = useContext(AppContext);
   if(!context) {
@@ -238,9 +221,5 @@ const useAppContext = () => {
 
 export { 
   AppContextProvider, 
-  useAppContext, 
-  type ColorMode, 
-  type ModalType,    
-  type AppContextValue, 
-  type AppContextProviderProps 
+  useAppContext
 };
