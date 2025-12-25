@@ -87,6 +87,7 @@ const Subscribe: FC = () => {
                   type="submit"
                   className="subscribe__submit"
                   onClick={handleSubmit}
+                  disabled={!agreeToPrivacy}
                 >
                   Submit
                 </button>
