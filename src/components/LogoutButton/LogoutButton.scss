@@ -25,10 +25,6 @@
 		@media (min-width: vars.$largeTablet) {
 			display: none;
 		}
-
-		@media (min-width: vars.$desktop) {
-			display: block;
-		}
 	}
 
 	&__icon {

@@ -165,7 +165,8 @@ const App = (): JSX.Element => {
                   element={
                     <Admin>
                       <WallPaper 
-                        customIcons={notFoundIconOptions}/>
+                        // customIcons={notFoundIconOptions}
+                      />
                     </Admin>
                 }/>
               )

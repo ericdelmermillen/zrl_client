@@ -1,12 +1,13 @@
 import { type FC, type ReactNode } from "react";
 import type { NavOption } from "../../interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext.tsx";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";
 import NavSocials from "../NavSocials/NavSocials.tsx";
 import Logo from "../../assets/svgs/Logo.tsx";
 import "./Nav.scss";
 
+const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
 
 interface NavProps {
   children?: ReactNode;
@@ -28,8 +29,19 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
 
+  const navigate = useNavigate();
+
 
   const handleToggleShowDropdownNav = (): void => setShowDropdownNavOptions(prev => !prev);
+
+  const handleHomeClick = (): void => {
+    navigate("/")
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        handleScrollToTop();
+      });
+    }, NAV_CLICK_DELAY)
+  };
 
 
   const handleScrollToTop = () => {
@@ -45,14 +57,12 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
       <nav className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
         <div className="nav__content">
 
-          <Link to={"/"}>
-            <div 
-              className="nav__logo-box"
-              onClick={isOnHome ? handleScrollToTop: undefined}
-            >
-              <Logo className={"nav__logo"}/>
-            </div>
-          </Link>
+          <div 
+            className="nav__logo-box"
+            onClick={isOnHome ? handleScrollToTop: handleHomeClick}
+          >
+            <Logo className={"nav__logo"}/>
+          </div>
         
           <ul className="nav__links">
 
@@ -71,11 +81,20 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
               )
             }
             
-            {!isLoggedIn ?
+            {isLoggedIn 
+              ? (
+                 <li>
+                    <div 
+                      className={`nav__link`} 
+                      onClick={() => navLinkClick("admin")}
+                    >
+                      ADMIN
+                    </div>
+                  </li>
 
-              <NavSocials />
+                )
 
-              : null
+              : <NavSocials />
 
             }
 

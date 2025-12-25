@@ -27,6 +27,7 @@
 
 	&__logo-box {
 		align-items: center;
+		cursor: pointer;
 		display: flex;
 		justify-content: center;
 		height: vars.$navHeight;
@@ -78,6 +79,7 @@
 		color: #5b8cb4;
 		color: #5f6874;
 		color: var(--navLink-color);
+		cursor: pointer;
 		font-family: var(--heading-font);
 		font-size: 1.25rem;
 		font-size: 1.5rem;

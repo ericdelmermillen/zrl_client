@@ -13,6 +13,7 @@ interface DropdownNavProps {
 const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
   
   const {
+    isLoggedIn,
     scrollYPos, 
     prevScrollYPos, 
     navLinkClick,
@@ -65,6 +66,20 @@ const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
                 </span>
               </li>
             )}
+
+              {isLoggedIn
+                ? (
+                    <li 
+                      className="dropdownNav__link"
+                      onClick={() => navLinkClick("admin")}
+                    >
+                      <span className="dropdownNav__link-text">
+                        ADMIN
+                      </span>
+                    </li>
+                  )
+                : null
+              }
               <li className="dropdownNav__link">{ children }</li>
 
           </ul>

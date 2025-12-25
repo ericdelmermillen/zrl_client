@@ -30,6 +30,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
+  const PAGE_NAV_CLICK_DELAY = import.meta.env.VITE_PAGE_NAV_CLICK_DELAY;
 
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
@@ -42,21 +43,32 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const logoutUser = (): void => {
     setIsLoading(true);
-    toast.success("Logging you out now.")
+    toast.success("Logging you out now...");
     navigate("/")
-    setIsLoggedIn(false);
-
+    
     setTimeout(() => {
       scrollToTop();
+      setShowDropdownNavOptions(false);
+      setIsLoggedIn(false);
       setIsLoading(false);
     }, MIN_LOADING_INTERVAL);
   };
 
   const toggleColorMode = () : void => {
     setColorMode(prev => prev === "light" ? "dark" : "light")
-  }
+  };
 
   const navLinkClick = (optionName: string): void => {
+    if(optionName.toLowerCase() === "admin") {
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          navigate("/admin");
+        });
+      }, windowWidth < 1080 ? PAGE_NAV_CLICK_DELAY : 0);
+      setShowDropdownNavOptions(false);
+      return;
+    };
+
     const link = document.createElement('a');
     link.href = `/#${optionName.toLowerCase()}`;
 
@@ -71,10 +83,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           link.click();
           hideNav();
         };
-        // console.log(NAV_CLICK_DELAY)
       });
+      setShowDropdownNavOptions(false);
     }, NAV_CLICK_DELAY);
-    setShowDropdownNavOptions(false);
   };
 
   const notFoundNavLinkClick = (to: string): void => {
