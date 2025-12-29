@@ -2,6 +2,7 @@ import { type FC, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { scrollToTop } from "../../../utils/utils";
 import "./Admin.scss"
+import WelcomeEmail from "../../components/WelcomeEmail/WelcomeEmail";
 
 
 const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
@@ -21,8 +22,9 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
     <>
       <div className="admin">
         <div className="admin__inner">
-          <h1 className="admin__heading">Admin</h1>
           { children }
+
+          <WelcomeEmail />          
           <div className="admin__content">
           </div>
 

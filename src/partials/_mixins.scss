@@ -191,12 +191,15 @@
 }
 
 @mixin page {
-	max-width: vars.$ultraWide;
+	max-width: 100%;
 	min-height: calc(100vh - (vars.$footerHeightMobile + 1px));
-	width: 100%;
 
 	@media (min-width: vars.$tablet) {
 		min-height: calc(100vh - vars.$footerHeight + 1px);
+	}
+
+	@media (min-width: vars.$ultraWide) {
+		max-width: vars.$ultraWide;
 	}
 }
 

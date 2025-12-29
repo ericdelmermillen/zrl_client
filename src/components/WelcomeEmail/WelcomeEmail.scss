@@ -1,0 +1,21 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.welcomeEmail {
+	& {
+		opacity: 1;
+		padding-block: 2rem;
+		min-height: 80vh;
+		border: 2px solid red;
+		width: 100%;
+	}
+
+	&__inner {
+		@include mx.sectionLayout;
+	}
+
+	&__heading {
+		margin-bottom: 2rem;
+		@include mx.sectionHeadingWithAccent;
+	}
+}
