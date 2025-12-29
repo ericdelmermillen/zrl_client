@@ -12,10 +12,15 @@
 
 	&__inner {
 		@include mx.sectionLayout;
+		& {
+			min-width: 90vw;
+		}
 	}
 
 	&__heading {
-		margin-bottom: 2rem;
 		@include mx.sectionHeadingWithAccent;
+		& {
+			margin-bottom: 2rem;
+		}
 	}
 }
