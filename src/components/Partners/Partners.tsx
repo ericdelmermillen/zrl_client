@@ -58,7 +58,7 @@ const Partners: FC = () => {
           secondsPerLoop={secondsPerLoop}
           direction="left"
           carouselAriaLabel="Horizontally scrolling list of web development topics"
-          />
+        />
       </div>
     </div>
   )};

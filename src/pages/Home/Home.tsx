@@ -20,6 +20,7 @@ const Home: FC = () => {
   return (
     <>
       <div className="home">
+
         <div className="home__inner">
           {/* <Header_1 /> */}
           <Header_2 />

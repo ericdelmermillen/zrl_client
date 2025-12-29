@@ -3,10 +3,10 @@
 
 .welcomeEmail {
 	& {
+		border: 2px solid red;
+		min-height: 80vh;
 		opacity: 1;
 		padding-block: 2rem;
-		min-height: 80vh;
-		border: 2px solid red;
 		width: 100%;
 	}
 

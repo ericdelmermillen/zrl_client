@@ -10,6 +10,12 @@
 	max-width: vars.$ultraWide;
 	overflow: hidden; // Ensure items overflow the sides inside the container
 
+	&__inner {
+		border: 2px dashed #333;
+		margin-inline: auto;
+		max-width: 99vw;
+	}
+
 	&[data-animated="true"] {
 		position: relative;
 

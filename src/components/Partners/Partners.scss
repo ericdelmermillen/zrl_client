@@ -12,6 +12,7 @@
 		display: flex;
 		flex-direction: column;
 		padding-block: 2rem;
+		overflow: hidden; // Ensure items overflow the sides inside the container
 	}
 
 	&__heading {
