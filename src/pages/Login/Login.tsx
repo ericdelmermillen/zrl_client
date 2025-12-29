@@ -1,7 +1,6 @@
 import { type FC, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { scrollToTop } from "../../../utils/utils";
-// import BackButton from "../../components/BackButton/BackButton";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.scss"
 
@@ -23,7 +22,6 @@ const Login: FC<ChildrenPropsInterface> = ({ children }) => {
     <>
       <div className="login">
         <div className="login__inner">
-          {/* <BackButton /> */}
           { children }
 
           <div className="login__content">

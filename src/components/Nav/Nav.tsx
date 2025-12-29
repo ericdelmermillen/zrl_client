@@ -31,7 +31,6 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
   const navigate = useNavigate();
 
-
   const handleToggleShowDropdownNav = (): void => setShowDropdownNavOptions(prev => !prev);
 
   const handleHomeClick = (): void => {
@@ -45,6 +44,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
 
   const handleScrollToTop = () => {
+    navigate("/");
     setIsLoading(true);
     setShowDropdownNavOptions(false);
     scrollToTop();

@@ -3,14 +3,37 @@ import { type IconType } from "./typing/types/types";
 import { useAppContext } from "./contexts/AppContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
-import { BiSolidCommentError, BiSolidLogInCircle } from "react-icons/bi";
+import { BiSolidCommentError } from "react-icons/bi";
 import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-import { FaCogs, FaExclamationTriangle, FaGlobeAmericas, FaIdCard } from "react-icons/fa";
-import { FaBugs, FaCode, FaLink, FaMicrochip, FaRobot, FaUserSecret } from "react-icons/fa6";
+import { 
+  FaChartBar,
+  FaClipboardList,
+  FaCog, 
+  FaCogs,
+  FaExclamationTriangle, 
+  FaFileAlt,
+  FaGlobeAmericas, 
+  FaIdCard, 
+  FaSyncAlt,
+  FaTachometerAlt,
+  FaTasks,
+  FaWrench 
+} from "react-icons/fa";
+import { 
+  FaBugs, 
+  FaChartLine, 
+  FaCode,
+  FaFolderOpen, 
+  FaLink, 
+  FaMicrochip, 
+  FaPowerOff,
+  FaRobot,
+  FaUserSecret 
+} from "react-icons/fa6";
 import { GiLightningArc } from "react-icons/gi";
 import { IoIosLock, IoMdKey } from "react-icons/io";
 import { IoFingerPrintOutline } from "react-icons/io5";
-import { MdOutlinePassword, MdOutlineSyncProblem, MdSecurity } from "react-icons/md";
+import { MdMonitor, MdOutlineSyncProblem, MdSecurity } from "react-icons/md";
 import { PiKeyhole, PiTerminal } from "react-icons/pi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
@@ -40,22 +63,37 @@ const navOptions = [
 ]
 
 const LoginIconOptions: IconType[] = [  
+  FaGlobeAmericas,
+  FaIdCard,
+  FaLink,
+  FaUserSecret,
+  IoFingerPrintOutline,
   IoIosLock,
   IoMdKey,
-  IoFingerPrintOutline,
-  TbFaceId,
-  FaUserSecret,
   MdSecurity,
-  FaIdCard,
-  RiSettings5Fill,
-  FaGlobeAmericas,
-  TbCloudLock,
-  FaLink,
+  PiKeyhole,
   PiTerminal,
-  BiSolidLogInCircle,
-  TbScan,
-  MdOutlinePassword,
-  PiKeyhole
+  RiSettings5Fill,
+  TbCloudLock,
+  TbFaceId,
+  TbScan
+];
+
+const AdminIconOptions: IconType[] = [  
+  FaChartBar,
+  FaChartLine,
+  FaClipboardList,
+  FaCog,
+  FaFileAlt,
+  FaFolderOpen,
+  FaPowerOff,
+  FaTachometerAlt,
+  FaTasks,
+  FaSyncAlt,
+  FaWrench,
+  MdMonitor,
+  PiTerminal,
+  RiSettings5Fill
 ];
 
 const notFoundIconOptions: IconType[] = [  
@@ -67,6 +105,7 @@ const notFoundIconOptions: IconType[] = [
   FaBugs,
   FaCode,
   FaCogs,
+  FaFileAlt,
   FaMicrochip,
   FaRobot,
   GiLightningArc,
@@ -165,8 +204,7 @@ const App = (): JSX.Element => {
                   element={
                     <Admin>
                       <WallPaper 
-                        // customIcons={notFoundIconOptions}
-                      />
+                        customIcons={AdminIconOptions}/>
                     </Admin>
                 }/>
               )

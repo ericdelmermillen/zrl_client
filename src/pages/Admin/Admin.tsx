@@ -23,7 +23,6 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
         <div className="admin__inner">
           <h1 className="admin__heading">Admin</h1>
           { children }
-
           <div className="admin__content">
           </div>
 
