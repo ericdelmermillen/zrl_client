@@ -8,14 +8,9 @@
 
 	&__inner {
 		@include mx.wallpaperContainer;
-	}
-
-	&__content {
-		@include mx.formContent;
-	}
-
-	&__heading {
-		color: purple;
-		width: 100%;
+		& {
+			flex-direction: column;
+			gap: 2rem;
+		}
 	}
 }
