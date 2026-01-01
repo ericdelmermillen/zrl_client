@@ -4,6 +4,11 @@
 .loginForm {
 	& {
 		@include mx.formFullWidth;
+		& {
+			min-height: 80vh;
+			border: 2px solid red;
+			min-width: 90vw;
+		}
 	}
 
 	&__inner {
