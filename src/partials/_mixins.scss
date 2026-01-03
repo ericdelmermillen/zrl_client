@@ -51,7 +51,7 @@
 	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
 	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.85);
 	--header-small-text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.85);
-	--header-small-text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.85);
+	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
 	// --header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
 	// --header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
 	// --header-small-text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
@@ -69,11 +69,14 @@
 	// --header-text-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.6);
 	// --header-text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
-	--header-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.95);
-	--header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.95);
-	--header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.8);
-	--header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-	--header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
+	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.65);
+	--header-text-shadow-lead: 0 3px 6px rgba(0, 0, 0, 0.65);
+	// --header-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.95);
+	// --header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.95);
+	// --header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.8);
+	// --header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+	// --header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
 	// --header-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
 	// Timing Variables
@@ -81,6 +84,12 @@
 	--placeholder-transition: all 0.75s ease-in-out;
 
 	// Font Sizes
+	// header fonts
+	--text-header-heading-sm: 2.3rem; // 30px - headlines
+	--text-header-lead-sm: 1.3rem; // 30px - headlines
+
+	// header fonts
+
 	--text-size-xs: 0.75rem; // 12px - fine print, captions
 	--text-size-sm: 0.875rem; // 14px - secondary text
 	--text-size-base: 1rem; // 16px - body text
@@ -413,28 +422,29 @@
 	border: none;
 	color: var(--button-text-color);
 	cursor: pointer;
+	color: red;
 	font-family: var(--heading-font);
 	font-size: var(--btn-text-xs);
-	font-weight: 600;
-	letter-spacing: var(--letter-spacing-sm);
-	padding: 0.5rem 1.25rem;
+	font-size: var(--btn-text-sm);
+	font-weight: 700;
+	letter-spacing: var(--letter-spacing-xl);
+	padding: 0.75rem 1.25rem;
 	text-align: center;
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
 
-	// &:hover {
-	// 	transform: translateY(-1px);
-	// 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-	// }
+	&:hover {
+		transform: translateY(-1px);
+	}
 
-	// &:active {
-	// 	transform: translateY(0);
-	// }
+	&:active {
+		transform: translateY(0);
+	}
 
-	// &:focus {
-	// 	outline: 2px solid rgba(0, 123, 255, 0.5);
-	// 	outline-offset: 2px;
-	// }
+	&:focus {
+		outline: 2px solid rgba(0, 123, 255, 0.5);
+		outline-offset: 2px;
+	}
 
 	&:visited {
 		color: var(--button-text-color);
@@ -684,44 +694,6 @@
 	position: absolute;
 	white-space: nowrap;
 	width: 1px;
-}
-
-@mixin button {
-	align-items: center;
-	background: var(--accent-color);
-	border: 2px solid var(--text-color);
-	color: var(--text-color);
-	cursor: pointer;
-	display: inline-flex;
-	font-size: var(--button-text-small);
-	font-weight: bold;
-	gap: 0.75rem;
-	font-weight: 200;
-	justify-content: center;
-	letter-spacing: 3px;
-	padding: 1rem 1.25rem;
-	transition: all 250 ease-in-out;
-
-	&:hover,
-	&:focus {
-		font-weight: 500;
-		outline: none;
-		@include hoverClickGrow;
-	}
-
-	&:active {
-		@include hoverClickShrink;
-	}
-
-	&:disabled {
-		opacity: 0.8;
-
-		&:hover {
-			transform: scale(1);
-			user-select: none;
-			cursor: default;
-		}
-	}
 }
 
 // visually hidden

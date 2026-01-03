@@ -22,6 +22,9 @@
 		opacity: 35%;
 		opacity: 40%;
 		opacity: 45%;
+		opacity: 50%;
+		opacity: 55%;
+		opacity: 60%;
 		position: absolute;
 		z-index: 0;
 	}
@@ -29,7 +32,6 @@
 	// *** inner for Header--web
 	&__inner {
 		align-items: center;
-		// border: 4px dashed #333;
 		background-repeat: no-repeat !important;
 		background-size: cover !important;
 		display: flex;
@@ -49,26 +51,60 @@
 		background: url("../../assets/images/header_1k.jpg");
 		background: url("../../assets/images/header_1l.jpg");
 		background: url("../../assets/images/header_1m.jpg");
-		background: url("../../assets/images/header_1n.jpg");
-		background: url("../../assets/images/header_1o.jpg");
-		background: url("../../assets/images/header_1p.jpg");
-		background: url("../../assets/images/header_1q.jpg");
-		background: url("../../assets/images/header_1r.jpg");
-		background: url("../../assets/images/header_1s.jpg");
-		background: url("../../assets/images/header_1t.jpg");
+		// background: url("../../assets/images/header_1n.jpg");
+		// background: url("../../assets/images/header_1o.jpg");
+		// background: url("../../assets/images/header_1p.jpg");
+		// background: url("../../assets/images/header_1q.jpg");
+		// background: url("../../assets/images/header_1r.jpg");
+		// background: url("../../assets/images/header_1s.jpg");
+		// background: url("../../assets/images/header_1t.jpg");
 		// background: url("../../assets/images/header_1u.jpg");
-		background: url("../../assets/images/header_1v.jpg");
-		background: url("../../assets/images/header_1w.jpg");
-		background: url("../../assets/images/header_1x.jpg");
-		background: url("../../assets/images/header_1y.jpg");
+		// background: url("../../assets/images/header_1v.jpg");
+		// background: url("../../assets/images/header_1w.jpg");
+		// background: url("../../assets/images/header_1x.jpg");
+		// background: url("../../assets/images/header_1y.jpg");
+		background: url("../../assets/images/header_1z.jpg");
+		// background: url("../../assets/images/header_1za.jpg");
+		background: url("../../assets/images/header_1zb.jpg");
+		background: url("../../assets/images/header_1zc.jpg");
+		// background: url("../../assets/images/header_1zd.jpg");
+		background: url("../../assets/images/header_1ze.jpg");
+		background: url("../../assets/images/header_1zf.jpg");
+		background: url("../../assets/images/header_1zg.jpg");
+		// background: url("../../assets/images/header_1zh.jpg");
+		background: url("../../assets/images/header_1zi.jpg");
+		background: url("../../assets/images/header_1zj.jpg");
+		background: url("../../assets/images/header_1zk.jpg");
+		background: url("../../assets/images/header_1zl.jpg");
+		background: url("../../assets/images/header_1zm.jpg");
+		background: url("../../assets/images/header_1zn.jpg");
+		background: url("../../assets/images/header_1zo.jpg");
+		background: url("../../assets/images/header_1zp.jpg");
+		background: url("../../assets/images/header_1zq.jpg");
+		background: url("../../assets/images/header_1zr.jpg");
+		background: url("../../assets/images/header_1zs.jpg");
+		background: url("../../assets/images/header_1zt.jpg");
+		background: url("../../assets/images/header_1zu.jpg");
+		background: url("../../assets/images/header_1zw.jpg");
+		background: url("../../assets/images/header_1zx.jpg");
+		background: url("../../assets/images/header_1zy.jpg");
+		background: url("../../assets/images/header_1zz.jpg");
+		background: url("../../assets/images/header_1zza.jpg");
+		background: url("../../assets/images/header_1zzb.jpg");
+		background: url("../../assets/images/header_1zzc.jpg");
+		background: url("../../assets/images/header_1zzd.jpg");
+		background: url("../../assets/images/header_1zze.jpg");
+		background: url("../../assets/images/header_1zzf.jpg");
 		background-position-x: center;
 		background-position-y: bottom;
 	}
 
 	&__accentBar {
-		box-shadow: var(--header-text-shadow);
-		margin-top: -1rem;
 		@include mx.accentBar;
+		& {
+			box-shadow: var(--header-text-shadow);
+			margin-top: -1rem;
+		}
 	}
 
 	&__left {
@@ -96,8 +132,8 @@
 			align-items: end;
 			margin-top: 2.5rem;
 			max-width: 50%;
-			width: 50%;
 			padding-inline-end: 8rem;
+			width: 50%;
 		}
 	}
 
@@ -132,10 +168,9 @@
 
 	&__heading {
 		font-family: var(--heading-font);
-		font-size: var(--text-size-2xl);
-		letter-spacing: var(--letter-spacing-4xl);
-		line-height: var(--line-height-2xl);
+		font-size: var(--text-header-heading-sm);
 		font-weight: 600;
+		letter-spacing: var(--letter-spacing-4xl);
 		line-height: var(--line-height-sm);
 		text-shadow: var(--header-text-shadow);
 		text-wrap: nowrap;
@@ -152,9 +187,10 @@
 
 	&__for {
 		font-family: var(--heading-font);
-		font-size: var(--text-size-2xl);
+		font-size: var(--text-header-heading-sm);
 		font-weight: 600;
-		letter-spacing: var(--letter-spacing-xl);
+		letter-spacing: var(--letter-spacing-2xl);
+		line-height: var(--line-height-2xl);
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: var(--text-size-3xl);
@@ -179,12 +215,12 @@
 
 	&__subheading {
 		font-family: var(--heading-font);
-		font-size: var(--text-size-xl);
+		line-height: 5rem;
 		font-weight: 600;
 		letter-spacing: var(--letter-spacing-2xl);
-		margin-bottom: 0.5rem;
+		line-height: var(--line-height-2xl);
+		margin-bottom: 1.25rem;
 		text-shadow: var(--header-text-shadow);
-		// color: blue;
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: var(--text-size-3xl);
@@ -207,11 +243,10 @@
 	}
 
 	&__solution {
-		// color: red;
 		font-family: var(--heading-font);
-		font-size: var(--text-size-2xl);
-		font-weight: 500;
-		letter-spacing: var(--letter-spacing-lg);
+		font-size: var(--text-header-heading-sm);
+		font-weight: 600;
+		line-height: var(--line-height-sm);
 		white-space: nowrap;
 
 		@media (min-width: vars.$smallTablet) {
@@ -225,14 +260,13 @@
 	}
 
 	&__lead {
-		font-size: var(--text-size-md);
-		font-size: var(--text-size-lg);
+		font-size: var(--text-header-lead-sm);
 		font-weight: 700;
+		letter-spacing: var(--letter-spacing-xl);
 		line-height: var(--line-height-lg);
-		margin-bottom: 1.5rem;
 		margin-bottom: 2.5rem;
 		max-width: min(90%, 25rem);
-		text-shadow: var(--header-small-text-shadow);
+		text-shadow: var(--header-text-shadow-lead);
 
 		@media (min-width: vars.$smallTablet) {
 			letter-spacing: var(--letter-spacing-2xl);
@@ -273,8 +307,10 @@
 	}
 
 	&__button {
-		box-shadow: var(--header-small-text-shadow);
-		margin-inline: auto;
 		@include mx.rounded-button;
+		& {
+			margin-inline: auto;
+			box-shadow: var(--header-small-text-shadow);
+		}
 	}
 }
