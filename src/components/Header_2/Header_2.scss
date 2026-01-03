@@ -1,6 +1,12 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
+// need:
+// better custom variable names for this component
+// responsive styling for all breakpoints
+// shadow for highlight bar and button
+// styling for button push, hover and focus
+
 .header {
 	& {
 		height: 100vh;
@@ -168,16 +174,24 @@
 
 	&__heading {
 		font-family: var(--heading-font);
-		font-size: var(--text-header-heading-sm);
+		font-size: var(--text-header-heading-xs);
 		font-weight: 600;
-		letter-spacing: var(--letter-spacing-4xl);
+		letter-spacing: var(--letter-spacing-3xl);
 		line-height: var(--line-height-sm);
 		text-shadow: var(--header-text-shadow);
 		text-wrap: nowrap;
 		white-space: wrap;
 
+		@media (min-width: vars.$smallPhone) {
+			font-size: var(--text-header-heading-sm);
+		}
+
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--text-size-3xl);
+			// font-size: var(--text-header-heading-sm);
+			// letter-spacing: var(--letter-spacing-3xl);
+			// line-height: var(--line-height-sm);
+			// text-shadow: var(--header-text-shadow);
+			opacity: 1;
 		}
 
 		@media (min-width: vars.$tablet) {
@@ -187,13 +201,21 @@
 
 	&__for {
 		font-family: var(--heading-font);
-		font-size: var(--text-header-heading-sm);
+		font-size: var(--text-header-heading-xs);
 		font-weight: 600;
-		letter-spacing: var(--letter-spacing-2xl);
+		letter-spacing: var(--letter-spacing-3xl);
 		line-height: var(--line-height-2xl);
 
+		@media (min-width: vars.$smallPhone) {
+			font-size: var(--text-header-heading-sm);
+		}
+
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--text-size-3xl);
+			//
+			font-size: var(--text-header-heading-sm);
+			letter-spacing: var(--letter-spacing-3xl);
+			line-height: var(--line-height-2xl);
+			opacity: 1;
 		}
 
 		@media (min-width: vars.$tablet) {
@@ -215,15 +237,23 @@
 
 	&__subheading {
 		font-family: var(--heading-font);
-		line-height: 5rem;
 		font-weight: 600;
-		letter-spacing: var(--letter-spacing-2xl);
+		letter-spacing: var(--letter-spacing-3xl);
 		line-height: var(--line-height-2xl);
 		margin-bottom: 1.25rem;
 		text-shadow: var(--header-text-shadow);
 
+		@media (min-width: vars.$smallPhone) {
+			font-size: var(--text-header-heading-sm);
+		}
+
 		@media (min-width: vars.$smallTablet) {
+			//
+			font-size: var(--text-header-heading-sm);
+			letter-spacing: var(--letter-spacing-3xl);
+			line-height: var(--line-height-2xl);
 			font-size: var(--text-size-3xl);
+			opacity: 1;
 		}
 
 		@media (min-width: vars.$mediumTablet) {
@@ -244,14 +274,26 @@
 
 	&__solution {
 		font-family: var(--heading-font);
-		font-size: var(--text-header-heading-sm);
+		font-size: var(--text-header-heading-xs);
 		font-weight: 600;
+		letter-spacing: var(--letter-spacing-3xl);
 		line-height: var(--line-height-sm);
 		white-space: nowrap;
 
+		@media (min-width: vars.$smallPhone) {
+			//
+			font-size: var(--text-header-heading-sm);
+			letter-spacing: var(--letter-spacing-3xl);
+			line-height: var(--line-height-sm);
+			opacity: 1;
+		}
+
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--text-size-3xl);
-			letter-spacing: var(--letter-spacing-lg);
+			//
+			font-size: var(--text-header-heading-sm);
+			letter-spacing: var(--letter-spacing-3xl);
+			line-height: var(--line-height-sm);
+			opacity: 1;
 		}
 
 		@media (min-width: vars.$tablet) {
@@ -260,7 +302,7 @@
 	}
 
 	&__lead {
-		font-size: var(--text-header-lead-sm);
+		font-size: var(--text-header-lead-xs);
 		font-weight: 700;
 		letter-spacing: var(--letter-spacing-xl);
 		line-height: var(--line-height-lg);
@@ -268,10 +310,18 @@
 		max-width: min(90%, 25rem);
 		text-shadow: var(--header-text-shadow-lead);
 
+		@media (min-width: vars.$smallPhone) {
+			font-size: var(--text-header-lead-sm);
+		}
+
 		@media (min-width: vars.$smallTablet) {
-			letter-spacing: var(--letter-spacing-2xl);
+			//
+			font-size: var(--text-header-lead-sm);
+			letter-spacing: var(--letter-spacing-xl);
+			line-height: var(--line-height-lg);
 			margin-bottom: 2rem;
 			max-width: 25rem;
+			opacity: 1;
 		}
 
 		@media (min-width: vars.$tablet) {
