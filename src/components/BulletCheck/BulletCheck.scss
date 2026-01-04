@@ -8,6 +8,14 @@
 		font-size: var(--text-size-md);
 		letter-spacing: var(--letter-spacing-md);
 		line-height: var(--line-height-md);
+
+		@media (min-width: vars.$tablet) {
+			letter-spacing: var(--letter-spacing-lg);
+		}
+
+		@media (min-width: vars.$desktop) {
+			font-size: var(--text-size-xl);
+		}
 	}
 
 	&__check {
@@ -25,9 +33,17 @@
 
 	&__heading {
 		display: block;
-		font-size: 1.125rem;
+		font-size: var(--text-size-lg);
 		font-weight: bold;
 		white-space: nowrap;
+
+		@media (min-width: vars.$tablet) {
+			letter-spacing: var(--letter-spacing-xl);
+		}
+
+		@media (min-width: vars.$desktop) {
+			font-size: var(--text-size-xl);
+		}
 	}
 
 	&__blurb {

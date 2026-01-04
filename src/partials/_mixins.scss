@@ -569,11 +569,16 @@
 
 @mixin sectionLayout {
 	align-items: center;
-	border: 2px dashed #fff;
+	// border: 2px dashed #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-inline: 2rem;
+	padding-inline: 1rem;
+
+	@media (min-width: vars.$smallTablet) {
+		opacity: 1;
+		// padding-inline: 2rem;
+	}
 }
 
 @mixin sectionHeading {
@@ -581,7 +586,7 @@
 	font-size: var(--text-size-lg);
 	font-weight: 600;
 	letter-spacing: var(--letter-spacing-lg);
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	position: relative;
 	white-space: nowrap;
 
@@ -595,13 +600,13 @@
 	@media (min-width: vars.$largeTablet) {
 		display: inline-block;
 		font-size: var(--text-size-2xl);
+		margin-bottom: 2rem;
 		margin-inline: auto;
 		color: purple;
 	}
 
 	@media (min-width: vars.$desktop) {
 		font-size: var(--text-size-3xl);
-		color: yellow;
 	}
 }
 
@@ -620,8 +625,12 @@
 	line-height: var(--line-height-md);
 	margin-bottom: 1rem;
 
-	@media (min-width: vars.$smallTablet) {
-		opacity: 1;
+	@media (min-width: vars.$tablet) {
+		font-size: var(--text-size-lg);
+	}
+
+	@media (min-width: vars.$desktop) {
+		font-size: var(--text-size-xl);
 	}
 }
 

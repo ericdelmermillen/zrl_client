@@ -3,17 +3,15 @@
 
 .moreInfoForm {
 	&__section {
+		height: 100%;
 		padding-bottom: 4rem;
 		padding-inline: 1rem;
 		padding-top: 1.5rem;
 		width: 100%;
 
 		@media (min-width: vars.$tablet) {
-			padding-block: 4rem;
+			padding-block: 0;
 			padding-inline: 2rem;
-		}
-
-		@media (min-width: vars.$mediumTablet) {
 		}
 	}
 
@@ -23,8 +21,10 @@
 		flex-direction: column;
 		height: 100%;
 		width: 100%;
+		min-height: 100%;
 
 		@media (min-width: vars.$mediumTablet) {
+			padding-block: 2rem;
 			padding-inline: 1rem;
 		}
 	}
@@ -35,7 +35,7 @@
 		justify-content: center;
 		margin-bottom: 1.5rem;
 		margin-inline: auto;
-		max-width: 28rem;
+		max-width: 32rem;
 		width: 100%;
 	}
 
@@ -46,7 +46,9 @@
 	&__input {
 		// need a bg color for the inputs: will remove border after
 		@include mx.input;
-		border: 2px solid blue;
+		& {
+			border: 2px solid blue;
+		}
 	}
 
 	&__submit {
@@ -57,10 +59,12 @@
 	}
 
 	&__submitButton {
-		margin-inline: auto;
-		max-width: 25rem;
-		width: 100%;
 		@include mx.rounded-button;
+		& {
+			margin-inline: auto;
+			max-width: 24rem;
+			width: 100%;
+		}
 
 		&.disabled {
 			// need disabled stylings
