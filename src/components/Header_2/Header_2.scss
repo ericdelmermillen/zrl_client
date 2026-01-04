@@ -1,12 +1,6 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
-// need:
-// better custom variable names for this component
-// responsive styling for all breakpoints
-// shadow for highlight bar and button
-// styling for button push, hover and focus
-
 .header {
 	& {
 		height: 100vh;
@@ -31,11 +25,12 @@
 		opacity: 50%;
 		opacity: 55%;
 		opacity: 60%;
+		opacity: 65%;
+		// opacity: 70%;
 		position: absolute;
 		z-index: 0;
 	}
 
-	// *** inner for Header--web
 	&__inner {
 		align-items: center;
 		background-repeat: no-repeat !important;
@@ -101,6 +96,9 @@
 		background: url("../../assets/images/header_1zzd.jpg");
 		background: url("../../assets/images/header_1zze.jpg");
 		background: url("../../assets/images/header_1zzf.jpg");
+		background: url("../../assets/images/header_1zzg.jpg");
+		background: url("../../assets/images/header_1zzh.jpg");
+		background: url("../../assets/images/header_1zzi.jpg");
 		background-position-x: center;
 		background-position-y: bottom;
 	}
@@ -137,8 +135,6 @@
 		@media (min-width: vars.$ultraWide) {
 			align-items: end;
 			margin-top: 2.5rem;
-			max-width: 50%;
-			padding-inline-end: 8rem;
 			width: 50%;
 		}
 	}
@@ -160,6 +156,14 @@
 
 		@media (min-width: vars.$largeTablet) {
 			max-width: 35rem;
+		}
+
+		@media (min-width: vars.$desktop) {
+			max-width: 37rem;
+		}
+
+		@media (min-width: vars.$ultraWide) {
+			max-width: 40rem;
 		}
 	}
 
@@ -187,15 +191,11 @@
 		}
 
 		@media (min-width: vars.$smallTablet) {
-			// font-size: var(--text-header-heading-sm);
-			// letter-spacing: var(--letter-spacing-3xl);
-			// line-height: var(--line-height-sm);
-			// text-shadow: var(--header-text-shadow);
-			opacity: 1;
+			font-size: var(--text-header-heading-md);
 		}
 
 		@media (min-width: vars.$tablet) {
-			font-size: var(--text-size-4xl);
+			font-size: var(--text-header-heading-lg);
 		}
 	}
 
@@ -211,32 +211,25 @@
 		}
 
 		@media (min-width: vars.$smallTablet) {
-			//
-			font-size: var(--text-header-heading-sm);
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-2xl);
-			opacity: 1;
+			font-size: var(--text-header-heading-md);
 		}
 
 		@media (min-width: vars.$tablet) {
-			font-size: var(--text-size-4xl);
-		}
-
-		@media (min-width: vars.$desktop) {
-			font-size: var(--text-size-4xl);
+			font-size: var(--text-header-heading-lg);
 		}
 	}
 
 	&__software {
 		display: none;
 
-		@media (min-width: vars.$mediumTablet) {
+		@media (min-width: vars.$tablet) {
 			display: inline;
 		}
 	}
 
 	&__subheading {
 		font-family: var(--heading-font);
+		font-size: var(--text-header-heading-xs);
 		font-weight: 600;
 		letter-spacing: var(--letter-spacing-3xl);
 		line-height: var(--line-height-2xl);
@@ -248,21 +241,11 @@
 		}
 
 		@media (min-width: vars.$smallTablet) {
-			//
-			font-size: var(--text-header-heading-sm);
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-2xl);
-			font-size: var(--text-size-3xl);
-			opacity: 1;
+			font-size: var(--text-header-heading-md);
 		}
 
 		@media (min-width: vars.$mediumTablet) {
-			font-size: var(--text-size-3xl);
-			margin-bottom: 0;
-		}
-
-		@media (min-width: vars.$largeTablet) {
-			margin-bottom: 1rem;
+			font-size: var(--text-header-heading-lg);
 		}
 	}
 
@@ -281,23 +264,15 @@
 		white-space: nowrap;
 
 		@media (min-width: vars.$smallPhone) {
-			//
 			font-size: var(--text-header-heading-sm);
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-sm);
-			opacity: 1;
 		}
 
 		@media (min-width: vars.$smallTablet) {
-			//
-			font-size: var(--text-header-heading-sm);
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-sm);
-			opacity: 1;
+			font-size: var(--text-header-heading-md);
 		}
 
-		@media (min-width: vars.$tablet) {
-			font-size: var(--text-size-4xl);
+		@media (min-width: vars.$mediumTablet) {
+			font-size: var(--text-header-heading-lg);
 		}
 	}
 
@@ -315,44 +290,24 @@
 		}
 
 		@media (min-width: vars.$smallTablet) {
-			//
-			font-size: var(--text-header-lead-sm);
-			letter-spacing: var(--letter-spacing-xl);
-			line-height: var(--line-height-lg);
+			font-size: var(--text-header-lead-md);
 			margin-bottom: 2rem;
 			max-width: 25rem;
-			opacity: 1;
 		}
 
 		@media (min-width: vars.$tablet) {
-			font-size: var(--text-size-xl);
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-md);
+			font-size: var(--text-header-lead-lg);
 			margin-bottom: 2.25rem;
 			max-width: 80%;
 		}
 
 		@media (min-width: vars.$mediumTablet) {
-			font-size: var(--text-size-xl);
-			letter-spacing: var(--letter-spacing-2xl);
-			line-height: var(--line-height-lg);
 			margin-bottom: 2.5rem;
-			max-width: 80%;
 		}
 
 		@media (min-width: vars.$largeTablet) {
-			font-size: var(--text-size-xl);
-			letter-spacing: var(--letter-spacing-2xl);
-			line-height: var(--line-height-xl);
+			font-size: var(--text-header-lead-xl);
 			margin-bottom: 2.5rem;
-			max-width: 80%;
-		}
-
-		@media (min-width: vars.$desktop) {
-			letter-spacing: var(--letter-spacing-3xl);
-			line-height: var(--line-height-lg);
-			margin-bottom: 2.5rem;
-			max-width: 80%;
 		}
 	}
 
@@ -360,7 +315,7 @@
 		@include mx.rounded-button;
 		& {
 			margin-inline: auto;
-			box-shadow: var(--header-small-text-shadow);
+			box-shadow: var(--header-text-shadow);
 		}
 	}
 }

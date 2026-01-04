@@ -37,7 +37,7 @@ const Header_2: FC = () => {
             <div className="header__text">
               <h1 className="header__heading"><span className="header__software">Software</span> Solutions</h1>
               <h2 className="header__subheading">
-                <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 480 
+                <span className="header__for">For </span><br className="header__break"></br><span className="header__solution">{solutions[solutionIdx] === "Small Business" && windowWidth < 500 
                   ? "SMEs"
                   : solutions[solutionIdx]
                 }</span>
