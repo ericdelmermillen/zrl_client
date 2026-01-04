@@ -33,6 +33,7 @@ const getLoopDuration = (width: number): number => {
 const Partners: FC = () => {
   const [ windowWidth, setWindowWidth ] = useState<number>(window.innerWidth);
 
+  // useEffect to handle window 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);

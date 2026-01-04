@@ -122,8 +122,8 @@
 		max-width: 80%;
 		position: relative;
 		text-align: center;
-		z-index: 1;
 		width: 100%;
+		z-index: 1;
 
 		@media (min-width: vars.$desktop) {
 			align-items: end;

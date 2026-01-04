@@ -1,4 +1,4 @@
-import { type FC, useRef, useEffect } from 'react';
+import { type FC, useRef, useEffect } from "react";
 import "./Carousel.scss";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

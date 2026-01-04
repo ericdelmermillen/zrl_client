@@ -579,15 +579,29 @@
 @mixin sectionHeading {
 	font-family: var(--heading-font);
 	font-size: var(--text-size-lg);
+	font-weight: 600;
 	letter-spacing: var(--letter-spacing-lg);
 	margin-bottom: 2rem;
 	position: relative;
 	white-space: nowrap;
 
 	@media (min-width: vars.$tablet) {
-		margin-inline: auto;
 		display: inline-block;
+		font-size: var(--text-size-xl);
 		margin-inline: auto;
+		color: green;
+	}
+
+	@media (min-width: vars.$largeTablet) {
+		display: inline-block;
+		font-size: var(--text-size-2xl);
+		margin-inline: auto;
+		color: purple;
+	}
+
+	@media (min-width: vars.$desktop) {
+		font-size: var(--text-size-3xl);
+		color: yellow;
 	}
 }
 
