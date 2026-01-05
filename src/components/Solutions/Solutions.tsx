@@ -11,7 +11,7 @@ import "./Solutions.scss";
 const solutions: SolutionsData[] = [
     { 
     image: solution_1,
-    title: "Brand Identity and Product Design",
+    title: "Brand Identity & Product Design",
     text: "We design visual identities and interface systems that keep your product consistent across software, web, and marketing touchpoints. Branding and UI work together to create clarity and trust.",
     tag: "DESIGN",
     alt: "Workspace showing a brand design system displayed on a desktop monitor, with color palettes, logo variations, and supporting materials arranged on a desk."
@@ -32,7 +32,7 @@ const solutions: SolutionsData[] = [
   },
   { 
     image: solution_4,
-    title: "Sales and Workflow Automation",
+    title: "Sales & Workflow Automation",
     text: "We create focused tools that support sales workflows, automate repetitive tasks, and improve collaboration. The goal is to remove friction and give teams software they actually enjoy using.",
     tag: "OPERATIONS",
     alt: "Desktop monitor displaying a sales and workflow automation dashboard with process flows, charts, and activity summaries in a modern workspace."
@@ -62,6 +62,7 @@ const Solutions: FC = () => {
                 title={solution.title}
                 text={solution.text}
                 tag={solution.tag}
+                alt={solution.alt}
               />
             )}
 

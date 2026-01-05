@@ -3,7 +3,6 @@
 
 .solution {
 	& {
-		border: 2px solid red;
 		width: 100%;
 
 		@media (min-width: vars.$tablet) {
@@ -22,12 +21,15 @@
 
 	&__title {
 		color: #fff;
-		font-weight: 600;
+		font-size: var(--text-size-md);
+		font-weight: 500;
 		letter-spacing: var(--letter-spacing-md);
+		line-height: var(--line-height-md);
 		margin-block: 1rem;
 	}
 
 	&__text {
+		font-size: var(--text-size-md);
 		letter-spacing: var(--letter-spacing-sm);
 		line-height: var(--line-height-md);
 		margin-bottom: 1rem;

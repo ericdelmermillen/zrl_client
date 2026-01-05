@@ -6,9 +6,10 @@ interface SolutionProps {
   title: string;
   text: string;
   tag: string;
+  alt: string;
 }
 
-const Solution: FC<SolutionProps> = ({ img, title, text, tag }) => {
+const Solution: FC<SolutionProps> = ({ img, title, text, tag, alt }) => {
   return (
     <>
       <article className="solution">
@@ -16,7 +17,7 @@ const Solution: FC<SolutionProps> = ({ img, title, text, tag }) => {
           <img 
             className="solution__image"
             src={img} 
-            alt={title} 
+            alt={alt} 
           />
           <h3 className="solution__title">{title}</h3>
           <p className="solution__text">{text}</p>
