@@ -14,30 +14,32 @@ interface SolutionData {
 };
 
 const solutions: SolutionData[] = [
+    { 
+    image: solution_1,
+    title: "Brand Identity and Product Design",
+    text: "We design visual identities and interface systems that keep your product consistent across software, web, and marketing touchpoints. Branding and UI work together to create clarity and trust.",
+    tag: "DESIGN",
+  },
+    { 
+    image: solution_2,
+    title: "Customer-Facing Web Applications",
+    text: "We build modern web applications that help you engage customers and deliver clear, polished digital experiences. Interfaces are designed with usability, performance, and consistency in mind from the start.",
+    tag: "EXPERIENCE",
+  },
   { 
-    image: solution_1, 
-    title: "ERP Solutions",
-    text: "Our ERP software solution streamlines your business processes and enhances operational efficiency. With integrated modules for finance, human resources, and more, you can make data-driven decisions.",
+    image: solution_3,
+    title: "Custom Internal Tools",
+    text: "We design and build internal tools that simplify workflows, reduce manual effort, and improve visibility across your business. From dashboards to admin interfaces, everything is shaped around how your team actually works.",
     tag: "MANAGEMENT",
   },
+
   { 
-    image: solution_2, 
-    title: "CRM Software Solutions",
-    text: "Our CRM software solution helps you build stronger customer relationships and drive sales growth. Manage leads, track interactions, and deliver personalized experiences to maximize customer satisfaction and loyalty.",
-    tag: "MARKETING",
+    image: solution_4,
+    title: "Sales and Workflow Automation",
+    text: "We create focused tools that support sales workflows, automate repetitive tasks, and improve collaboration. The goal is to remove friction and give teams software they actually enjoy using.",
+    tag: "OPERATIONS",
   },
-  { 
-    image: solution_3, 
-    title: "SFA Software Solutions",
-    text: "Our SFA software solution empowers your sales team with the tools they need to drive revenue growth. Streamline sales processes, track performance, and enhance collaboration to close deals faster.",
-    tag: "MANAGEMENT",
-  },
-  { 
-    image: solution_4, 
-    title: "WMS Software Solutions",
-    text: "Our WMS software solution optimizes your warehouse operations and improves inventory management. Gain real-time visibility, automate processes, and reduce costs to ensure efficient logistics.",
-    tag: "MARKETING",
-  }
+
 ];
 
 const Solutions: FC = () => {
@@ -49,7 +51,7 @@ const Solutions: FC = () => {
             Solutions
           </h2>
           <p className="solutions__lead">
-            Zidgy Road Labs Provides Software Solutions For Business Acceleration
+            <span className="solutions__lead-stem">We Design and Build </span> Custom Software Tailored to Your Business
           </p>
 
           <div className="solutions__container">

@@ -20,6 +20,14 @@
 		@include mx.sectionLead;
 	}
 
+	&__lead-stem {
+		display: none;
+
+		@media (min-width: vars.$tablet) {
+			display: contents;
+		}
+	}
+
 	&__container {
 		border: 2px dashed #333;
 		display: flex;

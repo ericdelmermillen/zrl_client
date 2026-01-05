@@ -22,15 +22,19 @@
 
 	&__title {
 		color: #fff;
+		font-weight: 600;
+		letter-spacing: var(--letter-spacing-md);
 		margin-block: 1rem;
 	}
 
 	&__text {
-		line-height: var(--line-height-sm);
+		letter-spacing: var(--letter-spacing-sm);
+		line-height: var(--line-height-md);
 		margin-bottom: 1rem;
 	}
 
 	&__tag {
 		border: 2px solid #333;
+		letter-spacing: var(--letter-spacing-md);
 	}
 }
