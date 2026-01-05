@@ -1,5 +1,5 @@
 import { type FC, type ReactNode } from "react";
-import type { NavOption } from "../../interfaces/interfaces";
+import type { NavOption } from "../../typing/interfaces/interfaces.ts";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";

@@ -1,7 +1,7 @@
 import { type FC, type ReactNode, useRef, useEffect } from "react";
+import type { NavOption } from "../../typing/interfaces/interfaces.js";
 import { useAppContext } from "../../contexts/AppContext.js";
 import { useLocation } from "react-router-dom";
-import type { NavOption } from "../../interfaces/interfaces";
 import "./DropdownNav.scss";
 
 

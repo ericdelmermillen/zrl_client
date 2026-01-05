@@ -44,3 +44,16 @@ export interface ClassNameInterface {
 export interface ChildrenPropsInterface {
   children?: ReactNode;
 }
+
+export interface NavOption {
+  id: number;
+  optionName: string;
+}
+
+export interface SolutionsData {
+  image: string;
+  title: string;
+  text: string;
+  tag: string;
+  alt: string;
+};
