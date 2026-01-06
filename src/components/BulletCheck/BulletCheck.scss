@@ -10,6 +10,7 @@
 		line-height: var(--line-height-md);
 
 		@media (min-width: vars.$tablet) {
+			font-size: var(--text-size-lg);
 			letter-spacing: var(--letter-spacing-lg);
 		}
 

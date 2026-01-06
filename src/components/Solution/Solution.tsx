@@ -1,13 +1,7 @@
 import { type FC } from 'react';
+import type { SolutionProps } from "../../typing/interfaces/interfaces";
 import "./Solution.scss";
 
-interface SolutionProps {
-  img: string;
-  title: string;
-  text: string;
-  tag: string;
-  alt: string;
-}
 
 const Solution: FC<SolutionProps> = ({ img, title, text, tag, alt }) => {
   return (

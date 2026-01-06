@@ -50,6 +50,14 @@ export interface NavOption {
   optionName: string;
 }
 
+export interface SolutionProps {
+  img: string;
+  title: string;
+  text: string;
+  tag: string;
+  alt: string;
+}
+
 export interface SolutionsData {
   image: string;
   title: string;

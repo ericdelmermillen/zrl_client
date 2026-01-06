@@ -36,8 +36,7 @@ const solutions: SolutionsData[] = [
     text: "We create focused tools that support sales workflows, automate repetitive tasks, and improve collaboration. The goal is to remove friction and give teams software they actually enjoy using.",
     tag: "OPERATIONS",
     alt: "Desktop monitor displaying a sales and workflow automation dashboard with process flows, charts, and activity summaries in a modern workspace."
-  },
-
+  }
 ];
 
 const Solutions: FC = () => {

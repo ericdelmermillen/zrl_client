@@ -1,5 +1,5 @@
 import { type FC, type ChangeEvent } from "react";
-import type { ModalType } from "../../contexts/AppContext";
+import type { ModalType } from "../../typing/types/types";
 import "./LabelledCheckbox.scss";
 
 

@@ -3,7 +3,8 @@
 
 .details {
 	& {
-		padding-block: 2rem;
+		padding-bottom: 2rem;
+		padding-top: vars.$navHeight;
 		background: yellow;
 	}
 
