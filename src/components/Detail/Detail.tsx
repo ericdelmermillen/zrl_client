@@ -6,8 +6,7 @@ import "./Detail.scss";
 
 
 const Detail: FC<DetailProps> = ({
-  detailHeadingShort,
-  detailHeadingFull,
+  detailHeading,
   detailLead,
   bullets,
   detailImg,
@@ -30,15 +29,15 @@ const Detail: FC<DetailProps> = ({
       <div className="detail__accentBar" style={accentBarStyle}></div>
 
       <div className="detail__text">
-        <h3 className="detail__heading">{detailHeadingShort}</h3>
+        <h3 className="detail__heading">{detailHeading}</h3>
         <p className="detail__lead">{detailLead}</p>
 
         <ul className="detail__points">
           {bullets.map((bullet, idx) => (
             <BulletCheck
               key={idx}
-              bulletHeadingShort={detailHeadingShort}
-              bulletHeadingFull={detailHeadingFull}
+              bulletHeadingShort={bullet.bulletHeadingShort}
+              bulletHeadingFull={bullet.bulletHeadingFull}
               bulletBlurb={bullet.bulletBlurb}
             />
           ))}

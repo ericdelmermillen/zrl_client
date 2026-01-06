@@ -94,8 +94,7 @@ export interface DetailData {
 }
 
 export interface DetailProps {
-  detailHeadingShort: string;
-  detailHeadingFull: string;
+  detailHeading: string;
   detailLead: string;
   bullets: Bullet[];
   detailImg: string;

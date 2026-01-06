@@ -57,8 +57,7 @@ const Details: FC = () => {
           <Detail
             key={idx}
             idx={idx}
-            detailHeadingShort={detail.detailHeading}
-            detailHeadingFull={detail.detailHeading}
+            detailHeading={detail.detailHeading}
             detailLead={detail.detailLead}
             bullets={detail.bullets}
             detailImg={detail.detailImg}
