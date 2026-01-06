@@ -1,25 +1,13 @@
 import { type FC } from 'react';
+import { type DetailProps } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
 import BulletCheck from '../BulletCheck/BulletCheck';
 import "./Detail.scss";
 
-interface Bullet {
-  bulletHeading: string;
-  bulletBlurb: string;
-}
-
-interface DetailProps {
-  detailHeading: string;
-  detailLead: string;
-  bullets: Bullet[];
-  detailImg: string;
-  idx: number;
-  imgDesc: string
-}
-
 
 const Detail: FC<DetailProps> = ({
-  detailHeading,
+  detailHeadingShort,
+  detailHeadingFull,
   detailLead,
   bullets,
   detailImg,
@@ -42,14 +30,15 @@ const Detail: FC<DetailProps> = ({
       <div className="detail__accentBar" style={accentBarStyle}></div>
 
       <div className="detail__text">
-        <h3 className="detail__heading">{detailHeading}</h3>
+        <h3 className="detail__heading">{detailHeadingShort}</h3>
         <p className="detail__lead">{detailLead}</p>
 
         <ul className="detail__points">
           {bullets.map((bullet, idx) => (
             <BulletCheck
               key={idx}
-              bulletHeading={bullet.bulletHeading}
+              bulletHeadingShort={detailHeadingShort}
+              bulletHeadingFull={detailHeadingFull}
               bulletBlurb={bullet.bulletBlurb}
             />
           ))}

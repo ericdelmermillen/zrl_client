@@ -8,6 +8,10 @@
 		background: yellow;
 	}
 
+	&__heading {
+		@include mx.sectionHeadingWithAccent;
+	}
+
 	&__inner {
 		@include mx.sectionLayout;
 	}

@@ -1,25 +1,24 @@
-import { type FC } from 'react';
-import Detail from '../Detail/Detail';
-// import { useAppContext } from "../../contexts/AppContext";
+import { type FC } from "react";
+import { type DetailData } from "../../typing/interfaces/interfaces";
+import Detail from "../Detail/Detail";
 import detailsImg_1 from "../../assets/images/details-1.jpg";
 import detailsImg_2 from "../../assets/images/details-2.jpg";
 import "./Details.scss";
 
-const Details: FC = () => {
-  // const { windowWidth } = useAppContext();
 
-  const details = [
+  const details: DetailData[] = [
     {
-      // detailHeading: windowWidth < 480 ? "Evaluation" : "Evaluation & Deployment",
       detailHeading: "Evaluation & Deployment",
       detailLead: "We offer comprehensive evaluation and deployment services to ensure a smooth and successful implementation of our software solutions.",
       bullets: [
         {
-          bulletHeading: "Evaluation & Deployment:",
+          bulletHeadingShort: "Evaluation:",
+          bulletHeadingFull: "Evaluation & Deployment:",
           bulletBlurb: "We tailor our solutions to align with your unique business needs",
         },
         {
-          bulletHeading: "Seamless Integration:",
+          bulletHeadingShort: "Integration:",
+          bulletHeadingFull: "Seamless Integration:",
           bulletBlurb: "Our team ensures smooth integration of the software into your existing infrastructure, minimizing disruptions",
         },
       ],
@@ -31,11 +30,13 @@ const Details: FC = () => {
       detailLead: "We provide comprehensive maintenance and support services to ensure the smooth and uninterrupted operation of your software solutions.",
       bullets: [
         {
-          bulletHeading: "Proactive Maintenance:",
+          bulletHeadingShort: "Proactive Maintenance:",
+          bulletHeadingFull: "Proactive Maintenance:",
           bulletBlurb: "We proactively monitor and maintain your software solutions to prevent issues and optimize performance.",
         },
         {
-          bulletHeading: "Timely Updates:",
+          bulletHeadingShort: "Timely Updates:",
+          bulletHeadingFull: "Timely Updates:",
           bulletBlurb: "We ensure your software is up to date with the latest features, security patches, and enhancements.",
         },
       ],
@@ -43,6 +44,9 @@ const Details: FC = () => {
       imgDesc: "description of second details image"
     }
   ];
+
+
+const Details: FC = () => {
 
   return (
     <section className="details" id="details">
@@ -53,7 +57,8 @@ const Details: FC = () => {
           <Detail
             key={idx}
             idx={idx}
-            detailHeading={detail.detailHeading}
+            detailHeadingShort={detail.detailHeading}
+            detailHeadingFull={detail.detailHeading}
             detailLead={detail.detailLead}
             bullets={detail.bullets}
             detailImg={detail.detailImg}

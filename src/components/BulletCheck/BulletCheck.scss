@@ -34,9 +34,13 @@
 
 	&__heading {
 		display: block;
-		font-size: var(--text-size-lg);
+		font-size: var(--text-size-md);
 		font-weight: bold;
 		white-space: nowrap;
+
+		@media (min-width: vars.$smallTablet) {
+			letter-spacing: var(--letter-spacing-lg);
+		}
 
 		@media (min-width: vars.$tablet) {
 			letter-spacing: var(--letter-spacing-xl);
@@ -44,6 +48,22 @@
 
 		@media (min-width: vars.$desktop) {
 			font-size: var(--text-size-xl);
+		}
+
+		&--short {
+			display: block;
+
+			@media (min-width: vars.$smallPhone) {
+				display: none;
+			}
+		}
+
+		&--full {
+			display: none;
+
+			@media (min-width: vars.$smallPhone) {
+				display: block;
+			}
 		}
 	}
 

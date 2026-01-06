@@ -1,16 +1,19 @@
 import{ type FC } from 'react';
 import BulletCheck from '../BulletCheck/BulletCheck';
 import "./MoreInfoText.scss";
+import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
 
 
-const solutions = [
+const moreInfoPoint: MoreInfoTextData[] = [
   {
-    title: "Customized Solutions:",
-    description: "Our solutions are designed to meet your specific business needs, ensuring maximum efficiency and productivity.",
+    titleShort: "Customized Solutions:",
+    titleFull: "Customized Solutions Long:",
+    description: "Our solutions are designed to meet your specific business needs, ensuring maximum efficiency and productivity."
   },
   {
-    title: "Seamless Integration:",
-    description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows.",
+    titleShort: "Seamless Integration:",
+    titleFull: "Seamless Integration Long:",
+    description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows."
   }
 ];
 
@@ -28,19 +31,20 @@ const MoreInfoText:FC = () => {
 
            <ul className="moreInfoText__solutions">
 
-              {solutions.map((solution, idx) => (
+              {moreInfoPoint.map((point, idx) => (
 
                 <BulletCheck 
                   key={idx}
-                  bulletHeading={solution.title}
-                  bulletBlurb={solution.description}
+                  bulletHeadingShort={point.titleShort}
+                  bulletHeadingFull={point.titleFull}
+                  bulletBlurb={point.description}
                 />
+
               ))}
             
             </ul>
         </div>
       </article>
-      
     </>
   )};
 

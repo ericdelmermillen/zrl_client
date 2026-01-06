@@ -1,15 +1,14 @@
 import {type FC } from 'react';
+import { type BulletCheckProps } from "../../typing/interfaces/interfaces"
 import { FaCheck } from 'react-icons/fa6';
 import "./BulletCheck.scss"
 
 
-interface BulletCheckProps {
-  bulletHeading: string;
-  bulletBlurb: string;
-}
-
-
-const BulletCheck: FC<BulletCheckProps> = ({ bulletHeading, bulletBlurb }) => {
+const BulletCheck: FC<BulletCheckProps> = ({ 
+  bulletHeadingShort, 
+  bulletHeadingFull, 
+  bulletBlurb 
+}) => {
 
   return (
     <>
@@ -20,16 +19,18 @@ const BulletCheck: FC<BulletCheckProps> = ({ bulletHeading, bulletBlurb }) => {
         </i>
 
         <div className="bulletCheck__text">
-          <h3 className="bulletCheck__heading">
-            {bulletHeading}
-          </h3>{" "}
+          <h3 className="bulletCheck__heading bulletCheck__heading--short">
+            {bulletHeadingShort}
+          </h3>
+          <h3 className="bulletCheck__heading bulletCheck__heading--full">
+            {bulletHeadingFull}
+          </h3>
           <p className="bulletCheck__blurb">
           {bulletBlurb}
           </p>
         </div> 
 
       </li>
-      
     </>
   )};
 

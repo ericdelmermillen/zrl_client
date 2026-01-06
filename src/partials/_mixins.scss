@@ -246,6 +246,38 @@
 	margin-bottom: 1rem;
 }
 
+@mixin cardTitleHeading {
+	color: green;
+	font-size: var(--text-size-md);
+	font-weight: 700;
+	letter-spacing: var(--letter-spacing-md);
+	line-height: var(--line-height-lg);
+	margin-block: 1rem;
+
+	@media (min-width: vars.$tablet) {
+		font-size: var(--text-size-lg);
+	}
+
+	@media (min-width: vars.$desktop) {
+		font-size: var(--text-size-xl);
+	}
+}
+
+@mixin cardTextBlurb {
+	font-size: var(--text-size-md);
+	letter-spacing: var(--letter-spacing-md);
+	line-height: var(--line-height-md);
+	margin-bottom: 2rem;
+
+	@media (min-width: vars.$tablet) {
+		font-size: var(--text-size-lg);
+	}
+
+	@media (min-width: vars.$desktop) {
+		font-size: var(--text-size-xl);
+	}
+}
+
 @mixin form {
 	display: flex;
 	flex: 1;

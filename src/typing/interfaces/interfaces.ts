@@ -23,7 +23,6 @@ export interface AppContextValue {
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
   // functions
-  // returns boolean?
   loginUser: (email: string, password: string) => boolean;
   showNav: () => void;
   toggleColorMode: () => void;
@@ -50,9 +49,16 @@ export interface NavOption {
   optionName: string;
 }
 
+export interface MoreInfoTextData {
+  titleShort: string;
+  titleFull: string;
+  description: string;
+}
+
 export interface SolutionProps {
   img: string;
-  title: string;
+  shortTitle: string;
+  fullTitle: string;
   text: string;
   tag: string;
   alt: string;
@@ -60,8 +66,39 @@ export interface SolutionProps {
 
 export interface SolutionsData {
   image: string;
-  title: string;
+  shortTitle: string;
+  fullTitle: string;
   text: string;
   tag: string;
   alt: string;
 };
+
+export interface Bullet {
+  bulletHeadingShort: string;
+  bulletHeadingFull: string;
+  bulletBlurb: string;
+};
+
+export interface BulletCheckProps {
+  bulletHeadingShort: string;
+  bulletHeadingFull: string;
+  bulletBlurb: string;
+}
+
+export interface DetailData {
+  detailHeading: string;
+  detailLead: string;
+  bullets: Bullet[];
+  detailImg: string;
+  imgDesc: string;
+}
+
+export interface DetailProps {
+  detailHeadingShort: string;
+  detailHeadingFull: string;
+  detailLead: string;
+  bullets: Bullet[];
+  detailImg: string;
+  idx: number;
+  imgDesc: string
+}
