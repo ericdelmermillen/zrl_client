@@ -6,42 +6,36 @@
 		display: flex;
 		flex-basis: 0;
 		flex-direction: column;
+		margin-bottom: 2rem;
 		position: relative;
 		width: 100%;
-		border: 2px solid red;
 
 		@media (min-width: vars.$largeTablet) {
-			flex-direction: row;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			margin-bottom: 1rem;
+		}
+
+		@media (min-width: vars.$desktop) {
+			margin-bottom: 4rem;
 		}
 	}
 
 	&__accentBar {
 		box-shadow: var(--header-text-shadow);
-		// margin-top: -1rem;
 	}
 
 	&__text {
-		padding-block: 1rem;
-		// padding-inline: 4rem;
+		margin-bottom: 1rem;
 		width: 100%;
-
-		@media (min-width: vars.$largeTablet) {
-			width: 50%;
-		}
 	}
 
 	&__heading {
 		@include mx.cardTitleHeading;
-		& {
-			margin-bottom: 0;
-		}
 	}
 
-	&__text {
+	&__lead {
 		@include mx.cardTextBlurb;
-		& {
-			margin-bottom: 0;
-		}
 	}
 
 	&__points {
@@ -56,16 +50,15 @@
 		display: flex;
 		flex-grow: 1;
 		justify-content: center;
-		// padding-inline: 1rem;
 		width: 100%;
-
-		@media (min-width: vars.$largeTablet) {
-			padding-block: 1rem;
-			width: 50%;
-		}
 	}
 
 	&__image {
 		@include mx.cardImg;
+		& {
+			@media (min-width: vars.$largeTablet) {
+				padding-inline: 2rem;
+			}
+		}
 	}
 }

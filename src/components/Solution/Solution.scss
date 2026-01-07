@@ -6,11 +6,11 @@
 .solution {
 	& {
 		display: stretch;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		width: 100%;
 
 		@media (min-width: vars.$mediumTablet) {
-			width: 50%;
+			margin-bottom: 1rem;
 		}
 	}
 
@@ -18,15 +18,6 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		padding-block: 1rem;
-
-		@media (min-width: vars.$tablet) {
-			padding-inline: 1rem;
-		}
-
-		@media (min-width: vars.$desktop) {
-			padding-block: 2rem;
-		}
 	}
 
 	&__image {

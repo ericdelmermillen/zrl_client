@@ -4,7 +4,7 @@ import Details from "../../components/Details/Details";
 import Expertise from "../../components/Expertise/Expertise";
 import Header_2 from "../../components/Header_2/Header_2";
 import MoreInfo from "../../components/MoreInfo/MoreInfo";
-import Partners from "../../components/Partners/Partners";
+// import Partners from "../../components/Partners/Partners";
 import Solutions from "../../components/Solutions/Solutions";
 import Subscribe from "../../components/Subscribe/Subscribe";
 import "./Home.scss";
@@ -25,7 +25,7 @@ const Home: FC = () => {
           {/* <Header_1 /> */}
           <Header_2 />
           <main className="home__main">
-            <Partners />
+            {/* <Partners /> */}
             <MoreInfo />
             <Solutions />
             <Details />

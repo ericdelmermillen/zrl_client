@@ -63,7 +63,9 @@ const Details: FC = () => {
             detailImg={detail.detailImg}
             imgDesc={detail.imgDesc}
           />
+
         ))}
+        
       </div>
     </section>
   )};

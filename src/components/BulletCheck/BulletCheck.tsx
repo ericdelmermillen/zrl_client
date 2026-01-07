@@ -1,10 +1,10 @@
 import {type FC } from 'react';
-import { type BulletCheckProps } from "../../typing/interfaces/interfaces"
+import { type Bullet } from "../../typing/interfaces/interfaces"
 import { FaCheck } from 'react-icons/fa6';
 import "./BulletCheck.scss"
 
 
-const BulletCheck: FC<BulletCheckProps> = ({ 
+const BulletCheck: FC<Bullet> = ({ 
   bulletHeadingShort, 
   bulletHeadingFull, 
   bulletBlurb 

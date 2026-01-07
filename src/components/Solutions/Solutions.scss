@@ -3,7 +3,6 @@
 
 .solutions {
 	& {
-		padding-bottom: 2rem;
 		padding-top: vars.$navHeight;
 	}
 
@@ -20,6 +19,9 @@
 
 	&__lead {
 		@include mx.sectionLead;
+		& {
+			margin-bottom: 2rem;
+		}
 	}
 
 	&__lead-stem {
@@ -38,8 +40,9 @@
 		width: 100%;
 
 		@media (min-width: vars.$mediumTablet) {
-			flex-direction: row;
-			padding-inline: 1rem;
+			display: grid;
+			gap: 2rem;
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 }

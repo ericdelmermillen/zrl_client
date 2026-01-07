@@ -79,12 +79,6 @@ export interface Bullet {
   bulletBlurb: string;
 };
 
-export interface BulletCheckProps {
-  bulletHeadingShort: string;
-  bulletHeadingFull: string;
-  bulletBlurb: string;
-}
-
 export interface DetailData {
   detailHeading: string;
   detailLead: string;
@@ -93,11 +87,6 @@ export interface DetailData {
   imgDesc: string;
 }
 
-export interface DetailProps {
-  detailHeading: string;
-  detailLead: string;
-  bullets: Bullet[];
-  detailImg: string;
+export interface DetailProps extends DetailData {
   idx: number;
-  imgDesc: string
 }

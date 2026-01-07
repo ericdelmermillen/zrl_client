@@ -5,17 +5,10 @@
 	& {
 		color: var(--text-color);
 		padding-top: vars.$navHeight;
-
-		@media (min-width: vars.$mediumTablet) {
-			// margin-bottom: 4rem;
-		}
 	}
 
 	&__inner {
 		@include mx.sectionLayout;
-		& {
-			padding-inline: 2rem;
-		}
 
 		@media (min-width: vars.$largeTablet) {
 			flex-direction: row;

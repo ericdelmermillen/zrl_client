@@ -209,20 +209,7 @@
 	width: 100%;
 }
 
-@mixin page {
-	max-width: 100%;
-	min-height: calc(100vh - (vars.$footerHeightMobile + 1px));
-
-	@media (min-width: vars.$tablet) {
-		min-height: calc(100vh - vars.$footerHeight + 1px);
-	}
-
-	@media (min-width: vars.$ultraWide) {
-		max-width: vars.$ultraWide;
-	}
-}
-
-@mixin inner {
+@mixin appInner {
 	align-items: center;
 	box-shadow: var(--box-shadow);
 	display: flex;
@@ -234,6 +221,19 @@
 
 	@media (min-width: vars.$tablet) {
 		min-height: calc(100vh - vars.$footerHeight);
+	}
+}
+
+@mixin page {
+	max-width: 100%;
+	min-height: calc(100vh - (vars.$footerHeightMobile + 1px));
+
+	@media (min-width: vars.$tablet) {
+		min-height: calc(100vh - vars.$footerHeight + 1px);
+	}
+
+	@media (min-width: vars.$ultraWide) {
+		max-width: vars.$ultraWide;
 	}
 }
 
@@ -605,11 +605,30 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-inline: 1rem;
+	margin-inline: 2rem;
+
+	@media (min-width: vars.$smallPhone) {
+		margin-inline: 2rem;
+	}
 
 	@media (min-width: vars.$smallTablet) {
-		opacity: 1;
-		// padding-inline: 2rem;
+		margin-inline: 2rem;
+	}
+
+	@media (min-width: vars.$tablet) {
+		margin-inline: 3rem;
+	}
+
+	@media (min-width: vars.$largeTablet) {
+		margin-inline: 4rem;
+	}
+
+	@media (min-width: vars.$desktop) {
+		margin-inline: 6rem;
+	}
+
+	@media (min-width: vars.$ultraWide) {
+		margin-inline: 8rem;
 	}
 }
 

@@ -7,12 +7,12 @@ import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
 const moreInfoPoint: MoreInfoTextData[] = [
   {
     titleShort: "Customized Solutions:",
-    titleFull: "Customized Solutions Long:",
+    titleFull: "Customized Solutions:",
     description: "Our solutions are designed to meet your specific business needs, ensuring maximum efficiency and productivity."
   },
   {
     titleShort: "Seamless Integration:",
-    titleFull: "Seamless Integration Long:",
+    titleFull: "Seamless Integration:",
     description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows."
   }
 ];
