@@ -6,14 +6,13 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
-		padding-block: 4rem;
-		padding-inline: 2rem;
 	}
 
 	&__inner {
 		@include mx.sectionLayout;
 		& {
 			max-width: 45rem;
+			margin-bottom: 2rem;
 		}
 	}
 
@@ -23,6 +22,10 @@
 
 	&__lead {
 		@include mx.sectionLead;
+		& {
+			line-height: var(--line-height-lg);
+			margin-bottom: 2rem;
+		}
 
 		@media (min-width: vars.$tablet) {
 			text-align: center;
@@ -62,24 +65,28 @@
 	}
 
 	&__button-container {
+		display: flex;
+		padding-inline: 2rem;
 		width: 100%;
 
-		@media (min-width: vars.$tablet) {
-			padding-inline: 2rem;
-		}
-
 		@media (min-width: vars.$mediumTablet) {
-			display: flex;
 			padding-inline: 0;
 			width: auto;
 		}
 	}
 
+	&__terms {
+		margin-bottom: 2rem;
+	}
+
 	&__submit {
-		border: 2px dashed #333;
-		margin-top: 1rem;
-		width: 100%;
 		@include mx.rounded-button;
+		& {
+			margin-inline: auto !important;
+			margin-top: 2rem;
+			max-width: 20rem;
+			width: 100%;
+		}
 
 		@media (min-width: vars.$mediumTablet) {
 			@include mx.button;

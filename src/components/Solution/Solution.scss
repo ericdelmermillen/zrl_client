@@ -1,8 +1,6 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
-// need to make each solution and inner the same height
-
 .solution {
 	& {
 		display: stretch;
@@ -28,7 +26,7 @@
 		@include mx.cardTitleHeading;
 
 		&--short {
-			display: block;
+			// display: block;
 
 			@media (min-width: vars.$smallPhone) {
 				display: none;
@@ -49,18 +47,6 @@
 	}
 
 	&__tag {
-		background: var(--accent-color);
-		color: var(--button-text-color);
-		font-size: var(--text-size-sm);
-		font-weight: 700;
-		padding: var(--tag-padding);
-		border-radius: 4px;
-		letter-spacing: var(--letter-spacing-xl);
-		margin-top: auto;
-		width: fit-content;
-
-		@media (min-width: vars.$mediumTablet) {
-			font-size: var(--text-size-md);
-		}
+		@include mx.cardTag;
 	}
 }

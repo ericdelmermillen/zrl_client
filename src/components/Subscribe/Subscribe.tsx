@@ -89,23 +89,27 @@ const Subscribe: FC = () => {
                   onClick={handleSubmit}
                   disabled={!agreeToPrivacy}
                 >
-                  Submit
+                  SUBMIT
                 </button>
 
               </div>
             </div>
 
-            <LabelledCheckbox 
-              labelId={"subscribeFormTerms"}
-              labelText={"privacy policy"}
-              isChecked={agreeToPrivacy}
-              setIsChecked={setAgreeToPrivacy}
-              isValid={initialFormCheck}
-              modalType={"privacy"}
-              spanStub={"Agree to the "}
-              spanLinkText={"privacy policy"}
-              onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
-            />
+            <div className="subscribe__terms">
+
+              <LabelledCheckbox 
+                labelId={"subscribeFormTerms"}
+                labelText={"privacy policy"}
+                isChecked={agreeToPrivacy}
+                setIsChecked={setAgreeToPrivacy}
+                isValid={initialFormCheck}
+                modalType={"privacy"}
+                spanStub={"Agree to the "}
+                spanLinkText={"privacy policy"}
+                onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+              />
+              
+            </div>
             
           </form>
 

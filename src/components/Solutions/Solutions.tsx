@@ -11,7 +11,7 @@ import "./Solutions.scss";
 const solutions: SolutionsData[] = [
     { 
     image: solution_1,
-    shortTitle: "Branding & Product Design",
+    shortTitle: "Brand & Product Design",
     fullTitle: "Brand Identity & Product Design",
     text: "We design visual identities and interface systems that keep your product consistent across software, web, and marketing touchpoints. Branding and UI work together to create clarity and trust.",
     tag: "DESIGN",
@@ -19,7 +19,7 @@ const solutions: SolutionsData[] = [
   },
     { 
     image: solution_2,
-    shortTitle: "Customer-Facing Web Apps",
+    shortTitle: "Customer-Facing Apps",
     fullTitle: "Customer-Facing Web Applications",
     text: "We build modern web applications that help you engage customers and deliver clear, polished digital experiences. Interfaces are designed with usability, performance, and consistency in mind from the start.",
     tag: "EXPERIENCE",
@@ -52,7 +52,7 @@ const Solutions: FC = () => {
             Solutions
           </h2>
           <p className="solutions__lead">
-            <span className="solutions__lead-stem">We Design and Build </span> Custom Software Tailored to Your Business
+            <span className="solutions__lead-stem">We Design and Build </span> Custom Software Tailored to Your Needs
           </p>
 
           <div className="solutions__container">

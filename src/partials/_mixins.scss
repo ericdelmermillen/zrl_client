@@ -137,6 +137,10 @@
 	--overlay: rgba(0, 0, 0, 0.125);
 	--overlay-dark-bg: rgba(0, 0, 0, 0.5) 0;
 
+	// layout spacing
+	// navHeight - 1 rem = 3rem
+	--section-top-padding: 3rem;
+
 	// need:
 	// --box-shadow
 	// --text-color
@@ -148,7 +152,6 @@
 	// --background-nav-footer
 	// --navFooter-box-shadow
 	// --background-color
-
 	&[data-color-mode="light"] {
 		color: red;
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
@@ -237,7 +240,6 @@
 	}
 }
 
-// *** change this to use underscore thing
 @mixin headingGeneral {
 	font-family: var(--heading-font);
 	font-size: var(--font-size-xs);
@@ -249,7 +251,7 @@
 @mixin cardTitleHeading {
 	color: green;
 	font-size: var(--text-size-md);
-	font-weight: 700;
+	font-weight: 600;
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-lg);
 	margin-block: 1rem;
@@ -260,6 +262,22 @@
 
 	@media (min-width: vars.$desktop) {
 		font-size: var(--text-size-xl);
+	}
+}
+
+@mixin cardTag {
+	background: var(--accent-color);
+	color: var(--button-text-color);
+	font-size: var(--text-size-sm);
+	font-weight: 700;
+	padding: var(--tag-padding);
+	border-radius: 4px;
+	letter-spacing: var(--letter-spacing-xl);
+	margin-top: auto;
+	width: fit-content;
+
+	@media (min-width: vars.$mediumTablet) {
+		font-size: var(--text-size-md);
 	}
 }
 
@@ -467,7 +485,7 @@
 	font-family: var(--heading-font);
 	font-size: var(--btn-text-xs);
 	font-weight: 700;
-	letter-spacing: var(--letter-spacing-xl);
+	letter-spacing: var(--letter-spacing-2xl);
 	padding: var(--btn-padding);
 	text-align: center;
 	text-decoration: none;
@@ -606,6 +624,7 @@
 	flex-direction: column;
 	justify-content: center;
 	margin-inline: 2rem;
+	border: 2px solid red;
 
 	@media (min-width: vars.$smallPhone) {
 		margin-inline: 2rem;

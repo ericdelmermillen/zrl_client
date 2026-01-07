@@ -3,7 +3,7 @@
 
 .solutions {
 	& {
-		padding-top: vars.$navHeight;
+		padding-top: var(--section-top-padding);
 	}
 
 	&__inner {
