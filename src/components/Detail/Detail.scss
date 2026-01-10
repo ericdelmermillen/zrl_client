@@ -11,23 +11,36 @@
 		width: 100%;
 
 		@media (min-width: vars.$largeTablet) {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
+			display: flex;
+			flex-direction: row;
 			margin-bottom: 1rem;
 		}
 
 		@media (min-width: vars.$desktop) {
 			margin-bottom: 4rem;
 		}
-	}
 
-	&__accentBar {
-		box-shadow: var(--header-text-shadow);
+		&--odd {
+			@media (min-width: vars.$largeTablet) {
+				display: flex;
+				flex-direction: row-reverse;
+			}
+		}
 	}
 
 	&__text {
 		margin-bottom: 1rem;
 		width: 100%;
+
+		&--even {
+			@media (min-width: vars.$largeTablet) {
+				padding-inline-end: 2rem;
+			}
+		}
+
+		&--odd {
+			padding-inline-start: 3rem;
+		}
 	}
 
 	&__heading {
@@ -55,10 +68,5 @@
 
 	&__image {
 		@include mx.cardImg;
-		& {
-			@media (min-width: vars.$largeTablet) {
-				padding-inline: 2rem;
-			}
-		}
 	}
 }

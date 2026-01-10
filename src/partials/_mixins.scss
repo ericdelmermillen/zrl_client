@@ -29,6 +29,7 @@
 
 	// border & box shadow
 	--border-radius: 4px;
+	--border-radius-card-image: 8px;
 	--accent-bar-border-radius: 0.25rem;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	// *** Header Overlay
@@ -603,14 +604,10 @@
 	background: var(--accent-color);
 	bottom: -0.35rem;
 	content: "";
-	height: 2.25px;
 	height: 2px;
-	// transform: translateX(-50%);
-	// height: 2px;
 	left: 0;
 	position: absolute;
 	right: 0;
-	// width: 95%;
 }
 
 @mixin accentBar {
@@ -681,8 +678,8 @@
 @mixin sectionHeadingWithAccent {
 	@include sectionHeading;
 	&::after {
-		width: 3rem;
 		@include afterAccent;
+		width: 3rem;
 	}
 }
 
@@ -805,7 +802,7 @@
 // basic UI elements
 @mixin cardImg {
 	aspect-ratio: 16/9;
-	border-radius: 8px;
+	border-radius: var(--border-radius-card-image);
 	max-width: 100%;
 	object-fit: cover;
 	object-position: center center;

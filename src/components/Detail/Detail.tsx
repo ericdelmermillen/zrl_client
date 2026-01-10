@@ -1,7 +1,6 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 import { type DetailProps } from "../../typing/interfaces/interfaces";
-import { useAppContext } from "../../contexts/AppContext";
-import BulletCheck from '../BulletCheck/BulletCheck';
+import BulletCheck from "../BulletCheck/BulletCheck";
 import "./Detail.scss";
 
 
@@ -12,23 +11,15 @@ const Detail: FC<DetailProps> = ({
   detailImg,
   idx,
   imgDesc
-}) => {
+  }) => {
 
-  const { windowWidth } = useAppContext()
   const isEven = idx % 2 === 0;
 
-  const detailStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: windowWidth < 1080 ? "column" : isEven ? "row" : "row-reverse",
-  };
-
-  const accentBarStyle: React.CSSProperties = isEven ? { left: 0 } : { right: 0 };
 
   return (
-    <div className="detail" style={detailStyle}>
-      <div className="detail__accentBar" style={accentBarStyle}></div>
+    <div className={`detail ${!isEven && "detail--odd"}`} >
 
-      <div className="detail__text">
+      <div className={`detail__text ${isEven ? "detail__text--even" : "detail__text--odd"}`}>
         <h3 className="detail__heading">{detailHeading}</h3>
         <p className="detail__lead">{detailLead}</p>
 

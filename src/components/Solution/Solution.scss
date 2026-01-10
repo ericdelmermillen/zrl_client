@@ -26,8 +26,6 @@
 		@include mx.cardTitleHeading;
 
 		&--short {
-			// display: block;
-
 			@media (min-width: vars.$smallPhone) {
 				display: none;
 			}

@@ -17,10 +17,6 @@
 		display: none;
 	}
 
-	&.tall {
-		z-index: 2;
-	}
-
 	&__inner {
 		background: var(--navFooter-bg);
 		max-height: 3rem;
@@ -34,6 +30,7 @@
 	}
 
 	&.tall &__inner {
+		// use a different box shadow here: name isn't good
 		box-shadow: var(--accentBarShadow);
 		max-height: 40rem;
 	}
@@ -42,22 +39,19 @@
 		overflow-y: hidden;
 	}
 
-	&__links {
-		color: var(--text-color);
-	}
-
 	&__link {
-		align-items: center;
-		background: var(--background-color);
-		color: var(--accent-color);
-		border-bottom: 2px solid var(--text-color);
-		display: flex;
-		height: 4.5rem;
-		justify-content: center;
-		margin-inline: auto;
-		outline: none;
-		position: relative;
 		@include mx.navLink;
+		& {
+			align-items: center;
+			background: var(--background-color);
+			border-bottom: 2px solid var(--text-color);
+			display: flex;
+			height: 4.5rem;
+			justify-content: center;
+			margin-inline: auto;
+			outline: none;
+			position: relative;
+		}
 
 		@media (min-width: vars.$largeTablet) {
 			background: var(--navAndFooterBG);
@@ -69,6 +63,7 @@
 		&--hidden {
 			margin-inline: auto;
 			min-height: 3rem;
+			opacity: 0;
 			position: relative;
 			white-space: nowrap;
 			width: 1px;

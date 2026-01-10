@@ -1,6 +1,6 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 import type { SolutionsData } from "../../typing/interfaces/interfaces";
-import Solution from '../Solution/Solution';
+import Solution from "../Solution/Solution";
 import solution_1 from "../../assets/images/solution-1.jpg";
 import solution_2 from "../../assets/images/solution-2.jpg";
 import solution_3 from "../../assets/images/solution-3.jpg";

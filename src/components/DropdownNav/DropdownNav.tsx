@@ -1,17 +1,11 @@
-import { type FC, type ReactNode, useRef, useEffect } from "react";
-import type { NavOption } from "../../typing/interfaces/interfaces.js";
+import { type FC, useRef, useEffect } from "react";
+import type { NavProps } from "../../typing/interfaces/interfaces.js";
 import { useAppContext } from "../../contexts/AppContext.js";
 import { useLocation } from "react-router-dom";
 import "./DropdownNav.scss";
 
 
-interface DropdownNavProps {
-  navOptions: NavOption[]; // not optional and properly typed
-  children: ReactNode;
-}
-
-const DropdownNav: FC<DropdownNavProps> = ({ children, navOptions }) => {
-  
+const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
   const {
     isLoggedIn,
     scrollYPos, 

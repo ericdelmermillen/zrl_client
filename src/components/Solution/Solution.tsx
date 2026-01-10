@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 import type { SolutionProps } from "../../typing/interfaces/interfaces";
 import "./Solution.scss";
 

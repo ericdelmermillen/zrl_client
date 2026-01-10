@@ -30,7 +30,7 @@ import "./Details.scss";
       detailLead: "We provide comprehensive maintenance and support services to ensure the smooth and uninterrupted operation of your software solutions.",
       bullets: [
         {
-          bulletHeadingShort: "Proactive Maintenance:",
+          bulletHeadingShort: "Active Maintenance:",
           bulletHeadingFull: "Proactive Maintenance:",
           bulletBlurb: "We proactively monitor and maintain your software solutions to prevent issues and optimize performance.",
         },

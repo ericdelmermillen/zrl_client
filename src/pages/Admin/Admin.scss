@@ -13,8 +13,8 @@
 	&__content {
 		@include mx.pageContent;
 		& {
-			z-index: 1;
 			background: orange;
+			z-index: 0;
 		}
 	}
 }
