@@ -7,12 +7,9 @@
 		padding-top: var(--section-top-padding);
 	}
 
-	&__heading {
-		@include mx.sectionHeadingWithAccent;
-	}
-
 	&__inner {
-		@include mx.sectionLayout;
+		display: flex;
+		flex-direction: column;
 	}
 
 	&__heading {

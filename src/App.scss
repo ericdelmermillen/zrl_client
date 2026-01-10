@@ -1,6 +1,8 @@
 @use "./partials/_mixins.scss" as mx;
 @use "./partials/_variables.scss" as vars;
 
+// need loading spinner or animation for .loading div
+
 *,
 *::before,
 *::after {
@@ -23,7 +25,6 @@ body {
 		text-rendering: optimizeLegibility;
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
-		// temporary
 		overflow-x: hidden;
 	}
 }
@@ -64,13 +65,14 @@ select {
 	}
 
 	&:focus {
-		outline: 2px solid var(--accent-color, #007acc);
+		// outline: 2px solid var(--accent-color, #007acc);
+		outline: 2px solid var(--accent-color);
 		outline-offset: 2px;
 	}
 
 	&:disabled {
-		opacity: 0.6;
 		cursor: not-allowed;
+		opacity: 0.6;
 	}
 }
 
@@ -131,7 +133,6 @@ img {
 
 			@media (min-width: vars.$largeTablet) {
 				display: block;
-				margin-inline-start: 1.5rem;
 				margin-inline-start: 2rem;
 			}
 		}

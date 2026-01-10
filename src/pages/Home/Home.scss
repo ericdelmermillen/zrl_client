@@ -3,23 +3,20 @@
 
 .home {
 	& {
-		align-items: center;
-		display: flex;
-		justify-content: center;
-		margin-top: 100vh;
-		// z-index: 100;
-		// position: relative;
 		@include mx.page;
-	}
-
-	&__inner {
-		width: 100%;
+		& {
+			margin-top: 100vh;
+		}
 	}
 
 	&__main {
+		// need default page color variable here
+		// sections can have their own color
 		background: orange;
-		min-height: 100vh;
-		min-width: 100%;
 		position: relative;
+	}
+
+	&__content {
+		@include mx.pageContent;
 	}
 }

@@ -5,8 +5,8 @@
 	& {
 		height: 100%;
 		overflow: hidden;
+		padding-top: 2rem;
 		position: fixed;
-		text-align: center;
 		top: calc(vars.$navHeight / 3);
 		width: min(120vw, vars.$ultraWide);
 		z-index: 0;
@@ -23,7 +23,6 @@
 		display: flex;
 		flex-wrap: nowrap;
 		justify-content: space-evenly;
-		overflow-x: hidden;
 
 		&--odd {
 			margin-inline-start: -8vw;
@@ -114,7 +113,6 @@
 
 		@media (min-width: 400px) {
 			min-width: 5.75rem;
-			padding: 1.75rem;
 		}
 
 		@media (min-width: 450px) {
@@ -139,12 +137,10 @@
 
 		@media (min-width: 700px) {
 			min-width: 7.5rem;
-			padding: 2.5rem;
 		}
 
 		@media (min-width: 800px) {
 			min-width: 7.25rem;
-			padding: 2.5rem;
 		}
 
 		@media (min-width: 900px) {
@@ -168,13 +164,11 @@
 		}
 
 		@media (min-width: vars.$desktop) {
-			padding: 3.5rem;
 			min-width: 10rem;
 		}
 
 		@media (min-width: 1400px) {
 			min-width: 10.5rem;
-			padding: 3.5rem;
 		}
 	}
 

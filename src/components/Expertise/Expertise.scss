@@ -10,7 +10,8 @@
 	}
 
 	&__inner {
-		@include mx.sectionLayout;
+		display: flex;
+		flex-direction: column;
 	}
 
 	&__heading {

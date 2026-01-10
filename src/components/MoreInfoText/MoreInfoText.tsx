@@ -1,7 +1,7 @@
 import{ type FC } from 'react';
+import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
 import BulletCheck from '../BulletCheck/BulletCheck';
 import "./MoreInfoText.scss";
-import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
 
 
 const moreInfoPoint: MoreInfoTextData[] = [
@@ -29,7 +29,7 @@ const MoreInfoText:FC = () => {
             We provide innovative software solutions that empower businesses to thrive in the digital era.
           </p>
 
-           <ul className="moreInfoText__solutions">
+           <ul className="moreInfoText__bullets">
 
               {moreInfoPoint.map((point, idx) => (
 

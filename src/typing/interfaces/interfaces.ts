@@ -49,6 +49,11 @@ export interface NavOption {
   optionName: string;
 }
 
+export interface NavProps {
+  children?: ReactNode;
+  navOptions: NavOption[];
+};
+
 export interface MoreInfoTextData {
   titleShort: string;
   titleFull: string;

@@ -1,9 +1,9 @@
 import { type FC, useState, useRef } from 'react';
 import { useAppContext } from "../../contexts/AppContext";
-import LabelledCheckbox from '../LabelledCheckbox/LabelledCheckbox';
 import { isValidEmail } from '../../../utils/utils';
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
+import LabelledCheckbox from '../LabelledCheckbox/LabelledCheckbox';
 import toast from 'react-hot-toast';
 import "./MoreInfoForm.scss";
 
@@ -39,7 +39,6 @@ const MoreInfoForm: FC = () => {
   
     return isValidLength;
   };
-
 
   const handleEmailChange = (): boolean => {
     const emailValue = emailRef.current?.value ?? "";
@@ -98,8 +97,6 @@ const MoreInfoForm: FC = () => {
     };
 
     // endpoint call if no errors
-
-
   };
 
 

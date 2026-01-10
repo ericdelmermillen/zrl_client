@@ -6,8 +6,8 @@
 		@include mx.formFullWidth;
 		& {
 			min-height: 80vh;
+			width: 100%;
 			border: 2px solid red;
-			min-width: 90vw;
 		}
 	}
 
@@ -57,15 +57,15 @@
 		display: flex;
 		margin-inline: auto;
 		margin-top: auto;
-		max-width: 99%;
-		width: 99%;
 	}
 
 	&__button {
-		background: var(--accent-color);
-		border: none;
-		width: 100%;
 		@include mx.button;
+		& {
+			background: var(--accent-color);
+			border: none;
+			width: 100%;
+		}
 	}
 
 	.passwordInput {

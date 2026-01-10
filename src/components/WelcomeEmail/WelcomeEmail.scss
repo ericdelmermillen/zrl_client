@@ -3,18 +3,14 @@
 
 .welcomeEmail {
 	& {
-		border: 2px solid red;
-		min-height: 80vh;
-		opacity: 1;
-		padding-block: 2rem;
-		width: 100%;
+		margin-bottom: 4rem;
+		margin-inline: auto;
+		border: 2px solid blue;
 	}
 
 	&__inner {
-		@include mx.sectionLayout;
-		& {
-			min-width: 90vw;
-		}
+		display: flex;
+		background: yellow;
 	}
 
 	&__heading {

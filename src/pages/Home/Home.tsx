@@ -26,12 +26,18 @@ const Home: FC = () => {
           <Header_2 />
           <main className="home__main">
             {/* <Partners /> */}
-            <MoreInfo />
-            <Solutions />
-            <Details />
-            <Expertise />
+
+            <div className="home__content">
+              <MoreInfo />
+              <Solutions />
+              <Details />
+              <Expertise />
+
             {/* <Values /> */}
-            <Subscribe />
+            
+              <Subscribe />
+            </div>
+            
           </main>
         </div>
       </div>

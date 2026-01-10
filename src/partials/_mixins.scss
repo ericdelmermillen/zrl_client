@@ -29,6 +29,7 @@
 
 	// border & box shadow
 	--border-radius: 4px;
+	--accent-bar-border-radius: 0.25rem;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	// *** Header Overlay
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
@@ -203,12 +204,12 @@
 // layout
 @mixin appLayout {
 	align-items: center;
+	// need a box shadow
 	box-shadow: var(--box-shadow);
 	color: var(--text-color);
 	display: flex;
 	font-family: var(--body-font);
 	flex-direction: column;
-	margin-inline: auto;
 	width: 100%;
 }
 
@@ -237,6 +238,29 @@
 
 	@media (min-width: vars.$ultraWide) {
 		max-width: vars.$ultraWide;
+	}
+}
+
+@mixin pageContent {
+	margin-inline: auto;
+	max-width: 100%;
+	padding: 2rem;
+	width: 1920px;
+
+	@media (min-width: vars.$tablet) {
+		padding-inline: 3rem;
+	}
+
+	@media (min-width: vars.$largeTablet) {
+		padding-inline: 4rem;
+	}
+
+	@media (min-width: vars.$desktop) {
+		padding-inline: 6rem;
+	}
+
+	@media (min-width: vars.$ultraWide) {
+		padding-inline: 8rem;
 	}
 }
 
@@ -321,6 +345,7 @@
 
 @mixin formFullWidthInput {
 	background: none;
+	background: orange;
 	border: none;
 	border-bottom: 2px solid var(--text-color);
 	border-bottom: 2px solid red;
@@ -329,13 +354,16 @@
 	font-size: var(--font-size-xs);
 	line-height: var(--line-height-general);
 	margin-bottom: 1.5rem;
-	min-width: 20rem;
 	outline: none;
 	padding-block: 0.75rem;
 	padding-inline: 0.75rem;
 	position: relative;
 	resize: none;
 	width: 100%;
+
+	@media (min-width: vars.$smallTablet) {
+		min-width: 20rem;
+	}
 
 	&::placeholder {
 		color: var(--text-color);
@@ -391,12 +419,15 @@
 	align-items: center;
 	background: var(--neutral-bg-2);
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
+	min-height: calc(100vh - (vars.$navHeight));
 	padding-bottom: 2rem;
 	padding-top: calc(vars.$navHeight + 2rem);
+	padding-top: calc(vars.$navHeight);
 	position: relative;
 	width: 100%;
+	max-width: 100%;
 }
 
 @mixin formContent {
@@ -413,10 +444,12 @@
 	align-items: center;
 	background: var(--neutral-bg-1);
 	background: yellow;
+	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	margin-inline: auto;
+	max-width: 50rem;
 	padding-inline: 2rem;
 	position: relative;
 	text-align: center;
@@ -489,6 +522,8 @@
 	padding: var(--btn-padding);
 	text-align: center;
 	text-decoration: none;
+	// add basic shadow to button then override for header to be darker
+	// box-shadow: var(--header-text-shadow);
 	transition: all 0.2s ease-in-out;
 
 	@media (min-width: vars.$smallPhone) {
@@ -497,13 +532,6 @@
 
 	@media (min-width: vars.$smallTablet) {
 		font-size: var(--btn-text-lg);
-	}
-
-	@media (min-width: vars.$tablet) {
-		// font-size: var(--btn-text-md);
-		// letter-spacing: var(--letter-spacing-md);
-		// padding: var(--btn-padding-lg);
-		opacity: 1;
 	}
 
 	&:hover {
@@ -587,8 +615,8 @@
 
 @mixin accentBar {
 	background: var(--accent-color);
-	border-bottom-right-radius: 0.25rem;
-	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: var(--accent-bar-border-radius);
+	border-top-right-radius: var(--accent-bar-border-radius);
 	box-shadow: var(--accentBarShadow);
 	height: 50%;
 	position: absolute;
@@ -618,53 +646,23 @@
 	}
 }
 
-@mixin sectionLayout {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-inline: 2rem;
-	border: 2px solid red;
-
-	@media (min-width: vars.$smallPhone) {
-		margin-inline: 2rem;
-	}
-
-	@media (min-width: vars.$smallTablet) {
-		margin-inline: 2rem;
-	}
-
-	@media (min-width: vars.$tablet) {
-		margin-inline: 3rem;
-	}
-
-	@media (min-width: vars.$largeTablet) {
-		margin-inline: 4rem;
-	}
-
-	@media (min-width: vars.$desktop) {
-		margin-inline: 6rem;
-	}
-
-	@media (min-width: vars.$ultraWide) {
-		margin-inline: 8rem;
-	}
-}
-
 @mixin sectionHeading {
 	font-family: var(--heading-font);
 	font-size: var(--text-size-lg);
 	font-weight: 600;
 	letter-spacing: var(--letter-spacing-lg);
 	margin-bottom: 1rem;
+	margin-inline: auto;
 	position: relative;
+	text-align: center;
 	white-space: nowrap;
 
 	@media (min-width: vars.$tablet) {
+		// probably use general text color
+		color: green;
 		display: inline-block;
 		font-size: var(--text-size-xl);
 		margin-inline: auto;
-		color: green;
 	}
 
 	@media (min-width: vars.$largeTablet) {
@@ -689,6 +687,7 @@
 }
 
 @mixin sectionLead {
+	// use text color
 	color: green;
 	font-size: var(--text-size-md);
 	letter-spacing: var(--letter-spacing-lg);

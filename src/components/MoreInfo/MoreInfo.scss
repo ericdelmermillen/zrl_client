@@ -8,7 +8,8 @@
 	}
 
 	&__inner {
-		@include mx.sectionLayout;
+		display: flex;
+		flex-direction: column;
 
 		@media (min-width: vars.$largeTablet) {
 			flex-direction: row;

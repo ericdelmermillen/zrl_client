@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import { type IconType } from "./typing/types/types";
+import { type NavOption } from "./typing/interfaces/interfaces";
 import { useAppContext } from "./contexts/AppContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
@@ -38,6 +39,7 @@ import { PiKeyhole, PiTerminal } from "react-icons/pi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
 import { Toaster } from "react-hot-toast";
+import Admin from "./pages/Admin/Admin";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
 import Footer from "./components/Footer/Footer";
@@ -50,12 +52,11 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
-import Admin from "./pages/Admin/Admin";
 
 
 // const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
-const navOptions = [
+const navOptions: NavOption[] = [
   {id: 1, optionName: "SOLUTIONS"},
   {id: 2, optionName: "DETAILS"},
   {id: 3, optionName: "EXPERTISE"},
@@ -195,6 +196,8 @@ const App = (): JSX.Element => {
               </Login>
             }
           />
+
+          {/* *** */}
 
           {isLoggedIn
 

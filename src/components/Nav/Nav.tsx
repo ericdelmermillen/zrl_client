@@ -1,5 +1,5 @@
-import { type FC, type ReactNode } from "react";
-import type { NavOption } from "../../typing/interfaces/interfaces.ts";
+import { type FC } from "react";
+import type { NavProps } from "../../typing/interfaces/interfaces.ts";
 import { useAppContext } from "../../contexts/AppContext.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils.ts";
@@ -9,10 +9,6 @@ import "./Nav.scss";
 
 const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
 
-interface NavProps {
-  children?: ReactNode;
-  navOptions: NavOption[]
-};
 
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
@@ -41,7 +37,6 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
       });
     }, NAV_CLICK_DELAY)
   };
-
 
   const handleScrollToTop = () => {
     navigate("/");

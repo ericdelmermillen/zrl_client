@@ -11,6 +11,7 @@
 	}
 
 	&__content {
-		@include mx.formContent;
+		// @include mx.formContent;
+		@include mx.pageContent;
 	}
 }

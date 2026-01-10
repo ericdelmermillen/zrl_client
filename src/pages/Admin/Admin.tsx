@@ -23,10 +23,13 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
     <>
       <div className="admin">
         <div className="admin__inner">
-          { children }
+            { children }
 
-          <WelcomeEmail />          
-          <Newsletter />          
+          <div className="admin__content">
+            <WelcomeEmail />      
+            <Newsletter />
+          </div>
+
         </div>        
       </div>
     </>
