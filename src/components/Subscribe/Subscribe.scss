@@ -9,11 +9,10 @@
 	}
 
 	&__inner {
-		// @include mx.sectionLayout;
-		max-width: 45rem;
+		display: flex;
+		flex-direction: column;
 		margin-bottom: 2rem;
-		// & {
-		// }
+		max-width: 45rem;
 	}
 
 	&__heading {
@@ -82,7 +81,7 @@
 	&__submit {
 		@include mx.rounded-button;
 		& {
-			margin-inline: auto !important;
+			margin-inline: auto;
 			margin-top: 2rem;
 			max-width: 20rem;
 			width: 100%;

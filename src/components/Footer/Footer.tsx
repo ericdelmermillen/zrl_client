@@ -1,14 +1,10 @@
 import { type FC } from "react";
+import { type FooterSocial } from "../../typing/interfaces/interfaces";
 import { FaTwitter, FaFacebook } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import "./Footer.scss";
 
-interface FooterSocial {
-  name: string;
-  socialLink: string;
-  socialIcon: FC<{ className?: string }>;
-}
 
 const footerSocials: FooterSocial[] = [
   { name: "LinkedIn", socialLink: "https://www.linkedin.com/company/zidgy-road-labs-inc/", socialIcon: FaLinkedinIn },

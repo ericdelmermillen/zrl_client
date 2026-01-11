@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import type { ColorMode, ModalType } from "../types/types";
 
 export interface AppContextValue {
@@ -78,6 +78,13 @@ export interface SolutionsData {
   alt: string;
 };
 
+export interface ExpertiseItemProps {
+  Icon: FC<{ className?: string; "aria-label"?: string }>;
+  iconClassModifier: string;
+  name: string;
+  desc: string;
+}
+
 export interface Bullet {
   bulletHeadingShort: string;
   bulletHeadingFull: string;
@@ -94,4 +101,10 @@ export interface DetailData {
 
 export interface DetailProps extends DetailData {
   idx: number;
+}
+
+export interface FooterSocial {
+  name: string;
+  socialLink: string;
+  socialIcon: FC<{ className?: string }>;
 }

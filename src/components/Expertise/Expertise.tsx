@@ -1,6 +1,12 @@
 import { type FC } from "react";
 import ExpertiseItem from "../ExpertiseItem/ExpertiseItem";
-import { FaLightbulb, FaGlasses, FaGraduationCap, FaChartBar, FaCloud } from "react-icons/fa6";
+import { 
+  FaLightbulb, 
+  FaGlasses, 
+  FaGraduationCap, 
+  FaChartBar, 
+  FaCloud 
+} from "react-icons/fa6";
 import { MdMonitor } from "react-icons/md";
 import { PiWifiMediumBold } from "react-icons/pi";
 import { TbSettingsFilled } from "react-icons/tb";
@@ -54,7 +60,7 @@ const expertises = [
     iconClassModifier: "cloud",
     name: "Cloud Solutions",
     desc: "We architect scalable cloud solutions that support your business growth and resilience."
-  },
+  }
 ];
 
 

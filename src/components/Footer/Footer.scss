@@ -3,6 +3,7 @@
 
 .footer {
 	& {
+		// need var for footer color: may use same color as nav
 		background: #fff;
 		border-top: 2px solid red;
 		width: 100%;
@@ -37,6 +38,7 @@
 	&__social {
 		align-items: center;
 		display: flex;
+		// need var for foot social icon fill: maybe accent color?
 		fill: purple;
 		font-size: 1.25rem;
 		height: 1.5rem;
@@ -49,12 +51,15 @@
 		}
 
 		&:hover {
-			font-size: 1.75rem;
 			@include mx.hoverClickGrowIcon;
+			& {
+				font-size: 1.75rem;
+			}
 		}
 	}
 
 	&__social-icon {
+		// need var here: accent color?
 		fill: var(--text-color-bright);
 		width: 2rem;
 	}
@@ -65,9 +70,9 @@
 		font-family: var(--body-font);
 		font-size: var(--font-size-xs);
 		justify-content: center;
-		letter-spacing: 1px;
-		text-align: center;
+		letter-spacing: var(--letter-spacing-xl);
 		margin-bottom: 1rem;
+		text-align: center;
 
 		@media (min-width: vars.$smallTablet) {
 			font-size: var(--font-size-sm);

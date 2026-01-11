@@ -1,14 +1,15 @@
-import { type FC } from 'react';
+import { type FC } from "react";
+import { type ExpertiseItemProps } from "../../typing/interfaces/interfaces"
 import "./ExpertiseItem.scss";
 
-interface ExpertiseItemProps {
-  Icon: FC<{ className?: string; 'aria-label'?: string }>;
-  iconClassModifier: string;
-  name: string;
-  desc: string;
-}
 
-const ExpertiseItem: FC<ExpertiseItemProps> = ({ Icon, iconClassModifier, name, desc }) => {
+const ExpertiseItem: FC<ExpertiseItemProps> = ({ 
+  Icon, 
+  iconClassModifier, 
+  name, 
+  desc 
+}) => {
+
   return (
     <li className="expertiseItem">
       <Icon

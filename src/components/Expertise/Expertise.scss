@@ -4,7 +4,6 @@
 .expertise {
 	& {
 		margin-bottom: 2rem;
-		min-height: 100vh;
 		padding-bottom: 2rem;
 		padding-top: var(--section-top-padding);
 	}
@@ -16,7 +15,6 @@
 
 	&__heading {
 		@include mx.sectionHeadingWithAccent;
-
 		& {
 			margin-bottom: 2rem;
 

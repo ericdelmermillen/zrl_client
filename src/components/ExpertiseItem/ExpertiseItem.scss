@@ -6,10 +6,12 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		margin-inline: auto;
+		max-width: min(90%, 32rem);
 
-		// @media (min-width: vars.$largeTablet) {
-		// 	margin-bottom: 3rem;
-		// }
+		@media (min-width: vars.$mediumTablet) {
+			max-width: 80%;
+		}
 	}
 
 	&__icon {

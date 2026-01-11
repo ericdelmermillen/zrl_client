@@ -274,6 +274,7 @@
 }
 
 @mixin cardTitleHeading {
+	// use text color
 	color: green;
 	font-size: var(--text-size-md);
 	font-weight: 600;

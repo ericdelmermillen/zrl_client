@@ -11,7 +11,7 @@ const Detail: FC<DetailProps> = ({
   detailImg,
   idx,
   imgDesc
-  }) => {
+}) => {
 
   const isEven = idx % 2 === 0;
 
