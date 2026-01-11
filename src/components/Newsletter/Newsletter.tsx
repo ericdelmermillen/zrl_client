@@ -6,9 +6,11 @@ const Newsletter:FC = () => {
     <>
       <section className="newsletter" >
         <div className="newsletter__inner">
+
           <h2 className="newsletter__heading">
             Newsletter
           </h2>
+          
         </div>
         
       </section>

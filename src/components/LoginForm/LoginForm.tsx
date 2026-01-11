@@ -180,6 +180,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
               }
             />
 
+            {/* make this its own component? */}
             <button
               type="button"
               className={`passwordInput__icon ${isSafari ? "hide" : ""}`}

@@ -3,7 +3,7 @@ import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces"
 import { scrollToTop } from "../../../utils/utils";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import WelcomeEmail from "../../components/WelcomeEmail/WelcomeEmail";
-import "./Admin.scss"
+import "./Admin.scss";
 
 
 const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
@@ -24,12 +24,10 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
       <div className="admin">
         <div className="admin__inner">
             { children }
-
           <div className="admin__content">
             <WelcomeEmail />      
             <Newsletter />
           </div>
-
         </div>        
       </div>
     </>
