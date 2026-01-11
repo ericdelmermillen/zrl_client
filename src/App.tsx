@@ -229,8 +229,6 @@ const App = (): JSX.Element => {
 
         {/* <FloatingButton /> */}
 
-        <Footer />
-
         <Toaster
           position="bottom-center"
           reverseOrder={false} // Newest toast at the bottom
@@ -278,6 +276,7 @@ const App = (): JSX.Element => {
         />
 
       </div>
+      <Footer />
 
     </div>
   )};

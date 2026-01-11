@@ -5,7 +5,6 @@
 	& {
 		@include mx.formFullWidth;
 		& {
-			min-height: 80vh;
 			width: 100%;
 			border: 2px solid red;
 		}
@@ -61,11 +60,6 @@
 
 	&__button {
 		@include mx.button;
-		& {
-			background: var(--accent-color);
-			border: none;
-			width: 100%;
-		}
 	}
 
 	.passwordInput {

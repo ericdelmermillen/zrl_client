@@ -1,4 +1,11 @@
-import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
+import { 
+  type FC, 
+  type FormEvent, 
+  type ChangeEvent, 
+  useState, 
+  useRef, 
+  useEffect 
+} from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
@@ -35,10 +42,10 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const handleTogglePasswordVisibility = (): void => setShowPassword(c => !c)
 
   const handleEmailChange = (e?: ChangeEvent<HTMLInputElement>): boolean => {
-    const emailValue =
+    const emailValue: string =
       e?.target.value ?? emailRef.current?.value ?? "";
 
-    const isValid = isValidEmail(emailValue);
+    const isValid: boolean = isValidEmail(emailValue);
 
     setEmail(emailValue);
     setEmailIsValid(isValid);
@@ -47,10 +54,10 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   };
 
   const handlePasswordChange = (e?: ChangeEvent<HTMLInputElement>): boolean => {
-    const passwordValue =
+    const passwordValue: string =
       e?.target.value ?? passwordRef.current?.value ?? "";
 
-    const isValid = isValidPassword(passwordValue);
+    const isValid: boolean = isValidPassword(passwordValue);
 
     setPassword(passwordValue);
     setPasswordIsValid(isValid);
@@ -63,7 +70,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     setIsLoading(true);
     setInitialFormCheck(true);
 
-    let invalidInputs = 0;
+    let invalidInputs: number = 0;
 
     if(!handleEmailChange()) {
       toast.error("Invalid email");
@@ -97,7 +104,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
       toast.error("Email and/or Password incorrect");
     };
 
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   // useEffect to focus email input on load

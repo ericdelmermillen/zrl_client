@@ -30,6 +30,7 @@
 	// border & box shadow
 	--border-radius: 4px;
 	--border-radius-card-image: 8px;
+	--border-radius-form: 8px;
 	--accent-bar-border-radius: 0.25rem;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	// *** Header Overlay
@@ -216,6 +217,7 @@
 
 @mixin appInner {
 	align-items: center;
+	// need box shadow for inner
 	box-shadow: var(--box-shadow);
 	display: flex;
 	flex-direction: column;
@@ -229,9 +231,10 @@
 	}
 }
 
+// may set explicit footer height to define min page height with
 @mixin page {
-	max-width: 100%;
 	min-height: calc(100vh - (vars.$footerHeightMobile + 1px));
+	max-width: 100%;
 
 	@media (min-width: vars.$tablet) {
 		min-height: calc(100vh - vars.$footerHeight + 1px);
@@ -347,9 +350,10 @@
 
 @mixin formFullWidthInput {
 	background: none;
+	// need formBg var
 	background: orange;
 	border: none;
-	border-bottom: 2px solid var(--text-color);
+	// border-bottom: 2px solid var(--text-color);
 	border-bottom: 2px solid red;
 	color: var(--text-color);
 	font-family: var(--body-font);
@@ -396,12 +400,14 @@
 }
 
 @mixin formHeading {
-	display: inline-block;
-	// *** update font variables
-	font-size: var(--font-size-smaller);
-	margin-bottom: 3rem;
-	position: relative;
 	@include headingGeneral;
+	& {
+		display: inline-block;
+		// *** update font variables
+		font-size: var(--font-size-smaller);
+		margin-bottom: 2rem;
+		position: relative;
+	}
 
 	@media (min-width: vars.$smallTablet) {
 		font-size: var(--font-size-small);
@@ -422,14 +428,14 @@
 	background: var(--neutral-bg-2);
 	display: flex;
 	flex-direction: column;
-	min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
+	// min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
 	min-height: calc(100vh - (vars.$navHeight));
+	max-width: 100%;
 	padding-bottom: 2rem;
-	padding-top: calc(vars.$navHeight + 2rem);
+	// padding-top: calc(vars.$navHeight + 2rem);
 	padding-top: calc(vars.$navHeight);
 	position: relative;
 	width: 100%;
-	max-width: 100%;
 }
 
 @mixin formContent {
@@ -446,12 +452,13 @@
 	align-items: center;
 	background: var(--neutral-bg-1);
 	background: yellow;
-	border-radius: 8px;
+	border-radius: var(--border-radius-form);
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	margin-inline: auto;
 	max-width: 50rem;
+	min-height: 80vh;
 	padding-inline: 2rem;
 	position: relative;
 	text-align: center;
@@ -464,7 +471,6 @@
 	flex-direction: column;
 	height: 100%;
 	min-height: 100%;
-	// max-width: vars.$tablet;
 	padding-block: 3rem;
 	min-height: 80vh;
 
