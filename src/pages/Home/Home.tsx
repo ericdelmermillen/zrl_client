@@ -7,6 +7,7 @@ import MoreInfo from "../../components/MoreInfo/MoreInfo";
 // import Partners from "../../components/Partners/Partners";
 import Solutions from "../../components/Solutions/Solutions";
 import Subscribe from "../../components/Subscribe/Subscribe";
+import Values from "../../components/Values/Values";
 import "./Home.scss";
 
 const Home: FC = () => {
@@ -33,7 +34,7 @@ const Home: FC = () => {
               <Details />
               <Expertise />
 
-            {/* <Values /> */}
+              <Values />
             
               <Subscribe />
             </div>
