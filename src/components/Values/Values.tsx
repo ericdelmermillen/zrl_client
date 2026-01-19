@@ -1,10 +1,29 @@
 import { type FC } from "react";
 import "./Values.scss";
+import BulletCheck from "../BulletCheck/BulletCheck";
 
 // unlisted video on my youtube to embed: viewable and embeddable but not discoverable
 
 const YOUTUBE_VIDEO_ID = import.meta.env.VITE_YOUTUBE_VIDEO_ID;
 const embedUrl = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}`;
+
+const values = [
+  {
+    bulletHeadingShort: "Corporate Value One", 
+    bulletHeadingFull: "Longer Corporate Value One", 
+    bulletBlurb: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui ad totam temporibus fuga officiis?" 
+  },
+  {
+    bulletHeadingShort: "Corporate Value Two", 
+    bulletHeadingFull: "Longer Corporate Value Two", 
+    bulletBlurb: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui ad totam temporibus fuga officiis?" 
+  },
+  {
+    bulletHeadingShort: "Corporate Value Three", 
+    bulletHeadingFull: "Longer Corporate Value Three", 
+    bulletBlurb: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui ad totam temporibus fuga officiis?" 
+  }
+]
 
 
 
@@ -14,9 +33,10 @@ const Values: FC = () => {
       <div className="values" id="values">
         <div className="values__inner">
           <h3 className="values__heading">Values</h3>
-          <p className="values__lead">
+
+          <h2 className="values__lead">
             We have the best most valuable corporate values you guys -- you won't believe it.
-          </p>
+          </h2>
 
           <div className="values__videoWrap">
             <iframe
@@ -29,11 +49,18 @@ const Values: FC = () => {
               referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
+
           <ul className="values__points">
-            <li className="values__point">Point 1</li>
-            <li className="values__point">Point 2</li>
-            <li className="values__point">Point 3</li>
+            {values.map((value, idx) => (
+              <BulletCheck
+                key={idx}
+                bulletHeadingShort={value.bulletHeadingShort}
+                bulletHeadingFull={value.bulletHeadingFull}
+                bulletBlurb={value.bulletBlurb}
+              />
+            ))}
           </ul>
+          
         </div>
       </div>
       
