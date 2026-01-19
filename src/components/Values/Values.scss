@@ -3,8 +3,8 @@
 
 .values {
 	& {
-		padding-top: var(--section-top-padding);
 		padding-bottom: 4rem;
+		padding-top: var(--section-top-padding);
 	}
 
 	&__inner {
@@ -36,11 +36,12 @@
 		width: 100%;
 	}
 
-	&__videoWrap {
+	&__video-container {
 		margin-bottom: 2rem;
 	}
 
 	&__points {
-		border: 2px solid red;
+		margin-inline: auto;
+		max-width: 45rem;
 	}
 }

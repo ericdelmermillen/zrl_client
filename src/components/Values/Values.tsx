@@ -38,7 +38,7 @@ const Values: FC = () => {
             We have the best most valuable corporate values you guys -- you won't believe it.
           </h2>
 
-          <div className="values__videoWrap">
+          <div className="values__video-container">
             <iframe
               className="values__video"
               src={embedUrl}
@@ -60,7 +60,7 @@ const Values: FC = () => {
               />
             ))}
           </ul>
-          
+
         </div>
       </div>
       
