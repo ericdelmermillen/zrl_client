@@ -1,11 +1,12 @@
 import { type FC } from "react";
-import "./Values.scss";
 import BulletCheck from "../BulletCheck/BulletCheck";
+import "./Values.scss";
 
 // unlisted video on my youtube to embed: viewable and embeddable but not discoverable
 
 const YOUTUBE_VIDEO_ID = import.meta.env.VITE_YOUTUBE_VIDEO_ID;
-const embedUrl = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}`;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?controls=1&mute=0&modestbranding=1&playsinline=1&rel=0`;
+
 
 const values = [
   {
@@ -23,8 +24,7 @@ const values = [
     bulletHeadingFull: "Longer Corporate Value Three", 
     bulletBlurb: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus qui ad totam temporibus fuga officiis?" 
   }
-]
-
+];
 
 
 const Values: FC = () => {
@@ -35,7 +35,7 @@ const Values: FC = () => {
           <h3 className="values__heading">Values</h3>
 
           <h2 className="values__lead">
-            We have the best most valuable corporate values you guys -- you won't believe it.
+            We have the best most valuable corporate values you guys -- you won't even believe it you guys.
           </h2>
 
           <div className="values__video-container">

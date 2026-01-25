@@ -1,6 +1,6 @@
-import {type FC } from 'react';
+import {type FC } from "react";
 import { type Bullet } from "../../typing/interfaces/interfaces"
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from "react-icons/fa6";
 import "./BulletCheck.scss"
 
 
