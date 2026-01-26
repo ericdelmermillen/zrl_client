@@ -6,8 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
-const SERVER_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-console.log(SERVER_BASE_URL)
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -19,7 +18,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
-  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(!false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
 
   const [ scrollYPos, setScrollYPos ] = useState(0);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
@@ -115,17 +114,71 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setModalType(modalType);
   };
 
-  const loginUser = (email: string, password: string): boolean => {
-    
-    const expectedEmail = "ericdelmermillen@gmail.com";
-    const expectedPassword = "12345678";
-    
-    if(email === expectedEmail && password === expectedPassword) {
-      setIsLoggedIn(true);
-      return true;
+// ***
+const loginUser = async (email: string, password: string): Promise<boolean> => {
+  // setIsLoading(true);
+
+  try {
+    const response = await fetch(`${BASE_URL}/auth/loginuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // ✅ REQUIRED
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json() as {
+      message?: string;
+      token?: string;
     };
+
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Failed to log in. Please check your credentials."
+      );
+    }
+
+    // Log token (only works if server includes it in JSON)
+    console.log("token:", data.token);
+
+    toast.success(data.message || "Login successful!");
+    setIsLoggedIn(true);
+    // navigate("/");
+
+    return true;
+  } catch (error) {
+    console.error("Login error:", error);
+
+    const message =
+      error instanceof Error
+        ? error.message
+        : "An unexpected error occurred. Please try again.";
+
+    toast.error(message);
     return false;
-  };
+  } finally {
+    // setIsLoading(false);
+  }
+};
+
+
+  // const loginUser = (email: string, password: string): boolean => {
+    
+  //   const expectedEmail = "ericdelmermillen@gmail.com";
+  //   const expectedPassword = "12345678";
+    
+  //   if(email === expectedEmail && password === expectedPassword) {
+  //     setIsLoggedIn(true);
+  //     return true;
+  //   };
+  //   return false;
+  // };
+
+
+
+
+
 
   // useEffect to check local storage for colorMode
   useEffect(() => {
