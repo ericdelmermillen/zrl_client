@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const SERVER_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log(SERVER_BASE_URL)
 
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);

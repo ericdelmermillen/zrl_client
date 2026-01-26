@@ -8,14 +8,11 @@ import {
 } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
 import Hide from "../../assets/svgs/Hide";
 import Show from "../../assets/svgs/Show";
 import "./LoginForm.scss";
-
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 
 const isSafari: boolean =
@@ -25,7 +22,7 @@ const isSafari: boolean =
 
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
-  const { isLoading, setIsLoading, loginUser } = useAppContext();
+  const { isLoading, loginUser } = useAppContext();
 
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
@@ -36,8 +33,6 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  
-  const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = (): void => setShowPassword(c => !c)
 
@@ -65,9 +60,8 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     return isValid;
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<boolean> => {
     e.preventDefault();
-    setIsLoading(true);
     setInitialFormCheck(true);
 
     let invalidInputs: number = 0;
@@ -83,28 +77,10 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     };
 
     if(invalidInputs){
-      setIsLoading(false);
-      return;
+      return false;
     };
-
-    // await loginUser(email, password);
     
-    // const response = loginUser(email, password);
-
-    if(loginUser(email, password)) {
-      toast.success("Logging you in now...");
-      
-      setTimeout(() => {
-        setEmail("");
-        setPassword("");
-        navigate("/");
-      }, MIN_LOADING_INTERVAL)
-
-    } else {
-      toast.error("Email and/or Password incorrect");
-    };
-
-    setIsLoading(false);
+    return loginUser(email, password);
   };
 
   // useEffect to focus email input on load
