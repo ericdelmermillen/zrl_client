@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useRef, useEffect, createContext, useContext } from "react";
 import type { ColorMode, ModalType } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
 import { scrollToTop } from "../../utils/utils";
@@ -28,6 +28,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
+
+  // used to prevent duplicate toasts in dev
+  const hasRunSessionCheck = useRef(false);
 
   const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
@@ -114,70 +117,100 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setModalType(modalType);
   };
 
-// ***
-const loginUser = async (email: string, password: string): Promise<boolean> => {
-  // setIsLoading(true);
+  const loginUser = async (email: string, password: string): Promise<boolean> => {
+    setIsLoading(true);
 
+    try {
+      const response = await fetch(`${BASE_URL}/auth/loginuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // ✅ REQUIRED
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json() as {
+        message?: string;
+        token?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to log in. Please check your credentials."
+        );
+      };
+
+      toast.success(data.message || "Login successful!");
+      setIsLoggedIn(true);
+      localStorage.setItem("wasLoggedIn", "true");
+      navigate("/");
+
+      return true;
+    } catch (error) {
+      console.error("Login error:", error);
+
+      const message =
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred. Please try again.";
+
+      toast.error(message);
+      return false;
+    } finally {
+      setIsLoading(false);
+    };
+  };
+  
+const checkSessionStatus = async (): Promise<boolean> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/loginuser`, {
+    const response = await fetch(`${BASE_URL}/auth/sessionstatus`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include", // ✅ REQUIRED
-      body: JSON.stringify({ email, password }),
+      credentials: "include",
     });
 
-    const data = await response.json() as {
-      message?: string;
-      token?: string;
-    };
+    const { isAuthenticated } = await response.json();
 
-    if (!response.ok) {
-      throw new Error(
-        data.message || "Failed to log in. Please check your credentials."
-      );
-    }
-
-    // Log token (only works if server includes it in JSON)
-    console.log("token:", data.token);
-
-    toast.success(data.message || "Login successful!");
-    setIsLoggedIn(true);
-    // navigate("/");
-
-    return true;
+    return isAuthenticated;
   } catch (error) {
-    console.error("Login error:", error);
-
-    const message =
-      error instanceof Error
-        ? error.message
-        : "An unexpected error occurred. Please try again.";
-
-    toast.error(message);
+    console.error("sessionstatus error:", error);
     return false;
-  } finally {
-    // setIsLoading(false);
-  }
+  };
 };
 
+  // useEffect to check isLoggedIn status via call to /sessionstatus on mount
+  useEffect(() => {
+    if (hasRunSessionCheck.current) {
+      return;
+    } else {
+      hasRunSessionCheck.current = true;
+    };
 
-  // const loginUser = (email: string, password: string): boolean => {
-    
-  //   const expectedEmail = "ericdelmermillen@gmail.com";
-  //   const expectedPassword = "12345678";
-    
-  //   if(email === expectedEmail && password === expectedPassword) {
-  //     setIsLoggedIn(true);
-  //     return true;
-  //   };
-  //   return false;
-  // };
+    const runSessionCheck = async () => {
+      const isAuthenticated = await checkSessionStatus();
 
+      if (isAuthenticated) {
+        return setIsLoggedIn(true);
+      } else {
+        if (localStorage.getItem("wasLoggedIn")) {
+          setIsLoading(true);
+          toast.error("Session expired. Logging you out...");
+          
+          setTimeout(() => {
+            navigate("/");
+            localStorage.removeItem("wasLoggedIn");
+            setIsLoading(false);
+          }, MIN_LOADING_INTERVAL);
+        };
+        setIsLoggedIn(false);
+      };
+    };
 
-
-
+    runSessionCheck();
+  }, []);
 
 
   // useEffect to check local storage for colorMode

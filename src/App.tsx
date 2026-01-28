@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
 import { type IconType } from "./typing/types/types";
 import { type NavOption } from "./typing/interfaces/interfaces";
 import { useAppContext } from "./contexts/AppContext";
@@ -6,31 +6,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
 import { BiSolidCommentError } from "react-icons/bi";
 import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-import { 
-  FaChartBar,
-  FaClipboardList,
-  FaCog, 
-  FaCogs,
-  FaExclamationTriangle, 
-  FaFileAlt,
-  FaGlobeAmericas, 
-  FaIdCard, 
-  FaSyncAlt,
-  FaTachometerAlt,
-  FaTasks,
-  FaWrench 
-} from "react-icons/fa";
-import { 
-  FaBugs, 
-  FaChartLine, 
-  FaCode,
-  FaFolderOpen, 
-  FaLink, 
-  FaMicrochip, 
-  FaPowerOff,
-  FaRobot,
-  FaUserSecret 
-} from "react-icons/fa6";
+// react icon sets starts
+import { FaChartBar,FaClipboardList,FaCog, FaCogs, FaExclamationTriangle, FaFileAlt, FaGlobeAmericas, FaIdCard, FaSyncAlt, FaTachometerAlt, FaTasks, FaWrench } from "react-icons/fa";
+import { FaBugs, FaChartLine, FaCode,FaFolderOpen, FaLink, FaMicrochip, FaPowerOff, FaRobot, FaUserSecret } from "react-icons/fa6";
 import { GiLightningArc } from "react-icons/gi";
 import { IoIosLock, IoMdKey } from "react-icons/io";
 import { IoFingerPrintOutline } from "react-icons/io5";
@@ -38,6 +16,7 @@ import { MdMonitor, MdOutlineSyncProblem, MdSecurity } from "react-icons/md";
 import { PiKeyhole, PiTerminal } from "react-icons/pi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
+// react icon sets ends
 import { Toaster } from "react-hot-toast";
 import Admin from "./pages/Admin/Admin";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
@@ -53,8 +32,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
 
-
-// const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 const navOptions: NavOption[] = [
   {id: 1, optionName: "SOLUTIONS"},
@@ -123,12 +100,14 @@ const App = (): JSX.Element => {
     isLoggedIn,
     // setIsLoggedIn,
     colorMode, 
-    // setColorMode 
+    // setColorMode,
     prevScrollYPos,
     scrollYPos,
     modalType
   } = useAppContext();
 
+  // local state: used here to prevent showing NotFound page if admin user was logged in and on protected page before refreshing and calling server for session verification
+  const [ loginStatusPending ]= useState(localStorage.getItem("wasLoggedIn") === "true");
 
   return (
     <div className="app" data-color-mode={colorMode}>
@@ -137,7 +116,9 @@ const App = (): JSX.Element => {
 
       <div 
         id="nav-container" 
-        className={`app__nav-container ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}
+        className={`app__nav-container ${prevScrollYPos < scrollYPos && scrollYPos > 50 
+          ? "hide" 
+          : ""}`}
       >
         <div className="app__nav-background"></div>
 
@@ -197,9 +178,7 @@ const App = (): JSX.Element => {
             }
           />
 
-          {/* *** */}
-
-          {isLoggedIn
+          {isLoggedIn || loginStatusPending
 
             ? (
                 <Route

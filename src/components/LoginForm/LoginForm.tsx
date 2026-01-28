@@ -1,11 +1,4 @@
-import { 
-  type FC, 
-  type FormEvent, 
-  type ChangeEvent, 
-  useState, 
-  useRef, 
-  useEffect 
-} from "react";
+import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../contexts/AppContext";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
@@ -157,6 +150,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
             />
 
             {/* make this its own component? */}
+            {/* need to deal with safari nonsense with password suggestion thing */}
             <button
               type="button"
               className={`passwordInput__icon ${isSafari ? "hide" : ""}`}
