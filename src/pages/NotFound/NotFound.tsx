@@ -26,7 +26,7 @@ const NotFound: FC<ChildrenPropsInterface> = ({ children }) => {
 
           <div className="notFound__text">
           <h1 className="notFound__h1">Ain't nothin' here, yo'!</h1>
-            <h1 className="notFound__heading">Error 404</h1>
+            <h2 className="notFound__heading">Error 404</h2>
             <h3 className="notFound__sub-heading">Page Not Found</h3>
           </div>
         </div>

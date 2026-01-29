@@ -9,4 +9,12 @@
 	&__inner {
 		@include mx.wallpaperContainer;
 	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-block: auto;
+		text-align: center;
+	}
 }
