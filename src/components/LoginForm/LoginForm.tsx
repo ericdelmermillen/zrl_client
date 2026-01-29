@@ -3,15 +3,13 @@ import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces"
 import { useAppContext } from "../../contexts/AppContext";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
-import Hide from "../../assets/svgs/Hide";
-import Show from "../../assets/svgs/Show";
+import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";
 import "./LoginForm.scss";
 
 
 const isSafari: boolean =
   navigator.userAgent.toLowerCase().includes("safari") &&
-  !navigator.userAgent.toLowerCase().includes("chrome") &&
-  !navigator.userAgent.toLowerCase().includes("mozilla");
+  !navigator.userAgent.toLowerCase().includes("chrome");
 
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
@@ -27,7 +25,9 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const handleTogglePasswordVisibility = (): void => setShowPassword(c => !c)
+  const handleTogglePasswordVisibility = (): void => {
+    setShowPassword(c => !c);
+  };
 
   const handleEmailChange = (e?: ChangeEvent<HTMLInputElement>): boolean => {
     const emailValue: string =
@@ -136,7 +136,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              className="loginForm__input"
+              className="loginForm__input loginForm__input--password"
               name="password"
               placeholder="PASSWORD"
               value={password}
@@ -149,22 +149,16 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
               }
             />
 
-            {/* make this its own component? */}
-            {/* need to deal with safari nonsense with password suggestion thing */}
-            <button
-              type="button"
-              className={`passwordInput__icon ${isSafari ? "hide" : ""}`}
-              onClick={handleTogglePasswordVisibility}
-              aria-label={
-                showPassword ? "Hide password" : "Show password"
-              }
-            >
-              {showPassword ? (
-                <Hide className="passwordInput__icon--hide" />
-              ) : (
-                <Show className="passwordInput__icon--show" />
-              )}
-            </button>
+            {!isSafari
+            
+              ? (
+                  <ShowHidePassword 
+                    handleTogglePasswordVisibility={handleTogglePasswordVisibility}
+                    showPassword={showPassword}
+                  />
+                )
+              : null
+            }
 
             {!passwordIsValid && initialFormCheck && (
               <div

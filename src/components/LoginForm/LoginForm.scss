@@ -28,6 +28,11 @@
 
 	&__field {
 		position: relative;
+
+		&--password {
+			margin-bottom: 0;
+			position: relative;
+		}
 	}
 
 	&__label {
@@ -48,6 +53,10 @@
 		}
 	}
 
+	&__button {
+		@include mx.button;
+	}
+
 	&__error {
 		@include mx.formErrorMessage;
 	}
@@ -56,27 +65,5 @@
 		display: flex;
 		margin-inline: auto;
 		margin-top: auto;
-	}
-
-	&__button {
-		@include mx.button;
-	}
-
-	.passwordInput {
-		&__icon {
-			background: none;
-			border: none;
-			cursor: pointer;
-			display: flex;
-			fill: var(--text-color);
-			margin-top: -3.5rem;
-			outline: none;
-			position: absolute;
-			right: 0.5rem;
-
-			&.hide {
-				display: none;
-			}
-		}
 	}
 }

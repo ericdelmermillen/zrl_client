@@ -144,6 +144,9 @@
 	// navHeight - 1 rem = 3rem
 	--section-top-padding: 3rem;
 
+	// UI elements
+	--inputHeight: 3rem;
+
 	// need:
 	// --box-shadow
 	// --text-color
@@ -359,6 +362,7 @@
 	color: var(--text-color);
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
+	height: var(--inputHeight);
 	line-height: var(--line-height-general);
 	margin-bottom: 1.5rem;
 	outline: none;
