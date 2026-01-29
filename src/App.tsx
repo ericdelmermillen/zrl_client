@@ -31,6 +31,7 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
+import IsLoading from "./components/IsLoading_1/IsLoading";
 
 
 const navOptions: NavOption[] = [
@@ -95,7 +96,7 @@ const notFoundIconOptions: IconType[] = [
 
 const App = (): JSX.Element => {
   const { 
-    isLoading,
+    // isLoading,
     // setIsLoading,
     isLoggedIn,
     // setIsLoggedIn,
@@ -112,7 +113,9 @@ const App = (): JSX.Element => {
   return (
     <div className="app" data-color-mode={colorMode}>
 
-      <div className={`loading ${isLoading ? "isLoading" : ""}`}></div>
+      <IsLoading />
+
+      {/* <div className={`loading ${isLoading ? "isLoading" : ""}`}></div> */}
 
       <div 
         id="nav-container" 

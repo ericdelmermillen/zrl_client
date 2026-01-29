@@ -1,0 +1,1318 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading {
+	& {
+		opacity: 1;
+		z-index: 100;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		// border: 2px solid red;
+		height: 10rem;
+		width: 10rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 2px solid red;
+
+		// background:
+		// 	radial-gradient(1200px 800px at 80% -10%, #1a1f44, transparent),
+		// 	radial-gradient(1000px 700px at 10% 110%, #112, transparent), var(--bg);
+		color: var(--fg);
+	}
+}
+
+// *** 4 flipping cards starts
+// :root {
+// 	--bg: #0f1224; /* deep navy */
+// 	--fg: #e9ecff; /* off-white */
+// 	--muted: #9aa4ff; /* soft indigo */
+// 	--accent: #6cf; /* cyan */
+// 	--card: #171a34;
+// 	--shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+// 	--size: 64px;
+// }
+
+// .grid {
+// 	display: grid;
+// 	grid-template-columns: repeat(auto-fit, 1fr);
+// }
+
+// .box {
+// 	display: grid;
+// 	width: 100%;
+// 	margin-block: auto;
+// }
+
+// .loader {
+// 	width: 46px;
+// 	height: 46px;
+// 	display: grid;
+// 	grid-template-columns: repeat(2, 1fr);
+// 	grid-template-rows: repeat(2, 1fr);
+// 	gap: 6px;
+// }
+
+// .loader i {
+// 	background: var(--fg);
+// 	transform-origin: center;
+// 	animation: flip 1.2s ease-in-out infinite;
+// }
+
+// .loader i:nth-child(2) {
+// 	animation-delay: 0.1s;
+// }
+
+// loader i:nth-child(3) {
+// 	animation-delay: 0.2s;
+// }
+
+// .loader i:nth-child(4) {
+// 	animation-delay: 0.3s;
+// }
+
+// @keyframes flip {
+// 	0%,
+// 	100% {
+// 		transform: rotateX(0) rotateY(0);
+// 	}
+// 	50% {
+// 		transform: rotateX(180deg) rotateY(180deg);
+// 	}
+// }
+
+// 4 flipping cards ends
+
+// three rotating squares starts
+// :root {
+// 	--color-red: #f64d60;
+// 	--color-orange: #ffa801;
+// 	--color-blue: #299cee;
+// }
+
+// .container {
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// }
+
+// .square {
+// 	height: 2.5rem;
+// 	width: 2.5rem;
+// 	margin: 0.75em;
+// 	animation: rotate infinite 0.75s;
+// 	/*   transform: rotate(45deg); */
+// }
+
+// .square1 {
+// 	background: var(--color-red);
+// }
+
+// .square2 {
+// 	background: var(--color-orange);
+// }
+
+// .square3 {
+// 	background: var(--color-blue);
+// }
+
+// @keyframes rotate {
+// 	from {
+// 		transform: rotate(-45deg);
+// 	}
+
+// 	to {
+// 		transform: rotate(45deg);
+// 	}
+// }
+
+// three rotating squares ends
+
+// *** three ball wave starts
+// .anim-area {
+// 	position: relative;
+// 	border: 2px solid blue;
+// 	height: 4rem;
+// 	width: 7rem;
+// }
+
+// .circle {
+// 	position: absolute;
+// 	width: 25px;
+// 	height: 25px;
+// 	background-color: #98d6ea;
+// 	border-radius: 50%;
+// }
+
+// .ud1 {
+// 	// left: 100px;
+// 	top: 50%;
+// 	transform: translateY(-50%);
+// 	animation: ud 1000ms infinite;
+// }
+
+// .ud2 {
+// 	left: 40px;
+// 	top: 50%;
+// 	transform: translateY(-50%);
+// 	animation: ud 1000ms 200ms infinite;
+// }
+
+// .ud3 {
+// 	left: 80px;
+// 	top: 50%;
+// 	transform: translateY(-50%);
+// 	animation: ud 1000ms 400ms infinite;
+// }
+
+// @keyframes ud {
+// 	0% {
+// 		transform: translateY(-7px);
+// 	}
+
+// 	50% {
+// 		transform: translateY(7px);
+// 	}
+
+// 	100% {
+// 		transform: translateY(-7px);
+// 	}
+// }
+// three ball wave ends
+
+// *** 4 square square pulse thing starts
+// .container {
+// 	width: 100px;
+// 	height: 100px;
+// 	position: relative;
+// 	transform: rotate(45deg);
+// 	animation: animate 1s linear infinite;
+// }
+
+// .sub {
+// 	position: absolute;
+// 	width: 50px;
+// 	height: 50px;
+// 	animation: rotate 1s linear infinite;
+// }
+
+// .sub:nth-child(1) {
+// 	top: 0;
+// 	left: 0;
+// 	background-color: #fceba7;
+// }
+
+// .sub:nth-child(2) {
+// 	top: 0;
+// 	right: 0;
+// 	background-color: #55ddb9;
+// }
+
+// .sub:nth-child(3) {
+// 	bottom: 0;
+// 	left: 0;
+// 	background-color: #fd6c64;
+// }
+
+// .sub:nth-child(4) {
+// 	bottom: 0;
+// 	right: 0;
+// 	background-color: #1f78b0;
+// }
+
+// @keyframes rotate {
+// 	0% {
+// 		transform: rotate(0deg);
+// 	}
+
+// 	10% {
+// 		transform: rotate(0deg);
+// 	}
+
+// 	50% {
+// 		transform: rotate(90deg);
+// 	}
+
+// 	90% {
+// 		transform: rotate(90deg);
+// 	}
+
+// 	100% {
+// 		transform: rotate(90deg);
+// 	}
+// }
+
+// @keyframes animate {
+// 	0% {
+// 		width: 100px;
+// 		height: 100px;
+// 	}
+
+// 	10% {
+// 		width: 100px;
+// 		height: 100px;
+// 	}
+
+// 	50% {
+// 		width: 150px;
+// 		height: 150px;
+// 	}
+
+// 	90% {
+// 		width: 100px;
+// 		height: 100px;
+// 	}
+
+// 	100% {
+// 		width: 100px;
+// 		height: 100px;
+// 	}
+// }
+// 4 square square pulse thing ends
+
+// *** flipping square starts
+// @mixin animation(
+// 	$name,
+// 	$duration: 1s,
+// 	$timing-function: ease,
+// 	$delay: 0s,
+// 	$iteration-count: 1,
+// 	$direction: normal,
+// 	$fill-mode: forwards
+// ) {
+// 	animation: {
+// 		name: $name;
+// 		duration: $duration;
+// 		timing-function: $timing-function;
+// 		delay: $delay;
+// 		iteration-count: $iteration-count;
+// 		direction: $direction;
+// 		fill-mode: $fill-mode;
+// 	}
+// }
+
+// .spinner {
+// 	width: 50px;
+// 	height: 50px;
+// 	background-color: #333;
+
+// 	@include animation(
+// 		$name: sk-rotateplane2,
+// 		$duration: 1.25s,
+// 		$iteration-count: infinite,
+// 		$timing-function: ease-in-out
+// 	);
+// }
+
+// @keyframes sk-rotateplane2 {
+// 	0% {
+// 		transform: perspective(120px) rotateX(0deg);
+// 	}
+// 	50% {
+// 		transform: perspective(120px) rotateX(-180deg) rotateY(0);
+// 	}
+// 	100% {
+// 		transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+// 	}
+// }
+// flipping square starts
+
+// *** pulsing circle thing starts
+// .double-spinner {
+// 	width: 65px;
+// 	height: 65px;
+// 	position: relative;
+
+// 	& > div {
+// 		width: 100%;
+// 		height: 100%;
+// 		border-radius: 50%;
+// 		background-color: #333;
+// 		opacity: 0.6;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		@include animation(
+// 			$name: sk-bouce2,
+// 			$iteration-count: infinite,
+// 			$duration: 2s,
+// 			$timing-function: ease-in-out
+// 		);
+
+// 		&:nth-child(2) {
+// 			animation-delay: -1s;
+// 		}
+// 	}
+// }
+
+// @keyframes sk-bouce2 {
+// 	0%,
+// 	100% {
+// 		transform: scale(0);
+// 	}
+// 	50% {
+// 		transform: scale(1);
+// 	}
+// }
+
+// @keyframes sk-stretchdelay2 {
+// 	0%,
+// 	40%,
+// 	100% {
+// 		transform: scaleY(0.4);
+// 	}
+// 	20% {
+// 		transform: scaleY(1);
+// 	}
+// }
+// pulsing circle thing ends
+
+// *** four pulsing rotating balls starts
+// @keyframes rotateContainer {
+// 	from {
+// 		transform: rotate(0deg);
+// 	}
+// 	to {
+// 		transform: rotate(720deg);
+// 	}
+// }
+
+// @keyframes rotateGreen {
+// 	0% {
+// 		left: 0;
+// 		top: 0;
+// 	}
+// 	25% {
+// 		left: 0;
+// 		top: 50%;
+// 	}
+// 	50% {
+// 		left: 50%;
+// 		top: 50%;
+// 	}
+// 	75% {
+// 		left: 50%;
+// 		top: 0;
+// 	}
+// 	100% {
+// 		left: 0;
+// 		top: 0;
+// 	}
+// }
+
+// @keyframes rotateBlue {
+// 	0% {
+// 		left: 0;
+// 		top: 50%;
+// 	}
+// 	25% {
+// 		left: 50%;
+// 		top: 50%;
+// 	}
+// 	50% {
+// 		left: 50%;
+// 		top: 0;
+// 	}
+// 	75% {
+// 		left: 0;
+// 		top: 0;
+// 	}
+// 	100% {
+// 		left: 0;
+// 		top: 50%;
+// 	}
+// }
+
+// @keyframes rotateYellow {
+// 	0% {
+// 		left: 50%;
+// 		top: 50%;
+// 	}
+// 	25% {
+// 		left: 50%;
+// 		top: 0;
+// 	}
+// 	50% {
+// 		left: 0;
+// 		top: 0;
+// 	}
+// 	75% {
+// 		left: 0;
+// 		top: 50%;
+// 	}
+// 	100% {
+// 		left: 50%;
+// 		top: 50%;
+// 	}
+// }
+
+// @keyframes rotateRed {
+// 	0% {
+// 		left: 50%;
+// 		top: 0;
+// 	}
+// 	25% {
+// 		left: 0;
+// 		top: 0;
+// 	}
+// 	50% {
+// 		left: 0;
+// 		top: 50%;
+// 	}
+// 	75% {
+// 		left: 50%;
+// 		top: 50%;
+// 	}
+// 	100% {
+// 		left: 50%;
+// 		top: 0;
+// 	}
+// }
+
+// .container {
+// 	position: absolute;
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: center;
+// 	height: 80px;
+// 	width: 80px;
+// 	/*animation: rotateContainer 1s infinite;*/
+// }
+
+// .box {
+// 	position: absolute;
+// 	height: 40px;
+// 	width: 40px;
+// 	border-radius: 50%;
+// 	// border: 2px solid red;
+// }
+
+// .box-one {
+// 	left: 0;
+// 	top: 0;
+// 	background-color: green;
+// 	animation: rotateGreen 3s infinite;
+// }
+
+// .box-two {
+// 	left: 50%;
+// 	top: 0;
+// 	background-color: red;
+// 	animation: rotateRed 3s infinite;
+// }
+
+// .box-three {
+// 	left: 0;
+// 	top: 50%;
+// 	background-color: blue;
+// 	animation: rotateBlue 3s infinite;
+// }
+
+// .box-four {
+// 	left: 50%;
+// 	top: 50%;
+// 	background-color: yellow;
+// 	animation: rotateYellow 3s infinite;
+// }
+// *** four pulsing rotating balls ends
+
+// *** square to circle thing starts
+// .loader {
+// 	width: 50px;
+// 	height: 50px;
+// 	background-color: #2980b9;
+// 	margin: 100px auto;
+// 	animation: loader 3s infinite alternate;
+// }
+
+// @keyframes loader {
+// 	0% {
+// 		background: #2980b9;
+// 	}
+// 	25% {
+// 		background: #e74c3c;
+// 		transform: rotate(90deg);
+// 		border-radius: 20px;
+// 	}
+// 	50% {
+// 		background: #2980b9;
+// 		transform: rotate(180deg);
+// 		border-radius: 0px;
+// 	}
+// 	75% {
+// 		background: #e74c3c;
+// 		transform: rotate(270deg);
+// 		border-radius: 20px;
+// 	}
+// 	100% {
+// 		background: #2980b9;
+// 		transform: rotate(360deg);
+// 		border-radius: 0px;
+// 	}
+// }
+
+// circle with halo thing starts
+// .center-body {
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 1999;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	width: 100%;
+// 	height: 100%;
+// 	// height: 100vh;
+// 	/****** center box
+// 	width: 300px;
+// 	height: 300px;
+// 	border: solid 1px #aaa; */
+// }
+
+// .loader-circle-5 {
+// 	overflow: hidden;
+// 	width: 80px;
+// 	height: 80px;
+// 	border-radius: 50%;
+// 	background: linear-gradient(to right, #fff 10%, rgba(255, 255, 255, 0) 42%);
+// 	position: relative;
+// 	animation: load3 1.4s infinite linear;
+// 	display: inline-block;
+// }
+
+// .loader-circle-5:after {
+// 	background: #0b7573;
+// 	width: 70%;
+// 	height: 70%;
+// 	border-radius: 50%;
+// 	content: "";
+// 	margin: auto;
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	bottom: 0;
+// 	right: 0;
+// }
+// @keyframes load3 {
+// 	0% {
+// 		transform: rotate(0deg);
+// 	}
+// 	100% {
+// 		transform: rotate(360deg);
+// 	}
+// }
+// circle with halo thing ends
+
+// *** // shifting cubes starts
+// svg {
+// 	transform: rotate(45deg);
+// }
+
+// .gradient {
+// 	animation-iteration-count: infinite;
+// 	animation-duration: 1s;
+// 	fill: url("#gradient-fill");
+// }
+// .square {
+// 	animation-iteration-count: infinite;
+// 	animation-duration: 2s;
+// 	transition-timing-function: ease-in-out;
+// }
+
+// .s1 {
+// 	animation-name: slide-1;
+// }
+
+// .s2 {
+// 	animation-name: slide-2;
+// }
+
+// .s3 {
+// 	animation-name: slide-3;
+// }
+
+// .s4 {
+// 	animation-name: slide-4;
+// }
+
+// .s5 {
+// 	animation-name: slide-5;
+// }
+
+// .s6 {
+// 	animation-name: slide-6;
+// }
+
+// .s7 {
+// 	animation-name: slide-7;
+// }
+
+// @keyframes slide-1 {
+// 	37.5% {
+// 		transform: translateX(0px);
+// 	}
+// 	50% {
+// 		transform: translateX(100px);
+// 	}
+// 	100% {
+// 		transform: translateX(100px);
+// 	}
+// }
+
+// @keyframes slide-2 {
+// 	25% {
+// 		transform: translateX(0px);
+// 	}
+// 	37.5% {
+// 		transform: translateX(100px);
+// 	}
+// 	100% {
+// 		transform: translateX(100px);
+// 	}
+// }
+
+// @keyframes slide-3 {
+// 	12.5% {
+// 		transform: translateY(0px);
+// 	}
+// 	25% {
+// 		transform: translateY(100px);
+// 	}
+// 	100% {
+// 		transform: translateY(100px);
+// 	}
+// }
+
+// @keyframes slide-4 {
+// 	50% {
+// 		transform: translateY(0px);
+// 	}
+// 	62.5% {
+// 		transform: translateY(-100px);
+// 	}
+// 	100% {
+// 		transform: translateY(-100px);
+// 	}
+// }
+
+// @keyframes slide-5 {
+// 	12.5% {
+// 		transform: translate(-100px, 0px);
+// 	}
+// 	87.5% {
+// 		transform: translate(-100px, 0px);
+// 	}
+// 	100% {
+// 		transform: translate(-100px, 100px);
+// 	}
+// }
+
+// @keyframes slide-6 {
+// 	62.5% {
+// 		transform: translateY(0px);
+// 	}
+// 	75% {
+// 		transform: translateY(-100px);
+// 	}
+// 	100% {
+// 		transform: translateY(-100px);
+// 	}
+// }
+
+// @keyframes slide-7 {
+// 	75% {
+// 		transform: translateX(0px);
+// 	}
+// 	87.5% {
+// 		transform: translateX(-100px);
+// 	}
+// 	100% {
+// 		transform: translateX(-100px);
+// 	}
+// }
+
+// /**
+//  * Page formatting 💅✨
+//  */
+
+// .container {
+// 	text-align: center;
+// 	position: absolute;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// }
+
+// .footer {
+// 	margin-top: 1rem;
+// }
+// *** shifting cubes ends
+
+// four balls spinning and merging starts
+// .loader {
+// 	animation: rotate 1.5s infinite;
+// 	height: 75px;
+// 	width: 75px;
+// }
+
+// .loader::before,
+// .loader::after {
+// 	border-radius: 50%;
+// 	content: "";
+// 	display: block;
+// 	height: 30px;
+// 	width: 30px;
+// }
+
+// .loader::before {
+// 	animation: ball1 1.5s infinite;
+// 	background-color: #cb2025;
+// 	box-shadow: 45px 0 0 #f8b334;
+// 	margin-bottom: 15px;
+// }
+
+// .loader::after {
+// 	animation: ball2 1.5s infinite;
+// 	background-color: #00a096;
+// 	box-shadow: 45px 0 0 #97bf0d;
+// }
+
+// @keyframes rotate {
+// 	0% {
+// 		transform: rotate(0deg) scale(0.8);
+// 		-webkit-transform: rotate(0deg) scale(0.8);
+// 	}
+// 	50% {
+// 		transform: rotate(360deg) scale(1.2);
+// 		-webkit-transform: rotate(360deg) scale(1.2);
+// 	}
+// 	100% {
+// 		transform: rotate(720deg) scale(0.8);
+// 		-webkit-transform: rotate(720deg) scale(0.8);
+// 	}
+// }
+
+// @keyframes ball1 {
+// 	0% {
+// 		box-shadow: 45px 0 0 #f8b334;
+// 		transform: translate(0, 0);
+// 	}
+// 	50% {
+// 		box-shadow: 0 0 0 #f8b334;
+// 		margin-bottom: 0;
+// 		transform: translate(22.5px, 22.5px);
+// 	}
+// 	100% {
+// 		box-shadow: 45px 0 0 #f8b334;
+// 		margin-bottom: 15px;
+// 		transform: translate(0, 0);
+// 	}
+// }
+
+// @keyframes ball2 {
+// 	0% {
+// 		box-shadow: 45px 0 0 #97bf0d;
+// 		transform: translate(0, 0);
+// 	}
+// 	50% {
+// 		box-shadow: 0 0 0 #97bf0d;
+// 		margin-top: -30px;
+// 		transform: translate(22.5px, 22.5px);
+// 	}
+// 	100% {
+// 		box-shadow: 45px 0 0 #97bf0d;
+// 		margin-top: 0;
+// 		transform: translate(0, 0);
+// 	}
+// }
+// four balls spinning and merging ends
+
+// *** four swirling bouncing balls begins
+// .loader-5 {
+// 	height: 96px;
+// 	width: 96px;
+// 	animation: loader-5-1 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-1 {
+// 	0% {
+// 		transform: rotate(0deg);
+// 	}
+// 	100% {
+// 		transform: rotate(360deg);
+// 	}
+// }
+
+// .loader-5::before {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 auto 0 0;
+// 	margin: auto;
+// 	width: 24px;
+// 	height: 24px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-2 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-2 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(72px, 0, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 0 0 auto;
+// 	margin: auto;
+// 	width: 24px;
+// 	height: 24px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-3 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-3 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(-72px, 0, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5 span {
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 96px;
+// 	width: 96px;
+// }
+
+// .loader-5 span::before {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 0 auto 0;
+// 	margin: auto;
+// 	width: 24px;
+// 	height: 24px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-4 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-4 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(0, 72px, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5 span::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: auto 0 0 0;
+// 	margin: auto;
+// 	width: 24px;
+// 	height: 24px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-5 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-5 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(0, -72px, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// /* Loader 6 (3× original) */
+// .loader-6 {
+// 	height: 96px;
+// 	width: 96px;
+// }
+
+// .loader-6 span {
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 96px;
+// 	width: 96px;
+// }
+
+// .loader-6 span::before,
+// .loader-6 span::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 96px;
+// 	width: 96px;
+// 	border: 6px solid #fff;
+// 	border-radius: 50%;
+// 	opacity: 0;
+// 	animation: loader-6-1 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+// }
+
+// @keyframes loader-6-1 {
+// 	0% {
+// 		transform: scale(0);
+// 		opacity: 1;
+// 	}
+// 	100% {
+// 		transform: scale(1.5);
+// 		opacity: 0;
+// 	}
+// }
+
+// .loader-6 span::after {
+// 	animation: loader-6-2 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s infinite;
+// }
+
+// @keyframes loader-6-2 {
+// 	0% {
+// 		transform: scale(0);
+// 		opacity: 1;
+// 	}
+// 	100% {
+// 		transform: scale(1);
+// 		opacity: 0;
+// 	}
+// }
+
+// .loader-5 {
+// 	height: 64px;
+// 	width: 64px;
+// 	animation: loader-5-1 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-1 {
+// 	0% {
+// 		transform: rotate(0deg);
+// 	}
+// 	100% {
+// 		transform: rotate(360deg);
+// 	}
+// }
+
+// .loader-5::before {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 auto 0 0;
+// 	margin: auto;
+// 	width: 16px;
+// 	height: 16px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-2 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-2 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(48px, 0, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 0 0 auto;
+// 	margin: auto;
+// 	width: 16px;
+// 	height: 16px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-3 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-3 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(-48px, 0, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5 span {
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 64px;
+// 	width: 64px;
+// }
+
+// .loader-5 span::before {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0 0 auto 0;
+// 	margin: auto;
+// 	width: 16px;
+// 	height: 16px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-4 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-4 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(0, 48px, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// .loader-5 span::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: auto 0 0 0;
+// 	margin: auto;
+// 	width: 16px;
+// 	height: 16px;
+// 	background: #fff;
+// 	border-radius: 50%;
+// 	animation: loader-5-5 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+// }
+
+// @keyframes loader-5-5 {
+// 	0% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// 	50% {
+// 		transform: translate3d(0, -48px, 0) scale(0.5);
+// 	}
+// 	100% {
+// 		transform: translate3d(0, 0, 0) scale(1);
+// 	}
+// }
+
+// /* Loader 6 (doubled) */
+// .loader-6 {
+// 	height: 64px;
+// 	width: 64px;
+// }
+
+// .loader-6 span {
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 64px;
+// 	width: 64px;
+// }
+
+// .loader-6 span::before,
+// .loader-6 span::after {
+// 	content: "";
+// 	position: absolute;
+// 	inset: 0;
+// 	margin: auto;
+// 	height: 64px;
+// 	width: 64px;
+// 	border: 4px solid #fff;
+// 	border-radius: 50%;
+// 	opacity: 0;
+// 	animation: loader-6-1 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+// }
+
+// @keyframes loader-6-1 {
+// 	0% {
+// 		transform: scale(0);
+// 		opacity: 1;
+// 	}
+// 	100% {
+// 		transform: scale(1.5);
+// 		opacity: 0;
+// 	}
+// }
+
+// .loader-6 span::after {
+// 	animation: loader-6-2 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s infinite;
+// }
+
+// @keyframes loader-6-2 {
+// 	0% {
+// 		transform: scale(0);
+// 		opacity: 1;
+// 	}
+// 	100% {
+// 		transform: scale(1);
+// 		opacity: 0;
+// 	}
+// }
+
+// *** rubix cube thing starts
+:root {
+	--block-size: 2rem;
+	--delay: 0.065s;
+	--duration: 0.88s;
+	--starting-color: #fdfdfd;
+	--ending-color: #dadada;
+
+	/* derived */
+	--block-margin: calc(2rem / 3);
+	--loader-size: calc(2rem * 3 + calc(2rem / 3) * 2);
+}
+
+/* layout */
+html,
+body {
+	height: 100%;
+}
+
+/* loader */
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: var(--loader-size);
+	height: var(--loader-size);
+	transform: translate(-50%, -50%);
+}
+
+.loader-block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	opacity: 0;
+	width: var(--block-size);
+	height: var(--block-size);
+	background: var(--starting-color);
+
+	animation:
+		show var(--duration) step-end infinite alternate,
+		pulse var(--duration) linear infinite alternate;
+	-webkit-animation:
+		show var(--duration) step-end infinite alternate,
+		pulse var(--duration) linear infinite alternate;
+}
+
+/* positions + delays */
+.loader-block:nth-child(1) {
+	transform: translate(0, 0);
+	animation-delay: calc(1 * var(--delay));
+	-webkit-animation-delay: calc(1 * var(--delay));
+}
+
+.loader-block:nth-child(2) {
+	transform: translate(calc(var(--block-size) + var(--block-margin)), 0);
+	animation-delay: calc(2 * var(--delay));
+	-webkit-animation-delay: calc(2 * var(--delay));
+}
+
+.loader-block:nth-child(3) {
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		0
+	);
+	animation-delay: calc(3 * var(--delay));
+	-webkit-animation-delay: calc(3 * var(--delay));
+}
+
+.loader-block:nth-child(4) {
+	transform: translate(0, calc(var(--block-size) + var(--block-margin)));
+	animation-delay: calc(5 * var(--delay));
+	-webkit-animation-delay: calc(5 * var(--delay));
+}
+
+.loader-block:nth-child(5) {
+	transform: translate(
+		calc(var(--block-size) + var(--block-margin)),
+		calc(var(--block-size) + var(--block-margin))
+	);
+	animation-delay: calc(2 * var(--delay));
+	-webkit-animation-delay: calc(2 * var(--delay));
+}
+
+.loader-block:nth-child(6) {
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		calc(var(--block-size) + var(--block-margin))
+	);
+	animation-delay: calc(7 * var(--delay));
+	-webkit-animation-delay: calc(7 * var(--delay));
+}
+
+.loader-block:nth-child(7) {
+	transform: translate(
+		0,
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+	animation-delay: calc(6 * var(--delay));
+	-webkit-animation-delay: calc(6 * var(--delay));
+}
+
+.loader-block:nth-child(8) {
+	transform: translate(
+		calc(var(--block-size) + var(--block-margin)),
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+	animation-delay: calc(4 * var(--delay));
+	-webkit-animation-delay: calc(4 * var(--delay));
+}
+
+.loader-block:nth-child(9) {
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+}
+
+/* animations */
+@keyframes pulse {
+	0%,
+	40% {
+		background: var(--starting-color);
+	}
+	100% {
+		background: var(--ending-color);
+	}
+}
+
+@keyframes show {
+	0%,
+	40% {
+		opacity: 0;
+	}
+	41%,
+	100% {
+		opacity: 1;
+	}
+}
+// rubix cube thing ends
