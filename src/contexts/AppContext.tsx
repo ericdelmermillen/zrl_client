@@ -182,35 +182,87 @@ const checkSessionStatus = async (): Promise<boolean> => {
 };
 
   // useEffect to check isLoggedIn status via call to /sessionstatus on mount
+  // useEffect(() => {
+  //   if (hasRunSessionCheck.current) {
+  //     return;
+  //   };
+
+  //   hasRunSessionCheck.current = true;
+
+  //   const runSessionCheck = async () => {
+  //     const isAuthenticated = await checkSessionStatus();
+
+  //     if (isAuthenticated) {
+  //       return setIsLoggedIn(true);
+  //     } else {
+  //       if (localStorage.getItem("wasLoggedIn")) {
+  //         if(location.pathname !== "login") {
+  //           setIsLoading(true);
+  //           toast.error("Session expired. Logging you out...");
+            
+  //           setTimeout(() => {
+  //             localStorage.removeItem("wasLoggedIn");
+  //             navigate("/");
+  //             setIsLoading(false);
+  //           }, MIN_LOADING_INTERVAL);
+            
+  //           setTimeout(() => {
+  //             setIsLoading(false);
+  //           }, MIN_LOADING_INTERVAL * 2);
+  //         } else {
+  //           setTimeout(() => {
+  //             localStorage.removeItem("wasLoggedIn");
+  //           }, MIN_LOADING_INTERVAL);
+  //         };
+            
+  //       };
+  //       setIsLoggedIn(false);
+  //     };
+  //   };
+
+  //   runSessionCheck();
+  // }, []);
+
   useEffect(() => {
     if (hasRunSessionCheck.current) {
       return;
-    } else {
-      hasRunSessionCheck.current = true;
     };
+    hasRunSessionCheck.current = true;
 
     const runSessionCheck = async () => {
       const isAuthenticated = await checkSessionStatus();
 
       if (isAuthenticated) {
         return setIsLoggedIn(true);
-      } else {
-        if (localStorage.getItem("wasLoggedIn")) {
+      };
+
+      const hadSession = Boolean(localStorage.getItem("wasLoggedIn"));
+      const isOnLogin = location.pathname === "/login";
+
+      if (hadSession) {
+        if (isOnLogin) {
+          localStorage.removeItem("wasLoggedIn");
+        } else {
           setIsLoading(true);
           toast.error("Session expired. Logging you out...");
-          
+
           setTimeout(() => {
-            navigate("/");
             localStorage.removeItem("wasLoggedIn");
-            setIsLoading(false);
+            navigate("/");
+
+            setTimeout(() => {
+              setIsLoading(false);
+            }, MIN_LOADING_INTERVAL);
           }, MIN_LOADING_INTERVAL);
         };
-        setIsLoggedIn(false);
       };
+
+      setIsLoggedIn(false);
     };
 
     runSessionCheck();
   }, []);
+
 
 
   // useEffect to check local storage for colorMode
