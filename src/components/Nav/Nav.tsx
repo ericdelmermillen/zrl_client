@@ -1,10 +1,10 @@
 import { type FC } from "react";
-import type { NavProps } from "../../typing/interfaces/interfaces.ts";
-import { useAppContext } from "../../contexts/AppContext.tsx";
+import type { NavProps } from "../../typing/interfaces/interfaces";
+import { useAppContext } from "../../hooks/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
-import { scrollToTop } from "../../../utils/utils.ts";
-import NavSocials from "../NavSocials/NavSocials.tsx";
-import Logo from "../../assets/svgs/Logo.tsx";
+import { scrollToTop } from "../../../utils/utils";
+import NavSocials from "../NavSocials/NavSocials";
+import Logo from "../../assets/svgs/Logo";
 import "./Nav.scss";
 
 const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;

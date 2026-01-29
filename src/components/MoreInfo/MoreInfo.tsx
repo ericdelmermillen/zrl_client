@@ -1,6 +1,6 @@
-import { type FC } from 'react';
-import MoreInfoForm from '../MoreInfoForm/MoreInfoForm';
-import MoreInfoText from '../MoreInfoText/MoreInfoText';
+import { type FC } from "react";
+import MoreInfoForm from "../MoreInfoForm/MoreInfoForm";
+import MoreInfoText from "../MoreInfoText/MoreInfoText";
 import "./MoreInfo.scss";
 
 

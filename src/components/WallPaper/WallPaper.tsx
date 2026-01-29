@@ -1,6 +1,6 @@
 import { type FC, useEffect, useState, memo } from "react";
 import { type IconType } from "../../typing/types/types";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import { BsCpuFill, BsHddNetworkFill } from "react-icons/bs";
 import { FaDatabase, FaServer } from "react-icons/fa";
 import { FaCode, FaRegObjectUngroup } from "react-icons/fa6";

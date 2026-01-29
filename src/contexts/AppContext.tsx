@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, createContext, useContext } from "react";
+import { useState, useRef, useEffect, createContext } from "react";
 import type { ColorMode, ModalType } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
 import { scrollToTop } from "../../utils/utils";
@@ -182,47 +182,6 @@ const checkSessionStatus = async (): Promise<boolean> => {
 };
 
   // useEffect to check isLoggedIn status via call to /sessionstatus on mount
-  // useEffect(() => {
-  //   if (hasRunSessionCheck.current) {
-  //     return;
-  //   };
-
-  //   hasRunSessionCheck.current = true;
-
-  //   const runSessionCheck = async () => {
-  //     const isAuthenticated = await checkSessionStatus();
-
-  //     if (isAuthenticated) {
-  //       return setIsLoggedIn(true);
-  //     } else {
-  //       if (localStorage.getItem("wasLoggedIn")) {
-  //         if(location.pathname !== "login") {
-  //           setIsLoading(true);
-  //           toast.error("Session expired. Logging you out...");
-            
-  //           setTimeout(() => {
-  //             localStorage.removeItem("wasLoggedIn");
-  //             navigate("/");
-  //             setIsLoading(false);
-  //           }, MIN_LOADING_INTERVAL);
-            
-  //           setTimeout(() => {
-  //             setIsLoading(false);
-  //           }, MIN_LOADING_INTERVAL * 2);
-  //         } else {
-  //           setTimeout(() => {
-  //             localStorage.removeItem("wasLoggedIn");
-  //           }, MIN_LOADING_INTERVAL);
-  //         };
-            
-  //       };
-  //       setIsLoggedIn(false);
-  //     };
-  //   };
-
-  //   runSessionCheck();
-  // }, []);
-
   useEffect(() => {
     if (hasRunSessionCheck.current) {
       return;
@@ -361,16 +320,8 @@ const checkSessionStatus = async (): Promise<boolean> => {
   );
 };
 
-// export this separately in hooks dir later
-const useAppContext = () => {
-  const context = useContext(AppContext);
-  if(!context) {
-    throw new Error("useAppContext must be used within an AppContextProvider");
-  };
-  return context;
-};
 
 export { 
-  AppContextProvider, 
-  useAppContext
+  AppContext,
+  AppContextProvider
 };

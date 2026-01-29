@@ -1,6 +1,6 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import "./Modal.scss";
 
 

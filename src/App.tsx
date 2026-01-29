@@ -1,7 +1,7 @@
 import { useState, type JSX } from "react";
 import { type IconType } from "./typing/types/types";
 import { type NavOption } from "./typing/interfaces/interfaces";
-import { useAppContext } from "./contexts/AppContext";
+import { useAppContext } from "./hooks/hooks";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
 import { BiSolidCommentError } from "react-icons/bi";

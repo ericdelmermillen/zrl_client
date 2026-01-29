@@ -1,10 +1,10 @@
-import { type FC, useState, useRef } from 'react';
-import { useAppContext } from "../../contexts/AppContext";
-import { isValidEmail } from '../../../utils/utils';
+import { type FC, useState, useRef } from "react";
+import { useAppContext } from "../../hooks/hooks";
+import { isValidEmail } from "../../../utils/utils";
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
-import LabelledCheckbox from '../LabelledCheckbox/LabelledCheckbox';
-import toast from 'react-hot-toast';
+import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
+import toast from "react-hot-toast";
 import "./MoreInfoForm.scss";
 
 // need to put the endpoint in env and import it

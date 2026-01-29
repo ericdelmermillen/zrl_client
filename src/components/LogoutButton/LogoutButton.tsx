@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { BiLogOutCircle } from "react-icons/bi";
 import "./LogoutButton.scss";

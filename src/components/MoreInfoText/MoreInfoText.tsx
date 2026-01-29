@@ -1,6 +1,6 @@
-import{ type FC } from 'react';
+import{ type FC } from "react";
 import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
-import BulletCheck from '../BulletCheck/BulletCheck';
+import BulletCheck from "../BulletCheck/BulletCheck";
 import "./MoreInfoText.scss";
 
 
@@ -23,7 +23,7 @@ const MoreInfoText:FC = () => {
     <>
       <article className="moreInfoText">
         <div className="moreInfoText__inner">
-          <h2 className='moreInfoText__heading'>Get More Information</h2>
+          <h2 className="moreInfoText__heading">Get More Information</h2>
 
           <p className="moreInfoText__lead">
             We provide innovative software solutions that empower businesses to thrive in the digital era.

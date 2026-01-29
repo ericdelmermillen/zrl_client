@@ -1,4 +1,4 @@
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import { type FC, type CSSProperties, useState, useEffect } from "react";
 import "./Header_2.scss";
 

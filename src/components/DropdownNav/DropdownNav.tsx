@@ -1,6 +1,6 @@
 import { type FC, useRef, useEffect } from "react";
-import type { NavProps } from "../../typing/interfaces/interfaces.js";
-import { useAppContext } from "../../contexts/AppContext.js";
+import type { NavProps } from "../../typing/interfaces/interfaces";
+import { useAppContext } from "../../hooks/hooks";
 import { useLocation } from "react-router-dom";
 import "./DropdownNav.scss";
 

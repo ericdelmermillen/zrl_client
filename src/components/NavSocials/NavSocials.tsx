@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 import { FaFacebookF } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import "./NavSocials.scss";

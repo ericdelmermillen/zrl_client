@@ -1,6 +1,6 @@
 import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
 import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";

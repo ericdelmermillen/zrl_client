@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import { FaAngleUp } from "react-icons/fa";
 import { scrollToTop } from "../../../utils/utils";
 import Day_1 from "../../assets/svgs/Day_1";

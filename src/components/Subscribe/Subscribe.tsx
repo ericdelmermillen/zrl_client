@@ -1,5 +1,5 @@
 import { type FC, useState, useRef } from "react";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
 import toast from "react-hot-toast";
@@ -7,7 +7,6 @@ import "./Subscribe.scss";
 
 // need email validation handling including invalid stylings
 // need api call logic
-// agree to terms?
 
 const Subscribe: FC = () => {
   const { handleSetModalType } = useAppContext();
