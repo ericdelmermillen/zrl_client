@@ -11,6 +11,8 @@ import IsLoading_1 from "../IsLoading_1/IsLoading_1";
 // need to put the endpoint in env and import it
 // need validation for phone number for as many possible countries/conventions possible
 
+// *** need validation state checking when user selects from auto fill
+
 
 const MoreInfoForm: FC = () => {
   const { handleSetModalType } = useAppContext();
@@ -26,7 +28,7 @@ const MoreInfoForm: FC = () => {
   const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
-  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(true);
+  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -66,7 +68,6 @@ const MoreInfoForm: FC = () => {
   const handleSubmit = (): void => {
     setInitialFormCheck(true);
     console.log("submitting")
-    // setIsLoading(true);
     
     let errors = 0;
 
@@ -99,6 +100,12 @@ const MoreInfoForm: FC = () => {
       return;
     };
 
+    setComponentIsLoading(true);
+
+    setTimeout(() => {
+      setComponentIsLoading(false);
+    }, 2000)
+
     // endpoint call if no errors
   };
 
@@ -114,8 +121,9 @@ const MoreInfoForm: FC = () => {
         >
           <div className="moreInfoForm__fields">
 
-            <IsLoading_1 />
-            
+            <div className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}>
+              <IsLoading_1 />
+            </div>
 
             <div className="moreInfoForm__field moreInfoForm__field--name">
               <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
@@ -201,7 +209,7 @@ const MoreInfoForm: FC = () => {
             </label>
               
             <button 
-              className={`moreInfoForm__submitButton ${!agreeToTerms ? "disabled" : ""}`}
+              className={`moreInfoForm__submitButton ${!agreeToTerms || componentIsLoading ? "disabled" : ""}`}
               type="submit"
               onClick={handleSubmit}
             >
