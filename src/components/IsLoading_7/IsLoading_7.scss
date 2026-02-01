@@ -1,0 +1,164 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_7 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** four pulsing rotating balls starts
+@keyframes rotateContainer {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(720deg);
+	}
+}
+
+@keyframes rotateGreen {
+	0% {
+		left: 0;
+		top: 0;
+	}
+	25% {
+		left: 0;
+		top: 50%;
+	}
+	50% {
+		left: 50%;
+		top: 50%;
+	}
+	75% {
+		left: 50%;
+		top: 0;
+	}
+	100% {
+		left: 0;
+		top: 0;
+	}
+}
+
+@keyframes rotateBlue {
+	0% {
+		left: 0;
+		top: 50%;
+	}
+	25% {
+		left: 50%;
+		top: 50%;
+	}
+	50% {
+		left: 50%;
+		top: 0;
+	}
+	75% {
+		left: 0;
+		top: 0;
+	}
+	100% {
+		left: 0;
+		top: 50%;
+	}
+}
+
+@keyframes rotateYellow {
+	0% {
+		left: 50%;
+		top: 50%;
+	}
+	25% {
+		left: 50%;
+		top: 0;
+	}
+	50% {
+		left: 0;
+		top: 0;
+	}
+	75% {
+		left: 0;
+		top: 50%;
+	}
+	100% {
+		left: 50%;
+		top: 50%;
+	}
+}
+
+@keyframes rotateRed {
+	0% {
+		left: 50%;
+		top: 0;
+	}
+	25% {
+		left: 0;
+		top: 0;
+	}
+	50% {
+		left: 0;
+		top: 50%;
+	}
+	75% {
+		left: 50%;
+		top: 50%;
+	}
+	100% {
+		left: 50%;
+		top: 0;
+	}
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	height: 80px;
+	justify-content: center;
+	position: absolute;
+	width: 80px;
+}
+
+.box {
+	border-radius: 50%;
+	height: 40px;
+	position: absolute;
+	width: 40px;
+}
+
+.box-one {
+	animation: rotateGreen 2.25s infinite;
+	background-color: green;
+	left: 0;
+	top: 0;
+}
+
+.box-two {
+	left: 50%;
+	top: 0;
+	background-color: red;
+	animation: rotateRed 2.25s infinite;
+}
+
+.box-three {
+	animation: rotateBlue 2.25s infinite;
+	background-color: blue;
+	left: 0;
+	top: 50%;
+}
+
+.box-four {
+	animation: rotateYellow 2.25s infinite;
+	background-color: yellow;
+	left: 50%;
+	top: 50%;
+}

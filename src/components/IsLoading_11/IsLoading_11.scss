@@ -1,0 +1,97 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_11 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** four balls spinning and merging starts
+.loader {
+	animation: rotate 1.5s infinite;
+	background: none;
+	height: 75px;
+	width: 75px;
+}
+
+.loader::before,
+.loader::after {
+	border-radius: 50%;
+	content: "";
+	display: block;
+	height: 30px;
+	width: 30px;
+}
+
+.loader::before {
+	animation: ball1 1.5s infinite;
+	background-color: #cb2025;
+	box-shadow: 45px 0 0 #f8b334;
+	margin-bottom: 15px;
+}
+
+.loader::after {
+	animation: ball2 1.5s infinite;
+	background-color: #00a096;
+	box-shadow: 45px 0 0 #97bf0d;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg) scale(0.8);
+		-webkit-transform: rotate(0deg) scale(0.8);
+	}
+	50% {
+		transform: rotate(360deg) scale(1.2);
+		-webkit-transform: rotate(360deg) scale(1.2);
+	}
+	100% {
+		transform: rotate(720deg) scale(0.8);
+		-webkit-transform: rotate(720deg) scale(0.8);
+	}
+}
+
+@keyframes ball1 {
+	0% {
+		box-shadow: 45px 0 0 #f8b334;
+		transform: translate(0, 0);
+	}
+	50% {
+		box-shadow: 0 0 0 #f8b334;
+		margin-bottom: 0;
+		transform: translate(22.5px, 22.5px);
+	}
+	100% {
+		box-shadow: 45px 0 0 #f8b334;
+		margin-bottom: 15px;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes ball2 {
+	0% {
+		box-shadow: 45px 0 0 #97bf0d;
+		transform: translate(0, 0);
+	}
+	50% {
+		box-shadow: 0 0 0 #97bf0d;
+		margin-top: -30px;
+		transform: translate(22.5px, 22.5px);
+	}
+	100% {
+		box-shadow: 45px 0 0 #97bf0d;
+		margin-top: 0;
+		transform: translate(0, 0);
+	}
+}

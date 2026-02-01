@@ -6,6 +6,7 @@ import { isValidPhoneNumber } from "../../../utils/utils";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import toast from "react-hot-toast";
 import "./MoreInfoForm.scss";
+import IsLoading_1 from "../IsLoading_1/IsLoading_1";
 
 // need to put the endpoint in env and import it
 // need validation for phone number for as many possible countries/conventions possible
@@ -25,6 +26,7 @@ const MoreInfoForm: FC = () => {
   const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
+  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(true);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -63,6 +65,7 @@ const MoreInfoForm: FC = () => {
 
   const handleSubmit = (): void => {
     setInitialFormCheck(true);
+    console.log("submitting")
     // setIsLoading(true);
     
     let errors = 0;
@@ -103,75 +106,80 @@ const MoreInfoForm: FC = () => {
   return (
     <>
       <article className="moreInfoForm__section">
-            
+          
         <form 
           className="moreInfoForm__form" 
           name="moreInfoForm"
           onSubmit={(e) => {e.preventDefault()}}
         >
+          <div className="moreInfoForm__fields">
 
-          <div className="moreInfoForm__field moreInfoForm__field--name">
-            <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
-              Name
-            </label>
+            <IsLoading_1 />
+            
 
-            <input 
-              id="moreInfoFormName"
-              type="text" 
-              className={
-                `moreInfoForm__input moreInfoForm__input--name
-                  ${initialFormCheck && !nameIsValid
-                      ? "invalid" : ""
-                  }`}
-              autoComplete="name"
-              placeholder="Enter Name"
-              value={name}
-              ref={nameRef}
-              onChange={handleNameChange}
-            />
+            <div className="moreInfoForm__field moreInfoForm__field--name">
+              <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
+                Name
+              </label>
 
-          </div>
+              <input 
+                id="moreInfoFormName"
+                type="text" 
+                className={
+                  `moreInfoForm__input moreInfoForm__input--name
+                    ${initialFormCheck && !nameIsValid
+                        ? "invalid" : ""
+                    }`}
+                autoComplete="name"
+                placeholder="Enter Name"
+                value={name}
+                ref={nameRef}
+                onChange={handleNameChange}
+              />
 
-          <div className="moreInfoForm__field moreInfoForm__field--email">
+            </div>
 
-            <label htmlFor="moreInfoFormEmail" className="moreInfoForm__label">
-              Email
-            </label>
+            <div className="moreInfoForm__field moreInfoForm__field--email">
 
-            <input
-              id="moreInfoFormEmail"
-              className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
-              name="email"
-              autoComplete="email"
-              placeholder="Enter Email"
-              value={email}
-              ref={emailRef}
-              onChange={handleEmailChange}
-            />
-          </div>
+              <label htmlFor="moreInfoFormEmail" className="moreInfoForm__label">
+                Email
+              </label>
 
-          <div className="moreInfoForm__field moreInfoForm__field--phone">
+              <input
+                id="moreInfoFormEmail"
+                className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
+                name="email"
+                autoComplete="email"
+                placeholder="Enter Email"
+                value={email}
+                ref={emailRef}
+                onChange={handleEmailChange}
+              />
+            </div>
 
-            <label htmlFor="moreInfoFormPhone" className="moreInfoForm__label">
-              Phone
-            </label>
+            <div className="moreInfoForm__field moreInfoForm__field--phone">
 
-            <input 
-              id="moreInfoFormPhone"
-              type="tel" 
-              className={
-                `moreInfoForm__input moreInfoForm__input--phone
-                  ${initialFormCheck && !phoneIsValid
-                      ? "invalid" : ""}  
-              `} 
-              inputMode="numeric"
-              autoComplete="tel"
-              placeholder="Enter Phone"
-              value={phone}
-              ref={phoneRef}
-              onChange={handlePhoneChange}
-            />
-          
+              <label htmlFor="moreInfoFormPhone" className="moreInfoForm__label">
+                Phone
+              </label>
+
+              <input 
+                id="moreInfoFormPhone"
+                type="tel" 
+                className={
+                  `moreInfoForm__input moreInfoForm__input--phone
+                    ${initialFormCheck && !phoneIsValid
+                        ? "invalid" : ""}  
+                `} 
+                inputMode="numeric"
+                autoComplete="tel"
+                placeholder="Enter Phone"
+                value={phone}
+                ref={phoneRef}
+                onChange={handlePhoneChange}
+              />
+            
+            </div>
           </div>
 
           <LabelledCheckbox 
@@ -185,6 +193,7 @@ const MoreInfoForm: FC = () => {
             spanLinkText={"privacy policy"}
             onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
           />
+          
       
           <div className="moreInfoForm__submit">
             <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">

@@ -6,6 +6,7 @@
 		height: 100%;
 		padding-inline: 1rem;
 		padding-top: 1.5rem;
+		position: relative;
 		width: 100%;
 
 		@media (min-width: vars.$tablet) {
@@ -20,7 +21,10 @@
 		flex-direction: column;
 		height: 100%;
 		min-height: 100%;
+		position: relative;
 		width: 100%;
+		z-index: 1;
+		border: 2px solid red;
 
 		@media (min-width: vars.$mediumTablet) {
 			padding-block: 2rem;
@@ -28,6 +32,11 @@
 		}
 	}
 
+	&__fields {
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}
 	&__field {
 		align-items: center;
 		display: flex;
@@ -55,6 +64,7 @@
 		margin-inline: auto;
 		margin-top: 2rem;
 		width: 100%;
+		z-index: 1;
 	}
 
 	&__submitButton {

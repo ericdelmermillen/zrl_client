@@ -1,0 +1,151 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_13 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** rubix cube thing starts
+:root {
+	--block-size: 2rem;
+	--delay: 0.065s;
+	--duration: 0.88s;
+	--starting-color: #fdfdfd;
+	--ending-color: #dadada;
+
+	/* derived */
+	--block-margin: calc(2rem / 3);
+	--loader-size: calc(2rem * 3 + calc(2rem / 3) * 2);
+}
+
+/* loader */
+.loader {
+	height: var(--loader-size);
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: var(--loader-size);
+}
+
+.loader-block {
+	animation:
+		show var(--duration) step-end infinite alternate,
+		pulse var(--duration) linear infinite alternate;
+	background: var(--starting-color);
+	display: inline-block;
+	height: var(--block-size);
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: var(--block-size);
+	-webkit-animation:
+		show var(--duration) step-end infinite alternate,
+		pulse var(--duration) linear infinite alternate;
+}
+
+/* positions + delays */
+.loader-block:nth-child(1) {
+	animation-delay: calc(1 * var(--delay));
+	transform: translate(0, 0);
+	-webkit-animation-delay: calc(1 * var(--delay));
+}
+
+.loader-block:nth-child(2) {
+	animation-delay: calc(2 * var(--delay));
+	transform: translate(calc(var(--block-size) + var(--block-margin)), 0);
+	-webkit-animation-delay: calc(2 * var(--delay));
+}
+
+.loader-block:nth-child(3) {
+	animation-delay: calc(3 * var(--delay));
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		0
+	);
+	-webkit-animation-delay: calc(3 * var(--delay));
+}
+
+.loader-block:nth-child(4) {
+	animation-delay: calc(5 * var(--delay));
+	transform: translate(0, calc(var(--block-size) + var(--block-margin)));
+	-webkit-animation-delay: calc(5 * var(--delay));
+}
+
+.loader-block:nth-child(5) {
+	animation-delay: calc(2 * var(--delay));
+	transform: translate(
+		calc(var(--block-size) + var(--block-margin)),
+		calc(var(--block-size) + var(--block-margin))
+	);
+	-webkit-animation-delay: calc(2 * var(--delay));
+}
+
+.loader-block:nth-child(6) {
+	animation-delay: calc(7 * var(--delay));
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		calc(var(--block-size) + var(--block-margin))
+	);
+	-webkit-animation-delay: calc(7 * var(--delay));
+}
+
+.loader-block:nth-child(7) {
+	animation-delay: calc(6 * var(--delay));
+	transform: translate(
+		0,
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+	-webkit-animation-delay: calc(6 * var(--delay));
+}
+
+.loader-block:nth-child(8) {
+	animation-delay: calc(4 * var(--delay));
+	transform: translate(
+		calc(var(--block-size) + var(--block-margin)),
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+	-webkit-animation-delay: calc(4 * var(--delay));
+}
+
+.loader-block:nth-child(9) {
+	transform: translate(
+		calc(var(--block-size) * 2 + var(--block-margin) * 2),
+		calc(var(--block-size) * 2 + var(--block-margin) * 2)
+	);
+}
+
+/* animations */
+@keyframes pulse {
+	0%,
+	40% {
+		background: var(--starting-color);
+	}
+	100% {
+		background: var(--ending-color);
+	}
+}
+
+@keyframes show {
+	0%,
+	40% {
+		opacity: 0;
+	}
+	41%,
+	100% {
+		opacity: 1;
+	}
+}

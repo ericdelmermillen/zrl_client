@@ -1,0 +1,68 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_3 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** three ball wave
+.anim-area {
+	height: 4rem;
+	position: relative;
+	width: 7rem;
+}
+
+.circle {
+	background-color: #98d6ea;
+	border-radius: 50%;
+	height: 25px;
+	position: absolute;
+	width: 25px;
+}
+
+.ud1 {
+	// left: 100px;
+	animation: ud 1000ms infinite;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.ud2 {
+	animation: ud 1000ms 200ms infinite;
+	left: 40px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.ud3 {
+	animation: ud 1000ms 400ms infinite;
+	left: 80px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@keyframes ud {
+	0% {
+		transform: translateY(-7px);
+	}
+
+	50% {
+		transform: translateY(7px);
+	}
+
+	100% {
+		transform: translateY(-7px);
+	}
+}

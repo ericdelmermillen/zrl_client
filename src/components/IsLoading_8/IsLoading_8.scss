@@ -1,0 +1,53 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_8 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** square to circle thing starts: H
+.loader {
+	animation: loader 3s infinite alternate;
+	background-color: #2980b9;
+	height: 50px;
+	margin: 100px auto;
+	width: 50px;
+}
+
+@keyframes loader {
+	0% {
+		background: #2980b9;
+	}
+	25% {
+		background: #e74c3c;
+		transform: rotate(90deg);
+		border-radius: 20px;
+	}
+	50% {
+		background: #2980b9;
+		transform: rotate(180deg);
+		border-radius: 0px;
+	}
+	75% {
+		background: #e74c3c;
+		transform: rotate(270deg);
+		border-radius: 20px;
+	}
+	100% {
+		background: #2980b9;
+		transform: rotate(360deg);
+		border-radius: 0px;
+	}
+}

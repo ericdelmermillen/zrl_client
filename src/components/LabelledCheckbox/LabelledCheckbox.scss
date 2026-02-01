@@ -23,6 +23,10 @@
 		}
 	}
 
+	&__text-link {
+		white-space: nowrap;
+	}
+
 	&__input {
 		@include mx.checkboxInput;
 	}

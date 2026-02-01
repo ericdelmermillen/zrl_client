@@ -1,0 +1,66 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading_9 {
+	& {
+		align-items: center;
+		color: var(--fg);
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 10rem;
+		z-index: 10;
+	}
+}
+
+// *** circle with halo thing starts
+.center-body {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.loader-circle-5 {
+	animation: load3 1.4s infinite linear;
+	background: linear-gradient(to right, #fff 10%, rgba(255, 255, 255, 0) 42%);
+	border-radius: 50%;
+	display: inline-block;
+	height: 80px;
+	overflow: hidden;
+	position: relative;
+	width: 80px;
+}
+
+.loader-circle-5:after {
+	background: #0b7573;
+	background: var(--accent-color);
+	border-radius: 50%;
+	bottom: 0;
+	content: "";
+	height: 70%;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 70%;
+}
+
+@keyframes load3 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
