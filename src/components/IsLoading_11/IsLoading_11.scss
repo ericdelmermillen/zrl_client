@@ -9,6 +9,7 @@
 		height: 10rem;
 		justify-content: center;
 		left: 50%;
+		margin-top: -0.75rem;
 		position: fixed;
 		top: 50%;
 		transform: translate(-50%, -50%);
@@ -36,15 +37,15 @@
 
 .loader::before {
 	animation: ball1 1.5s infinite;
-	background-color: #cb2025;
-	box-shadow: 45px 0 0 #f8b334;
+	background-color: red;
+	box-shadow: 45px 0 0 yellow;
 	margin-bottom: 15px;
 }
 
 .loader::after {
 	animation: ball2 1.5s infinite;
-	background-color: #00a096;
-	box-shadow: 45px 0 0 #97bf0d;
+	background-color: green;
+	box-shadow: 45px 0 0 blue;
 }
 
 @keyframes rotate {
@@ -64,16 +65,16 @@
 
 @keyframes ball1 {
 	0% {
-		box-shadow: 45px 0 0 #f8b334;
+		box-shadow: 45px 0 0 yellow;
 		transform: translate(0, 0);
 	}
 	50% {
-		box-shadow: 0 0 0 #f8b334;
+		box-shadow: 0 0 0 yellow;
 		margin-bottom: 0;
 		transform: translate(22.5px, 22.5px);
 	}
 	100% {
-		box-shadow: 45px 0 0 #f8b334;
+		box-shadow: 45px 0 0 yellow;
 		margin-bottom: 15px;
 		transform: translate(0, 0);
 	}
@@ -81,16 +82,16 @@
 
 @keyframes ball2 {
 	0% {
-		box-shadow: 45px 0 0 #97bf0d;
+		box-shadow: 45px 0 0 blue;
 		transform: translate(0, 0);
 	}
 	50% {
-		box-shadow: 0 0 0 #97bf0d;
+		box-shadow: 0 0 0 blue;
 		margin-top: -30px;
 		transform: translate(22.5px, 22.5px);
 	}
 	100% {
-		box-shadow: 45px 0 0 #97bf0d;
+		box-shadow: 45px 0 0 blue;
 		margin-top: 0;
 		transform: translate(0, 0);
 	}

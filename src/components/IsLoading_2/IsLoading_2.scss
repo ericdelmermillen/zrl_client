@@ -9,6 +9,7 @@
 		height: 10rem;
 		justify-content: center;
 		left: 50%;
+		margin-top: -0.75rem;
 		position: fixed;
 		top: 50%;
 		transform: translate(-50%, -50%);
@@ -19,9 +20,9 @@
 
 // *** three rotating squares
 :root {
-	--color-red: #f64d60;
-	--color-orange: #ffa801;
-	--color-blue: #299cee;
+	--color-red: red;
+	--color-orange: blue;
+	--color-blue: green;
 }
 
 .container {

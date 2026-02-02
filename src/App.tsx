@@ -186,6 +186,8 @@ const App = (): JSX.Element => {
             ? <p>Privacy Policy</p>
             : modalType === "terms"
             ? <p>Terms & Conditions</p>
+            : modalType === "newsletter"
+            ? <p>Newsletter</p>
             : null
           }
         </Modal>

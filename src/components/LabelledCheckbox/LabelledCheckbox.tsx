@@ -46,7 +46,7 @@ const LabelledCheckbox: FC<LabelledCheckboxProps> = ({
         id={labelId}
         type="checkbox"
         className={`labelledCheckbox__input
-          ${isValid && !isChecked ? "invalid" : ""}`}
+          ${isValid ? "" : "invalid"}`}
         checked={isChecked}
         onChange={handleIsClickedChange}
       />

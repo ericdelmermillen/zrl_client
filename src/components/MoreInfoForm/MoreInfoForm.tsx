@@ -3,15 +3,23 @@ import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail } from "../../../utils/utils";
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
+// import IsLoading_3 from "../IsLoading_3/IsLoading_3";
+// import IsLoading_5 from "../IsLoading_5/IsLoading_5";
+// import IsLoading_6 from "../IsLoading_6/IsLoading_6";
+// import IsLoading_7 from "../IsLoading_7/IsLoading_7";
+// import IsLoading_8 from "../IsLoading_8/IsLoading_8";
+// import IsLoading_9 from "../IsLoading_9/IsLoading_9";
+// import IsLoading_10 from "../IsLoading_10/IsLoading_10";
+import IsLoading_11 from "../IsLoading_11/IsLoading_11";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import toast from "react-hot-toast";
 import "./MoreInfoForm.scss";
-import IsLoading_1 from "../IsLoading_1/IsLoading_1";
 
 // need to put the endpoint in env and import it
 // need validation for phone number for as many possible countries/conventions possible
 
 // *** need validation state checking when user selects from auto fill
+// *** add secont tickbox for subscribe to newsletter: can submit with subscribe false but not with Agree to terms false
 
 
 const MoreInfoForm: FC = () => {
@@ -20,6 +28,7 @@ const MoreInfoForm: FC = () => {
   const [ name, setName ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");
   const [ phone, setPhone ] = useState<string>("");
+  const [ agreeToNewsletter, setAgreeToNewsletter ] = useState<boolean>(true);
   const [ agreeToTerms, setAgreeToTerms ] = useState<boolean>(true);
 
   // input validation state
@@ -33,6 +42,10 @@ const MoreInfoForm: FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
+
+  // const checkItems = [
+
+  // ]
 
   const handleNameChange = () => {
     const nameValue = nameRef.current?.value ?? "";
@@ -102,9 +115,17 @@ const MoreInfoForm: FC = () => {
 
     setComponentIsLoading(true);
 
+    // success UI (email not in database)
     setTimeout(() => {
       setComponentIsLoading(false);
-    }, 2000)
+      toast.success("Thanks for reaching out. Check your Inbox for more info.");
+    }, 2000);
+    
+    // failure UI (email already in database)
+    // setTimeout(() => {
+    //   setComponentIsLoading(false);
+    //   toast.error("That email is already in our database.");
+    // }, 2000);
 
     // endpoint call if no errors
   };
@@ -122,7 +143,14 @@ const MoreInfoForm: FC = () => {
           <div className="moreInfoForm__fields">
 
             <div className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}>
-              <IsLoading_1 />
+              {/* <IsLoading_3 /> */}
+              {/* <IsLoading_5 /> */}
+              {/* <IsLoading_6 /> */}
+              {/* <IsLoading_7 /> */}
+              {/* <IsLoading_8 /> */}
+              {/* <IsLoading_9 /> */}
+              {/* <IsLoading_10 /> */}
+              <IsLoading_11 />
             </div>
 
             <div className="moreInfoForm__field moreInfoForm__field--name">
@@ -162,6 +190,7 @@ const MoreInfoForm: FC = () => {
                 value={email}
                 ref={emailRef}
                 onChange={handleEmailChange}
+                onBlur={handleEmailChange}
               />
             </div>
 
@@ -189,19 +218,35 @@ const MoreInfoForm: FC = () => {
             
             </div>
           </div>
+          <div className="moreInfoForm__checkboxes">
 
-          <LabelledCheckbox 
-            labelId={"moreInfoFormTerms"}
-            labelText={"Terms"}
-            isChecked={agreeToTerms}
-            setIsChecked={setAgreeToTerms}
-            isValid={initialFormCheck}
-            modalType={"privacy"}
-            spanStub={"Agree to the "}
-            spanLinkText={"privacy policy"}
-            onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
-          />
-          
+            <div className="moreInfoForm__checkboxes-inner">
+              
+              <LabelledCheckbox 
+                labelId={"moreInfoFormNewsletter"}
+                labelText={"Newsletter"}
+                isChecked={agreeToNewsletter}
+                setIsChecked={setAgreeToNewsletter}
+                isValid={true}
+                modalType={"newsletter"}
+                spanStub={"Subscribe to our "}
+                spanLinkText={"Newsletter"}
+                onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+              />
+
+              <LabelledCheckbox 
+                labelId={"moreInfoFormTerms"}
+                labelText={"Terms"}
+                isChecked={agreeToTerms}
+                setIsChecked={setAgreeToTerms}
+                isValid={agreeToTerms}
+                modalType={"privacy"}
+                spanStub={"Agree to our "}
+                spanLinkText={"Privacy Policy"}
+                onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+              />
+            </div>
+          </div>
       
           <div className="moreInfoForm__submit">
             <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
