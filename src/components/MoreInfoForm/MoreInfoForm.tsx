@@ -239,7 +239,7 @@ const MoreInfoForm: FC = () => {
                 labelText={"Terms"}
                 isChecked={agreeToTerms}
                 setIsChecked={setAgreeToTerms}
-                isValid={agreeToTerms}
+                isValid={true}
                 modalType={"privacy"}
                 spanStub={"Agree to our "}
                 spanLinkText={"Privacy Policy"}
