@@ -3,12 +3,8 @@ import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail } from "../../../utils/utils";
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
-// import IsLoading_3 from "../IsLoading_3/IsLoading_3";
-// import IsLoading_5 from "../IsLoading_5/IsLoading_5";
 // import IsLoading_6 from "../IsLoading_6/IsLoading_6";
 // import IsLoading_7 from "../IsLoading_7/IsLoading_7";
-// import IsLoading_8 from "../IsLoading_8/IsLoading_8";
-// import IsLoading_9 from "../IsLoading_9/IsLoading_9";
 // import IsLoading_10 from "../IsLoading_10/IsLoading_10";
 import IsLoading_11 from "../IsLoading_11/IsLoading_11";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
@@ -20,7 +16,10 @@ import "./MoreInfoForm.scss";
 
 // *** need validation state checking when user selects from auto fill
 // *** add secont tickbox for subscribe to newsletter: can submit with subscribe false but not with Agree to terms false
+// *** allow all submits to trigger new welcome email even if email is in database?
+// *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
 
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 
 const MoreInfoForm: FC = () => {
   const { handleSetModalType } = useAppContext();
@@ -105,11 +104,7 @@ const MoreInfoForm: FC = () => {
       errors++;
     };
 
-
     if(errors) {
-      // setTimeout(() => {
-      //   setIsLoading(false);
-      // }, MIN_LOADING_INTERVAL);
       return;
     };
 
@@ -117,9 +112,30 @@ const MoreInfoForm: FC = () => {
 
     // success UI (email not in database)
     setTimeout(() => {
-      setComponentIsLoading(false);
       toast.success("Thanks for reaching out. Check your Inbox for more info.");
-    }, 2000);
+      
+      if(agreeToNewsletter) {
+        setTimeout(() => {
+
+          toast.success("Successfully subscribed to our Newsletter.");
+        }, MIN_LOADING_INTERVAL * 2)
+      };
+
+      setName("")
+      setEmail("")
+      setPhone("")
+      setInitialFormCheck(false);
+      setNameIsValid(true);
+      setEmailIsValid(true);
+      setPhoneIsValid(true);
+      setAgreeToNewsletter(true);
+      setAgreeToTerms(true);
+      emailRef.current?.blur();
+      nameRef.current?.blur();
+      phoneRef.current?.blur();
+
+      setComponentIsLoading(false);
+    }, 1500);
     
     // failure UI (email already in database)
     // setTimeout(() => {
@@ -143,12 +159,8 @@ const MoreInfoForm: FC = () => {
           <div className="moreInfoForm__fields">
 
             <div className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}>
-              {/* <IsLoading_3 /> */}
-              {/* <IsLoading_5 /> */}
               {/* <IsLoading_6 /> */}
               {/* <IsLoading_7 /> */}
-              {/* <IsLoading_8 /> */}
-              {/* <IsLoading_9 /> */}
               {/* <IsLoading_10 /> */}
               <IsLoading_11 />
             </div>

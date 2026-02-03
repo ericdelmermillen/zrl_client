@@ -4,6 +4,11 @@ import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
 import toast from "react-hot-toast";
 import "./Subscribe.scss";
+// import IsLoading_6 from "../IsLoading_6/IsLoading_6";
+// import IsLoading_7 from "../IsLoading_7/IsLoading_7";
+// import IsLoading_9 from "../IsLoading_9/IsLoading_9";
+// import IsLoading_10 from "../IsLoading_10/IsLoading_10";
+import IsLoading_11 from "../IsLoading_11/IsLoading_11";
 
 // need email validation handling including invalid stylings
 // need api call logic
@@ -14,9 +19,9 @@ const Subscribe: FC = () => {
   const [ email, setEmail ] = useState<string>("");
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ agreeToPrivacy, setAgreeToPrivacy ] = useState<boolean>(true);
+  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
-  
 
   const handleEmailChange = (): boolean => {
     const emailValue = emailRef.current?.value ?? "";
@@ -39,17 +44,25 @@ const Subscribe: FC = () => {
     };
 
     if(errors) {
-      // setTimeout(() => {
-      //   setIsLoading(false);
-      // }, MIN_LOADING_INTERVAL);
       return;
     };
+
+    setComponentIsLoading(true);
+
+    setTimeout(() => {
+      setComponentIsLoading(false);
+      toast.success("Successfully subscribed to our Newsletter.");
+      setEmail("");
+      setEmailIsValid(true);
+      setInitialFormCheck(false);
+      setAgreeToPrivacy(true);
+      emailRef.current?.blur();
+    }, 1500);
 
     // endpoint call if no errors
 
     // TODO: Add submission logic (e.g. API call or toast message)
-    console.log("Subscription form submitted");
-    setEmail("")
+    // setEmail("")
   };
 
   return (
@@ -69,24 +82,35 @@ const Subscribe: FC = () => {
 
               <label htmlFor="subscribe" className="subscribe__label">Subscribe</label>
 
-              <input
-                id="subscribe"
-                className={`subscribe__input ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
-                name="email"
-                autoComplete="email"
-                placeholder="Enter email"
-                value={email}
-                ref={emailRef}
-                onChange={handleEmailChange}
-              />
+              <div className="subscribe__input-wrapper">
 
+                <div className={`subscribe__isLoading ${componentIsLoading ? "show" : ""}`}>
+                  {/* <IsLoading_6 /> */}
+                  {/* <IsLoading_7 /> */}
+                  {/* <IsLoading_9 /> */}
+                  {/* <IsLoading_10 /> */}
+                  <IsLoading_11 />
+                </div>
+
+                <input
+                  id="subscribe"
+                  className={`subscribe__input ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Enter email"
+                  value={email}
+                  ref={emailRef}
+                  onChange={handleEmailChange}
+                />
+                
+                </div>
               <div className="subscribe__button-container">
 
                 <button 
                   type="submit"
                   className="subscribe__submit"
                   onClick={handleSubmit}
-                  disabled={!agreeToPrivacy}
+                  disabled={!agreeToPrivacy || componentIsLoading}
                 >
                   SUBMIT
                 </button>
