@@ -1,22 +1,9 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
-.isLoading_11 {
-	& {
-		align-items: center;
-		color: var(--fg);
-		display: flex;
-		height: 10rem;
-		justify-content: center;
-		left: 50%;
-		margin-top: -0.75rem;
-		position: fixed;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		width: 10rem;
-		z-index: 10;
-	}
-}
+// .isLoading_11 {
+
+// }
 
 // *** four balls spinning and merging starts
 .loader {

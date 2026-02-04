@@ -23,7 +23,6 @@
 		min-height: 100%;
 		position: relative;
 		width: 100%;
-		z-index: 1;
 
 		@media (min-width: vars.$mediumTablet) {
 			padding-block: 2rem;
@@ -35,22 +34,12 @@
 		height: 100%;
 		position: relative;
 		width: 100%;
-		z-index: 1;
 	}
 
 	&__isLoading {
-		left: 50%;
-		position: absolute;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		opacity: 0;
-		transition: opacity 0.5s ease;
-		z-index: 0;
-
-		&.show {
-			opacity: 1;
-			transition: opacity 0.75s ease;
-			z-index: 1;
+		@include mx.isLoadingContainer;
+		& {
+			margin-top: -0.75rem;
 		}
 	}
 
@@ -62,7 +51,6 @@
 		margin-inline: auto;
 		max-width: 32rem;
 		width: 100%;
-		z-index: 10;
 	}
 
 	&__label {
@@ -72,9 +60,6 @@
 	&__input {
 		// need a bg color for the inputs: will remove border after
 		@include mx.input;
-		& {
-			border: 2px solid blue;
-		}
 	}
 
 	&__checkboxes {
@@ -110,9 +95,7 @@
 		}
 
 		&.disabled {
-			// need disabled stylings
-			opacity: 0.5;
-			pointer-events: none;
+			@include mx.diabledButton;
 		}
 	}
 }

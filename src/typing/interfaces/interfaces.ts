@@ -7,8 +7,8 @@ export interface AppContextValue {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   colorMode: ColorMode;
   setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>;
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  appIsLoading: boolean;
+  setAppIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   scrollYPos: number;
   setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
   windowWidth: number;

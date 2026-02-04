@@ -85,6 +85,8 @@
 	// Timing Variables
 	--transition-interval-lightbox: 450ms;
 	--placeholder-transition: all 0.75s ease-in-out;
+	--isLoading-start-transition: opacity 0.25s ease;
+	--isLoading-end-transition: opacity 0.75s ease;
 
 	// Font Sizes
 	// header fonts
@@ -234,6 +236,21 @@
 	}
 }
 
+@mixin isLoadingContainer {
+	left: 50%;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: var(--isLoading-start-transition);
+	z-index: 0;
+
+	&.show {
+		opacity: 1;
+		transition: var(--isLoading-end-transition);
+		z-index: 1;
+	}
+}
 // may set explicit footer height to define min page height with
 @mixin page {
 	min-height: calc(100vh - (vars.$footerHeightMobile + 1px));
@@ -454,7 +471,7 @@
 @mixin formFullWidth {
 	align-items: center;
 	background: var(--neutral-bg-1);
-	background: yellow;
+	// background: yellow;
 	border-radius: var(--border-radius-form);
 	display: flex;
 	flex-direction: column;
@@ -537,6 +554,11 @@
 	// box-shadow: var(--header-text-shadow);
 	transition: all 0.2s ease-in-out;
 
+	&.disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
 	@media (min-width: vars.$smallPhone) {
 		font-size: var(--btn-text-sm);
 	}
@@ -581,6 +603,12 @@
 	& {
 		border-radius: 2rem;
 	}
+}
+
+@mixin diabledButton {
+	cursor: pointer;
+	opacity: 0.5;
+	pointer-events: none;
 }
 
 // need button link
@@ -729,6 +757,7 @@
 	position: relative;
 	resize: none;
 	width: 100%;
+	outline: 2px solid blue;
 
 	&.invalid {
 		// need invalid border/outline styling for invalid state: will remove yellow bg later

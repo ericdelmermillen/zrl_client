@@ -31,19 +31,10 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
-// import IsLoading_1 from "./components/IsLoading_1/IsLoading_1";
-// import IsLoading_2 from "./components/IsLoading_2/IsLoading_2";
-// import IsLoading_3 from "./components/IsLoading_3/IsLoading_3";
-// import IsLoading_4 from "./components/IsLoading_4/IsLoading_4";
-// import IsLoading_5 from "./components/IsLoading_5/IsLoading_5";
 // import IsLoading_6 from "./components/IsLoading_6/IsLoading_6";
 // import IsLoading_7 from "./components/IsLoading_7/IsLoading_7";
-// import IsLoading_8 from "./components/IsLoading_8/IsLoading_8";
-// import IsLoading_9 from "./components/IsLoading_9/IsLoading_9";
 // import IsLoading_10 from "./components/IsLoading_10/IsLoading_10";
-// import IsLoading_11 from "./components/IsLoading_11/IsLoading_11";
-// import IsLoading_12 from "./components/IsLoading_12/IsLoading_12";
-// import IsLoading_13 from "./components/IsLoading_13/IsLoading_13";
+import IsLoading_11 from "./components/IsLoading_11/IsLoading_11";
 
 
 const navOptions: NavOption[] = [
@@ -108,10 +99,8 @@ const notFoundIconOptions: IconType[] = [
 
 const App = (): JSX.Element => {
   const { 
-    // isLoading,
-    // setIsLoading,
+    appIsLoading,
     isLoggedIn,
-    // setIsLoggedIn,
     colorMode, 
     // setColorMode,
     prevScrollYPos,
@@ -125,19 +114,12 @@ const App = (): JSX.Element => {
   return (
     <div className="app" data-color-mode={colorMode}>
 
-      {/* <IsLoading_1 /> */}
-      {/* <IsLoading_2 /> */}
-      {/* <IsLoading_3 /> */}
-      {/* <IsLoading_4 /> */}
-      {/* <IsLoading_5 /> */}
-      {/* <IsLoading_6 /> */}
-      {/* <IsLoading_7 /> */}
-      {/* <IsLoading_8 /> */}
-      {/* <IsLoading_9 /> */}
-      {/* <IsLoading_10 /> */}
-      {/* <IsLoading_11 /> */}
-      {/* <IsLoading_12 /> */}
-      {/* <IsLoading_13 /> */}
+      <div className={`app__isLoading ${appIsLoading ? "show": ""}`}>
+        {/* <IsLoading_6 /> */}
+        {/* <IsLoading_7 /> */}
+        {/* <IsLoading_10 /> */}
+        <IsLoading_11 />
+      </div>
 
       {/* <div className={`loading ${isLoading ? "isLoading" : ""}`}></div> */}
 

@@ -36,6 +36,7 @@ const MoreInfoForm: FC = () => {
   const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
+
   const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement | null>(null);

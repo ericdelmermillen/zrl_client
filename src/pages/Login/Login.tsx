@@ -1,22 +1,15 @@
-import { type FC, useEffect } from "react";
+import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { scrollToTop } from "../../../utils/utils";
+import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.scss"
 
-
 const Login: FC<ChildrenPropsInterface> = ({ children }) => {
+  usePageLoading();
+  useDocumentTitle("Zidgy Road Lab's Admin Login Page");
+  useScrollToTopOnPageMount();
 
-  // scroll to top on mount
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
-  // useEffect to update title of page
-  useEffect(() => {
-      document.title = "Zidgy Road Lab's Admin Login Page";
-  }, []);
-    
+  // const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
   
   return (
     <>

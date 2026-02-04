@@ -98,6 +98,26 @@ img {
 		@include mx.appLayout;
 	}
 
+	&__isLoading {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		// width: 10rem;
+		// height: 10rem;
+		opacity: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+		transition: var(--isLoading-start-transition);
+
+		&.show {
+			opacity: 1;
+			transition: var(--isLoading-end-transition);
+		}
+	}
+
 	&__nav-container {
 		align-items: center;
 		display: flex;

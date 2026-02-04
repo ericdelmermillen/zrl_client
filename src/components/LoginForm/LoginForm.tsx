@@ -3,9 +3,14 @@ import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces"
 import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail, isValidPassword } from "../../../utils/utils";
 import { toast } from "react-hot-toast";
+// import IsLoading_6 from "../IsLoading_6/IsLoading_6";
+// import IsLoading_7 from "../IsLoading_7/IsLoading_7";
+// import IsLoading_10 from "../IsLoading_10/IsLoading_10";
+import IsLoading_11 from "../IsLoading_11/IsLoading_11";
 import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";
 import "./LoginForm.scss";
 
+const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
 
 const isSafari: boolean =
   navigator.userAgent.toLowerCase().includes("safari") &&
@@ -13,7 +18,7 @@ const isSafari: boolean =
 
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
-  const { isLoading, loginUser } = useAppContext();
+  const { loginUser } = useAppContext();
 
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
@@ -21,6 +26,8 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const [ initialFormCheck, setInitialFormCheck ] = useState<boolean>(false);
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ passwordIsValid, setPasswordIsValid ] = useState<boolean>(true);
+
+  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -73,6 +80,12 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
       return false;
     };
     
+    setComponentIsLoading(true);
+    
+    setTimeout(() => {
+      setComponentIsLoading(false);
+    }, APP_ISLOADING_DELAY)
+    
     return loginUser(email, password);
   };
 
@@ -84,6 +97,12 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
 
   return (
     <section className="loginForm">
+      <div className={`loginForm__isLoading ${componentIsLoading ? "show": ""}`}>
+        {/* <IsLoading_6 /> */}
+        {/* <IsLoading_7 /> */}
+        {/* <IsLoading_10 /> */}
+        <IsLoading_11 />
+      </div>
       <div className="loginForm__inner">
         <div className="loginForm__header">
           <h4 className="loginForm__heading">Admin Login</h4>
@@ -174,9 +193,8 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
           <div className="loginForm__submit">
             <button
               type="submit"
-              className="loginForm__button"
-              disabled={isLoading}
-              aria-busy={isLoading}
+              className={`loginForm__button ${componentIsLoading ? "disabled" : ""}`}
+              aria-busy={componentIsLoading}
             >
               SUBMIT
             </button>

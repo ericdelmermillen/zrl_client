@@ -108,9 +108,8 @@ const Subscribe: FC = () => {
 
                 <button 
                   type="submit"
-                  className="subscribe__submit"
+                  className={`subscribe__submit ${!agreeToPrivacy || componentIsLoading ? "disabled" : ""}`}
                   onClick={handleSubmit}
-                  disabled={!agreeToPrivacy || componentIsLoading}
                 >
                   SUBMIT
                 </button>

@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
@@ -17,7 +18,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const isOnHome = location.pathname === "/";
 
   const [ colorMode, setColorMode ] = useState<ColorMode>(() => localStorage.getItem("colorMode") === "dark" ? "dark" : "light");
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const [ appIsLoading, setAppIsLoading ] = useState<boolean>(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
 
   const [ scrollYPos, setScrollYPos ] = useState(0);
@@ -46,16 +47,16 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
 
   const logoutUser = (): void => {
-    setIsLoading(true);
+    setAppIsLoading(true);
     toast.success("Logging you out now...");
-    navigate("/")
+    navigate("/");
     
     setTimeout(() => {
       scrollToTop();
       setShowDropdownNavOptions(false);
       setIsLoggedIn(false);
-      setIsLoading(false);
-    }, MIN_LOADING_INTERVAL);
+      setAppIsLoading(false);
+    }, APP_ISLOADING_DELAY);
   };
 
   const toggleColorMode = () : void => {
@@ -118,7 +119,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   };
 
   const loginUser = async (email: string, password: string): Promise<boolean> => {
-    setIsLoading(true);
 
     try {
       const response = await fetch(`${BASE_URL}/auth/loginuser`, {
@@ -144,7 +144,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       toast.success(data.message || "Login successful!");
       setIsLoggedIn(true);
       localStorage.setItem("wasLoggedIn", "true");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, MIN_LOADING_INTERVAL * 2);
 
       return true;
     } catch (error) {
@@ -158,7 +160,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       toast.error(message);
       return false;
     } finally {
-      setIsLoading(false);
     };
   };
   
@@ -202,7 +203,7 @@ const checkSessionStatus = async (): Promise<boolean> => {
         if (isOnLogin) {
           localStorage.removeItem("wasLoggedIn");
         } else {
-          setIsLoading(true);
+          setAppIsLoading(true);
           toast.error("Session expired. Logging you out...");
 
           setTimeout(() => {
@@ -210,7 +211,7 @@ const checkSessionStatus = async (): Promise<boolean> => {
             navigate("/");
 
             setTimeout(() => {
-              setIsLoading(false);
+              setAppIsLoading(false);
             }, MIN_LOADING_INTERVAL);
           }, MIN_LOADING_INTERVAL);
         };
@@ -283,8 +284,8 @@ const checkSessionStatus = async (): Promise<boolean> => {
 
   const contextValues = {
     // state
-    isLoading, 
-    setIsLoading,
+    appIsLoading, 
+    setAppIsLoading,
     isLoggedIn,
     setIsLoggedIn,
     colorMode,

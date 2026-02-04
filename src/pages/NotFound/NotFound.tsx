@@ -1,21 +1,14 @@
-import { type FC, useEffect } from "react";
+import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { scrollToTop } from "../../../utils/utils";
+import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
 
-
 const NotFound: FC<ChildrenPropsInterface> = ({ children }) => {
+  usePageLoading();
+  useDocumentTitle("Zidgy Road Lab's Admin Login Page");
+  useScrollToTopOnPageMount();
 
-  // scroll to top on mount
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
-  // useEffect to update title of page
-  useEffect(() => {
-      document.title = "Zidgy Road Lab's Not Found Page";
-  }, []);
   
   return (
     <>

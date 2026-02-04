@@ -48,18 +48,9 @@
 	}
 
 	&__isLoading {
-		left: 50%;
-		opacity: 0;
-		position: absolute;
-		top: 50%;
-		transform: translate(-50%, calc(-50% + 0.75rem));
-		transition: opacity 0.5s ease;
-		z-index: 0;
-
-		&.show {
-			opacity: 1;
-			transition: opacity 0.75s ease;
-			z-index: 1;
+		@include mx.isLoadingContainer;
+		& {
+			margin-top: -0.75rem;
 		}
 
 		@media (min-width: vars.$mediumTablet) {
@@ -70,7 +61,6 @@
 	&__input {
 		@include mx.input;
 		& {
-			outline: 2px solid blue;
 			width: 100%;
 		}
 	}
@@ -117,6 +107,10 @@
 			margin-top: 2rem;
 			max-width: 20rem;
 			width: 100%;
+		}
+
+		&.disabled {
+			@include mx.diabledButton;
 		}
 
 		@media (min-width: vars.$mediumTablet) {

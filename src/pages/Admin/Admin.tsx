@@ -1,23 +1,15 @@
-import { type FC, useEffect } from "react";
+import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { scrollToTop } from "../../../utils/utils";
+import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import WelcomeEmail from "../../components/WelcomeEmail/WelcomeEmail";
 import "./Admin.scss";
 
 
 const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
-
-  // scroll to top on mount
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
-  // useEffect to update title of page
-  useEffect(() => {
-      document.title = "Zidgy Road Lab's Admin Page";
-  }, []);
-    
+  usePageLoading();
+  useDocumentTitle("Zidgy Road Lab's Admin Page");
+  useScrollToTopOnPageMount();    
   
   return (
     <>

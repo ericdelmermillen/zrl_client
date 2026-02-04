@@ -6,6 +6,10 @@
 		@include mx.page;
 	}
 
+	&__isLoading {
+		@include mx.isLoadingContainer;
+	}
+
 	&__inner {
 		@include mx.wallpaperContainer;
 	}

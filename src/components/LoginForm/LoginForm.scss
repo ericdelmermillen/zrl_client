@@ -6,8 +6,12 @@
 		@include mx.formFullWidth;
 		& {
 			width: 100%;
-			border: 2px solid red;
+			position: relative;
 		}
+	}
+
+	&__isLoading {
+		@include mx.isLoadingContainer;
 	}
 
 	&__inner {
@@ -27,8 +31,8 @@
 	}
 
 	&__field {
-		position: relative;
 		margin-bottom: 1rem;
+		position: relative;
 
 		&--password {
 			margin-bottom: 0;
@@ -54,17 +58,20 @@
 		}
 	}
 
-	&__button {
-		@include mx.button;
-	}
-
 	&__error {
 		@include mx.formErrorMessage;
 	}
 
 	&__submit {
-		display: flex;
 		margin-inline: auto;
 		margin-top: auto;
+	}
+
+	&__button {
+		@include mx.button;
+
+		&.disabled {
+			@include mx.diabledButton;
+		}
 	}
 }

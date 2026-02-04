@@ -1,4 +1,5 @@
-import { type FC, useEffect,} from "react";
+import { type FC } from "react";
+import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount  } from "../../hooks/hooks";
 // import Header_1 from "../../components/Header_1/Header_1";
 import Details from "../../components/Details/Details";
 import Expertise from "../../components/Expertise/Expertise";
@@ -10,13 +11,11 @@ import Subscribe from "../../components/Subscribe/Subscribe";
 import Values from "../../components/Values/Values";
 import "./Home.scss";
 
-const Home: FC = () => {
 
-  // useEffect to set page's title
-  useEffect(() => {
-    document.title = "Zidgy Road Labs | Professional Web Development Services";
-  }, []);
-    
+const Home: FC = () => {
+  usePageLoading();
+  useDocumentTitle("Zidgy Road Labs | Professional Web Development Services");
+  useScrollToTopOnPageMount();
   
   return (
     <>
