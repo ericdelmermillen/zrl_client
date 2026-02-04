@@ -1,6 +1,7 @@
 import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail } from "../../../utils/utils";
+import type { CheckboxItem } from "../../typing/types/types";
 // ***phone validation is crap: revise
 import { isValidPhoneNumber } from "../../../utils/utils";
 // import IsLoading_6 from "../IsLoading_6/IsLoading_6";
@@ -43,9 +44,32 @@ const MoreInfoForm: FC = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
 
-  // const checkItems = [
 
-  // ]
+  const checkboxItems: CheckboxItem[] = [
+    {
+      key: "agreeToNewsletter",
+      labelId: "moreInfoFormNewsletter",
+      labelText: "Newsletter",
+      modalType: "newsletter",
+      spanStub: "Subscribe to our ",
+      spanLinkText: "Newsletter",
+      isChecked: agreeToNewsletter,
+      setIsChecked: setAgreeToNewsletter,
+      isValid: true,
+    },
+    {
+      key: "agreeToTerms",
+      labelId: "moreInfoFormTerms",
+      labelText: "Terms",
+      modalType: "privacy",
+      spanStub: "Agree to our ",
+      spanLinkText: "Privacy Policy",
+      isChecked: agreeToTerms,
+      setIsChecked: setAgreeToTerms,
+      isValid: true,
+    },
+  ];
+
 
   const handleNameChange = () => {
     const nameValue = nameRef.current?.value ?? "";
@@ -234,30 +258,22 @@ const MoreInfoForm: FC = () => {
           <div className="moreInfoForm__checkboxes">
 
             <div className="moreInfoForm__checkboxes-inner">
-              
-              <LabelledCheckbox 
-                labelId={"moreInfoFormNewsletter"}
-                labelText={"Newsletter"}
-                isChecked={agreeToNewsletter}
-                setIsChecked={setAgreeToNewsletter}
-                isValid={true}
-                modalType={"newsletter"}
-                spanStub={"Subscribe to our "}
-                spanLinkText={"Newsletter"}
-                onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
-              />
 
-              <LabelledCheckbox 
-                labelId={"moreInfoFormTerms"}
-                labelText={"Terms"}
-                isChecked={agreeToTerms}
-                setIsChecked={setAgreeToTerms}
-                isValid={true}
-                modalType={"privacy"}
-                spanStub={"Agree to our "}
-                spanLinkText={"Privacy Policy"}
-                onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
-              />
+              {checkboxItems.map((item) => (
+                <LabelledCheckbox
+                  key={item.key}
+                  labelId={item.labelId}
+                  labelText={item.labelText}
+                  isChecked={item.isChecked}
+                  setIsChecked={item.setIsChecked}
+                  isValid={item.isValid}
+                  modalType={item.modalType}
+                  spanStub={item.spanStub}
+                  spanLinkText={item.spanLinkText}
+                  onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+                />
+              ))}
+              
             </div>
           </div>
       

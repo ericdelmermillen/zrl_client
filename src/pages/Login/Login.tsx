@@ -2,14 +2,13 @@ import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import "./Login.scss"
+import "./Login.scss";
 
 const Login: FC<ChildrenPropsInterface> = ({ children }) => {
   usePageLoading();
   useDocumentTitle("Zidgy Road Lab's Admin Login Page");
   useScrollToTopOnPageMount();
 
-  // const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
   
   return (
     <>

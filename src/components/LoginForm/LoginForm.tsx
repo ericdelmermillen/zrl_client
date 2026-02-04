@@ -131,9 +131,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
               onChange={handleEmailChange}
               onBlur={handleEmailChange}
               aria-describedby="emailError"
-              aria-invalid={
-                !emailIsValid && initialFormCheck ? "true" : "false"
-              }
+              aria-invalid={!emailIsValid && initialFormCheck ? "true" : "false"}
             />
 
             {!emailIsValid && initialFormCheck && (
@@ -145,6 +143,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
                 Invalid Email
               </div>
             )}
+            
           </div>
 
           <div className="loginForm__field loginForm__field--password">
