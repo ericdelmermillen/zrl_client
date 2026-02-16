@@ -12,7 +12,7 @@ const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
 
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
-    setIsLoading,
+    setAppIsLoading,
     isLoggedIn,
     scrollYPos,
     prevScrollYPos,
@@ -40,10 +40,10 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
   const handleScrollToTop = () => {
     navigate("/");
-    setIsLoading(true);
+    setAppIsLoading(true);
     setShowDropdownNavOptions(false);
     scrollToTop();
-    setIsLoading(false);
+    setAppIsLoading(false);
   };
 
   

@@ -50,10 +50,11 @@
 	&__isLoading {
 		@include mx.isLoadingContainer;
 		& {
-			margin-top: -0.75rem;
+			margin-top: 0;
 		}
 
 		@media (min-width: vars.$mediumTablet) {
+			margin-top: -0.75rem;
 			transform: translate(calc(-50% + 2.5rem), calc(-50% + 0.75rem));
 		}
 	}
