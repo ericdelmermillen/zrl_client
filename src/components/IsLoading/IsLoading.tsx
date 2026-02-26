@@ -2,7 +2,6 @@ import { type FC } from "react";
 import "./IsLoading.scss";
 
 
-// four balls spinning and merging
 const IsLoading: FC = () => {
   return (
     <>
