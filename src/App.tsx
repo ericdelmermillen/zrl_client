@@ -23,6 +23,7 @@ import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
+import IsLoading_11 from "./components/IsLoading/IsLoading";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
 import Modal from "./components/Modal/Modal";
 import Nav from "./components/Nav/Nav";
@@ -31,10 +32,6 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "./App.scss";
-// import IsLoading_6 from "./components/IsLoading_6/IsLoading_6";
-// import IsLoading_7 from "./components/IsLoading_7/IsLoading_7";
-// import IsLoading_10 from "./components/IsLoading_10/IsLoading_10";
-import IsLoading_11 from "./components/IsLoading_11/IsLoading_11";
 
 
 const navOptions: NavOption[] = [
@@ -115,9 +112,6 @@ const App = (): JSX.Element => {
     <div className="app" data-color-mode={colorMode}>
 
       <div className={`app__isLoading ${appIsLoading ? "show": ""}`}>
-        {/* <IsLoading_6 /> */}
-        {/* <IsLoading_7 /> */}
-        {/* <IsLoading_10 /> */}
         <IsLoading_11 />
       </div>
 

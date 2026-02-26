@@ -4,11 +4,7 @@ import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
 import toast from "react-hot-toast";
 import "./Subscribe.scss";
-// import IsLoading_6 from "../IsLoading_6/IsLoading_6";
-// import IsLoading_7 from "../IsLoading_7/IsLoading_7";
-// import IsLoading_9 from "../IsLoading_9/IsLoading_9";
-// import IsLoading_10 from "../IsLoading_10/IsLoading_10";
-import IsLoading_11 from "../IsLoading_11/IsLoading_11";
+import IsLoading from "../IsLoading/IsLoading";
 
 // need email validation handling including invalid stylings
 // need api call logic
@@ -85,11 +81,7 @@ const Subscribe: FC = () => {
               <div className="subscribe__input-wrapper">
 
                 <div className={`subscribe__isLoading ${componentIsLoading ? "show" : ""}`}>
-                  {/* <IsLoading_6 /> */}
-                  {/* <IsLoading_7 /> */}
-                  {/* <IsLoading_9 /> */}
-                  {/* <IsLoading_10 /> */}
-                  <IsLoading_11 />
+                  <IsLoading />
                 </div>
 
                 <input

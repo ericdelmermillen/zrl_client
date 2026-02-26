@@ -1,38 +1,35 @@
 @use "../../partials/_variables" as vars;
 @use "../../partials/_mixins" as mx;
 
-// .isLoading_11 {
+.isLoading {
+	&__loader {
+		animation: rotate 1.45s infinite;
+		background: none;
+		height: 75px;
+		width: 75px;
+	}
 
-// }
+	&__loader::before,
+	&__loader::after {
+		border-radius: 50%;
+		content: "";
+		display: block;
+		height: 30px;
+		width: 30px;
+	}
 
-// *** four balls spinning and merging starts
-.loader {
-	animation: rotate 1.45s infinite;
-	background: none;
-	height: 75px;
-	width: 75px;
-}
+	&__loader::before {
+		animation: ball1 1.45s infinite;
+		background-color: red;
+		box-shadow: 45px 0 0 yellow;
+		margin-bottom: 15px;
+	}
 
-.loader::before,
-.loader::after {
-	border-radius: 50%;
-	content: "";
-	display: block;
-	height: 30px;
-	width: 30px;
-}
-
-.loader::before {
-	animation: ball1 1.45s infinite;
-	background-color: red;
-	box-shadow: 45px 0 0 yellow;
-	margin-bottom: 15px;
-}
-
-.loader::after {
-	animation: ball2 1.45s infinite;
-	background-color: green;
-	box-shadow: 45px 0 0 blue;
+	&__loader::after {
+		animation: ball2 1.45s infinite;
+		background-color: green;
+		box-shadow: 45px 0 0 blue;
+	}
 }
 
 @keyframes rotate {
