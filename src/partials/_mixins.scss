@@ -553,6 +553,7 @@
 	// add basic shadow to button then override for header to be darker
 	// box-shadow: var(--header-text-shadow);
 	transition: all 0.2s ease-in-out;
+	z-index: 1;
 
 	&.disabled {
 		opacity: 0.5;
