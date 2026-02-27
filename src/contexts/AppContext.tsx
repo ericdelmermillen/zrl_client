@@ -9,7 +9,6 @@ const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {

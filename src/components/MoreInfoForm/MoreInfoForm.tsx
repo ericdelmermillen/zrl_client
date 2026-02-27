@@ -2,23 +2,19 @@ import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail } from "../../../utils/utils";
 import type { CheckboxItem } from "../../typing/types/types";
-// ***phone validation is crap: revise
-import { isValidPhoneNumber } from "../../../utils/utils";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import toast from "react-hot-toast";
 import "./MoreInfoForm.scss";
 
-// need to put the endpoint in env and import it
-// need validation for phone number for as many possible countries/conventions possible
 
 // *** need validation state checking when user selects from auto fill
-// *** add secont tickbox for subscribe to newsletter: can submit with subscribe false but not with Agree to terms false
 // *** allow all submits to trigger new welcome email even if email is in database?
 // *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
-// need for more info form; timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
   const { handleSetModalType } = useAppContext();
@@ -31,7 +27,7 @@ const MoreInfoForm: FC = () => {
 
   // input validation state
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
-  
+
   const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
   const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
@@ -91,7 +87,23 @@ const MoreInfoForm: FC = () => {
 
   const handlePhoneChange = (): boolean => {
     const phoneValue = phoneRef.current?.value ?? "";
-    const phoneNumberIsValid = isValidPhoneNumber(phoneValue);
+
+    if (!phoneValue.length) {
+      setPhone("");
+      setPhoneIsValid(true);
+      return true;
+    };
+
+    let phoneNumberIsValid = false;
+
+    try {
+      phoneNumberIsValid = isValidPhoneNumber(
+        phoneValue.startsWith("+") ? phoneValue : phoneValue,
+        "US" // fallback country for numbers without + prefix
+      );
+    } catch {
+      phoneNumberIsValid = false;
+    };
 
     setPhone(phoneValue);
     setPhoneIsValid(phoneNumberIsValid);
@@ -99,10 +111,8 @@ const MoreInfoForm: FC = () => {
     return phoneNumberIsValid;
   };
 
-
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
     setInitialFormCheck(true);
-    console.log("submitting")
     
     let errors = 0;
 
@@ -116,8 +126,8 @@ const MoreInfoForm: FC = () => {
       errors++;
     };
 
-    // need to get phone number with any non-numeric characters stripped when it is time to post
-    if(!handlePhoneChange()) {
+
+    if(phone.length && !handlePhoneChange()) {
       toast.error("Phone is invalid");
       errors++;
     };
@@ -133,20 +143,40 @@ const MoreInfoForm: FC = () => {
 
     setComponentIsLoading(true);
 
-    // success UI (email not in database)
-    setTimeout(() => {
-      toast.success("Thanks for reaching out. Check your Inbox for more info.");
-      
-      if(agreeToNewsletter) {
-        setTimeout(() => {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-          toast.success("Successfully subscribed to our Newsletter.");
-        }, MIN_LOADING_INTERVAL * 2)
+    try {
+      const response = await fetch(`${BASE_URL}/moreinfo/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || undefined,
+          timezone,
+          hasSubscribed: agreeToNewsletter
+        })
+      });
+
+      if(!response.ok) {
+        toast.error("Something went wrong. Please try again.");
+        return;
       };
 
-      setName("")
-      setEmail("")
-      setPhone("")
+      toast.success("Thanks for reaching out. Check your Inbox for more info.");
+
+      const { hasSubscribed } = await response.json();
+
+      if(hasSubscribed) {
+        // timeout so toast appears after a slight delay after first toast
+        setTimeout(() => {
+          toast.success("Successfully subscribed to our Newsletter.");
+        }, MIN_LOADING_INTERVAL * 2);
+      };
+
+      setName("");
+      setEmail("");
+      setPhone("");
       setInitialFormCheck(false);
       setNameIsValid(true);
       setEmailIsValid(true);
@@ -157,16 +187,11 @@ const MoreInfoForm: FC = () => {
       nameRef.current?.blur();
       phoneRef.current?.blur();
 
+    } catch(error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
       setComponentIsLoading(false);
-    }, 1500);
-    
-    // failure UI (email already in database)
-    // setTimeout(() => {
-    //   setComponentIsLoading(false);
-    //   toast.error("That email is already in our database.");
-    // }, 2000);
-
-    // endpoint call if no errors
+    };
   };
 
 
@@ -237,12 +262,12 @@ const MoreInfoForm: FC = () => {
                 type="tel" 
                 className={
                   `moreInfoForm__input moreInfoForm__input--phone
-                    ${initialFormCheck && !phoneIsValid
+                    ${initialFormCheck && !phoneIsValid && phone
                         ? "invalid" : ""}  
                 `} 
                 inputMode="numeric"
                 autoComplete="tel"
-                placeholder="Enter Phone"
+                placeholder="Enter Phone (Optional)"
                 value={phone}
                 ref={phoneRef}
                 onChange={handlePhoneChange}
