@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount } from "../../hooks/hooks";
-import Newsletter from "../../components/Newsletter/Newsletter";
-import WelcomeEmail from "../../components/WelcomeEmail/WelcomeEmail";
+// import Newsletter from "../../components/Newsletter/Newsletter";
+import MoreInfoEmail from "../../components/MoreInfoEmail/MoreInfoEmail";
 import "./Admin.scss";
 
 
@@ -17,8 +17,8 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
         <div className="admin__inner">
             { children }
           <div className="admin__content">
-            <WelcomeEmail />      
-            <Newsletter />
+            <MoreInfoEmail />      
+            {/* <Newsletter /> */}
           </div>
         </div>        
       </div>
