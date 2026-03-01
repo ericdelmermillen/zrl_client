@@ -9,6 +9,7 @@
 
 	&__inner {
 		display: flex;
+		flex-direction: column;
 		background: yellow;
 	}
 
@@ -16,6 +17,29 @@
 		@include mx.sectionHeadingWithAccent;
 		& {
 			margin-bottom: 2rem;
+		}
+	}
+
+	&__lead {
+		@include mx.sectionLead;
+	}
+
+	&__body-content {
+		opacity: 1;
+	}
+
+	&__button-container {
+		border: 2px solid red;
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	&__button {
+		@include mx.button;
+		& {
+			min-width: 8rem;
+			border: 2px solid greeen;
 		}
 	}
 }

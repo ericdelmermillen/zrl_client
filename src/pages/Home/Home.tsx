@@ -14,6 +14,7 @@ import "./Home.scss";
 
 const Home: FC = () => {
   usePageLoading();
+
   useDocumentTitle("Zidgy Road Labs | Professional Web Development Services");
   useScrollToTopOnPageMount();
   

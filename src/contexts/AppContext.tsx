@@ -36,6 +36,12 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
   const PAGE_NAV_CLICK_DELAY = import.meta.env.VITE_PAGE_NAV_CLICK_DELAY;
 
+  const handleSetShowAppIsLoadingFalse = (): void => {
+    setTimeout(() => {
+      setAppIsLoading(false);
+    }, APP_ISLOADING_DELAY);
+  };
+
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
     setScrollYPos(window.scrollY);
@@ -57,6 +63,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       setAppIsLoading(false);
     }, APP_ISLOADING_DELAY);
   };
+
 
   const toggleColorMode = () : void => {
     setColorMode(prev => prev === "light" ? "dark" : "light")
@@ -285,6 +292,8 @@ const checkSessionStatus = async (): Promise<boolean> => {
     // state
     appIsLoading, 
     setAppIsLoading,
+    handleSetShowAppIsLoadingFalse,
+    // 
     isLoggedIn,
     setIsLoggedIn,
     colorMode,

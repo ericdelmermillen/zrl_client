@@ -17,17 +17,18 @@ const usePageLoading = (): void => {
   const { setAppIsLoading } = useAppContext();
 
   useEffect(() => {
-    setAppIsLoading(true);
+    setAppIsLoading(true)
 
     const timeoutId = window.setTimeout(() => {
-      setAppIsLoading(false);
+      setAppIsLoading(false)
     }, APP_ISLOADING_DELAY);
 
     // ✅ cleanup prevents state updates after unmount
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [APP_ISLOADING_DELAY, setAppIsLoading]);
+
+  }, []);
 };
 
 const useDocumentTitle = (title: string): void => {

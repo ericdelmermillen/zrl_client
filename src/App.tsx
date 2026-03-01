@@ -23,7 +23,7 @@ import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
-import IsLoading_11 from "./components/IsLoading/IsLoading";
+import IsLoading from "./components/IsLoading/IsLoading";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
 import Modal from "./components/Modal/Modal";
 import Nav from "./components/Nav/Nav";
@@ -111,11 +111,9 @@ const App = (): JSX.Element => {
   return (
     <div className="app" data-color-mode={colorMode}>
 
-      <div className={`app__isLoading ${appIsLoading ? "show": ""}`}>
-        <IsLoading_11 />
+      <div className={`app__isLoading ${appIsLoading ? "show" : ""}`}>
+        <IsLoading />
       </div>
-
-      {/* <div className={`loading ${isLoading ? "isLoading" : ""}`}></div> */}
 
       <div 
         id="nav-container" 

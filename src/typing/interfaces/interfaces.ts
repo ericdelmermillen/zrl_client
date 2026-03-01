@@ -23,6 +23,7 @@ export interface AppContextValue {
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
   // functions
+  handleSetShowAppIsLoadingFalse: () => void;
   loginUser: (email: string, password: string) => Promise<boolean>;
   showNav: () => void;
   toggleColorMode: () => void;

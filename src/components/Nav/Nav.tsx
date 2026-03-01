@@ -8,6 +8,7 @@ import Logo from "../../assets/svgs/Logo";
 import "./Nav.scss";
 
 const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
+const APP_ISLOADING_DELAY = import.meta.env.VITE_APP_ISLOADING_DELAY;
 
 
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
@@ -31,19 +32,22 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
   const handleHomeClick = (): void => {
     navigate("/")
+    setAppIsLoading(true);
     setTimeout(() => {
       requestAnimationFrame(() => {
         handleScrollToTop();
       });
-    }, NAV_CLICK_DELAY)
+    }, NAV_CLICK_DELAY);
+
+    setTimeout(() => {
+      setAppIsLoading(false);
+    }, APP_ISLOADING_DELAY);
   };
 
   const handleScrollToTop = () => {
     navigate("/");
-    setAppIsLoading(true);
     setShowDropdownNavOptions(false);
     scrollToTop();
-    setAppIsLoading(false);
   };
 
   
