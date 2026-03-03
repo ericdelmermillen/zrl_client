@@ -85,7 +85,9 @@
 	// Timing Variables
 	--transition-interval-lightbox: 450ms;
 	--placeholder-transition: 0.75s;
-	--isLoading-start-transition: 1.25s;
+	// --isLoading-start-transition: 1.25s;
+	// --isLoading-start-transition: 1s;
+	--isLoading-start-transition: 0.75s;
 	--isLoading-end-transition: 0.25s;
 
 	// Font Sizes
@@ -302,6 +304,35 @@
 	margin-bottom: 1rem;
 }
 
+@mixin formHeading {
+	@include headingGeneral;
+	& {
+		display: inline-block;
+		// *** update font variables
+		font-size: var(--text-size-xs);
+		margin-bottom: 2rem;
+		position: relative;
+		width: fit-content;
+		margin-inline: auto;
+	}
+
+	@media (min-width: vars.$smallTablet) {
+		font-size: var(--text-size-sm);
+	}
+
+	@media (min-width: vars.$tablet) {
+		font-size: var(--text-size-md);
+	}
+
+	@media (min-width: vars.$mediumTablet) {
+		font-size: var(--text-size-lg);
+	}
+
+	@media (min-width: vars.$mediumTablet) {
+		font-size: var(--text-size-xl);
+	}
+}
+
 @mixin cardTitleHeading {
 	// use text color
 	color: green;
@@ -355,8 +386,10 @@
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	height: 100%;
 	margin-inline: auto;
 	max-width: vars.$largeTablet;
+	min-height: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	width: 100%;
@@ -371,6 +404,62 @@
 
 	@media (min-height: 750px) {
 		overflow-y: hidden;
+	}
+}
+
+@mixin wallpaperContainer {
+	align-items: center;
+	background: var(--neutral-bg-2);
+	display: flex;
+	flex-direction: column;
+	// min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
+	min-height: calc(100vh - (vars.$navHeight));
+	max-width: 100%;
+	padding-bottom: 2rem;
+	// padding-top: calc(vars.$navHeight + 2rem);
+	padding-top: calc(vars.$navHeight);
+	position: relative;
+	width: 100%;
+}
+
+@mixin formContent {
+	box-shadow: var(--box-shadow);
+
+	@media (min-width: vars.$desktop) {
+		width: 100%;
+	}
+}
+
+@mixin formFullWidth {
+	align-items: center;
+	background: var(--neutral-bg-1);
+	// background: yellow;
+	border-radius: var(--border-radius-form);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin-inline: auto;
+	max-width: 50rem;
+	min-height: 80vh;
+	padding-inline: 2rem;
+	position: relative;
+	text-align: center;
+	z-index: 0;
+	border: 2px solid red;
+}
+
+@mixin formFullWidthInner {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	height: 100%;
+	min-height: 100%;
+	min-width: 100%;
+	padding-block: 3rem;
+	min-height: 80vh;
+
+	@media (min-width: vars.$smallTablet) {
+		padding-inline: 2rem;
 	}
 }
 
@@ -426,82 +515,9 @@
 	}
 }
 
-@mixin formHeading {
-	@include headingGeneral;
-	& {
-		display: inline-block;
-		// *** update font variables
-		font-size: var(--font-size-smaller);
-		margin-bottom: 2rem;
-		position: relative;
-	}
-
-	@media (min-width: vars.$smallTablet) {
-		font-size: var(--font-size-small);
-	}
-
-	@media (min-width: vars.$tablet) {
-		font-size: var(--headline-medium);
-	}
-}
-
 @mixin formErrorMessage {
 	color: var(--error-color);
 	margin-top: -1.25rem;
-}
-
-@mixin wallpaperContainer {
-	align-items: center;
-	background: var(--neutral-bg-2);
-	display: flex;
-	flex-direction: column;
-	// min-height: calc(100vh - (vars.$navHeight + vars.$footerHeightMobile));
-	min-height: calc(100vh - (vars.$navHeight));
-	max-width: 100%;
-	padding-bottom: 2rem;
-	// padding-top: calc(vars.$navHeight + 2rem);
-	padding-top: calc(vars.$navHeight);
-	position: relative;
-	width: 100%;
-}
-
-@mixin formContent {
-	box-shadow: var(--box-shadow);
-
-	@media (min-width: vars.$desktop) {
-		width: 100%;
-	}
-}
-
-@mixin formFullWidth {
-	align-items: center;
-	background: var(--neutral-bg-1);
-	// background: yellow;
-	border-radius: var(--border-radius-form);
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	margin-inline: auto;
-	max-width: 50rem;
-	min-height: 80vh;
-	padding-inline: 2rem;
-	position: relative;
-	text-align: center;
-	z-index: 0;
-	border: 2px solid red;
-}
-
-@mixin formFullWidthInner {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	min-height: 100%;
-	padding-block: 3rem;
-	min-height: 80vh;
-
-	@media (min-width: vars.$smallTablet) {
-		padding-inline: 2rem;
-	}
 }
 
 // buttons, links and interactions
@@ -617,6 +633,12 @@
 	pointer-events: none;
 }
 
+@mixin buttonContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
 // need button link
 
 @mixin navLink {
@@ -745,6 +767,50 @@
 
 	@media (min-width: vars.$desktop) {
 		font-size: var(--text-size-xl);
+	}
+}
+
+@mixin adminExplainer {
+	color: purple;
+	font-family: var(--body-font);
+	font-size: var(--text-size-xs);
+	letter-spacing: var(--letter-spacing-lg);
+	line-height: var(--line-height-lg);
+
+	@media (min-width: vars.$tablet) {
+		color: green;
+		font-size: var(--text-size-md);
+	}
+
+	@media (min-width: vars.$tablet) {
+		color: blue;
+		font-size: var(--text-size-lg);
+	}
+}
+
+@mixin adminTextBox {
+	border: 1px solid #333;
+	border-radius: var(--border-radius);
+	color: blue;
+	flex: 1;
+	font-size: var(--text-size-sm);
+	height: 100%;
+	letter-spacing: var(--letter-spacing-md);
+	line-height: var(--line-height-lg);
+	max-height: 100%;
+	min-height: 0;
+	// min-height: 100%;
+	overflow-y: auto;
+	padding: 0.5rem;
+	text-align: start;
+	-webkit-overflow-scrolling: touch;
+
+	@media (min-width: vars.$tablet) {
+		font-size: var(--text-size-md);
+	}
+
+	@media (min-width: vars.$largeTablet) {
+		font-size: var(--text-size-lg);
 	}
 }
 

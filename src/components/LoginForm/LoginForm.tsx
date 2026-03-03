@@ -99,7 +99,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
       </div>
       <div className="loginForm__inner">
         <div className="loginForm__header">
-          <h4 className="loginForm__heading">Admin Login</h4>
+          <h1 className="loginForm__heading">Admin Login</h1>
         </div>
 
         <form

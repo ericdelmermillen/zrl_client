@@ -3,43 +3,108 @@
 
 .moreInfoEmail {
 	& {
-		margin-bottom: 4rem;
-		border: 2px solid blue;
-	}
-
-	&__inner {
-		display: flex;
-		flex-direction: column;
-		background: yellow;
-	}
-
-	&__heading {
-		@include mx.sectionHeadingWithAccent;
+		@include mx.formFullWidth;
 		& {
-			margin-bottom: 2rem;
+			height: 80vh;
+			max-height: 80vh;
+			overflow: hidden;
 		}
 	}
 
-	&__lead {
-		@include mx.sectionLead;
+	&__inner {
+		@include mx.formFullWidthInner;
+		& {
+			@media (min-width: vars.$smallTablet) {
+				padding-inline: 1rem;
+			}
+
+			@media (min-width: vars.$tablet) {
+				padding-inline: 2rem;
+			}
+		}
+	}
+
+	&__heading {
+		@include mx.formHeading;
+
+		&::after {
+			@include mx.afterAccent;
+		}
+	}
+
+	&__admin-explainer {
+		@include mx.adminExplainer;
+		& {
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__form {
+		@include mx.form;
+	}
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
+	&__text {
+		@include mx.adminTextBox;
+	}
+
+	&__subject {
+		margin-bottom: 1rem;
+	}
+
+	&__greeting {
+		margin-bottom: 1rem;
 	}
 
 	&__body-content {
+		min-height: 100%;
+		margin-bottom: auto;
 		opacity: 1;
+		text-align: start;
 	}
 
+	&__paragraph {
+		margin-bottom: 1rem;
+	}
+
+	&__companyInfo {
+		border-top: 1px dashed #333;
+		font-size: var(--text-size-xs);
+		opacity: 0.9;
+		padding-bottom: 0.5rem;
+		padding-top: 0.75rem;
+		text-align: center;
+
+		@media (min-width: vars.$tablet) {
+			font-size: var(--text-size-sm);
+			padding-bottom: 0.75rem;
+			padding-top: 1rem;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			font-size: var(--text-size-md);
+			padding-bottom: 0.75rem;
+			padding-top: 1rem;
+		}
+	}
+
+	// &__companyName,
+	// &__copyRight {
+	// }
+
 	&__button-container {
-		border: 2px solid red;
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
+		@include mx.buttonContainer;
+		& {
+			padding-top: 2rem;
+		}
 	}
 
 	&__button {
 		@include mx.button;
 		& {
-			min-width: 8rem;
-			border: 2px solid greeen;
+			min-width: 6rem;
 		}
 	}
 }
