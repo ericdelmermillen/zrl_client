@@ -1,11 +1,9 @@
 import { type FC, useState, useEffect } from "react";
 import { useAppContext } from "../../hooks/hooks";
+import toast from "react-hot-toast";
 import "./MoreInfoEmail.scss";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-// appIsLoading or componentIsLoading?
-// 
 
 const MoreInfoEmail:FC = () => {
   const { setAppIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext()
@@ -26,7 +24,7 @@ const MoreInfoEmail:FC = () => {
   };
 
 
-  const getMoreInfoEmail = async () => {
+  const getMoreInfoEmail = async (): Promise<void> => {
     try {
       const response = await fetch(`${BASE_URL}/moreinfo`, {
         method: "GET",
@@ -43,6 +41,7 @@ const MoreInfoEmail:FC = () => {
       
     } catch (error) {
       console.error("Failed to fetch more info email:", error);
+      toast.error("Failed to fetch More Info Email Template")
     };
   };
 
@@ -61,8 +60,8 @@ const MoreInfoEmail:FC = () => {
             More Info Email
           </h2>
 
-          <p className="moreInfoEmail__admin-explainer">
-            Edit More Info form Email Template
+          <p className={`moreInfoEmail__admin-explainer ${isEditing ? "editable" : ""}`}>
+            More Info form Email Template
           </p>
 
           <form
@@ -70,7 +69,7 @@ const MoreInfoEmail:FC = () => {
             className="moreInfoEmail__form"
             onSubmit={(e) => e.preventDefault()}
           >
-            <div className="moreInfoEmail__text">
+            <div className={`moreInfoEmail__text ${isEditing ? "editable" : ""}`}>
 
               <label 
                 htmlFor="moreInfoEmailSubject" 
@@ -83,8 +82,9 @@ const MoreInfoEmail:FC = () => {
 
                 ? <input
                     id="moreInfoEmailSubject"
-                    className="moreInfoEmail__input"
+                    className={`moreInfoEmail__input ${isEditing ? "editable" : ""}`}
                     type="text"
+                    placeholder="Enter subject for email"
                     value={moreInfoEmailSubject}
                     onChange={(e) => setMoreInfoEmailSubject(e.target.value)}
                   />
@@ -139,7 +139,7 @@ const MoreInfoEmail:FC = () => {
 
               }
 
-              <div className="moreInfoEmail__companyInfo">              
+              <div className={`moreInfoEmail__companyInfo ${isEditing ? "editable" : ""}`}>
 
                 <div className="moreInfoEmail__companyName">
                   {companyName}
@@ -152,7 +152,7 @@ const MoreInfoEmail:FC = () => {
  
             </div>
 
-            <div className="moreInfoEmail__button-container">
+            <div className={`moreInfoEmail__button-container ${isEditing ? "editable" : ""}`}>
 
               {isEditing
 

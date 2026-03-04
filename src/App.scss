@@ -100,26 +100,9 @@ img {
 
 	&__isLoading {
 		@include mx.isLoadingContainer;
-		// align-items: center;
-		// display: flex;
-		// justify-content: center;
-		// left: 50%;
-		// opacity: 0;
-		// pointer-events: none;
-		// position: fixed;
-		// top: 50%;
-		// transform: translate(-50%, -50%);
-		// transition: opacity 3s ease;
-
-		// &.show {
-		// 	opacity: 1;
-		// 	transition: opacity 0.3s ease;
-		// 	z-index: 1;
-		// }
-
-		// &.hide {
-		// 	display: none;
-		// }
+		& {
+			position: fixed;
+		}
 	}
 
 	&__nav-container {
