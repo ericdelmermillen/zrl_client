@@ -1,6 +1,7 @@
 import React, { type FC, useState, useRef, useEffect } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import toast from "react-hot-toast";
+import { staggerToastsByInterval } from "../../../utils/utils";
+import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -37,7 +38,7 @@ const MoreInfoEmail:FC = () => {
 
   const handleSetIsEditingTrue = (): void => {
     setIsEditing(true);
-    toast.success("Edit More Info Email Template.");
+    toast("More Info Email Template ready to edit.");
     
       setTimeout(() => {
         subjectRef.current?.focus();
@@ -90,7 +91,6 @@ const MoreInfoEmail:FC = () => {
   const handleContentChange = (): boolean => {
     const contentValue = contentRef.current?.value ?? "";
     const isValidLength = contentValue.trim().length >= 15;
-    console.log(isValidLength)
 
     setEmailContent(contentValue);
     setEmailContentIsValid(isValidLength);
@@ -111,29 +111,29 @@ const MoreInfoEmail:FC = () => {
     
     let errors = 0;
     
+    if(!handleSubjectChange()) {
+      staggerToastsByInterval("Email subject is invalid", "error", errors);
+      errors++;
+    };
+    
     if(!handleGreetingChange()) {
-      toast.error("Email greeting is invalid");
+      staggerToastsByInterval("Email greeting is invalid", "error", errors);
       errors++;
     };
     
     if(!greeting.includes("<name>")) {
-      toast.error("Greeting must include \"<name>\".");
+      staggerToastsByInterval("Greeting must include \"<name>\".", "error", errors);
       errors++;
     };
-    
-    if(!greeting.includes("<name>")) {
-      toast.error("Greeting must include \"<name>\".");
-      errors++;
-    };
-
 
     if(!handleContentChange()) {
-      toast.error("Email content is invalid");
+      staggerToastsByInterval("Email content is invalid", "error", errors);
       errors++;
     };
     
 
     if(errors) {
+      setAppIsLoading(false);
       return;
     };
 

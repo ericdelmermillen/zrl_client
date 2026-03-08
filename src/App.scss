@@ -153,3 +153,38 @@ img {
 		}
 	}
 }
+
+.Toastify {
+	&__toast-container {
+		left: 50%;
+		gap: 8px;
+		margin-bottom: 16px;
+		transform: translateX(-50%);
+		width: calc(100vw - 32px);
+	}
+
+	&__toast {
+		// give appropriate background color relative to color mode
+		// background: yellow;
+		@include mx.cardBoxShadow;
+		border-radius: var(--border-radius);
+		gap: 0.25rem;
+		padding-inline-start: 1.25rem;
+		padding-inline-end: 1.75rem;
+		max-width: 16rem;
+
+		@media (min-width: vars.$smallPhone) {
+			max-width: 18rem;
+		}
+	}
+
+	&__close-button {
+		top: 0.5rem;
+		right: 0.5rem;
+
+		& svg {
+			width: 18px;
+			height: 18px;
+		}
+	}
+}

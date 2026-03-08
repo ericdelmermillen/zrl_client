@@ -2,7 +2,7 @@ import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import "./Subscribe.scss";
 import IsLoading from "../IsLoading/IsLoading";
 

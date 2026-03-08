@@ -1,8 +1,7 @@
 import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../hooks/hooks";
-import { isValidEmail, isValidPassword } from "../../../utils/utils";
-import { toast } from "react-hot-toast";
+import { isValidEmail, isValidPassword, staggerToastsByInterval } from "../../../utils/utils";
 import IsLoading from "../IsLoading/IsLoading";
 import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";
 import "./LoginForm.scss";
@@ -61,19 +60,19 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     e.preventDefault();
     setInitialFormCheck(true);
 
-    let invalidInputs: number = 0;
+    let errors: number = 0;
 
     if(!handleEmailChange()) {
-      toast.error("Invalid email");
-      invalidInputs += 1;
+      staggerToastsByInterval("Invalid email", "error", errors)
+      errors += 1;
     };
 
     if(!handlePasswordChange()) {
-      toast.error("Invalid password");
-      invalidInputs += 1;
+      staggerToastsByInterval("Invalid password", "error", errors)
+      errors += 1;
     };
 
-    if(invalidInputs){
+    if(errors){
       return false;
     };
     

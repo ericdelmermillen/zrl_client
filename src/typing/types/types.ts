@@ -6,6 +6,8 @@ export type ModalType = "privacy" | "terms" | "newsletter";
 
 export type IconType = FC<{ className?: string }>;
 
+export type ToastType = "default" | "success" | "error" | "warning" | "info";
+
 export type CheckboxItem = {
     key: "agreeToNewsletter" | "agreeToTerms";
     labelId: string;

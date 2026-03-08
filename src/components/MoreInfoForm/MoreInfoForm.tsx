@@ -1,11 +1,11 @@
 import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import { isValidEmail } from "../../../utils/utils";
+import { isValidEmail, staggerToastsByInterval } from "../../../utils/utils";
 import type { CheckboxItem } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import "./MoreInfoForm.scss";
 
 
@@ -117,23 +117,22 @@ const MoreInfoForm: FC = () => {
     let errors = 0;
 
     if(!handleEmailChange()) {
-      toast.error("Email is invalid");
+      staggerToastsByInterval("Email is invalid", "error", errors);
       errors++;
     };
-
+    
     if(!handleNameChange()) {
-      toast.error("Name is invalid");
+      staggerToastsByInterval("Name is invalid", "error", errors);
       errors++;
     };
-
-
+    
     if(phone.length && !handlePhoneChange()) {
-      toast.error("Phone is invalid");
+      staggerToastsByInterval("Phone is invalid", "error", errors);
       errors++;
     };
     
     if(!agreeToTerms) {
-      toast.error("Please agree to the Privacy Policy");
+      staggerToastsByInterval("Please agree to the Privacy Policy", "error", errors);
       errors++;
     };
 

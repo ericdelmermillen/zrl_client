@@ -17,7 +17,7 @@ import { PiKeyhole, PiTerminal } from "react-icons/pi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
 // react icon sets ends
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 import Admin from "./pages/Admin/Admin";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
 // import FloatingButton from "./components/FloatingButton/FloatingButton";
@@ -31,6 +31,7 @@ import NavSocials from "./components/NavSocials/NavSocials";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
 
@@ -211,52 +212,16 @@ const App = (): JSX.Element => {
 
         {/* <FloatingButton /> */}
  
-        <Toaster
+        <ToastContainer
           position="bottom-center"
-          reverseOrder={false} // Newest toast at the bottom
-          gutter={8} // Space between toasts
-          containerStyle={{ top: 20, right: 20 }}
-          toastOptions={{
-            duration: 3000,
-            ariaProps: {
-              role: "status",
-              "aria-live": "polite",
-            },
-            style: {
-              background: "#333",
-              color: "#fff",
-              padding: "16px",
-            },
-            success: {
-              duration: 3000,
-              iconTheme: {
-                primary: "white",
-                secondary: "green",
-              },
-              style: {
-                background: "green",
-                color: "#fff",
-              },
-            },
-            error: {
-              duration: 3000,
-              icon: "🔥",
-              style: {
-                background: "red",
-                color: "#fff",
-              },
-            },
-            loading: {
-              duration: Infinity,
-              icon: "⏳",
-              style: {
-                background: "#007bff",
-                color: "#fff",
-              },
-            },
-          }}
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          draggable
+          pauseOnHover
+          theme={colorMode === "dark" ? "dark" : "light" } 
         />
-
       </div>
       <Footer />
 

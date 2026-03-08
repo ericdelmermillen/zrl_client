@@ -3,7 +3,7 @@ import type { ColorMode, ModalType } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
 import { scrollToTop } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);

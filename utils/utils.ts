@@ -1,3 +1,8 @@
+import type { ToastType } from "../src/typing/types/types";
+import { toast } from "react-toastify";
+
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+
 // scroll to top function for mounting page and scrolling to top
 const scrollToTop = (): void => {
   window.scrollTo({
@@ -29,13 +34,23 @@ const removeClassFromDiv = (divID: string, className: string): void => {
   document.getElementById(divID)?.classList.remove(className);
 };
 
+const staggerToastsByInterval = (message: string, toastType: ToastType, staggerOffset: number): void => {
+  setTimeout(() => {
+    if(toastType === "default") {
+      toast(message);
+    } else {
+      toast[toastType](message);
+    }
+  }, MIN_LOADING_INTERVAL * staggerOffset);
+};
 
 export {
   scrollToTop,
   isValidEmail,
   isValidPassword,
   addClassToDiv,
-  removeClassFromDiv
+  removeClassFromDiv,
+  staggerToastsByInterval
 };
 
 
