@@ -33,6 +33,8 @@
 	--border-radius-form: 8px;
 	--accent-bar-border-radius: 0.25rem;
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	--text-box-text-shadow-color: rgba(0, 0, 0, 0.1);
+	--box-bottom-boxShadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
 	// *** Header Overlay
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
@@ -153,7 +155,7 @@
 
 	// need:
 	// --box-shadow
-	// --text-color
+	--text-color: #333;
 	// --border-radius
 	// --heading-font
 	// --background-nav-footer
@@ -163,7 +165,7 @@
 	// --navFooter-box-shadow
 	// --background-color
 	&[data-color-mode="light"] {
-		color: red;
+		color: var((--body-text));
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 		--accent-color: #d27834;
 		//
@@ -297,6 +299,7 @@
 }
 
 @mixin headingGeneral {
+	color: var(--text-color);
 	font-family: var(--heading-font);
 	font-size: var(--font-size-xs);
 	font-weight: 600;
@@ -433,6 +436,7 @@
 @mixin formFullWidth {
 	align-items: center;
 	background: var(--neutral-bg-1);
+	border: 1px solid #333;
 	// background: yellow;
 	border-radius: var(--border-radius-form);
 	display: flex;
@@ -445,7 +449,7 @@
 	position: relative;
 	text-align: center;
 	z-index: 0;
-	border: 2px solid red;
+	// needs a card shadow
 }
 
 @mixin formFullWidthInner {
@@ -454,7 +458,7 @@
 	flex-direction: column;
 	height: 100%;
 	min-height: 100%;
-	min-width: 100%;
+	// min-width: 100%;
 	padding-block: 3rem;
 	min-height: 80vh;
 
@@ -564,6 +568,9 @@
 	border: none;
 	color: var(--button-text-color);
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-family: var(--heading-font);
 	font-size: var(--btn-text-xs);
 	font-weight: 700;
@@ -771,19 +778,17 @@
 }
 
 @mixin adminExplainer {
-	color: purple;
+	color: var(--text-color);
 	font-family: var(--body-font);
 	font-size: var(--text-size-xs);
 	letter-spacing: var(--letter-spacing-lg);
 	line-height: var(--line-height-lg);
 
 	@media (min-width: vars.$tablet) {
-		color: green;
 		font-size: var(--text-size-md);
 	}
 
 	@media (min-width: vars.$tablet) {
-		color: blue;
 		font-size: var(--text-size-lg);
 	}
 }
@@ -801,9 +806,7 @@
 	line-height: var(--line-height-lg);
 	max-height: 100%;
 	min-height: 0;
-	// min-height: 100%;
-	// overflow-y: auto;
-	padding-block: 0.5rem;
+	// padding-block: 0.5rem;
 	text-align: start;
 	-webkit-overflow-scrolling: touch;
 
@@ -816,17 +819,57 @@
 	}
 }
 
+@mixin testInput {
+	background: none;
+	border: none;
+	border-bottom: 1px solid var(--text-color);
+	color: var(--text-color);
+	font-family: var(--body-font);
+	font-size: var(--text-size-sm);
+	line-height: var(--line-height-base);
+	outline: none;
+	padding-block: 0.5rem;
+	padding-inline: 0.75rem;
+	resize: none;
+	width: 100%;
+
+	&::placeholder {
+		color: var(--text-color);
+		opacity: 0.5;
+	}
+
+	&:-webkit-autofill {
+		background-color: none !important;
+		box-shadow: none !important;
+		color: inherit;
+		transition: background-color 5000s ease-in-out 0s;
+		-webkit-box-shadow: none !important;
+	}
+
+	&:-webkit-autofill::first-line {
+		color: var(--text-color) !important;
+	}
+
+	&:active,
+	&:focus {
+		color: var((--text-color));
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
 // ***
 @mixin input {
 	background: none;
 	border: none;
-	// border-bottom: 2px solid var(--text-color);
 	border: 1px solid blue;
 	color: var(--text-color);
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
 	height: 2rem;
-	line-height: var(--line-height---line-height-base);
+	line-height: var(--line-height-base);
 	outline: none;
 	padding-block: 0.75rem;
 	padding-inline: 0.75rem;

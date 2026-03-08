@@ -1,27 +1,49 @@
-import { type FC, useState, useEffect } from "react";
+import React, { type FC, useState, useRef, useEffect } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import toast from "react-hot-toast";
 import "./MoreInfoEmail.scss";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+
+// component needs componentIsLoading to show loading in middle of text box
+// finish email updating logic
+// set up skeletons
+// lock out cancel and save when user is submiting
+// toasts need to be dismissable
 
 const MoreInfoEmail:FC = () => {
-  const { setAppIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext()
-  const [ moreInfoEmailSubject, setMoreInfoEmailSubject ] = useState<string>("");
-  const [ moreInfoEmailGreeting, setMoreInfoEmailGreeting ] = useState<string>("");
-  const [ moreInfoEmailContent, setMoreInfoEmailContent ] = useState<string>("");
+  const { setAppIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
+  
+  const [ subject, setSubject ] = useState<string>("");
+  const [ greeting, setGreeting ] = useState<string>("");
+  const [ emailContent, setEmailContent ] = useState<string>("");
+
   const [ companyName, setCompanyName ] = useState<string>("");
   const [ copyRight, setCopyRight ] = useState<string>("");
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
-  const handleSetIsEditingFalse = (): void => setIsEditing(false);
-  const handleSetIsEditingTrue = (): void => setIsEditing(true);
+  const [ initialFormCheck, setInitialFormCheck ] = useState<boolean>(false);
 
-  const saveUpdatedMoreInfoEmail = (): void => {
-    setAppIsLoading(true);
-    handleSetShowAppIsLoadingFalse();
-    setIsEditing(false);
-  };
+  const [ subjectIsValid, setSubjectIsValid ] = useState<boolean>(true);
+  const [ greetingIsValid, setGreetingIsValid ] = useState<boolean>(true);
+  const [ emailContentIsValid, setEmailContentIsValid ] = useState<boolean>(true);
+
+
+  const subjectRef = useRef<HTMLInputElement | null>(null);
+  const greetingRef = useRef<HTMLInputElement | null>(null);
+  const contentRef = useRef<HTMLTextAreaElement | null>(null);
+
+
+  const handleSetIsEditingTrue = (): void => {
+    setIsEditing(true);
+    toast.success("Edit More Info Email Template.");
+    
+      setTimeout(() => {
+        subjectRef.current?.focus();
+        subjectRef.current?.setSelectionRange(0, 0);
+    }, MIN_LOADING_INTERVAL);
+  ;}
 
 
   const getMoreInfoEmail = async (): Promise<void> => {
@@ -33,9 +55,9 @@ const MoreInfoEmail:FC = () => {
 
       const { subject, greeting, body_content, companyName, copyRight } = await response.json();
 
-      setMoreInfoEmailSubject(subject);
-      setMoreInfoEmailGreeting(greeting);
-      setMoreInfoEmailContent(body_content);
+      setSubject(subject);
+      setGreeting(greeting);
+      setEmailContent(body_content.replace(/\n/g, '\n\n')); // ← Add this
       setCompanyName(companyName)
       setCopyRight(copyRight)
       
@@ -45,6 +67,143 @@ const MoreInfoEmail:FC = () => {
     };
   };
 
+  const handleSubjectChange = (): boolean => {
+    const subjectValue = subjectRef.current?.value ?? "";
+    const isValidLength = subjectValue.trim().length >= 2;
+
+    setSubject(subjectValue);
+    setSubjectIsValid(isValidLength);
+
+    return isValidLength;
+  };
+
+  const handleGreetingChange = (): boolean => {
+    const greetingValue = greetingRef.current?.value ?? "";
+    const isValidLength = greetingValue.trim().length >= 2;
+
+    setGreeting(greetingValue);
+    setGreetingIsValid(isValidLength);
+
+    return isValidLength;
+  };
+
+  const handleContentChange = (): boolean => {
+    const contentValue = contentRef.current?.value ?? "";
+    const isValidLength = contentValue.trim().length >= 15;
+    console.log(isValidLength)
+
+    setEmailContent(contentValue);
+    setEmailContentIsValid(isValidLength);
+
+    return isValidLength;
+  };
+
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLFormElement>): void => {
+    if(e.key === "Enter" && isEditing) {
+      e.preventDefault();
+      handleSubmit();
+    };
+  };
+
+  const handleSubmit = async (): Promise<void> => {
+    setAppIsLoading(true);
+    setInitialFormCheck(true);
+    
+    let errors = 0;
+    
+    if(!handleGreetingChange()) {
+      toast.error("Email greeting is invalid");
+      errors++;
+    };
+    
+    if(!greeting.includes("<name>")) {
+      toast.error("Greeting must include \"<name>\".");
+      errors++;
+    };
+    
+    if(!greeting.includes("<name>")) {
+      toast.error("Greeting must include \"<name>\".");
+      errors++;
+    };
+
+
+    if(!handleContentChange()) {
+      toast.error("Email content is invalid");
+      errors++;
+    };
+    
+
+    if(errors) {
+      return;
+    };
+
+    try {
+      const formattedContent = emailContent.replace(/\n\n/g, '\n');
+      
+      const response = await fetch(`${BASE_URL}/moreinfo/edit`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          subject,
+          greeting,
+          body_content: formattedContent
+        })
+      });
+
+      const data = await response.json();
+
+      if(!response.ok || !data.success) {
+        toast.error(data.message || "Failed to update email template.");
+        setAppIsLoading(false);
+        return;
+      };
+
+      toast.success("Email template updated successfully");
+      
+      // Update state with returned values
+      setSubject(data.subject);
+      setGreeting(data.greeting);
+      setEmailContent(data.body_content.replace(/\n/g, '\n\n'));
+      setCompanyName(data.companyName);
+      setCopyRight(data.copyRight);
+      
+      setIsEditing(false);
+      setInitialFormCheck(false);
+      
+    } catch(error) {
+      console.error("Failed to update email template:", error);
+      toast.error("Server error while updating email template");
+    };
+    
+    handleSetShowAppIsLoadingFalse();
+  };
+
+  const handleCancel = async (): Promise<void> => {
+  setAppIsLoading(true);
+  
+  try {
+    await getMoreInfoEmail();
+    
+    setIsEditing(false);
+    setInitialFormCheck(false);
+    
+    // Reset validation states
+    setSubjectIsValid(true);
+    setGreetingIsValid(true);
+    setEmailContentIsValid(true);
+    toast("Editing cancelled...")
+    
+  } catch(error) {
+    console.error("Failed to refresh email template:", error);
+    toast.error("Failed to refresh email template");
+  };
+  
+  handleSetShowAppIsLoadingFalse();
+};
+
 
   // useEffect to call for initial MoreInfoEmail content
   useEffect(() => {
@@ -53,21 +212,22 @@ const MoreInfoEmail:FC = () => {
   
   return (
     <>
-      <section className="moreInfoEmail" >
+      <section className={`moreInfoEmail ${isEditing ? "editable" : ""}`}>
         <div className="moreInfoEmail__inner">
 
           <h2 className="moreInfoEmail__heading">
             More Info Email
           </h2>
 
-          <p className={`moreInfoEmail__admin-explainer ${isEditing ? "editable" : ""}`}>
-            More Info form Email Template
+          <p className={"moreInfoEmail__admin-explainer"}>
+            {isEditing ? "Editing mode enabled." : "Edit the form to update the More Info Template"}
           </p>
 
           <form
             name="moreInfoEmailForm"
             className="moreInfoEmail__form"
             onSubmit={(e) => e.preventDefault()}
+            onKeyDown={(e) => handleEnterPress(e)}
           >
             <div className={`moreInfoEmail__text ${isEditing ? "editable" : ""}`}>
 
@@ -82,14 +242,20 @@ const MoreInfoEmail:FC = () => {
 
                 ? <input
                     id="moreInfoEmailSubject"
-                    className={`moreInfoEmail__input ${isEditing ? "editable" : ""}`}
+                    className={`moreInfoEmail__subject ${isEditing && !initialFormCheck
+                      ? "editable" 
+                      : isEditing && !subjectIsValid
+                      ? "editable invalid"
+                      : "editable"
+                    }`}
                     type="text"
                     placeholder="Enter subject for email"
-                    value={moreInfoEmailSubject}
-                    onChange={(e) => setMoreInfoEmailSubject(e.target.value)}
+                    ref={subjectRef}
+                    value={subject}
+                    onChange={handleSubjectChange}
                   />
                 : <p className="moreInfoEmail__subject" id="moreInfoEmailSubject">
-                    {moreInfoEmailSubject}
+                    {subject}
                   </p>
 
               }
@@ -105,13 +271,23 @@ const MoreInfoEmail:FC = () => {
 
                 ? <input
                     id="moreInfoEmailGreeting"
-                    className="moreInfoEmail__input"
+                    className={`moreInfoEmail__greeting ${isEditing && !initialFormCheck
+                      ? "editable" 
+                      : isEditing && !greetingIsValid 
+                      ? "editable invalid"
+                      : "editable"
+                    }`}
                     type="text"
-                    value={moreInfoEmailGreeting}
-                    onChange={(e) => setMoreInfoEmailGreeting(e.target.value)}
+                    placeholder="Enter greeting for email"
+                    value={greeting}
+                    ref={greetingRef}
+                    onChange={handleGreetingChange}
                   />
-                : <p className="moreInfoEmail__greeting" id="moreInfoEmailGreeting">
-                    {moreInfoEmailGreeting}
+                : <p 
+                    id="moreInfoEmailGreeting"
+                    className="moreInfoEmail__greeting" 
+                    >
+                      {greeting}
                   </p>
 
               }
@@ -127,12 +303,18 @@ const MoreInfoEmail:FC = () => {
 
                 ? <textarea
                     id="moreInfoEmailBodyContent"
-                    className="moreInfoEmail__textarea"
-                    value={moreInfoEmailContent}
-                    onChange={(e) => setMoreInfoEmailContent(e.target.value)}
+                    className={`moreInfoEmail__body-content ${isEditing && !initialFormCheck
+                      ? "editable" 
+                      : isEditing && !emailContentIsValid
+                      ? "editable invalid"
+                      : "editable"
+                    }`}
+                    value={emailContent}
+                    ref={contentRef}
+                    onChange={handleContentChange}
                   />
                 : <div id="moreInfoEmailBodyContent" className="moreInfoEmail__body-content">
-                    {moreInfoEmailContent.split("\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
+                    {emailContent.split("\n\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
                       <p key={idx} className="moreInfoEmail__paragraph">{paragraph}</p>
                     ))}
                   </div>
@@ -159,7 +341,7 @@ const MoreInfoEmail:FC = () => {
                 ? (
                     <button 
                       className="moreInfoEmail__button"
-                      onClick={handleSetIsEditingFalse}
+                      onClick={handleCancel}
                     >
                       Cancel
                     </button>
@@ -170,7 +352,7 @@ const MoreInfoEmail:FC = () => {
             
               <button 
                 className="moreInfoEmail__button"
-                onClick={isEditing ? saveUpdatedMoreInfoEmail : handleSetIsEditingTrue}
+                onClick={isEditing ? handleSubmit : handleSetIsEditingTrue}
               >
                 {isEditing ? "Save" : "Edit"}
               </button>
