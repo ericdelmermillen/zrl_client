@@ -1,6 +1,6 @@
 import React, { type FC, useState, useRef, useEffect } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import { staggerToastsByInterval } from "../../../utils/utils";
+import { staggerToastsByN } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
 
@@ -10,11 +10,13 @@ const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 // component needs componentIsLoading to show loading in middle of text box
 // finish email updating logic
 // set up skeletons
-// lock out cancel and save when user is submiting
-// toasts need to be dismissable
 
 const MoreInfoEmail:FC = () => {
-  const { setAppIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
+  const { 
+    appIsLoading, 
+    setAppIsLoading, 
+    handleSetShowAppIsLoadingFalse 
+  } = useAppContext();
   
   const [ subject, setSubject ] = useState<string>("");
   const [ greeting, setGreeting ] = useState<string>("");
@@ -112,22 +114,22 @@ const MoreInfoEmail:FC = () => {
     let errors = 0;
     
     if(!handleSubjectChange()) {
-      staggerToastsByInterval("Email subject is invalid", "error", errors);
+      staggerToastsByN("Email subject is invalid", "error", errors);
       errors++;
     };
     
     if(!handleGreetingChange()) {
-      staggerToastsByInterval("Email greeting is invalid", "error", errors);
+      staggerToastsByN("Email greeting is invalid", "error", errors);
       errors++;
     };
     
     if(!greeting.includes("<name>")) {
-      staggerToastsByInterval("Greeting must include \"<name>\".", "error", errors);
+      staggerToastsByN("Greeting must include \"<name>\".", "error", errors);
       errors++;
     };
 
     if(!handleContentChange()) {
-      staggerToastsByInterval("Email content is invalid", "error", errors);
+      staggerToastsByN("Email content is invalid", "error", errors);
       errors++;
     };
     
@@ -340,7 +342,7 @@ const MoreInfoEmail:FC = () => {
 
                 ? (
                     <button 
-                      className="moreInfoEmail__button"
+                      className={`moreInfoEmail__button ${appIsLoading ? "disabled" : ""}`}
                       onClick={handleCancel}
                     >
                       Cancel
@@ -351,7 +353,7 @@ const MoreInfoEmail:FC = () => {
               }
             
               <button 
-                className="moreInfoEmail__button"
+                className={`moreInfoEmail__button ${appIsLoading ? "disabled" : ""}`}
                 onClick={isEditing ? handleSubmit : handleSetIsEditingTrue}
               >
                 {isEditing ? "Save" : "Edit"}

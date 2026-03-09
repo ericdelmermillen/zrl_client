@@ -34,7 +34,7 @@ const removeClassFromDiv = (divID: string, className: string): void => {
   document.getElementById(divID)?.classList.remove(className);
 };
 
-const staggerToastsByInterval = (message: string, toastType: ToastType, staggerOffset: number): void => {
+const staggerToastsByN = (message: string, toastType: ToastType, staggerOffset: number): void => {
   setTimeout(() => {
     if(toastType === "default") {
       toast(message);
@@ -50,7 +50,7 @@ export {
   isValidPassword,
   addClassToDiv,
   removeClassFromDiv,
-  staggerToastsByInterval
+  staggerToastsByN
 };
 
 

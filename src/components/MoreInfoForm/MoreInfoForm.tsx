@@ -1,6 +1,6 @@
 import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import { isValidEmail, staggerToastsByInterval } from "../../../utils/utils";
+import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
 import type { CheckboxItem } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import IsLoading from "../IsLoading/IsLoading";
@@ -117,22 +117,22 @@ const MoreInfoForm: FC = () => {
     let errors = 0;
 
     if(!handleEmailChange()) {
-      staggerToastsByInterval("Email is invalid", "error", errors);
+      staggerToastsByN("Email is invalid", "error", errors);
       errors++;
     };
     
     if(!handleNameChange()) {
-      staggerToastsByInterval("Name is invalid", "error", errors);
+      staggerToastsByN("Name is invalid", "error", errors);
       errors++;
     };
     
     if(phone.length && !handlePhoneChange()) {
-      staggerToastsByInterval("Phone is invalid", "error", errors);
+      staggerToastsByN("Phone is invalid", "error", errors);
       errors++;
     };
     
     if(!agreeToTerms) {
-      staggerToastsByInterval("Please agree to the Privacy Policy", "error", errors);
+      staggerToastsByN("Please agree to the Privacy Policy", "error", errors);
       errors++;
     };
 

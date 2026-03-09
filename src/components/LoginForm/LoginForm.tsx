@@ -1,7 +1,7 @@
 import { type FC, type FormEvent, type ChangeEvent, useState, useRef, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../hooks/hooks";
-import { isValidEmail, isValidPassword, staggerToastsByInterval } from "../../../utils/utils";
+import { isValidEmail, isValidPassword, staggerToastsByN } from "../../../utils/utils";
 import IsLoading from "../IsLoading/IsLoading";
 import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";
 import "./LoginForm.scss";
@@ -63,12 +63,12 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     let errors: number = 0;
 
     if(!handleEmailChange()) {
-      staggerToastsByInterval("Invalid email", "error", errors)
+      staggerToastsByN("Invalid email", "error", errors)
       errors += 1;
     };
 
     if(!handlePasswordChange()) {
-      staggerToastsByInterval("Invalid password", "error", errors)
+      staggerToastsByN("Invalid password", "error", errors)
       errors += 1;
     };
 
