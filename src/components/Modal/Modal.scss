@@ -31,14 +31,26 @@
 	&__content {
 		background: #fff;
 		border-radius: var(--border-radius-card);
+		display: flex;
 		height: 80%;
 		left: 50%;
 		max-height: 50rem;
 		max-width: 40rem;
+		padding-block: 2rem;
+		padding-inline: 2rem;
 		position: absolute;
 		top: 50%;
 		transform: translate(-50%, -50%);
 		width: 80%;
 		z-index: 5;
+	}
+
+	&__title {
+		@include mx.sectionHeadingWithAccent;
+		& {
+			align-self: flex-start;
+			margin-inline: auto;
+			margin-bottom: 2rem;
+		}
 	}
 }

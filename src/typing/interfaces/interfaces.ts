@@ -1,5 +1,6 @@
 import { type FC, type ReactNode } from "react";
-import type { ColorMode, ModalType } from "../types/types";
+import type { ColorMode, ModalType, HandleOpenModal } from "../types/types";
+
 
 export interface AppContextValue {
   // state and state setting 
@@ -34,7 +35,8 @@ export interface AppContextValue {
   notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;
   logoutUser: () => void;
-  handleOpenModal: (modalType: ModalType) => void;
+  handleOpenModal: HandleOpenModal;
+  handleClearModal: () => void;
 };
 
 export interface AppContextProviderProps {

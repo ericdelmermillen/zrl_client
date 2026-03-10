@@ -1,11 +1,12 @@
 import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
-import type { CheckboxItem } from "../../typing/types/types";
+import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import { toast } from "react-toastify";
+import { PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
-import { toast } from "react-toastify";
 import "./MoreInfoForm.scss";
 
 
@@ -193,6 +194,17 @@ const MoreInfoForm: FC = () => {
     };
   };
 
+  const handleSetModalData = (modalType: ModalType) => {
+    if(modalType === "newsletter") {
+      handleOpenModal(modalType, "Our Newsletter")
+    }
+    
+    if(modalType === "privacy") {
+      handleOpenModal(modalType, PRIVACY_POLICY_TITLE)
+    }
+
+  }
+
 
   return (
     <>
@@ -289,7 +301,7 @@ const MoreInfoForm: FC = () => {
                   modalType={item.modalType}
                   spanStub={item.spanStub}
                   spanLinkText={item.spanLinkText}
-                  onSpanLinkClick={(modalType) => handleOpenModal(modalType)}
+                  onSpanLinkClick={(modalType) => handleSetModalData(modalType)}
                 />
               ))}
               

@@ -2,6 +2,7 @@ import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
+import { PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import { toast } from "react-toastify";
 import "./Subscribe.scss";
 import IsLoading from "../IsLoading/IsLoading";
@@ -10,7 +11,7 @@ import IsLoading from "../IsLoading/IsLoading";
 // need api call logic
 
 const Subscribe: FC = () => {
-  const { handleSetModalType } = useAppContext();
+  const { handleOpenModal } = useAppContext();
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>("");
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
@@ -55,10 +56,15 @@ const Subscribe: FC = () => {
       emailRef.current?.blur();
     }, 1500);
 
+    
     // endpoint call if no errors
-
+    
     // TODO: Add submission logic (e.g. API call or toast message)
     // setEmail("")
+  };
+  
+  const handleOpenPrivacyModal = () => {
+    handleOpenModal("privacy", PRIVACY_POLICY_TITLE);
   };
 
   return (
@@ -120,8 +126,8 @@ const Subscribe: FC = () => {
                   isValid={true}
                   modalType={"privacy"}
                   spanStub={"Agree to the "}
-                  spanLinkText={"privacy policy"}
-                  onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+                  spanLinkText={"Privacy Policy"}
+                  onSpanLinkClick={handleOpenPrivacyModal}
                 />
               
               </div>

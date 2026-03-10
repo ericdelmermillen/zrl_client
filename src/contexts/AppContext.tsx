@@ -28,7 +28,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ showModal, setShowModal ] = useState<boolean>(false);
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
   // const [ modalTitle, setModalTitle ] = useState<string>("");
-  const [ modalTitle, setModalTitle ] = useState<string>("Send Test More Info Email");
+  const [ modalTitle, setModalTitle ] = useState<string>("");
 
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
@@ -114,8 +114,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
    };
 
   // const handleSetModalType = (modalType: ModalType): void => {
-  const handleOpenModal = (modalType: ModalType): void => {
+  const handleOpenModal = (modalType: ModalType, modalTitle: string): void => {
     setShowModal(true);
+    setModalType(modalType);
+    setModalTitle(modalTitle);
 
     // finish when I have content for both modals
     // if(modalType === "privacy") {
@@ -127,6 +129,13 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     // };
 
     setModalType(modalType);
+  };
+
+  const handleClearModal = (): void => {
+    // close modal and reset all modal state
+    setShowModal(false);
+    setModalTitle("");
+
   };
 
   const loginUser = async (email: string, password: string): Promise<boolean> => {
@@ -317,6 +326,8 @@ const checkSessionStatus = async (): Promise<boolean> => {
     setModalType,
     modalTitle, 
     setModalTitle,
+    handleOpenModal,
+    handleClearModal,
     // functions
     loginUser,
     toggleColorMode,
@@ -325,7 +336,6 @@ const checkSessionStatus = async (): Promise<boolean> => {
     showNav,
     hideNav,
     logoutUser,
-    handleOpenModal
   };
 
 

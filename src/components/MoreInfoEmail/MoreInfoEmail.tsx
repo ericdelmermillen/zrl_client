@@ -118,7 +118,7 @@ const MoreInfoEmail:FC = () => {
   // serve toast telling user to check their inbox
   // shouldn't also send admin notification email
   const handleReceiveTestEmail = ():void => {
-    handleOpenModal("sendTest");
+    handleOpenModal("sendTest", "Send A Test Email?");
 
   };
 

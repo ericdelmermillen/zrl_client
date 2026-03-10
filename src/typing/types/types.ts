@@ -4,6 +4,11 @@ export type ColorMode = "light" | "dark";
 
 export type ModalType = "privacy" | "newsletter" | "sendTest";
 
+export type HandleOpenModal = (
+  modalType: ModalType, 
+  modalTitle: string
+) => void;
+
 export type IconType = FC<{ className?: string }>;
 
 export type ToastType = "default" | "success" | "error" | "warning" | "info";
