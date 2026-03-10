@@ -92,21 +92,22 @@
 	}
 
 	&__body-content {
+		border-bottom: 1px solid var(--text-color);
 		color: var(--text-color);
 		flex: 1;
-		overflow-y: scroll;
 		line-height: var(--line-height-lg);
+		overflow-y: scroll;
 		padding-inline-start: 0.5rem;
-		text-align: start;
-		border-bottom: 1px solid var(--text-color);
 		padding-top: 0.75rem;
+		text-align: start;
+		word-break: break-all;
 
 		&.editable {
 			@include mx.testInput;
 			& {
 				height: 100%;
-				padding-inline-end: none;
 				margin-bottom: 1rem;
+				padding-inline-end: none;
 
 				&.invalid {
 					border: 1px solid red;
@@ -123,9 +124,6 @@
 		color: var(--text-color);
 		font-size: var(--text-size-xs);
 		opacity: 0.9;
-		// padding-bottom: 0.125rem;
-		// padding-bottom: 0.25rem;
-		padding-top: none !important;
 		padding-top: 0.5rem;
 		text-align: center;
 
@@ -147,14 +145,22 @@
 	// }
 
 	&__button-container {
-		@include mx.buttonContainer;
-		& {
-			gap: 0.5rem;
-			padding-top: 2rem;
-
-			@media (min-width: vars.$smallPhone) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding-top: 1rem;
+		&.editable {
+			@include mx.buttonContainer;
+			& {
+				flex-direction: row;
+				gap: 0.5rem;
 				padding-top: 2rem;
-				gap: 1rem;
+
+				@media (min-width: vars.$smallPhone) {
+					gap: 1rem;
+					padding-top: 2rem;
+				}
 			}
 		}
 	}
@@ -162,12 +168,16 @@
 	&__button {
 		@include mx.button;
 		& {
-			min-width: 5rem;
 			max-width: 5rem;
+			min-width: 5rem;
 
 			@media (min-width: vars.$smallPhone) {
 				min-width: 6rem;
 			}
 		}
+	}
+
+	&__link-button {
+		@include mx.textLink;
 	}
 }
