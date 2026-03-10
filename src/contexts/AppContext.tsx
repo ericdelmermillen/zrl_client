@@ -24,8 +24,12 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
   const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 
+  // modal state
   const [ showModal, setShowModal ] = useState<boolean>(false);
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
+  // const [ modalTitle, setModalTitle ] = useState<string>("");
+  const [ modalTitle, setModalTitle ] = useState<string>("Send Test More Info Email");
+
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
@@ -109,17 +113,18 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }, NOT_FOUND_NAV_CLICK_DELAY);
    };
 
-  const handleSetModalType = (modalType: ModalType): void => {
+  // const handleSetModalType = (modalType: ModalType): void => {
+  const handleOpenModal = (modalType: ModalType): void => {
     setShowModal(true);
 
     // finish when I have content for both modals
-    if(modalType === "privacy") {
-      console.log("modalType === privacy");
-    };
+    // if(modalType === "privacy") {
+    //   console.log("modalType === privacy");
+    // };
     
-    if(modalType === "terms") {
-      console.log("modalType === terms");
-    };
+    // if(modalType === "terms") {
+    //   console.log("modalType === terms");
+    // };
 
     setModalType(modalType);
   };
@@ -310,6 +315,8 @@ const checkSessionStatus = async (): Promise<boolean> => {
     setShowDropdownNavOptions,
     modalType, 
     setModalType,
+    modalTitle, 
+    setModalTitle,
     // functions
     loginUser,
     toggleColorMode,
@@ -318,7 +325,7 @@ const checkSessionStatus = async (): Promise<boolean> => {
     showNav,
     hideNav,
     logoutUser,
-    handleSetModalType
+    handleOpenModal
   };
 
 

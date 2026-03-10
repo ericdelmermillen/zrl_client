@@ -102,8 +102,7 @@ const App = (): JSX.Element => {
     colorMode, 
     // setColorMode,
     prevScrollYPos,
-    scrollYPos,
-    modalType
+    scrollYPos
   } = useAppContext();
 
   // local state: used here to prevent showing NotFound page if admin user was logged in and on protected page before refreshing and calling server for session verification
@@ -156,16 +155,7 @@ const App = (): JSX.Element => {
 
       <div className="app__inner">
 
-        <Modal>
-          {modalType === "privacy"
-            ? <p>Privacy Policy</p>
-            : modalType === "terms"
-            ? <p>Terms & Conditions</p>
-            : modalType === "newsletter"
-            ? <p>Newsletter</p>
-            : null
-          }
-        </Modal>
+        <Modal/>
 
         <Routes>
 

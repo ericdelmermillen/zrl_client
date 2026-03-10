@@ -17,7 +17,7 @@ const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
-  const { handleSetModalType } = useAppContext();
+  const { handleOpenModal } = useAppContext();
 
   const [ name, setName ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");
@@ -289,7 +289,7 @@ const MoreInfoForm: FC = () => {
                   modalType={item.modalType}
                   spanStub={item.spanStub}
                   spanLinkText={item.spanLinkText}
-                  onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+                  onSpanLinkClick={(modalType) => handleOpenModal(modalType)}
                 />
               ))}
               

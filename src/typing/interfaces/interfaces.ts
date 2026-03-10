@@ -18,7 +18,11 @@ export interface AppContextValue {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
   modalType: ModalType | null;
+  // modal state
   setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
+  modalTitle: string; 
+  setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
+  
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
@@ -30,7 +34,7 @@ export interface AppContextValue {
   notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;
   logoutUser: () => void;
-  handleSetModalType: (modalType: ModalType) => void;
+  handleOpenModal: (modalType: ModalType) => void;
 };
 
 export interface AppContextProviderProps {

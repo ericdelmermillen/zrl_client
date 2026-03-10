@@ -12,6 +12,8 @@ const isSafari: boolean =
   navigator.userAgent.toLowerCase().includes("safari") &&
   !navigator.userAgent.toLowerCase().includes("chrome");
 
+// adding TOTP to require login verification via google authenticator app estimated at 1-2 days of focussed work (via Claude estimate)
+
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const { loginUser } = useAppContext();

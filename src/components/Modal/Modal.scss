@@ -30,12 +30,15 @@
 
 	&__content {
 		background: #fff;
-		height: 50%;
+		border-radius: var(--border-radius-card);
+		height: 80%;
 		left: 50%;
+		max-height: 50rem;
+		max-width: 40rem;
 		position: absolute;
 		top: 50%;
 		transform: translate(-50%, -50%);
-		width: 50%;
+		width: 80%;
 		z-index: 5;
 	}
 }

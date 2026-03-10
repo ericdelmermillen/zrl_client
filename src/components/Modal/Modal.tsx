@@ -1,14 +1,14 @@
 import { type FC } from "react";
-import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../hooks/hooks";
 import "./Modal.scss";
 
 
-const Modal: FC<ChildrenPropsInterface> = ( { children }) => {
+const Modal:FC = () => {
   const { 
     showModal,
     setShowModal,
-    setModalType
+    setModalType,
+    modalTitle
    } = useAppContext();
 
   const handleSetShowModalFalse = () : void => {
@@ -21,7 +21,8 @@ const Modal: FC<ChildrenPropsInterface> = ( { children }) => {
       <div className={`modal ${showModal ? "show" : ""}`}>
         <div className="modal__overlay" onClick={handleSetShowModalFalse}></div>
         <div className="modal__content">
-          {children}
+          <h2 className="modal__title">{modalTitle}</h2>
+
         </div>
       </div>   
     </>

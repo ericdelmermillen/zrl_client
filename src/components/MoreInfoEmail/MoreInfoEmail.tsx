@@ -17,7 +17,8 @@ const MoreInfoEmail:FC = () => {
   const { 
     appIsLoading, 
     setAppIsLoading, 
-    handleSetShowAppIsLoadingFalse 
+    handleSetShowAppIsLoadingFalse,
+    handleOpenModal
   } = useAppContext();
   
   const [ subject, setSubject ] = useState<string>("");
@@ -117,6 +118,7 @@ const MoreInfoEmail:FC = () => {
   // serve toast telling user to check their inbox
   // shouldn't also send admin notification email
   const handleReceiveTestEmail = ():void => {
+    handleOpenModal("sendTest");
 
   };
 
