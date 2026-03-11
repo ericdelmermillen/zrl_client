@@ -23,6 +23,10 @@ export interface AppContextValue {
   setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
   modalTitle: string; 
   setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
+  modalConfirmCallback: (() => void) | null;
+  setModalConfirmCallback: React.Dispatch<React.SetStateAction<(() => void) | null>>;
+  modalText: string;
+  setModalText: React.Dispatch<React.SetStateAction<string | "">>;
   
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;

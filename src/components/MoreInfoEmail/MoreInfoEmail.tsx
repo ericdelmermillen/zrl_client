@@ -18,7 +18,9 @@ const MoreInfoEmail:FC = () => {
     appIsLoading, 
     setAppIsLoading, 
     handleSetShowAppIsLoadingFalse,
-    handleOpenModal
+    handleOpenModal,
+    setModalConfirmCallback,
+    handleClearModal
   } = useAppContext();
   
   const [ subject, setSubject ] = useState<string>("");
@@ -114,12 +116,21 @@ const MoreInfoEmail:FC = () => {
 
   // opens modal: 
   // user enters necessary info to hit /moreinfoemail/send
-  // will need to rector endpoint: receive a boolean for is testing
+  // will need to refactor endpoint: receive a boolean for is testing
   // serve toast telling user to check their inbox
   // shouldn't also send admin notification email
   const handleReceiveTestEmail = ():void => {
-    handleOpenModal("sendTest", "Send A Test Email?");
+    setModalConfirmCallback(() => sendTestEmail)
+    const modalTitle = "Preview Email";
+    const modalText = "Enter your contact information to receive a test version of the More Info email template.";
+    handleOpenModal("sendTest", modalTitle, modalText);
+  };
 
+  const sendTestEmail = () => {
+    console.log("calling for test email")
+    setTimeout(() => {
+      handleClearModal();
+    }, 2000);
   };
 
   const handleSubmit = async (): Promise<void> => {
@@ -350,9 +361,7 @@ const MoreInfoEmail:FC = () => {
  
             </div>
 
-            <div className={`moreInfoEmail__button-container ${isEditing ? "editable" : ""}`}>
-
-              {!isEditing
+              {isEditing
                 ? (
                     <p 
                       className="moreInfoEmail__link-button"
@@ -363,6 +372,8 @@ const MoreInfoEmail:FC = () => {
                   )
                 : ""
               }
+              
+            <div className={`moreInfoEmail__button-container ${isEditing ? "editable" : ""}`}>
 
               {isEditing
 

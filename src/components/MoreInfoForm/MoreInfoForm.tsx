@@ -4,7 +4,7 @@ import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-toastify";
-import { PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
+import { PRIVACY_POLICY_TITLE, PRIVACY_POLICY_TEXT, NEWSLETTER_POLICY_TITLE, NEWSLETTER_POLICY_TEXT } from "../../textCopy/textCopy";
 import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import "./MoreInfoForm.scss";
@@ -196,14 +196,13 @@ const MoreInfoForm: FC = () => {
 
   const handleSetModalData = (modalType: ModalType) => {
     if(modalType === "newsletter") {
-      handleOpenModal(modalType, "Our Newsletter")
-    }
+      handleOpenModal(modalType, NEWSLETTER_POLICY_TITLE, NEWSLETTER_POLICY_TEXT);
+    };
     
     if(modalType === "privacy") {
-      handleOpenModal(modalType, PRIVACY_POLICY_TITLE)
-    }
-
-  }
+      handleOpenModal(modalType, PRIVACY_POLICY_TITLE, PRIVACY_POLICY_TEXT);
+    };
+  };
 
 
   return (

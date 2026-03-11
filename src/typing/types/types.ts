@@ -5,8 +5,10 @@ export type ColorMode = "light" | "dark";
 export type ModalType = "privacy" | "newsletter" | "sendTest";
 
 export type HandleOpenModal = (
-  modalType: ModalType, 
-  modalTitle: string
+  modalType: ModalType,
+  modalTitle: string,
+  modalText: string,
+  confirmCallback?: () => void
 ) => void;
 
 export type IconType = FC<{ className?: string }>;

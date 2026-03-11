@@ -29,6 +29,10 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
   // const [ modalTitle, setModalTitle ] = useState<string>("");
   const [ modalTitle, setModalTitle ] = useState<string>("");
+  
+  const [ modalConfirmCallback, setModalConfirmCallback ] = useState<(() => void) | null>(null);
+  const [ modalText, setModalText ] = useState<string>("");
+
 
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
@@ -114,20 +118,11 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
    };
 
   // const handleSetModalType = (modalType: ModalType): void => {
-  const handleOpenModal = (modalType: ModalType, modalTitle: string): void => {
+  const handleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string): void => {
     setShowModal(true);
     setModalType(modalType);
     setModalTitle(modalTitle);
-
-    // finish when I have content for both modals
-    // if(modalType === "privacy") {
-    //   console.log("modalType === privacy");
-    // };
-    
-    // if(modalType === "terms") {
-    //   console.log("modalType === terms");
-    // };
-
+    setModalText(modalText);
     setModalType(modalType);
   };
 
@@ -135,6 +130,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     // close modal and reset all modal state
     setShowModal(false);
     setModalTitle("");
+    setModalConfirmCallback(null);
 
   };
 
@@ -328,6 +324,10 @@ const checkSessionStatus = async (): Promise<boolean> => {
     setModalTitle,
     handleOpenModal,
     handleClearModal,
+    modalConfirmCallback, 
+    setModalConfirmCallback,
+    modalText, 
+    setModalText,
     // functions
     loginUser,
     toggleColorMode,
