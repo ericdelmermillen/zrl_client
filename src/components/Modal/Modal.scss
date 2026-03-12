@@ -34,7 +34,7 @@
 		flex-direction: column;
 		height: 80%;
 		left: 50%;
-		max-height: 50rem;
+		max-height: 80vh;
 		max-width: 40rem;
 		overflow: hidden;
 		padding-block: 2rem;
@@ -98,6 +98,14 @@
 		@include mx.button;
 		& {
 			min-width: 6rem;
+
+			@media (min-width: vars.$smallPhone) {
+				min-width: 7rem;
+			}
+
+			@media (min-width: vars.$smallTablet) {
+				min-width: 8rem;
+			}
 		}
 	}
 }

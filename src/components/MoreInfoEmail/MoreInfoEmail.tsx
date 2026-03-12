@@ -247,7 +247,7 @@ const MoreInfoEmail:FC = () => {
           </h2>
 
           <p className={"moreInfoEmail__admin-explainer"}>
-            {isEditing ? "Editing mode enabled." : "Edit the form to update the More Info Template"}
+            {isEditing ? "Editing mode enabled." : "Edit below to update."}
           </p>
 
           <form

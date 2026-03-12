@@ -14,13 +14,15 @@
 	&__inner {
 		@include mx.formFullWidthInner;
 		& {
+			width: 100%;
+
 			@media (min-width: vars.$smallTablet) {
 				padding-inline: 0.5rem;
 			}
 
-			@media (min-width: vars.$tablet) {
-				padding-inline: 2rem;
-			}
+			// @media (min-width: vars.$tablet) {
+			// 	padding-inline: 2rem;
+			// }
 		}
 	}
 
@@ -53,22 +55,25 @@
 	&__text {
 		@include mx.adminTextBox;
 		& {
-			min-width: 11rem;
+			// min-width: 11rem;
 			margin-bottom: 0.5rem;
+		}
+		&.editable {
+			margin-bottom: 1rem;
 		}
 	}
 
 	&__subject {
-		align-items: center;
-		border-bottom: 1px solid var(--text-color);
-		color: var(--text-color);
-		display: flex;
-		height: 2.5rem;
-		padding-inline-start: 0.5rem;
+		@include mx.input;
+		& {
+			align-items: center;
+			display: flex;
+			min-height: 2.5rem;
+			height: auto;
+			font-size: var(--font-size-sm);
+		}
 
 		&.editable {
-			@include mx.testInput;
-
 			&.invalid {
 				border: 1px solid red;
 			}
@@ -76,16 +81,14 @@
 	}
 
 	&__greeting {
-		align-items: center;
-		border-bottom: 1px solid var(--text-color);
-		color: var(--text-color);
-		display: flex;
-		height: 2.5rem;
-		padding-inline-start: 0.5rem;
+		@include mx.input;
+		& {
+			align-items: center;
+			display: flex;
+			min-height: 2.5rem;
+		}
 
 		&.editable {
-			@include mx.testInput;
-
 			&.invalid {
 				border: 1px solid red;
 			}
@@ -93,21 +96,22 @@
 	}
 
 	&__body-content {
-		border-bottom: 1px solid var(--text-color);
-		color: var(--text-color);
-		flex: 1;
-		line-height: var(--line-height-lg);
-		overflow-y: scroll;
-		padding-inline-start: 0.5rem;
-		padding-top: 0.75rem;
-		text-align: start;
-		word-break: break-all;
+		@include mx.input;
+		& {
+			border-bottom: 1px solid var(--text-color);
+			flex: 1;
+			line-height: var(--line-height-base);
+			// overflow-y: scroll;
+			overflow-y: auto;
+			// word-break: break-all;
+			word-break: break-word;
+			height: 100%;
+		}
 
 		&.editable {
-			@include mx.testInput;
 			& {
-				height: 100%;
-				margin-bottom: 1rem;
+				line-height: var(--line-height-lg);
+				// margin-bottom: 1rem;
 				padding-inline-end: none;
 
 				&.invalid {
@@ -118,32 +122,53 @@
 	}
 
 	&__paragraph {
-		margin-bottom: 1rem;
+		line-height: var(--line-height-lg);
+		white-space: pre-wrap;
+		margin: 0 0 1lh 0;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&__companyInfo {
 		color: var(--text-color);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		font-size: var(--text-size-xs);
 		opacity: 0.9;
-		padding-top: 0.5rem;
 		text-align: center;
+		height: 3.5rem;
+
+		@media (min-width: vars.$tablet) {
+			height: 3.75rem;
+		}
+
+		&.editable {
+			// padding-top: 0;
+			opacity: 1;
+		}
 
 		// @media (min-width: vars.$tablet) {
 		// 	font-size: var(--text-size-sm);
 		// 	padding-bottom: 0.5rem;
-		// 	padding-top: 0.75rem;
+		// 	padding-top: 0.5rem;
 		// }
 
 		// @media (min-width: vars.$largeTablet) {
 		// 	font-size: var(--text-size-md);
-		// 	padding-bottom: 0.75rem;
-		// 	padding-top: 0.75rem;
+		// 	padding-bottom: 0.5rem;
+		// 	padding-top: 0.5rem;
 		// }
 	}
 
 	// &__companyName,
 	// &__copyRight {
 	// }
+	&__link-button {
+		@include mx.textLink;
+	}
 
 	&__button-container {
 		display: flex;
@@ -151,16 +176,17 @@
 		align-items: center;
 		gap: 1rem;
 		padding-top: 1rem;
+
 		&.editable {
 			@include mx.buttonContainer;
+			// background: red;
 			& {
 				flex-direction: row;
 				gap: 0.5rem;
-				padding-top: 2rem;
+				padding-top: 1.5rem;
 
 				@media (min-width: vars.$smallPhone) {
 					gap: 1rem;
-					padding-top: 2rem;
 				}
 			}
 		}
@@ -175,10 +201,10 @@
 			@media (min-width: vars.$smallPhone) {
 				min-width: 6rem;
 			}
-		}
-	}
 
-	&__link-button {
-		@include mx.textLink;
+			@media (min-width: vars.$smallTablet) {
+				min-width: 7rem;
+			}
+		}
 	}
 }

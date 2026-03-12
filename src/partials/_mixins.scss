@@ -792,15 +792,14 @@
 		font-size: var(--text-size-md);
 	}
 
-	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-lg);
-	}
+	// @media (min-width: vars.$tablet) {
+	// 	font-size: var(--text-size-lg);
+	// }
 }
 
 @mixin adminTextBox {
 	border: 1px solid #333;
 	border-radius: var(--border-radius);
-	color: blue;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
@@ -823,60 +822,21 @@
 	}
 }
 
-@mixin testInput {
-	background: none;
-	border: none;
-	border-bottom: 1px solid var(--text-color);
-	color: var(--text-color);
-	font-family: var(--body-font);
-	font-size: var(--text-size-sm);
-	line-height: var(--line-height-base);
-	outline: none;
-	padding-block: 0.5rem;
-	padding-inline: 0.75rem;
-	resize: none;
-	width: 100%;
-
-	&::placeholder {
-		color: var(--text-color);
-		opacity: 0.5;
-	}
-
-	&:-webkit-autofill {
-		background-color: none !important;
-		box-shadow: none !important;
-		color: inherit;
-		transition: background-color 5000s ease-in-out 0s;
-		-webkit-box-shadow: none !important;
-	}
-
-	&:-webkit-autofill::first-line {
-		color: var(--text-color) !important;
-	}
-
-	&:active,
-	&:focus {
-		color: var((--text-color));
-	}
-
-	&:focus {
-		outline: none;
-	}
-}
-
 // ***
 @mixin input {
 	background: none;
 	border: none;
-	border: 1px solid blue;
+	// border: 1px solid blue;
+	border-bottom: 1px solid #333;
 	color: var(--text-color);
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
 	height: 2rem;
+	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-base);
 	outline: none;
-	padding-block: 0.75rem;
-	padding-inline: 0.75rem;
+	padding-block: 0.5rem;
+	padding-inline: 0.5rem;
 	position: relative;
 	resize: none;
 	width: 100%;
