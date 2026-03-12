@@ -122,7 +122,7 @@ const MoreInfoEmail:FC = () => {
   const handleReceiveTestEmail = ():void => {
     setModalConfirmCallback(() => sendTestEmail)
     const modalTitle = "Preview Email";
-    const modalText = "Enter your contact information to receive a test version of the More Info email template.";
+    const modalText = "Enter your contact info to receive a test version of the More Info email template you are editing.";
     handleOpenModal("sendTest", modalTitle, modalText);
   };
 
@@ -372,7 +372,7 @@ const MoreInfoEmail:FC = () => {
                   )
                 : ""
               }
-              
+
             <div className={`moreInfoEmail__button-container ${isEditing ? "editable" : ""}`}>
 
               {isEditing
