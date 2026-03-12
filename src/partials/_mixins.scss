@@ -144,7 +144,8 @@
 	--error-color: #ff0000;
 
 	// overlay colors
-	--overlay-modal-bg: rgba(0, 0, 0, 0.5);
+	--overlay-modal-bg: #333;
+	--modal-content-bg: #fff;
 	--overlay: rgba(0, 0, 0, 0.125);
 	--overlay-dark-bg: rgba(0, 0, 0, 0.5) 0;
 
@@ -166,6 +167,7 @@
 	// --background-nav-footer
 	// --navFooter-box-shadow
 	// --background-color
+	// --btn-box-shadow
 	&[data-color-mode="light"] {
 		color: var((--body-text));
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
