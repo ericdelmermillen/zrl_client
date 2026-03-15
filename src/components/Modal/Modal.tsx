@@ -126,17 +126,6 @@ const Modal: FC = () => {
 
           <div className="modal__button-container">
 
-            <button
-              className="modal__button"
-              onClick={handleClearModal}
-            >
-              {modalConfirmCallback
-            
-              ? "Cancel"
-              : "Close"
-            }
-            </button>
-
             {modalConfirmCallback
 
               ? (
@@ -149,6 +138,17 @@ const Modal: FC = () => {
                 )
               : null
             }
+
+            <button
+              className="modal__button"
+              onClick={handleClearModal}
+            >
+              {modalConfirmCallback
+            
+              ? "Cancel"
+              : "OK"
+            }
+            </button>
             
           </div>
 
