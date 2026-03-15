@@ -128,6 +128,11 @@ const MoreInfoEmail:FC = () => {
   };
 
   const handleReceiveTestEmail = ():void => {
+    if (!inputsAreValid()) {
+      toast.error("Please fix the errors before proceeding to test the email.")
+      return;
+    };
+
     setModalConfirmCallback(() => sendTestEmail);
     const modalTitle = "Preview Email";
     const modalText = "Enter your contact info to receive a test version of the More Info email template you are editing.";
@@ -141,8 +146,7 @@ const MoreInfoEmail:FC = () => {
     }, 2000);
   };
 
-  const handleSubmit = async (): Promise<void> => {
-    setAppIsLoading(true);
+  const inputsAreValid = (): boolean => {
     setInitialFormCheck(true);
     
     let errors = 0;
@@ -167,7 +171,13 @@ const MoreInfoEmail:FC = () => {
       errors++;
     };
     
-    if(errors) {
+    return errors < 1;
+  }
+
+  const handleSubmit = async (): Promise<void> => {
+    setAppIsLoading(true);
+
+    if (!inputsAreValid()){
       setAppIsLoading(false);
       return;
     };
