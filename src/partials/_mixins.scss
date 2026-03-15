@@ -826,12 +826,14 @@
 @mixin input {
 	background: none;
 	border: none;
-	// border: 1px solid blue;
+	border: 1px solid #333;
 	border-bottom: 1px solid #333;
 	color: var(--text-color);
+	cursor: default;
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
 	height: 2rem;
+	height: 2.5rem;
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-base);
 	outline: none;
@@ -901,7 +903,7 @@
 }
 
 @mixin textLink {
-	color: var(--accent-color);
+	color: var(--accent-color) !important;
 	cursor: pointer;
 	text-decoration: underline;
 }

@@ -1,6 +1,11 @@
 import React, { type FC, useState, useRef, useEffect } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import { focusInputStart, handleFormEnterPress, staggerToastsByN,  } from "../../../utils/utils";
+import { 
+  focusInputStart, 
+  handleFormEnterPress, 
+  staggerToastsByN, 
+  parseParagraphLink 
+} from "../../../utils/utils";
 import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
 
@@ -11,7 +16,6 @@ const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 // set up skeletons
 // adjust responsive styling
 // add Send Test Email --> opens Modal (requires name, email address: can use /send with param or query string to send variation with TEST MESSAGE before subject)
-// make clicking in subject, greeting or body content when not in isEditing trigger handleSetIsEditingTrue?
 
 const MoreInfoEmail:FC = () => {
   const { 
@@ -43,19 +47,26 @@ const MoreInfoEmail:FC = () => {
 
 
   const handleSetIsEditingTrue = (): void => {
+    if (window.getSelection()?.toString()) {
+      return;
+    };
+
     setAppIsLoading(true);
     
     setTimeout(() => {
-      focusInputStart(subjectRef);
-      
       handleSetShowAppIsLoadingFalse();
       
       setTimeout(() => {
         setIsEditing(true);
         toast.info("More Info Email Template ready to edit.");
-      }, MIN_LOADING_INTERVAL * 4);
+
+        setTimeout(() => {
+          focusInputStart(subjectRef);
+        }, 0);
+
+      }, MIN_LOADING_INTERVAL * 2);
     }, MIN_LOADING_INTERVAL);
-  ;}
+  };
 
 
   const getMoreInfoEmail = async (): Promise<void> => {
@@ -95,10 +106,12 @@ const MoreInfoEmail:FC = () => {
   const handleGreetingChange = (): boolean => {
     const greetingValue = greetingRef.current?.value ?? "";
     const isValidLength = greetingValue.trim().length >= 2;
+    const includesName = greetingValue.includes("<name>");
+    const isValid = isValidLength && includesName;
 
     setGreeting(greetingValue);
-    setGreetingIsValid(isValidLength);
-    return isValidLength;
+    setGreetingIsValid(isValid);
+    return isValid;
   };
 
   const handleContentChange = (): boolean => {
@@ -114,13 +127,8 @@ const MoreInfoEmail:FC = () => {
     handleFormEnterPress(e, isEditing, handleSubmit)
   };
 
-  // opens modal: 
-  // user enters necessary info to hit /moreinfoemail/send
-  // will need to refactor endpoint: receive a boolean for is testing
-  // serve toast telling user to check their inbox
-  // shouldn't also send admin notification email
   const handleReceiveTestEmail = ():void => {
-    setModalConfirmCallback(() => sendTestEmail)
+    setModalConfirmCallback(() => sendTestEmail);
     const modalTitle = "Preview Email";
     const modalText = "Enter your contact info to receive a test version of the More Info email template you are editing.";
     handleOpenModal("sendTest", modalTitle, modalText);
@@ -150,7 +158,7 @@ const MoreInfoEmail:FC = () => {
     };
     
     if(!greeting.includes("<name>")) {
-      staggerToastsByN("Greeting must include \"<name>\".", "error", errors);
+      staggerToastsByN("Greeting must include <name>.", "error", errors);
       errors++;
     };
 
@@ -213,7 +221,6 @@ const MoreInfoEmail:FC = () => {
       await getMoreInfoEmail();
       
       setInitialFormCheck(false);
-      
       setSubjectIsValid(true);
       setGreetingIsValid(true);
       setEmailContentIsValid(true);
@@ -221,7 +228,7 @@ const MoreInfoEmail:FC = () => {
       setTimeout(() => {
         setIsEditing(false);
         toast.info("Editing cancelled...")
-      }, MIN_LOADING_INTERVAL * 4)
+      }, MIN_LOADING_INTERVAL * 2);
       
     } catch(error) {
       console.error("Failed to refresh email template:", error);
@@ -229,10 +236,9 @@ const MoreInfoEmail:FC = () => {
     } finally {
       handleSetShowAppIsLoadingFalse();
     };
-};
+  };
 
-
-  // useEffect to call for initial MoreInfoEmail content
+  // useEffect to call for initial MoreInfo email templat content
   useEffect(() => {
     getMoreInfoEmail();
   }, []);
@@ -281,7 +287,11 @@ const MoreInfoEmail:FC = () => {
                     value={subject}
                     onChange={handleSubjectChange}
                   />
-                : <p className="moreInfoEmail__subject" id="moreInfoEmailSubject">
+                : <p 
+                    className="moreInfoEmail__subject" 
+                    id="moreInfoEmailSubject"
+                    onMouseUp={handleSetIsEditingTrue}
+                  >
                     {subject}
                   </p>
 
@@ -313,8 +323,9 @@ const MoreInfoEmail:FC = () => {
                 : <p 
                     id="moreInfoEmailGreeting"
                     className="moreInfoEmail__greeting" 
-                    >
-                      {greeting}
+                    onMouseUp={handleSetIsEditingTrue}
+                  >
+                    {greeting}
                   </p>
 
               }
@@ -340,15 +351,21 @@ const MoreInfoEmail:FC = () => {
                     ref={contentRef}
                     onChange={handleContentChange}
                   />
-                : <div id="moreInfoEmailBodyContent" className="moreInfoEmail__body-content">
+                : <div 
+                    id="moreInfoEmailBodyContent" 
+                    className="moreInfoEmail__body-content"
+                    onMouseUp={handleSetIsEditingTrue}
+                  >
                     {content.split("\n\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
-                      <p key={idx} className="moreInfoEmail__paragraph">{paragraph}</p>
+                      <p key={idx} className="moreInfoEmail__paragraph">
+                        {parseParagraphLink(paragraph)}
+                      </p>
                     ))}
                   </div>
 
               }
 
-              <div className={`moreInfoEmail__companyInfo ${isEditing ? "editable" : ""}`}>
+              <div className="moreInfoEmail__companyInfo">
 
                 <div className="moreInfoEmail__companyName">
                   {companyName}

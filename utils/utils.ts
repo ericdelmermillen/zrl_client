@@ -1,4 +1,4 @@
-import React from "react";
+import React, {type ReactNode} from "react";
 import type { ToastType } from "../src/typing/types/types";
 import { toast } from "react-toastify";
 
@@ -60,6 +60,43 @@ const handleFormEnterPress = (e: React.KeyboardEvent<HTMLFormElement>, boolean: 
   };
 };
 
+ const parseParagraphLink = (text: string): ReactNode => {
+    const urlRegex = /(https?:\/\/[^\s\[]+)(?:\[([^\]]+)\])?/g;
+    const parts: ReactNode[] = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = urlRegex.exec(text)) !== null) {
+      const [ full, url, linkText ] = match;
+
+      if (match.index > lastIndex) {
+        parts.push(text.slice(lastIndex, match.index));
+      };
+
+      parts.push(
+        React.createElement(
+          "a",
+          {
+            key: match.index,
+            href: url,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "moreInfoEmail__link"
+          },
+          linkText ?? url
+        )
+      );
+
+      lastIndex = match.index + full.length;
+    };
+
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex));
+    };
+
+    return parts;
+  };
+
 
 export {
   scrollToTop,
@@ -69,5 +106,6 @@ export {
   removeClassFromDiv,
   staggerToastsByN,
   focusInputStart,
-  handleFormEnterPress
+  handleFormEnterPress,
+  parseParagraphLink
 };

@@ -19,10 +19,6 @@
 			@media (min-width: vars.$smallTablet) {
 				padding-inline: 0.5rem;
 			}
-
-			// @media (min-width: vars.$tablet) {
-			// 	padding-inline: 2rem;
-			// }
 		}
 	}
 
@@ -55,7 +51,6 @@
 	&__text {
 		@include mx.adminTextBox;
 		& {
-			// min-width: 11rem;
 			margin-bottom: 0.5rem;
 		}
 		&.editable {
@@ -67,16 +62,15 @@
 		@include mx.input;
 		& {
 			align-items: center;
+			cursor: pointer;
 			display: flex;
-			min-height: 2.5rem;
-			height: auto;
 			font-size: var(--font-size-sm);
+			height: auto;
+			min-height: 2.5rem;
 		}
 
 		&.editable {
-			&.invalid {
-				border: 1px solid red;
-			}
+			cursor: text;
 		}
 	}
 
@@ -84,11 +78,14 @@
 		@include mx.input;
 		& {
 			align-items: center;
+			cursor: pointer;
 			display: flex;
 			min-height: 2.5rem;
 		}
 
 		&.editable {
+			cursor: text;
+
 			&.invalid {
 				border: 1px solid red;
 			}
@@ -99,68 +96,50 @@
 		@include mx.input;
 		& {
 			border-bottom: 1px solid var(--text-color);
+			cursor: pointer;
 			flex: 1;
-			line-height: var(--line-height-base);
-			// overflow-y: scroll;
-			overflow-y: auto;
-			// word-break: break-all;
-			word-break: break-word;
 			height: 100%;
+			line-height: var(--line-height-base);
+			overflow-y: auto;
+			word-break: break-word;
 		}
 
 		&.editable {
 			& {
+				cursor: text;
 				line-height: var(--line-height-lg);
-				// margin-bottom: 1rem;
 				padding-inline-end: none;
-
-				&.invalid {
-					border: 1px solid red;
-				}
 			}
 		}
 	}
 
 	&__paragraph {
 		line-height: var(--line-height-lg);
-		white-space: pre-wrap;
 		margin: 0 0 1lh 0;
+		white-space: pre-wrap;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 
+	&__link {
+		@include mx.textLink;
+	}
+
 	&__companyInfo {
 		color: var(--text-color);
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		font-size: var(--text-size-xs);
+		height: 3.5rem;
+		justify-content: center;
 		opacity: 0.9;
 		text-align: center;
-		height: 3.5rem;
 
 		@media (min-width: vars.$tablet) {
 			height: 3.75rem;
 		}
-
-		&.editable {
-			// padding-top: 0;
-			opacity: 1;
-		}
-
-		// @media (min-width: vars.$tablet) {
-		// 	font-size: var(--text-size-sm);
-		// 	padding-bottom: 0.5rem;
-		// 	padding-top: 0.5rem;
-		// }
-
-		// @media (min-width: vars.$largeTablet) {
-		// 	font-size: var(--text-size-md);
-		// 	padding-bottom: 0.5rem;
-		// 	padding-top: 0.5rem;
-		// }
 	}
 
 	// &__companyName,
