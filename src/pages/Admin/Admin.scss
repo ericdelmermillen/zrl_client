@@ -12,8 +12,5 @@
 
 	&__content {
 		@include mx.pageContent;
-		// & {
-		// 	z-index: 0;
-		// }
 	}
 }

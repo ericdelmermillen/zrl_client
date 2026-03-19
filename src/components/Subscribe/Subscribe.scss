@@ -102,7 +102,7 @@
 	}
 
 	&__submit {
-		@include mx.rounded-button;
+		@include mx.roundedButton;
 		& {
 			margin-inline: auto;
 			margin-top: 2rem;

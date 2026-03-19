@@ -10,9 +10,7 @@
 	}
 
 	&__main {
-		// need default page color variable here
-		// sections can have their own color
-		background: orange;
+		background: var(--neutral-bg-1);
 		position: relative;
 	}
 

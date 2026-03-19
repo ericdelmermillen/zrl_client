@@ -1,19 +1,7 @@
 import { type FC, type ChangeEvent } from "react";
-import type { ModalType } from "../../typing/types/types";
+import type { LabelledCheckboxProps } from "../../typing/types/types";
 import "./LabelledCheckbox.scss";
 
-
-type LabelledCheckboxProps = {
-  labelId: string;
-  labelText: string;
-  isChecked: boolean;
-  setIsChecked: (value: boolean) => void;
-  isValid: boolean;
-  modalType: ModalType;
-  spanStub:  string;
-  spanLinkText: string;
-  onSpanLinkClick: (modalType: ModalType) => void;
-};
 
 const LabelledCheckbox: FC<LabelledCheckboxProps> = ({
   labelId,

@@ -45,6 +45,9 @@ const MoreInfoEmail:FC = () => {
   const greetingRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
+  // const testNameRef = useRef<HTMLInputElement | null>(null);
+  // const testEmailRef = useRef<HTMLInputElement | null>(null);
+
 
   const handleSetIsEditingTrue = (): void => {
     if (window.getSelection()?.toString()) {
@@ -135,7 +138,7 @@ const MoreInfoEmail:FC = () => {
 
     setModalConfirmCallback(() => sendTestEmail);
     const modalTitle = "Preview Email";
-    const modalText = "Enter your contact info to receive a test version of the More Info email template you are editing.";
+    const modalText = "Enter a name and email to receive a test version of the email template you are editing.";
     handleOpenModal("sendTest", modalTitle, modalText);
   };
 

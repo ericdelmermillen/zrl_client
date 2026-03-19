@@ -5,17 +5,17 @@
 	& {
 		align-items: center;
 		display: flex;
-		font-size: var(--text-size-md);
+		font-size: var(--font-size-md);
 		letter-spacing: var(--letter-spacing-md);
 		line-height: var(--line-height-md);
 
 		@media (min-width: vars.$tablet) {
-			font-size: var(--text-size-lg);
+			font-size: var(--font-size-lg);
 			letter-spacing: var(--letter-spacing-lg);
 		}
 
 		@media (min-width: vars.$desktop) {
-			font-size: var(--text-size-xl);
+			font-size: var(--font-size-xl);
 		}
 	}
 

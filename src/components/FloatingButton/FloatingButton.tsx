@@ -26,6 +26,7 @@ const FloatingButton: FC = () => {
       <div className="floatingButton">
         <button className="floatingButton__toTheTop">
           <FaAngleUp 
+            className="floatingButton__toTheTop--icon"
             onClick={scrollToTop}
           />
         </button>

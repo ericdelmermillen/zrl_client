@@ -15,7 +15,6 @@ const Detail: FC<DetailProps> = ({
 
   const isEven = idx % 2 === 0;
 
-
   return (
     <div className={`detail ${!isEven && "detail--odd"}`} >
 

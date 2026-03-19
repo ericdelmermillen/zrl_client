@@ -4,14 +4,6 @@
 .loginForm {
 	& {
 		@include mx.formFullWidth;
-		& {
-			position: relative;
-			width: 100%;
-		}
-	}
-
-	&__isLoading {
-		@include mx.isLoadingContainer;
 	}
 
 	&__inner {
@@ -46,16 +38,6 @@
 
 	&__input {
 		@include mx.formFullWidthInput;
-
-		&:focus {
-			box-shadow: var(--box-shadow-input);
-			outline: none;
-		}
-
-		&::placeholder {
-			color: var(--text-color);
-			font-size: var(--font-size-fine);
-		}
 	}
 
 	&__error {

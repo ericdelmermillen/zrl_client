@@ -15,7 +15,11 @@ const BackButton: FC = () => {
   
   return (
     <>
-      <button className="backButton" onClick={handleBackClick}>
+      <button 
+        type="button"
+        className="backButton" 
+        onClick={handleBackClick}
+      >
         <span className="backButton__arrow">
           <IoArrowBackSharp />   
         </span>

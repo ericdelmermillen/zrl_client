@@ -23,11 +23,9 @@ const usePageLoading = (): void => {
       setAppIsLoading(false)
     }, APP_ISLOADING_DELAY);
 
-    // ✅ cleanup prevents state updates after unmount
     return () => {
       clearTimeout(timeoutId);
     };
-
   }, []);
 };
 
@@ -49,4 +47,4 @@ export  {
   usePageLoading,
   useDocumentTitle,
   useScrollToTopOnPageMount
- }
+ };

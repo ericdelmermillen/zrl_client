@@ -1,31 +1,28 @@
-import React, {type ReactNode} from "react";
+import React, { type ReactNode, type RefObject, type KeyboardEvent } from "react";
 import type { ToastType } from "../src/typing/types/types";
 import { toast } from "react-toastify";
 
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const MIN_LOADING_INTERVAL = Number(import.meta.env.VITE_MIN_LOADING_INTERVAL);
 
-// scroll to top function for mounting page and scrolling to top
 const scrollToTop = (): void => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
-  });
-  
-  document.getElementById("nav")?.classList.remove("hide");
+  });  
+  removeClassFromDiv("nav", "hide");
 };
-
 
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegex.test(email);
 };
 
-
 const isValidPassword = (password: unknown): boolean => {
-  if(typeof password !== "string") return false;
+  if (typeof password !== "string") {
+    return false;
+  };
   return password.trim().length >= 8;
 };
-
 
 const addClassToDiv = (divID: string, className: string): void => {
   document.getElementById(divID)?.classList.add(className);
@@ -37,7 +34,7 @@ const removeClassFromDiv = (divID: string, className: string): void => {
 
 const staggerToastsByN = (message: string, toastType: ToastType, staggerOffset: number): void => {
   setTimeout(() => {
-    if(toastType === "default") {
+    if (toastType === "default") {
       toast(message);
     } else {
       toast[toastType](message);
@@ -45,12 +42,12 @@ const staggerToastsByN = (message: string, toastType: ToastType, staggerOffset: 
   }, MIN_LOADING_INTERVAL * staggerOffset);
 };
 
-const focusInputStart = (ref: React.RefObject<HTMLInputElement | null>): void => {
+const focusInputStart = (ref: RefObject<HTMLInputElement | null>): void => {
   ref.current?.focus();
   ref.current?.setSelectionRange(0, 0);
 };
 
-const handleFormEnterPress = (e: React.KeyboardEvent<HTMLFormElement>, boolean: boolean, elseCallback: () => void ): void => {
+const handleFormEnterPress = (e: KeyboardEvent<HTMLFormElement>, boolean: boolean, elseCallback: () => void ): void => {
   if(e.key === "Enter" && boolean) {
     if(e.shiftKey) {
       return;

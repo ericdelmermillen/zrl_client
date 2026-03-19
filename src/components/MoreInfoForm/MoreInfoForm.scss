@@ -87,7 +87,7 @@
 	}
 
 	&__submitButton {
-		@include mx.rounded-button;
+		@include mx.roundedButton;
 		& {
 			margin-inline: auto;
 			max-width: 24rem;

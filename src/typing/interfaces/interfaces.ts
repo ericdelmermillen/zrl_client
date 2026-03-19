@@ -65,6 +65,18 @@ export interface NavProps {
   navOptions: NavOption[];
 };
 
+export interface CarouselItem {
+  itemName: string;
+};
+
+export interface CarouselProps {
+  carouselItems: CarouselItem[];
+  itemClassName?: string;
+  direction?: "left" | "right";
+  secondsPerLoop?: number;
+  carouselAriaLabel?: string;
+};
+
 export interface MoreInfoTextData {
   titleShort: string;
   titleFull: string;

@@ -3,9 +3,7 @@
 
 .footer {
 	& {
-		// need var for footer color: may use same color as nav
-		background: #fff;
-		border-top: 2px solid red;
+		background: var(--nav-footer-bg);
 		width: 100%;
 		z-index: 1;
 	}
@@ -38,8 +36,6 @@
 	&__social {
 		align-items: center;
 		display: flex;
-		// need var for foot social icon fill: maybe accent color?
-		fill: purple;
 		font-size: 1.25rem;
 		height: 1.5rem;
 		justify-content: center;
@@ -59,23 +55,26 @@
 	}
 
 	&__social-icon {
-		// need var here: accent color?
-		fill: var(--text-color-bright);
+		fill: var(--nav-link-color);
 		width: 2rem;
 	}
 
 	&__copyright {
 		align-items: center;
 		display: flex;
+		color: var(--nav-link-color);
+		// ***which font?
 		font-family: var(--body-font);
-		font-size: var(--font-size-xs);
+		// font-family: var(--heading-font);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
 		justify-content: center;
-		letter-spacing: var(--letter-spacing-xl);
+		letter-spacing: var(--letter-spacing-2xl);
 		margin-bottom: 1rem;
 		text-align: center;
 
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--font-size-sm);
+			font-size: var(--font-size-md);
 			width: 100%;
 		}
 

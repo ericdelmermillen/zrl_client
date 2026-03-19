@@ -1,13 +1,10 @@
 import { useAppContext } from "../../hooks/hooks";
-import { type FC, type CSSProperties, useState, useEffect } from "react";
-import "./Header_2.scss";
+import { type FC, useState, useEffect } from "react";
+import "./Header.scss";
 
 const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
-const styleObj: CSSProperties = { "left": 0 };
-
-
-const Header_2: FC = () => {
+const Header: FC = () => {
   const { windowWidth } = useAppContext();
 
   const [ solutionIdx, setSolutionIdx ] = useState<number>(0);
@@ -30,7 +27,7 @@ const Header_2: FC = () => {
       <header className="header">
         <div className="header__inner">
           <div className="header__overlay"></div>
-          <div className="header__accentBar" style={styleObj}></div>
+          <div className="header__accentBar"></div>
 
           <div className="header__left">
 
@@ -60,4 +57,4 @@ const Header_2: FC = () => {
     </>
   )};
 
-export default Header_2;
+export default Header;

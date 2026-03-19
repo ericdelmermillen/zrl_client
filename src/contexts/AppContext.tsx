@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect, createContext } from "react";
 import type { ColorMode, ModalType } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
-import { scrollToTop } from "../../utils/utils";
+import { addClassToDiv, removeClassFromDiv, scrollToTop } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const MIN_LOADING_INTERVAL = Number(import.meta.env.VITE_MIN_LOADING_INTERVAL);
 const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -27,22 +27,19 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   // modal state
   const [ showModal, setShowModal ] = useState<boolean>(false);
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
-  // const [ modalTitle, setModalTitle ] = useState<string>("");
   const [ modalTitle, setModalTitle ] = useState<string>("");
   
   const [ modalConfirmCallback, setModalConfirmCallback ] = useState<(() => void) | null>(null);
   const [ modalText, setModalText ] = useState<string>("");
-
-
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
   // used to prevent duplicate toasts in dev
   const hasRunSessionCheck = useRef(false);
 
-  const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? import.meta.env.VITE_NAV_CLICK_DELAY : 0;
-  const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY : 0;
-  const PAGE_NAV_CLICK_DELAY = import.meta.env.VITE_PAGE_NAV_CLICK_DELAY;
+  const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? Number(import.meta.env.VITE_NAV_CLICK_DELAY) : 0;
+  const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? Number(import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY) : 0;
+  const PAGE_NAV_CLICK_DELAY = Number(import.meta.env.VITE_PAGE_NAV_CLICK_DELAY);
 
   const handleSetShowAppIsLoadingFalse = (): void => {
     setTimeout(() => {
@@ -55,21 +52,39 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setScrollYPos(window.scrollY);
   };
 
-  const showNav = (): void => document.getElementById("nav-container")?.classList.remove("hide");
+  const showNav = (): void => removeClassFromDiv("nav-container", "hide");
   
-  const hideNav = (): void => document.getElementById("nav-container")?.classList.add("hide");
+  const hideNav = (): void => addClassToDiv("nav-container", "hide");
 
-  const logoutUser = (): void => {
+  const logoutUser = async (): Promise<void> => {
     setAppIsLoading(true);
-    toast.success("Logging you out now...");
-    navigate("/");
-    
-    setTimeout(() => {
-      scrollToTop();
+
+    try {
+      const response = await fetch(`${BASE_URL}/auth/logoutuser`, {
+        method: "POST",
+        credentials: "include"
+      });
+
+      if (!response.ok) {
+        throw new Error("Logout failed.");
+      };
+      
+      localStorage.removeItem("wasLoggedIn");
+      toast.success("Logging you out now...");
+      navigate("/");
       setShowDropdownNavOptions(false);
-      setIsLoggedIn(false);
+
+      setTimeout(() => {
+        scrollToTop();
+        setIsLoggedIn(false);
+        setAppIsLoading(false);
+      }, APP_ISLOADING_DELAY);
+
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast.error("Logout failed. Please try again.");
       setAppIsLoading(false);
-    }, APP_ISLOADING_DELAY);
+    };
   };
 
 
@@ -95,7 +110,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     setTimeout(() => {
       requestAnimationFrame(() => {
-        if(optionName.toLowerCase() === "home") {
+        if (optionName.toLowerCase() === "home") {
           navigate("/");
           scrollToTop();
         } else {
@@ -117,7 +132,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }, NOT_FOUND_NAV_CLICK_DELAY);
    };
 
-  // const handleSetModalType = (modalType: ModalType): void => {
   const handleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string): void => {
     setShowModal(true);
     setModalType(modalType);
@@ -127,11 +141,9 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   };
 
   const handleClearModal = (): void => {
-    // close modal and reset all modal state
     setShowModal(false);
     setModalTitle("");
     setModalConfirmCallback(null);
-
   };
 
   const loginUser = async (email: string, password: string): Promise<boolean> => {
@@ -142,7 +154,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // ✅ REQUIRED
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
@@ -203,6 +215,7 @@ const checkSessionStatus = async (): Promise<boolean> => {
     if (hasRunSessionCheck.current) {
       return;
     };
+    
     hasRunSessionCheck.current = true;
 
     const runSessionCheck = async () => {
@@ -214,8 +227,9 @@ const checkSessionStatus = async (): Promise<boolean> => {
 
       const hadSession = Boolean(localStorage.getItem("wasLoggedIn"));
       const isOnLogin = location.pathname === "/login";
-
+      
       if (hadSession) {
+        console.log("had session")
         if (isOnLogin) {
           localStorage.removeItem("wasLoggedIn");
         } else {
@@ -240,7 +254,6 @@ const checkSessionStatus = async (): Promise<boolean> => {
   }, []);
 
 
-
   // useEffect to check local storage for colorMode
   useEffect(() => {
     const validModes = ["light", "dark"];
@@ -258,6 +271,7 @@ const checkSessionStatus = async (): Promise<boolean> => {
   // useEffect for updating of scrollYPos
   useEffect(() => {
     let ticking = false;
+
     const handleScroll = () => {
       if(!ticking) {
         requestAnimationFrame(() => {
@@ -299,11 +313,9 @@ const checkSessionStatus = async (): Promise<boolean> => {
 
 
   const contextValues = {
-    // state
     appIsLoading, 
     setAppIsLoading,
     handleSetShowAppIsLoadingFalse,
-    // 
     isLoggedIn,
     setIsLoggedIn,
     colorMode,

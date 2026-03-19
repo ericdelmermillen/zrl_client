@@ -26,6 +26,7 @@
 	--line-height-md: 1.5;
 	--line-height-lg: 1.75;
 	--line-height-xl: 2;
+	--line-height-2xl: 2.25;
 
 	// border & box shadow
 	--border-radius: 4px;
@@ -38,53 +39,14 @@
 	--text-box-text-shadow-color: rgba(0, 0, 0, 0.1);
 	--box-bottom-boxShadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
 	// *** Header Overlay
-	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
-	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.65);
-	--header-overlay-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
-	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
-	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.85);
-	--header-overlay-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
 	--header-overlay-shadow: 5px 5px 5px rgba(0, 0, 0, 0.95);
 	//
-	--header-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-	--header-small-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
-	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
-	// --header-small-text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
-	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.75);
-	--header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
-	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.85);
-	--header-small-text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.85);
-	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
-	// --header-small-text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.8);
-	// --header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
-	// --header-small-text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
-	// --header-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
-	// --header-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-	// --header-text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-	// --header-text-shadow: 4px 4px 18px rgba(0, 0, 0, 0.5);
-	// --header-text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
-	// --header-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4),
-	// 	0 2px 4px rgba(0, 0, 0, 0.3);
-	// --header-text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-	// --header-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-	--header-text-shadow:
-		0 4px 6px rgba(0, 0, 0, 0.5), 0 6px 10px rgba(0, 0, 0, 0.25);
-	// --header-text-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.6);
-	// --header-text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
-	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
 	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.65);
+	--header-small-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 	--header-text-shadow-lead: 0 3px 6px rgba(0, 0, 0, 0.65);
-	// --header-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.95);
-	// --header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.95);
-	// --header-text-shadow: 4px 6px 6px rgba(0, 0, 0, 0.8);
-	// --header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-	// --header-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
-	// --header-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
+
+	--floating-button-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.65);
 
 	// Timing Variables
 	--transition-interval-lightbox: 450ms;
@@ -107,7 +69,7 @@
 	--text-header-lead-xl: 1.6rem; // 30px - headlines
 
 	// header fonts
-
+	// *** make these all font-size-___
 	--text-size-xs: 0.75rem; // 12px - fine print, captions
 	--text-size-sm: 0.875rem; // 14px - secondary text
 	--text-size-base: 1rem; // 16px - body text
@@ -119,6 +81,19 @@
 	--text-size-4xl: 3rem; // 48px - hero text
 	--text-size-5xl: 4rem; // 64px - display
 	--text-size-6xl: 5rem; // 80px - massive display
+	//
+	--font-size-xs: 0.75rem; // 12px - fine print, captions
+	--font-size-sm: 0.875rem; // 14px - secondary text
+	--font-size-base: 1rem; // 16px - body text
+	--font-size-md: 1.125rem; // 18px - slightly larger body or subheadings
+	--font-size-lg: 1.25rem; // 20px - callouts, larger buttons
+	--font-size-xl: 1.5rem; // 24px - section titles
+	--font-size-2xl: 1.875rem; // 30px - headlines
+	--font-size-3xl: 2.25rem; // 36px - large headlines
+	--font-size-4xl: 3rem; // 48px - hero text
+	--font-size-5xl: 4rem; // 64px - display
+	--font-size-6xl: 5rem; // 80px - massive display
+	// ***
 
 	// Button font sizes
 	--btn-text-xs: 0.75rem; // 12px - compact buttons
@@ -158,9 +133,9 @@
 
 	// need:
 	// --box-shadow
+	--input-box-shadow: inset 2px 0px 2px rgba(0, 0, 0, 0.2);
 	--text-color: #333;
 	// --border-radius
-	// --heading-font
 	// --background-nav-footer
 	// --navFooterBoxShadow
 	// --text-color-bright(?)
@@ -171,6 +146,8 @@
 	&[data-color-mode="light"] {
 		color: var((--body-text));
 		--accentBarShadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+		--accent-bar-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+		--nav-bar-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 		--accent-color: #d27834;
 		//
 		//
@@ -178,37 +155,17 @@
 		--button-text-color: #f1f0ea;
 		--header-overlay: linear-gradient(
 			to top,
-			rgba(0, 0, 0, 0.125) 0%,
-			rgba(0, 0, 0, 0.25) 25%,
-			rgba(0, 0, 0, 0.275) 75%
-		);
-		// --header-overlay: linear-gradient(
-		// 	to top,
-		// 	rgba(0, 0, 0, 0.9) 0%,
-		// 	rgba(0, 0, 0, 0.65) 25%,
-		// 	rgba(0, 0, 0, 0.15) 90%
-		// );
-		--header-overlay: linear-gradient(
-			to top,
 			rgba(21, 12, 2, 0.8) 0%,
 			rgba(45, 28, 5, 0.65) 25%,
 			rgba(26, 98, 241, 0.33) 90%
 		);
 		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-		--navFooter-bg: #011140;
+		--nav-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+		--nav-footer-bg: #182438;
 
-		--navFooter-bg: #182438;
+		--nav-link-color: #fff;
 
-		--navLink-color: #fff;
-
-		--header-text-color: #ffffff;
-		--header-text-color: #fdfdfa;
 		--header-text-color: #f5f2e4;
-
-		// --header-text-color: red;
-		// --header-text-color: #f2f2f2;
-		// --header-text-color: #f4f2e5;
-		// --header-text-color: #dee1dd;
 	}
 
 	&[data-color-mode="dark"] {
@@ -474,10 +431,11 @@
 @mixin formFullWidthInput {
 	background: none;
 	// need formBg var
-	background: orange;
+	// background: orange;
 	border: none;
 	// border-bottom: 2px solid var(--text-color);
-	border-bottom: 2px solid red;
+	// border-bottom: 2px solid red;
+	border: 1px solid var(--text-color);
 	color: var(--text-color);
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
@@ -518,7 +476,9 @@
 	}
 
 	&:focus {
-		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+		// box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+		box-shadow: var(--input-box-shadow);
+
 		outline: none;
 	}
 }
@@ -600,12 +560,13 @@
 		font-size: var(--btn-text-lg);
 	}
 
-	&:hover {
-		transform: translateY(-1px);
-	}
+	// &:hover {
+	// 	transform: translateY(-1px);
+	// }
 
 	&:active {
-		transform: translateY(0);
+		// transform: translateY(0);
+		scale: 0.95;
 	}
 
 	&:focus {
@@ -620,8 +581,6 @@
 
 	@media (min-width: vars.$desktop) {
 		font-size: var(--btn-text-lg);
-		// letter-spacing: var(--letter-spacing-lg);
-		// padding: var(--btn-padding-lg);
 	}
 
 	@media (min-width: vars.$ultraWide) {
@@ -631,7 +590,7 @@
 	}
 }
 
-@mixin rounded-button {
+@mixin roundedButton {
 	@include button;
 	& {
 		border-radius: 2rem;
@@ -653,7 +612,7 @@
 // need button link
 
 @mixin navLink {
-	color: var(--navLink-color);
+	color: var(--nav-link-color);
 	font-family: var(--heading-font);
 	font-size: var(--text-size-md);
 	font-weight: 600;
@@ -662,7 +621,7 @@
 }
 
 @mixin hoverClickGrow {
-	transform: scale(1.01);
+	transform: scale(1.1);
 	transition: all 0.25s ease-in-out;
 }
 
@@ -828,6 +787,7 @@
 	border: none;
 	border: 1px solid #333;
 	border-bottom: 1px solid #333;
+	border-radius: var(--border-radius);
 	color: var(--text-color);
 	cursor: default;
 	font-family: var(--body-font);
@@ -844,7 +804,9 @@
 
 	&.invalid {
 		// need invalid border/outline styling for invalid state: will remove yellow bg later
-		background: yellow;
+		// background: yellow;
+		border: 1px solid var(--error-color);
+		outline: 1px solid var(--error-color);
 	}
 
 	&::placeholder {
@@ -866,11 +828,8 @@
 
 	&:active,
 	&:focus {
+		box-shadow: var(--input-box-shadow);
 		color: inherit;
-	}
-
-	&:focus {
-		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 		outline: none;
 	}
 }
@@ -934,12 +893,6 @@
 	overflow: hidden;
 	width: 100%;
 }
-
-// @mixin cardBoxShadow {
-// 	box-shadow:
-// 		0 2px 8px rgba(0, 0, 0, 0.5),
-// 		0 4px 16px rgba(0, 0, 0, 0.5);
-// }
 
 @mixin cardBoxShadow {
 	box-shadow:

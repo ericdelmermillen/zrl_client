@@ -6,9 +6,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { AiOutlineException } from "react-icons/ai";
 import { BiSolidCommentError } from "react-icons/bi";
 import { BsCpuFill, BsLightningChargeFill, BsShieldExclamation } from "react-icons/bs";
-// react icon sets starts
-import { FaChartBar,FaClipboardList,FaCog, FaCogs, FaExclamationTriangle, FaFileAlt, FaGlobeAmericas, FaIdCard, FaSyncAlt, FaTachometerAlt, FaTasks, FaWrench } from "react-icons/fa";
-import { FaBugs, FaChartLine, FaCode,FaFolderOpen, FaLink, FaMicrochip, FaPowerOff, FaRobot, FaUserSecret } from "react-icons/fa6";
+import { FaChartBar, FaClipboardList, FaCog, FaCogs, FaExclamationTriangle, FaFileAlt, FaGlobeAmericas, FaIdCard, FaSyncAlt, FaTachometerAlt, FaTasks, FaWrench } from "react-icons/fa";
+import { FaBugs, FaChartLine, FaCode, FaFolderOpen, FaLink, FaMicrochip, FaPowerOff, FaRobot, FaUserSecret } from "react-icons/fa6";
 import { GiLightningArc } from "react-icons/gi";
 import { IoIosLock, IoMdKey } from "react-icons/io";
 import { IoFingerPrintOutline } from "react-icons/io5";
@@ -16,7 +15,6 @@ import { MdMonitor, MdOutlineSyncProblem, MdSecurity } from "react-icons/md";
 import { PiKeyhole, PiTerminal } from "react-icons/pi";
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
-// react icon sets ends
 import { ToastContainer } from "react-toastify";
 import Admin from "./pages/Admin/Admin";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
@@ -24,11 +22,11 @@ import DropdownNav from "./components/DropdownNav/DropdownNav";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import IsLoading from "./components/IsLoading/IsLoading";
+import Login from "./pages/Login/Login";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
 import Modal from "./components/Modal/Modal";
 import Nav from "./components/Nav/Nav";
 import NavSocials from "./components/NavSocials/NavSocials";
-import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "react-toastify/dist/ReactToastify.css";

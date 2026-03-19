@@ -1,4 +1,5 @@
 import { type FC, useRef, useEffect } from "react";
+import type { CarouselProps } from "../../typing/interfaces/interfaces";
 import "./Carousel.scss";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -6,18 +7,6 @@ const isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAg
 
 
 // media break point for prefers reduced motion for horizontal scroll
-
-export interface CarouselItem {
-  itemName: string;
-};
-
-interface CarouselProps {
-  carouselItems: CarouselItem[];
-  itemClassName?: string;
-  direction?: "left" | "right";
-  secondsPerLoop?: number;
-  carouselAriaLabel?: string;
-};
 
 const Carousel: FC<CarouselProps> = ({
   carouselItems,

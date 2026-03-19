@@ -13,7 +13,17 @@ export type HandleOpenModal = (
 
 export type IconType = FC<{ className?: string }>;
 
-export type ToastType = "default" | "success" | "error" | "warning" | "info";
+export type LabelledCheckboxProps = {
+  labelId: string;
+  labelText: string;
+  isChecked: boolean;
+  setIsChecked: (value: boolean) => void;
+  isValid: boolean;
+  modalType: ModalType;
+  spanStub:  string;
+  spanLinkText: string;
+  onSpanLinkClick: (modalType: ModalType) => void;
+};
 
 export type CheckboxItem = {
     key: "agreeToNewsletter" | "agreeToTerms";
@@ -26,3 +36,5 @@ export type CheckboxItem = {
     setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
     isValid: boolean;
   };
+
+export type ToastType = "default" | "success" | "error" | "warning" | "info";  

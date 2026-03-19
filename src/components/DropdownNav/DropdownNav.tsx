@@ -25,14 +25,14 @@ const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
     setShowDropdownNavOptions(false);
 
     // Reset scroll position to top
-    if(innerRef.current) {
+    if (innerRef.current) {
       innerRef.current.scrollTop = 0;
     };
   };
 
   // useEffect to close dropdown on scroll
   useEffect(() => {
-    if(scrollYPos > prevScrollYPos) {
+    if (scrollYPos > prevScrollYPos) {
       setShowDropdownNavOptions(false);
     };
   }, [scrollYPos, prevScrollYPos]);
