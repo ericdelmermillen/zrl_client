@@ -1,26 +1,17 @@
 import { type FC } from "react";
 import { useAppContext } from "../../hooks/hooks";
-import { useNavigate } from "react-router-dom";
 import { BiLogOutCircle } from "react-icons/bi";
 import "./LogoutButton.scss";
 
 // ***make this an async component as Logout call will be async
 
 const LogoutButton: FC = () => {
-  const navigate = useNavigate();
-
   const { logoutUser } = useAppContext();
-
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/");
-  };
-
 
   return (
     <button
       className="logoutButton"
-      onClick={handleLogout}
+      onClick={logoutUser}
       type="button"
       aria-label="Logout"
     >
