@@ -13,7 +13,7 @@
 		border-radius: 50%;
 		color: var(--button-text-color);
 		display: flex;
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 		height: 1.9rem;
 		justify-content: center;
 		margin-top: 0.25rem;
@@ -21,7 +21,7 @@
 		width: 1.9rem;
 
 		@media (min-width: vars.$mediumTablet) {
-			font-size: var(--text-size-md);
+			font-size: var(--font-size-md);
 			height: 1.7rem;
 			width: 1.7rem;
 		}

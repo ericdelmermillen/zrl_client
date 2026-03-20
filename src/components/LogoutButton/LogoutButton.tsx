@@ -3,7 +3,6 @@ import { useAppContext } from "../../hooks/hooks";
 import { BiLogOutCircle } from "react-icons/bi";
 import "./LogoutButton.scss";
 
-// ***make this an async component as Logout call will be async
 
 const LogoutButton: FC = () => {
   const { logoutUser } = useAppContext();

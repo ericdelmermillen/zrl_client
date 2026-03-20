@@ -4,17 +4,20 @@ import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-toastify";
-import { PRIVACY_POLICY_TITLE, PRIVACY_POLICY_TEXT, NEWSLETTER_POLICY_TITLE, NEWSLETTER_POLICY_TEXT } from "../../textCopy/textCopy";
+import { 
+  PRIVACY_POLICY_TITLE, 
+  PRIVACY_POLICY_TEXT, 
+  NEWSLETTER_POLICY_TITLE, 
+  NEWSLETTER_POLICY_TEXT 
+} from "../../textCopy/textCopy";
 import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import "./MoreInfoForm.scss";
 
 
 // *** need validation state checking when user selects from auto fill
-// *** allow all submits to trigger new welcome email even if email is in database?
 // *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
 
-const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
@@ -26,7 +29,6 @@ const MoreInfoForm: FC = () => {
   const [ agreeToNewsletter, setAgreeToNewsletter ] = useState<boolean>(true);
   const [ agreeToTerms, setAgreeToTerms ] = useState<boolean>(true);
 
-  // input validation state
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
 
   const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
@@ -64,7 +66,6 @@ const MoreInfoForm: FC = () => {
       isValid: true,
     },
   ];
-
 
   const handleNameChange = () => {
     const nameValue = nameRef.current?.value ?? "";
@@ -168,10 +169,7 @@ const MoreInfoForm: FC = () => {
       const { hasSubscribed } = await response.json();
 
       if(hasSubscribed) {
-        // timeout so toast appears after a slight delay after first toast
-        setTimeout(() => {
-          toast.success("Successfully subscribed to our Newsletter.");
-        }, MIN_LOADING_INTERVAL * 2);
+        staggerToastsByN("Successfully subscribed to our Newsletter.", "success", 2);
       };
 
       setName("");

@@ -8,6 +8,8 @@
 	// colors
 	// need this for palate
 	--neutral-bg-1: #e6eae7;
+	// --neutral-bg-2: orange;
+
 	// letter spacing
 	--letter-spacing-xs: 0.2px;
 	--letter-spacing-sm: 0.4px;
@@ -38,6 +40,7 @@
 	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	--text-box-text-shadow-color: rgba(0, 0, 0, 0.1);
 	--box-bottom-boxShadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+
 	// *** Header Overlay
 	--header-overlay-shadow: 5px 5px 5px rgba(0, 0, 0, 0.95);
 	//
@@ -70,18 +73,6 @@
 
 	// header fonts
 	// *** make these all font-size-___
-	--text-size-xs: 0.75rem; // 12px - fine print, captions
-	--text-size-sm: 0.875rem; // 14px - secondary text
-	--text-size-base: 1rem; // 16px - body text
-	--text-size-md: 1.125rem; // 18px - slightly larger body or subheadings
-	--text-size-lg: 1.25rem; // 20px - callouts, larger buttons
-	--text-size-xl: 1.5rem; // 24px - section titles
-	--text-size-2xl: 1.875rem; // 30px - headlines
-	--text-size-3xl: 2.25rem; // 36px - large headlines
-	--text-size-4xl: 3rem; // 48px - hero text
-	--text-size-5xl: 4rem; // 64px - display
-	--text-size-6xl: 5rem; // 80px - massive display
-	//
 	--font-size-xs: 0.75rem; // 12px - fine print, captions
 	--font-size-sm: 0.875rem; // 14px - secondary text
 	--font-size-base: 1rem; // 16px - body text
@@ -129,7 +120,7 @@
 	--section-top-padding: 3rem;
 
 	// UI elements
-	--inputHeight: 3rem;
+	--input-height: 3rem;
 
 	// need:
 	// --box-shadow
@@ -273,7 +264,7 @@
 	& {
 		display: inline-block;
 		// *** update font variables
-		font-size: var(--text-size-xs);
+		font-size: var(--font-size-xs);
 		margin-bottom: 2rem;
 		position: relative;
 		width: fit-content;
@@ -281,44 +272,43 @@
 	}
 
 	@media (min-width: vars.$smallTablet) {
-		font-size: var(--text-size-sm);
+		font-size: var(--font-size-sm);
 	}
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-md);
+		font-size: var(--font-size-md);
 	}
 
 	@media (min-width: vars.$mediumTablet) {
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 	}
 
 	@media (min-width: vars.$mediumTablet) {
-		font-size: var(--text-size-xl);
+		font-size: var(--font-size-xl);
 	}
 }
 
 @mixin cardTitleHeading {
-	// use text color
-	color: green;
-	font-size: var(--text-size-md);
+	color: var(--text-color);
+	font-size: var(--font-size-md);
 	font-weight: 600;
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-lg);
 	margin-block: 1rem;
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 	}
 
 	@media (min-width: vars.$desktop) {
-		font-size: var(--text-size-xl);
+		font-size: var(--font-size-xl);
 	}
 }
 
 @mixin cardTag {
 	background: var(--accent-color);
 	color: var(--button-text-color);
-	font-size: var(--text-size-sm);
+	font-size: var(--font-size-sm);
 	font-weight: 700;
 	padding: var(--tag-padding);
 	border-radius: 4px;
@@ -327,22 +317,22 @@
 	width: fit-content;
 
 	@media (min-width: vars.$mediumTablet) {
-		font-size: var(--text-size-md);
+		font-size: var(--font-size-md);
 	}
 }
 
 @mixin cardTextBlurb {
-	font-size: var(--text-size-md);
+	font-size: var(--font-size-md);
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-md);
 	margin-bottom: 2rem;
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 	}
 
 	@media (min-width: vars.$desktop) {
-		font-size: var(--text-size-xl);
+		font-size: var(--font-size-xl);
 	}
 }
 
@@ -613,8 +603,9 @@
 
 @mixin navLink {
 	color: var(--nav-link-color);
+	cursor: pointer;
 	font-family: var(--heading-font);
-	font-size: var(--text-size-md);
+	font-size: var(--font-size-md);
 	font-weight: 600;
 	letter-spacing: var(--letter-spacing-nav-items);
 	position: relative;
@@ -680,8 +671,9 @@
 }
 
 @mixin sectionHeading {
+	color: var(--text-color);
 	font-family: var(--heading-font);
-	font-size: var(--text-size-lg);
+	font-size: var(--font-size-lg);
 	font-weight: 600;
 	letter-spacing: var(--letter-spacing-lg);
 	margin-bottom: 1rem;
@@ -692,22 +684,21 @@
 
 	@media (min-width: vars.$tablet) {
 		// probably use general text color
-		color: green;
 		display: inline-block;
-		font-size: var(--text-size-xl);
+		font-size: var(--font-size-xl);
 		margin-inline: auto;
 	}
 
 	@media (min-width: vars.$largeTablet) {
 		display: inline-block;
-		font-size: var(--text-size-2xl);
+		font-size: var(--font-size-2xl);
 		margin-bottom: 2rem;
 		margin-inline: auto;
 		color: purple;
 	}
 
 	@media (min-width: vars.$desktop) {
-		font-size: var(--text-size-3xl);
+		font-size: var(--font-size-3xl);
 	}
 }
 
@@ -724,36 +715,31 @@
 }
 
 @mixin sectionLead {
-	// use text color
-	color: green;
-	font-size: var(--text-size-md);
+	color: var(--text-color);
+	font-size: var(--font-size-md);
 	letter-spacing: var(--letter-spacing-lg);
 	line-height: var(--line-height-md);
 	margin-bottom: 1rem;
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 	}
 
 	@media (min-width: vars.$desktop) {
-		font-size: var(--text-size-xl);
+		font-size: var(--font-size-xl);
 	}
 }
 
 @mixin adminExplainer {
 	color: var(--text-color);
 	font-family: var(--body-font);
-	font-size: var(--text-size-xs);
+	font-size: var(--font-size-xs);
 	letter-spacing: var(--letter-spacing-lg);
 	line-height: var(--line-height-lg);
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-md);
+		font-size: var(--font-size-md);
 	}
-
-	// @media (min-width: vars.$tablet) {
-	// 	font-size: var(--text-size-lg);
-	// }
 }
 
 @mixin adminTextBox {
@@ -762,7 +748,7 @@
 	display: flex;
 	flex: 1;
 	flex-direction: column;
-	font-size: var(--text-size-sm);
+	font-size: var(--font-size-sm);
 	height: 100%;
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-lg);
@@ -773,11 +759,11 @@
 	-webkit-overflow-scrolling: touch;
 
 	@media (min-width: vars.$tablet) {
-		font-size: var(--text-size-md);
+		font-size: var(--font-size-md);
 	}
 
 	@media (min-width: vars.$largeTablet) {
-		font-size: var(--text-size-lg);
+		font-size: var(--font-size-lg);
 	}
 }
 
@@ -792,7 +778,7 @@
 	cursor: default;
 	font-family: var(--body-font);
 	font-size: var(--font-size-xs);
-	height: 3rem;
+	height: var(--input-height);
 	letter-spacing: var(--letter-spacing-md);
 	line-height: var(--line-height-base);
 	outline: none;
@@ -812,6 +798,7 @@
 	&::placeholder {
 		color: var(--text-color);
 		opacity: 0.5;
+		font-size: var(--font-size-xs);
 	}
 
 	&:-webkit-autofill {

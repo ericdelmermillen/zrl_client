@@ -2,7 +2,7 @@ import { type FC, useState, useRef } from "react";
 import { useAppContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
-import { PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
+import { PRIVACY_POLICY_TEXT, PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import { toast } from "react-toastify";
 import "./Subscribe.scss";
 import IsLoading from "../IsLoading/IsLoading";
@@ -60,11 +60,10 @@ const Subscribe: FC = () => {
     // endpoint call if no errors
     
     // TODO: Add submission logic (e.g. API call or toast message)
-    // setEmail("")
   };
   
   const handleOpenPrivacyModal = () => {
-    handleOpenModal("privacy", PRIVACY_POLICY_TITLE);
+    handleOpenModal("privacy", PRIVACY_POLICY_TITLE, PRIVACY_POLICY_TEXT);
   };
 
   return (

@@ -64,8 +64,7 @@
 			align-items: center;
 			border: none;
 			border-bottom: 1px solid var(--text-color);
-			//
-			border-radius: 0;
+			border-radius: none;
 			cursor: pointer;
 			display: flex;
 			font-size: var(--font-size-sm);

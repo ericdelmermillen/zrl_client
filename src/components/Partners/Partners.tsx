@@ -1,5 +1,5 @@
 import { type FC, useState, useEffect } from "react";
-import type { CarouselItem } from "../Carousel/Carousel"; 
+import type { CarouselItem } from "../../typing/interfaces/interfaces"; 
 import Carousel from "../Carousel/Carousel";
 import "./Partners.scss";
 

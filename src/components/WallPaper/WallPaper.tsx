@@ -70,7 +70,6 @@ const WallPaper: FC<WallPaperProps> = memo(({ customIcons }) => {
     }
   );
 
-
   const itemsPerRow = (() => {
     const windowWidth = window.innerWidth;
     return windowWidth < 320
