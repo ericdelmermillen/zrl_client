@@ -1,0 +1,118 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.nav {
+	& {
+		align-items: center;
+		display: flex;
+		position: relative;
+		width: 100%;
+		z-index: 3;
+	}
+
+	&__content {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		height: 100%;
+		margin-inline: auto;
+		max-width: vars.$ultraWide;
+		padding-inline: 6rem;
+		width: 100%;
+
+		@media (min-width: vars.$desktop) {
+			padding-inline: 8rem;
+		}
+	}
+
+	&__logo-box {
+		align-items: center;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		height: vars.$navHeight;
+		width: 4rem;
+	}
+
+	&__logo {
+		// *** will use an SVG logo later
+		color: var(--navLink-color);
+		cursor: pointer;
+		font-family: var(--heading-font);
+		font-size: 1.75rem;
+		font-weight: 600;
+		letter-spacing: 6px;
+		margin-top: 4px;
+	}
+
+	&__links {
+		display: none;
+		color: var(--accent-color);
+
+		@media (min-width: vars.$largeTablet) {
+			align-items: center;
+			display: flex;
+			gap: 2rem;
+			height: 100%;
+			margin-inline-start: auto;
+		}
+	}
+
+	&__link {
+		cursor: pointer;
+		@include mx.navLink;
+
+		&:hover {
+			&::after {
+				@include mx.afterAccent;
+			}
+		}
+	}
+
+	&__logout {
+		display: none;
+	}
+
+	&__toggle-button {
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		height: 2.5rem;
+		justify-content: center;
+		position: absolute;
+		right: 2rem;
+		top: 0.9rem;
+		width: 2rem;
+
+		@media (min-width: vars.$largeTablet) {
+			display: none;
+		}
+
+		&.open {
+			.nav__toggle-icon:nth-child(1) {
+				transform: translateY(0.55rem) rotate(225deg);
+			}
+
+			.nav__toggle-icon:nth-child(2) {
+				opacity: 0;
+			}
+
+			.nav__toggle-icon:nth-child(3) {
+				transform: translateY(-0.55rem) rotate(-225deg);
+			}
+		}
+	}
+
+	&__toggle-icon {
+		border: 1.45px solid var(--navLink-color);
+		color: var(--navLink-color);
+		border-radius: 2px;
+		min-width: 100%;
+		transform-origin: center;
+		transition:
+			transform 0.5s ease,
+			opacity 0.25s ease;
+		width: 2rem;
+	}
+}

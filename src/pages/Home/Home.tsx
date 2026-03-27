@@ -1,0 +1,47 @@
+import { type FC } from "react";
+import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount  } from "../../hooks/hooks";
+// import Header_1 from "../../components/Header_1/Header_1";
+import Details from "../../components/Details/Details";
+import Expertise from "../../components/Expertise/Expertise";
+import Header_2 from "../../components/Header_2/Header_2";
+import MoreInfo from "../../components/MoreInfo/MoreInfo";
+// import Partners from "../../components/Partners/Partners";
+import Solutions from "../../components/Solutions/Solutions";
+import Subscribe from "../../components/Subscribe/Subscribe";
+import Values from "../../components/Values/Values";
+import "./Home.scss";
+
+
+const Home: FC = () => {
+  usePageLoading();
+  useDocumentTitle("Zidgy Road Labs | Professional Web Development Services");
+  useScrollToTopOnPageMount();
+  
+  return (
+    <>
+      <div className="home">
+
+        <div className="home__inner">
+          {/* <Header_1 /> */}
+          <Header_2 />
+          <main className="home__main">
+            {/* <Partners /> */}
+
+            <div className="home__content">
+              <MoreInfo />
+              <Solutions />
+              <Details />
+              <Expertise />
+
+              <Values />
+            
+              <Subscribe />
+            </div>
+            
+          </main>
+        </div>
+      </div>
+    </>
+  )};
+
+export default Home;

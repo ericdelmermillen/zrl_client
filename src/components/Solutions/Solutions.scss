@@ -1,0 +1,49 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.solutions {
+	& {
+		padding-top: var(--section-top-padding);
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__heading {
+		@include mx.sectionHeadingWithAccent;
+		& {
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__lead {
+		@include mx.sectionLead;
+		& {
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__lead-stem {
+		display: none;
+
+		@media (min-width: vars.$tablet) {
+			display: contents;
+		}
+	}
+
+	&__container {
+		align-items: stretch;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		width: 100%;
+
+		@media (min-width: vars.$mediumTablet) {
+			display: grid;
+			gap: 2rem;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}

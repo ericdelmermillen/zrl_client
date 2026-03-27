@@ -1,0 +1,67 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.expertiseItem {
+	& {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		margin-inline: auto;
+		max-width: min(90%, 32rem);
+
+		@media (min-width: vars.$mediumTablet) {
+			max-width: 80%;
+		}
+	}
+
+	&__icon {
+		color: var(--accent-color);
+		flex-grow: 1;
+		margin-bottom: 1rem;
+		max-height: 2.5rem;
+		min-height: 2.5rem;
+		width: 5rem;
+
+		@media (min-width: vars.$smallPhone) {
+			max-height: 3rem;
+			min-height: 3rem;
+		}
+
+		@media (min-width: vars.$smallTablet) {
+			max-height: 4rem;
+			min-height: 4rem;
+		}
+
+		@media (min-width: vars.$mediumTablet) {
+			max-height: 5rem;
+			min-height: 5rem;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			max-height: 6rem;
+			min-height: 6rem;
+		}
+
+		@media (min-width: vars.$desktop) {
+			max-height: 4rem;
+			min-height: 4rem;
+		}
+
+		@media (min-width: vars.$ultraWide) {
+			max-height: 5rem;
+			min-height: 5rem;
+		}
+	}
+
+	&__heading {
+		@include mx.cardTitleHeading;
+	}
+
+	&__desc {
+		@include mx.cardTextBlurb;
+
+		& {
+			text-align: center;
+		}
+	}
+}

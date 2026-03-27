@@ -1,0 +1,320 @@
+import { type FC, useState, useRef } from "react";
+import { useAppContext } from "../../hooks/hooks";
+import { isValidEmail } from "../../../utils/utils";
+import type { CheckboxItem } from "../../typing/types/types";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import IsLoading from "../IsLoading/IsLoading";
+import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
+import toast from "react-hot-toast";
+import "./MoreInfoForm.scss";
+
+
+// *** need validation state checking when user selects from auto fill
+// *** allow all submits to trigger new welcome email even if email is in database?
+// *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
+
+const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const MoreInfoForm: FC = () => {
+  const { handleSetModalType } = useAppContext();
+
+  const [ name, setName ] = useState<string>("");
+  const [ email, setEmail ] = useState<string>("");
+  const [ phone, setPhone ] = useState<string>("");
+  const [ agreeToNewsletter, setAgreeToNewsletter ] = useState<boolean>(true);
+  const [ agreeToTerms, setAgreeToTerms ] = useState<boolean>(true);
+
+  // input validation state
+  const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
+
+  const [ nameIsValid, setNameIsValid ] = useState<boolean>(true);
+  const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);
+  const [ phoneIsValid, setPhoneIsValid ] = useState<boolean>(true);
+
+  const [ componentIsLoading, setComponentIsLoading ] = useState<boolean>(false);
+
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const phoneRef = useRef<HTMLInputElement | null>(null);
+
+
+  const checkboxItems: CheckboxItem[] = [
+    {
+      key: "agreeToNewsletter",
+      labelId: "moreInfoFormNewsletter",
+      labelText: "Newsletter",
+      modalType: "newsletter",
+      spanStub: "Subscribe to our ",
+      spanLinkText: "Newsletter",
+      isChecked: agreeToNewsletter,
+      setIsChecked: setAgreeToNewsletter,
+      isValid: true,
+    },
+    {
+      key: "agreeToTerms",
+      labelId: "moreInfoFormTerms",
+      labelText: "Terms",
+      modalType: "privacy",
+      spanStub: "Agree to our ",
+      spanLinkText: "Privacy Policy",
+      isChecked: agreeToTerms,
+      setIsChecked: setAgreeToTerms,
+      isValid: true,
+    },
+  ];
+
+
+  const handleNameChange = () => {
+    const nameValue = nameRef.current?.value ?? "";
+    const isValidLength = nameValue.trim().length >= 2;
+  
+    setName(nameValue);
+    setNameIsValid(isValidLength);
+  
+    return isValidLength;
+  };
+
+  const handleEmailChange = (): boolean => {
+    const emailValue = emailRef.current?.value ?? "";
+    const emailIsValid = isValidEmail(emailValue);
+
+    setEmail(emailValue);
+    setEmailIsValid(emailIsValid);
+
+    return emailIsValid;
+  };
+
+  const handlePhoneChange = (): boolean => {
+    const phoneValue = phoneRef.current?.value ?? "";
+
+    if (!phoneValue.length) {
+      setPhone("");
+      setPhoneIsValid(true);
+      return true;
+    };
+
+    let phoneNumberIsValid = false;
+
+    try {
+      phoneNumberIsValid = isValidPhoneNumber(
+        phoneValue.startsWith("+") ? phoneValue : phoneValue,
+        "US" // fallback country for numbers without + prefix
+      );
+    } catch {
+      phoneNumberIsValid = false;
+    };
+
+    setPhone(phoneValue);
+    setPhoneIsValid(phoneNumberIsValid);
+
+    return phoneNumberIsValid;
+  };
+
+  const handleSubmit = async (): Promise<void> => {
+    setInitialFormCheck(true);
+    
+    let errors = 0;
+
+    if(!handleEmailChange()) {
+      toast.error("Email is invalid");
+      errors++;
+    };
+
+    if(!handleNameChange()) {
+      toast.error("Name is invalid");
+      errors++;
+    };
+
+
+    if(phone.length && !handlePhoneChange()) {
+      toast.error("Phone is invalid");
+      errors++;
+    };
+    
+    if(!agreeToTerms) {
+      toast.error("Please agree to the Privacy Policy");
+      errors++;
+    };
+
+    if(errors) {
+      return;
+    };
+
+    setComponentIsLoading(true);
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    try {
+      const response = await fetch(`${BASE_URL}/moreinfo/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || undefined,
+          timezone,
+          hasSubscribed: agreeToNewsletter
+        })
+      });
+
+      if(!response.ok) {
+        toast.error("Something went wrong. Please try again.");
+        return;
+      };
+
+      toast.success("Thanks for reaching out. Check your Inbox for more info.");
+
+      const { hasSubscribed } = await response.json();
+
+      if(hasSubscribed) {
+        // timeout so toast appears after a slight delay after first toast
+        setTimeout(() => {
+          toast.success("Successfully subscribed to our Newsletter.");
+        }, MIN_LOADING_INTERVAL * 2);
+      };
+
+      setName("");
+      setEmail("");
+      setPhone("");
+      setInitialFormCheck(false);
+      setNameIsValid(true);
+      setEmailIsValid(true);
+      setPhoneIsValid(true);
+      setAgreeToNewsletter(true);
+      setAgreeToTerms(true);
+      emailRef.current?.blur();
+      nameRef.current?.blur();
+      phoneRef.current?.blur();
+
+    } catch(error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setComponentIsLoading(false);
+    };
+  };
+
+
+  return (
+    <>
+      <article className="moreInfoForm__section">
+          
+        <form 
+          className="moreInfoForm__form" 
+          name="moreInfoForm"
+          onSubmit={(e) => {e.preventDefault()}}
+        >
+          <div className="moreInfoForm__fields">
+
+            <div className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}>
+              <IsLoading />
+            </div>
+
+            <div className="moreInfoForm__field moreInfoForm__field--name">
+              <label htmlFor="moreInfoFormName" className="moreInfoForm__label">
+                Name
+              </label>
+
+              <input 
+                id="moreInfoFormName"
+                type="text" 
+                className={
+                  `moreInfoForm__input moreInfoForm__input--name
+                    ${initialFormCheck && !nameIsValid
+                        ? "invalid" : ""
+                    }`}
+                autoComplete="name"
+                placeholder="Enter Name"
+                value={name}
+                ref={nameRef}
+                onChange={handleNameChange}
+              />
+
+            </div>
+
+            <div className="moreInfoForm__field moreInfoForm__field--email">
+
+              <label htmlFor="moreInfoFormEmail" className="moreInfoForm__label">
+                Email
+              </label>
+
+              <input
+                id="moreInfoFormEmail"
+                className={`moreInfoForm__input moreInfoForm__input--email ${initialFormCheck && !emailIsValid ? "invalid" : ""}`}
+                name="email"
+                autoComplete="email"
+                placeholder="Enter Email"
+                value={email}
+                ref={emailRef}
+                onChange={handleEmailChange}
+                onBlur={handleEmailChange}
+              />
+            </div>
+
+            <div className="moreInfoForm__field moreInfoForm__field--phone">
+
+              <label htmlFor="moreInfoFormPhone" className="moreInfoForm__label">
+                Phone
+              </label>
+
+              <input 
+                id="moreInfoFormPhone"
+                type="tel" 
+                className={
+                  `moreInfoForm__input moreInfoForm__input--phone
+                    ${initialFormCheck && !phoneIsValid && phone
+                        ? "invalid" : ""}  
+                `} 
+                inputMode="numeric"
+                autoComplete="tel"
+                placeholder="Enter Phone (Optional)"
+                value={phone}
+                ref={phoneRef}
+                onChange={handlePhoneChange}
+              />
+            
+            </div>
+          </div>
+          <div className="moreInfoForm__checkboxes">
+
+            <div className="moreInfoForm__checkboxes-inner">
+
+              {checkboxItems.map((item) => (
+                <LabelledCheckbox
+                  key={item.key}
+                  labelId={item.labelId}
+                  labelText={item.labelText}
+                  isChecked={item.isChecked}
+                  setIsChecked={item.setIsChecked}
+                  isValid={item.isValid}
+                  modalType={item.modalType}
+                  spanStub={item.spanStub}
+                  spanLinkText={item.spanLinkText}
+                  onSpanLinkClick={(modalType) => handleSetModalType(modalType)}
+                />
+              ))}
+              
+            </div>
+          </div>
+      
+          <div className="moreInfoForm__submit">
+            <label htmlFor="moreInfoFormTerms" className="moreInfoForm__label">
+              Submit
+            </label>
+              
+            <button 
+              className={`moreInfoForm__submitButton ${!agreeToTerms || componentIsLoading ? "disabled" : ""}`}
+              type="submit"
+              onClick={handleSubmit}
+            >
+              SUBMIT
+            </button>
+          </div>
+
+        </form>
+      </article>
+
+    </>
+  )};
+
+export default MoreInfoForm;

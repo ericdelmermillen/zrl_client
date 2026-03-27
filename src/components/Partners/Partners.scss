@@ -1,0 +1,32 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.partners {
+	& {
+		overflow-x: hidden;
+	}
+
+	&__inner {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		padding-block: 2rem;
+		overflow: hidden; // Ensure items overflow the sides inside the container
+	}
+
+	&__heading {
+		@include mx.sectionHeading;
+	}
+
+	&__partnerItem {
+		background: purple;
+		border-radius: 0.5rem;
+		box-shadow: 0 0.5rem 1rem -0.25rem #333;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		max-width: 7.5rem;
+		min-width: 7.5rem;
+		padding-block: 1rem;
+	}
+}

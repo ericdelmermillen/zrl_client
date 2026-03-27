@@ -1,0 +1,82 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+// media break point for prefers reduced motion for horizontal scroll
+
+.carousel {
+	position: relative;
+	margin-inline: auto;
+	width: 100%;
+	max-width: vars.$ultraWide;
+	overflow: hidden; // Ensure items overflow the sides inside the container
+
+	&__inner {
+		border: 2px dashed #333;
+		margin-inline: auto;
+		max-width: 99vw;
+	}
+
+	&[data-animated="true"] {
+		position: relative;
+
+		// Fade effect both sides — exact same on left/right
+		-webkit-mask-image: linear-gradient(
+			90deg,
+			transparent 0%,
+			white 10%,
+			white 90%,
+			transparent 100%
+		);
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: 100% 100%;
+
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0%,
+			white 10%,
+			white 90%,
+			transparent 100%
+		);
+		mask-repeat: no-repeat;
+		mask-size: 100% 100%;
+	}
+
+	&__track {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: vars.$carouselGap;
+		padding-block: 2rem;
+		width: max-content;
+
+		&.reducedMotion {
+			justify-content: center;
+		}
+	}
+
+	&[data-animated="true"] &__track {
+		animation: scroll var(--_animation-duration, 40s)
+			var(--_animation-direction, forwards) linear infinite;
+	}
+
+	&[data-direction="right"] {
+		--_animation-direction: reverse;
+	}
+
+	&[data-direction="left"] {
+		--_animation-direction: forwards;
+	}
+
+	&__item {
+		background: yellow;
+		border-radius: 0.5rem;
+		box-shadow: 0 0.5rem 1rem -0.25rem #333;
+		color: blue;
+		min-width: 200px; // Make sure items have width
+	}
+}
+
+@keyframes scroll {
+	to {
+		transform: translateX(calc(-50% - #{vars.$carouselGap} / 2));
+	}
+}

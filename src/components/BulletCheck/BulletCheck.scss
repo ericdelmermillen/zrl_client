@@ -1,0 +1,62 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.bulletCheck {
+	& {
+		align-items: center;
+		display: flex;
+		font-size: var(--text-size-md);
+		letter-spacing: var(--letter-spacing-md);
+		line-height: var(--line-height-md);
+
+		@media (min-width: vars.$tablet) {
+			font-size: var(--text-size-lg);
+			letter-spacing: var(--letter-spacing-lg);
+		}
+
+		@media (min-width: vars.$desktop) {
+			font-size: var(--text-size-xl);
+		}
+	}
+
+	&__check {
+		align-items: center;
+		color: var(--accent-color);
+		display: flex;
+		font-size: 1.125rem;
+		justify-content: center;
+		padding-inline-end: 0.75rem;
+
+		@media (min-width: vars.$smallTablet) {
+			padding-inline-end: 1rem;
+		}
+	}
+
+	&__heading {
+		@include mx.cardTitleHeading;
+
+		& {
+			margin-bottom: 0;
+		}
+
+		&--short {
+			display: block;
+
+			@media (min-width: vars.$smallPhone) {
+				display: none;
+			}
+		}
+
+		&--full {
+			display: none;
+
+			@media (min-width: vars.$smallPhone) {
+				display: block;
+			}
+		}
+	}
+
+	&__blurb {
+		opacity: 1;
+	}
+}

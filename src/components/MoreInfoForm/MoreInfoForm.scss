@@ -1,0 +1,101 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.moreInfoForm {
+	&__section {
+		height: 100%;
+		padding-inline: 1rem;
+		padding-top: 1.5rem;
+		position: relative;
+		width: 100%;
+
+		@media (min-width: vars.$tablet) {
+			padding-block: 0;
+			padding-inline: 2rem;
+		}
+	}
+
+	&__form {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 100%;
+		position: relative;
+		width: 100%;
+
+		@media (min-width: vars.$mediumTablet) {
+			padding-block: 2rem;
+			padding-inline: 1rem;
+		}
+	}
+
+	&__fields {
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}
+
+	&__isLoading {
+		@include mx.isLoadingContainer;
+		& {
+			margin-top: -0.75rem;
+		}
+	}
+
+	&__field {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1.5rem;
+		margin-inline: auto;
+		max-width: 32rem;
+		width: 100%;
+	}
+
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
+	&__input {
+		// need a bg color for the inputs: will remove border after
+		@include mx.input;
+	}
+
+	&__checkboxes {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-inline: auto;
+		max-width: 32rem;
+		width: 100%;
+	}
+
+	&__checkboxes-inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-inline: auto;
+	}
+
+	&__submit {
+		display: flex;
+		margin-inline: auto;
+		margin-top: 2rem;
+		width: 100%;
+		z-index: 1;
+	}
+
+	&__submitButton {
+		@include mx.rounded-button;
+		& {
+			margin-inline: auto;
+			max-width: 24rem;
+			width: 100%;
+		}
+
+		&.disabled {
+			@include mx.diabledButton;
+		}
+	}
+}

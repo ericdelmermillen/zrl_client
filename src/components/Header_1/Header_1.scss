@@ -1,0 +1,166 @@
+// @use "../../partials/_variables" as vars;
+// @use "../../partials/_mixins" as mx;
+
+// .header {
+// 	& {
+// 		height: 100vh;
+// 	}
+
+// 	// *** overlay for Header--colorful
+// 	&__overlay {
+// 		// base rules
+// 		background-size: cover;
+// 		inset: 0;
+// 		position: absolute;
+// 		z-index: 0;
+// 		// header_1 settings
+// 		// background: linear-gradient(
+// 		// 	to top,
+// 		// 	rgba(0, 0, 0, 0.5) 5%,
+// 		// 	// darkest at the bottom
+// 		// 	rgba(0, 0, 0, 0.2) 35%,
+// 		// 	// mid fade
+// 		// 	rgba(255, 255, 255, 0.1) 98%
+// 		// );
+// 		// opacity: 60%;
+// 		// header_2 settings
+// 		background: linear-gradient(
+// 			to top,
+// 			rgba(0, 0, 0, 0.7) 1%,
+// 			// darkest at the bottom
+// 			rgba(0, 0, 0, 0.4) 25%,
+// 			// mid fade
+// 			rgba(255, 255, 255, 0.1) 90%
+// 		);
+// 		opacity: 75%;
+// 		// header_3 settings
+// 	}
+
+// 	// // *** inner for Header--colorful
+// 	&__inner {
+// 		// base rules
+// 		align-items: center;
+// 		background-repeat: no-repeat !important;
+// 		background-size: cover !important;
+// 		display: flex;
+// 		height: 100%;
+// 		justify-content: center;
+// 		position: relative;
+// 		// header_1 settings
+// 		// background: url("../../assets/images/header_1a.jpg");
+// 		// background: url("../../assets/images/header_1b.jpg");
+// 		// background: url("../../assets/images/header_1c.jpg");
+// 		// background: url("../../assets/images/header_1d.jpg");
+// 		// background: url("../../assets/images/header_1e.jpg");
+// 		// background: url("../../assets/images/header_1f.jpg");
+// 		// background: url("../../assets/images/header_1g.jpg");
+// 		// background-position-x: left;
+// 		// background-position-x: right;
+// 		// background-position-x: center;
+// 		// background-position-y: bottom;
+// 		// header_2 settings
+// 		background: url("../../assets/images/header_2a.jpg");
+// 		background: url("../../assets/images/header_2b.jpg");
+// 		background: url("../../assets/images/header_2c.jpg");
+// 		background: url("../../assets/images/header_2d.jpg");
+// 		background: url("../../assets/images/header_2e.jpg");
+// 		background: url("../../assets/images/header_2f.jpg");
+// 		background: url("../../assets/images/header_2g.jpg");
+// 		background: url("../../assets/images/header_2h.jpg");
+// 		background: url("../../assets/images/header_2i.jpg");
+// 		background: url("../../assets/images/header_2j.jpg");
+// 		background: url("../../assets/images/header_2k.jpg");
+// 		background: url("../../assets/images/header_2l.jpg");
+// 		background: url("../../assets/images/header_2m.jpg");
+// 		background: url("../../assets/images/header_2n.jpg");
+// 		background: url("../../assets/images/header_2o.jpg");
+// 		background-position-x: -35%;
+// 		background-position-x: right;
+// 		background-position-x: left;
+// 		// background-position-x: center;
+// 		background-position-y: bottom;
+
+// 		// text columns
+// 		@media (min-width: vars.$tablet) {
+// 			// background-position-x: 30%;
+// 			// background-position-x: 50%;
+// 			justify-content: flex-start;
+// 			padding-inline: 10%;
+// 		}
+// 	}
+
+// 	&__accentBar {
+// 		@include mx.accentBarLeft;
+// 	}
+
+// 	&__text {
+// 		align-items: center;
+// 		display: flex;
+// 		flex-direction: column;
+// 		height: 100%;
+// 		justify-content: center;
+// 		line-height: 1.5;
+// 		// margin-inline: auto;
+// 		margin-top: 2rem;
+// 		position: relative;
+// 		text-align: center;
+// 		z-index: 1;
+
+// 		@media (min-width: vars.$tablet) {
+// 			align-items: start;
+// 			text-align: start;
+// 			width: 50%;
+// 		}
+
+// 		@media (min-width: vars.$largeTablet) {
+// 			padding-inline: 5rem;
+// 		}
+// 	}
+
+// 	&__heading {
+// 		font-size: 1.75rem;
+// 		text-wrap: nowrap;
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			font-size: 2rem;
+// 		}
+// 	}
+
+// 	&__subheading {
+// 		font-size: 1.75rem;
+// 		margin-bottom: 1.25rem;
+// 		white-space: nowrap;
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			font-size: 2rem;
+// 		}
+// 	}
+
+// 	&__solution {
+// 		color: green;
+// 		font-size: inherit;
+// 	}
+
+// 	&__lead {
+// 		font-size: 1.25rem;
+// 		font-weight: 600;
+// 		line-height: var(--line-height-lg);
+// 		margin-bottom: 2.5rem;
+// 		max-width: min(80%, 20rem);
+
+// 		@media (min-width: vars.$smallTablet) {
+// 			max-width: 25rem;
+// 		}
+
+// 		@media (min-width: vars.$tablet) {
+// 			max-width: 80%;
+// 		}
+// 	}
+
+// 	&__button {
+// 		margin-inline: auto;
+// 		width: 8rem;
+// 		// @include rounded-button;
+// 		display: none;
+// 	}
+// }

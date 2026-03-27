@@ -1,0 +1,87 @@
+@use "../../partials/_variables.scss" as vars;
+@use "../../partials/_mixins" as mx;
+
+.footer {
+	& {
+		// need var for footer color: may use same color as nav
+		background: #fff;
+		border-top: 2px solid red;
+		width: 100%;
+		z-index: 1;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column-reverse;
+		margin-inline: auto;
+		max-width: vars.$ultraWide;
+
+		@media (min-width: vars.$tablet) {
+			flex-direction: row;
+			padding-bottom: 0;
+		}
+	}
+
+	&__socials {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		gap: 1.125rem;
+		padding-block: 1.25rem;
+		width: 100%;
+
+		@media (min-width: vars.$tablet) {
+			margin-inline-start: auto;
+		}
+	}
+
+	&__social {
+		align-items: center;
+		display: flex;
+		// need var for foot social icon fill: maybe accent color?
+		fill: purple;
+		font-size: 1.25rem;
+		height: 1.5rem;
+		justify-content: center;
+		width: 1.5rem;
+
+		@media (min-width: vars.$smallTablet) {
+			font-size: 1.5rem;
+			padding: 0;
+		}
+
+		&:hover {
+			@include mx.hoverClickGrowIcon;
+			& {
+				font-size: 1.75rem;
+			}
+		}
+	}
+
+	&__social-icon {
+		// need var here: accent color?
+		fill: var(--text-color-bright);
+		width: 2rem;
+	}
+
+	&__copyright {
+		align-items: center;
+		display: flex;
+		font-family: var(--body-font);
+		font-size: var(--font-size-xs);
+		justify-content: center;
+		letter-spacing: var(--letter-spacing-xl);
+		margin-bottom: 1rem;
+		text-align: center;
+
+		@media (min-width: vars.$smallTablet) {
+			font-size: var(--font-size-sm);
+			width: 100%;
+		}
+
+		@media (min-width: vars.$tablet) {
+			margin-bottom: 0;
+			width: 100%;
+		}
+	}
+}

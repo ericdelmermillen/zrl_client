@@ -1,0 +1,47 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.values {
+	& {
+		padding-bottom: 4rem;
+		padding-top: var(--section-top-padding);
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__heading {
+		@include mx.sectionHeadingWithAccent;
+		& {
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__lead {
+		@include mx.sectionLead;
+		& {
+			margin-bottom: 2rem;
+			text-align: center;
+		}
+	}
+
+	&__video {
+		aspect-ratio: 16 / 9;
+		border: 0;
+		display: flex;
+		margin-inline: auto;
+		max-width: 45rem;
+		width: 100%;
+	}
+
+	&__video-container {
+		margin-bottom: 2rem;
+	}
+
+	&__points {
+		margin-inline: auto;
+		max-width: 45rem;
+	}
+}

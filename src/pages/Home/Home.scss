@@ -1,0 +1,22 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.home {
+	& {
+		@include mx.page;
+		& {
+			margin-top: 100vh;
+		}
+	}
+
+	&__main {
+		// need default page color variable here
+		// sections can have their own color
+		background: orange;
+		position: relative;
+	}
+
+	&__content {
+		@include mx.pageContent;
+	}
+}

@@ -1,0 +1,82 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.isLoading {
+	&__loader {
+		animation: rotate 1.45s infinite;
+		background: none;
+		height: 75px;
+		width: 75px;
+	}
+
+	&__loader::before,
+	&__loader::after {
+		border-radius: 50%;
+		content: "";
+		display: block;
+		height: 30px;
+		width: 30px;
+	}
+
+	&__loader::before {
+		animation: ball1 1.45s infinite;
+		background-color: red;
+		box-shadow: 45px 0 0 yellow;
+		margin-bottom: 15px;
+	}
+
+	&__loader::after {
+		animation: ball2 1.45s infinite;
+		background-color: green;
+		box-shadow: 45px 0 0 blue;
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg) scale(0.8);
+		-webkit-transform: rotate(0deg) scale(0.8);
+	}
+	50% {
+		transform: rotate(360deg) scale(1.2);
+		-webkit-transform: rotate(360deg) scale(1.2);
+	}
+	100% {
+		transform: rotate(720deg) scale(0.8);
+		-webkit-transform: rotate(720deg) scale(0.8);
+	}
+}
+
+@keyframes ball1 {
+	0% {
+		box-shadow: 45px 0 0 yellow;
+		transform: translate(0, 0);
+	}
+	50% {
+		box-shadow: 0 0 0 yellow;
+		margin-bottom: 0;
+		transform: translate(22.5px, 22.5px);
+	}
+	100% {
+		box-shadow: 45px 0 0 yellow;
+		margin-bottom: 15px;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes ball2 {
+	0% {
+		box-shadow: 45px 0 0 blue;
+		transform: translate(0, 0);
+	}
+	50% {
+		box-shadow: 0 0 0 blue;
+		margin-top: -30px;
+		transform: translate(22.5px, 22.5px);
+	}
+	100% {
+		box-shadow: 45px 0 0 blue;
+		margin-top: 0;
+		transform: translate(0, 0);
+	}
+}

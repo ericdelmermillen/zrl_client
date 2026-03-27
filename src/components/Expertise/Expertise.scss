@@ -1,0 +1,56 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.expertise {
+	& {
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		padding-top: var(--section-top-padding);
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__heading {
+		@include mx.sectionHeadingWithAccent;
+		& {
+			margin-bottom: 2rem;
+
+			@media (min-width: vars.$largeTablet) {
+				margin-bottom: 3rem;
+			}
+		}
+	}
+
+	&__lead {
+		@include mx.sectionLead;
+		& {
+			margin-bottom: 4rem;
+		}
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+
+		@media (min-width: vars.$tablet) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (min-width: vars.$mediumTablet) {
+			gap: 3rem;
+		}
+
+		@media (min-width: vars.$largeTablet) {
+			gap: 4rem;
+		}
+
+		@media (min-width: vars.$desktop) {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2rem;
+		}
+	}
+}

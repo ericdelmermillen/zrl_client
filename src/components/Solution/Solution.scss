@@ -1,0 +1,50 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.solution {
+	& {
+		display: stretch;
+		margin-bottom: 2rem;
+		width: 100%;
+
+		@media (min-width: vars.$mediumTablet) {
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	&__image {
+		@include mx.cardImg;
+	}
+
+	&__title {
+		@include mx.cardTitleHeading;
+
+		&--short {
+			@media (min-width: vars.$smallPhone) {
+				display: none;
+			}
+		}
+
+		&--full {
+			display: none;
+
+			@media (min-width: vars.$smallPhone) {
+				display: block;
+			}
+		}
+	}
+
+	&__text {
+		@include mx.cardTextBlurb;
+	}
+
+	&__tag {
+		@include mx.cardTag;
+	}
+}

@@ -1,0 +1,36 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.labelledCheckbox {
+	& {
+		align-items: center;
+		display: flex;
+		width: fit-content;
+	}
+
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
+	&__text {
+		font-size: var(--text-size-base);
+		letter-spacing: var(--letter-spacing-sm);
+
+		@media (min-width: vars.$smallTablet) {
+			font-size: var(--text-size-md);
+			letter-spacing: var(--letter-spacing-md);
+		}
+	}
+
+	&__text-link {
+		white-space: nowrap;
+	}
+
+	&__input {
+		@include mx.checkboxInput;
+	}
+
+	&__text-link {
+		@include mx.textLink;
+	}
+}

@@ -1,0 +1,37 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.navSocials {
+	& {
+		display: flex;
+		gap: 1.85rem;
+	}
+
+	&__social {
+		align-items: center;
+		background: var(--accent-color);
+		border-radius: 50%;
+		color: var(--button-text-color);
+		display: flex;
+		font-size: var(--text-size-lg);
+		height: 1.9rem;
+		justify-content: center;
+		margin-top: 0.25rem;
+		position: relative;
+		width: 1.9rem;
+
+		@media (min-width: vars.$mediumTablet) {
+			font-size: var(--text-size-md);
+			height: 1.7rem;
+			width: 1.7rem;
+		}
+	}
+
+	&__icon {
+		margin-top: 0.35rem;
+
+		&--facebook {
+			margin-inline-start: -0.025em;
+		}
+	}
+}

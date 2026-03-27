@@ -1,0 +1,20 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.notFound {
+	& {
+		@include mx.page;
+	}
+
+	&__inner {
+		@include mx.wallpaperContainer;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-block: auto;
+		text-align: center;
+	}
+}

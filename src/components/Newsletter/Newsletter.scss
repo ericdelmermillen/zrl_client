@@ -1,0 +1,20 @@
+@use "../../partials/_variables" as vars;
+@use "../../partials/_mixins" as mx;
+
+.newsletter {
+	& {
+		border: 2px solid blue;
+	}
+
+	&__inner {
+		display: flex;
+		background: yellow;
+	}
+
+	&__heading {
+		@include mx.sectionHeadingWithAccent;
+		& {
+			margin-bottom: 2rem;
+		}
+	}
+}
