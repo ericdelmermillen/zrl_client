@@ -1,5 +1,5 @@
 import { type FC, useState, useRef } from "react";
-import { useAppContext } from "../../hooks/hooks";
+import { useModalContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
 import { PRIVACY_POLICY_TEXT, PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
@@ -11,7 +11,7 @@ import IsLoading from "../IsLoading/IsLoading";
 // need api call logic
 
 const Subscribe: FC = () => {
-  const { handleOpenModal } = useAppContext();
+  const { handleOpenModal } = useModalContext();
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>("");
   const [ emailIsValid, setEmailIsValid ] = useState<boolean>(true);

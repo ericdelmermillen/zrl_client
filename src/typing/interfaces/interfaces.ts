@@ -1,7 +1,6 @@
 import { type FC, type ReactNode } from "react";
 import type { ColorMode, ModalType, HandleOpenModal } from "../types/types";
 
-
 export interface AppContextValue {
   // state and state setting 
   isLoggedIn: boolean;
@@ -16,18 +15,6 @@ export interface AppContextValue {
   setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
   prevScrollYPos: number;
   setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-  modalType: ModalType | null;
-  // modal state
-  setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
-  modalTitle: string; 
-  setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
-  modalConfirmCallback: (() => void) | null;
-  setModalConfirmCallback: React.Dispatch<React.SetStateAction<(() => void) | null>>;
-  modalText: string;
-  setModalText: React.Dispatch<React.SetStateAction<string | "">>;
-  
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
@@ -39,11 +26,30 @@ export interface AppContextValue {
   notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;
   logoutUser: () => void;
+};
+
+export interface ModalContextValue {
+  // // state and state setting 
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+  modalType: ModalType | null;
+  setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
+  modalTitle: string; 
+  setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
+  modalConfirmCallback: ((inputValues?: Record<string, string>) => void) | null;
+  setModalConfirmCallback: React.Dispatch<React.SetStateAction<((inputValues?: Record<string, string>) => void) | null>>;
+  modalText: string;
+  setModalText: React.Dispatch<React.SetStateAction<string | "">>;
+  // handlers
   handleOpenModal: HandleOpenModal;
   handleClearModal: () => void;
 };
 
 export interface AppContextProviderProps {
+  children: ReactNode;
+};
+
+export interface ModalContextProviderProps {
   children: ReactNode;
 };
 

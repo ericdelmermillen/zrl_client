@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { AppContextProvider } from "./contexts/AppContext";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { ModalContextProvider } from "./contexts/ModalContext";
 
 const rootElement = document.getElementById("root");
 
@@ -13,9 +14,11 @@ if(!rootElement) {
 createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>
-      <AppContextProvider>
-        <App />
-      </AppContextProvider>
+      <ModalContextProvider>
+        <AppContextProvider>
+          <App />
+        </AppContextProvider>
+      </ModalContextProvider>
     </BrowserRouter>
   </StrictMode>
 );

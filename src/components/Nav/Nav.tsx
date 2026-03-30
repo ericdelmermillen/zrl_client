@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import type { NavProps } from "../../typing/interfaces/interfaces";
 import { useAppContext } from "../../hooks/hooks";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils";
 import NavSocials from "../NavSocials/NavSocials";
 import Logo from "../../assets/svgs/Logo";
@@ -26,12 +26,9 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
 
-  const navigate = useNavigate();
-
   const handleToggleShowDropdownNav = (): void => setShowDropdownNavOptions(prev => !prev);
 
   const handleHomeClick = (): void => {
-    navigate("/")
     setAppIsLoading(true);
     setTimeout(() => {
       requestAnimationFrame(() => {
@@ -45,7 +42,6 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   };
 
   const handleScrollToTop = () => {
-    navigate("/");
     setShowDropdownNavOptions(false);
     scrollToTop();
   };
@@ -60,7 +56,9 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
             className="nav__logo-box"
             onClick={isOnHome ? handleScrollToTop: handleHomeClick}
           >
+            <Link to="/">
             <Logo className={"nav__logo"}/>
+            </Link>
           </div>
         
           <ul className="nav__links">

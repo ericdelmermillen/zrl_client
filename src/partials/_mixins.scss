@@ -71,8 +71,7 @@
 	--text-header-lead-lg: 1.55rem; // 30px - headlines
 	--text-header-lead-xl: 1.6rem; // 30px - headlines
 
-	// header fonts
-	// *** make these all font-size-___
+	// font sizes
 	--font-size-xs: 0.75rem; // 12px - fine print, captions
 	--font-size-sm: 0.875rem; // 14px - secondary text
 	--font-size-base: 1rem; // 16px - body text
@@ -111,7 +110,7 @@
 
 	// overlay colors
 	--overlay-modal-bg: #333;
-	--modal-content-bg: #fff;
+	--modal-card-bg: #fff;
 	--overlay: rgba(0, 0, 0, 0.125);
 	--overlay-dark-bg: rgba(0, 0, 0, 0.5) 0;
 
@@ -124,7 +123,7 @@
 
 	// need:
 	// --box-shadow
-	--input-box-shadow: inset 2px 0px 2px rgba(0, 0, 0, 0.2);
+	--input-box-shadow: inset 2px 0px 2px rgba(0, 0, 0, 0.1);
 	--text-color: #333;
 	// --border-radius
 	// --background-nav-footer

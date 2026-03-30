@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { ModalContext } from "../contexts/ModalContext";
 import { scrollToTop } from "../../utils/utils";
 
 const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
@@ -8,6 +9,14 @@ const useAppContext = () => {
   const context = useContext(AppContext);
   if(!context) {
     throw new Error("useAppContext must be used within an AppContextProvider");
+  };
+  return context;
+};
+
+const useModalContext = () => {
+  const context = useContext(ModalContext);
+  if(!context) {
+    throw new Error("useModalContext must be used within a ModalContextProvider");
   };
   return context;
 };
@@ -44,6 +53,7 @@ const useScrollToTopOnPageMount = (): void => {
     
 export  { 
   useAppContext,
+  useModalContext,
   usePageLoading,
   useDocumentTitle,
   useScrollToTopOnPageMount

@@ -1,5 +1,5 @@
 import { type FC, useState, useRef } from "react";
-import { useAppContext } from "../../hooks/hooks";
+import { useModalContext } from "../../hooks/hooks";
 import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { isValidPhoneNumber } from "libphonenumber-js";
@@ -21,7 +21,7 @@ import "./MoreInfoForm.scss";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
-  const { handleOpenModal } = useAppContext();
+  const { handleOpenModal } = useModalContext();
 
   const [ name, setName ] = useState<string>("");
   const [ email, setEmail ] = useState<string>("");

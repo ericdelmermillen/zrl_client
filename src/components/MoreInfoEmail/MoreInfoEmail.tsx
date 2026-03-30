@@ -1,5 +1,5 @@
 import React, { type FC, useState, useRef, useEffect } from "react";
-import { useAppContext } from "../../hooks/hooks";
+import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { 
   focusInputStart, 
   handleFormEnterPress, 
@@ -22,10 +22,14 @@ const MoreInfoEmail:FC = () => {
     appIsLoading, 
     setAppIsLoading, 
     handleSetShowAppIsLoadingFalse,
-    handleOpenModal,
+  } = useAppContext();
+  
+  const { 
     setModalConfirmCallback,
     handleClearModal
-  } = useAppContext();
+  } = useModalContext();
+
+  const { handleOpenModal } = useModalContext();
   
   const [ subject, setSubject ] = useState<string>("");
   const [ greeting, setGreeting ] = useState<string>("");
@@ -138,12 +142,12 @@ const MoreInfoEmail:FC = () => {
 
     setModalConfirmCallback(() => sendTestEmail);
     const modalTitle = "Preview Email";
-    const modalText = "Enter a name and email to receive a test version of the email template you are editing.";
+    const modalText = "Enter a name, email and optional phone number to receive a test version of the email template you are editing.";
     handleOpenModal("sendTest", modalTitle, modalText);
   };
 
   const sendTestEmail = () => {
-    console.log("calling for test email")
+    console.log("calling for test email");
     setTimeout(() => {
       handleClearModal();
     }, 2000);

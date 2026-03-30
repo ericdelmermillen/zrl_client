@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, createContext } from "react";
-import type { ColorMode, ModalType } from "../typing/types/types";
+import { useModalContext } from "../hooks/hooks";
+import type { ColorMode } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
 import { addClassToDiv, removeClassFromDiv, scrollToTop } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +13,11 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
+  const { 
+    setShowModal,
+    setModalType
+  } = useModalContext();
+
   const navigate = useNavigate();
   const location = useLocation();
   const isOnHome = location.pathname === "/";
@@ -23,14 +29,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ scrollYPos, setScrollYPos ] = useState(0);
   const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
   const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
-
-  // modal state
-  const [ showModal, setShowModal ] = useState<boolean>(false);
-  const [ modalType, setModalType ] = useState<ModalType | null>(null);
-  const [ modalTitle, setModalTitle ] = useState<string>("");
-  
-  const [ modalConfirmCallback, setModalConfirmCallback ] = useState<(() => void) | null>(null);
-  const [ modalText, setModalText ] = useState<string>("");
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
@@ -132,19 +130,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }, NOT_FOUND_NAV_CLICK_DELAY);
    };
 
-  const handleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string): void => {
-    setShowModal(true);
-    setModalType(modalType);
-    setModalTitle(modalTitle);
-    setModalText(modalText);
-    setModalType(modalType);
-  };
-
-  const handleClearModal = (): void => {
-    setShowModal(false);
-    setModalTitle("");
-    setModalConfirmCallback(null);
-  };
 
   const loginUser = async (email: string, password: string): Promise<boolean> => {
 
@@ -191,24 +176,24 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     };
   };
   
-const checkSessionStatus = async (): Promise<boolean> => {
-  try {
-    const response = await fetch(`${BASE_URL}/auth/sessionstatus`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
+  const checkSessionStatus = async (): Promise<boolean> => {
+    try {
+      const response = await fetch(`${BASE_URL}/auth/sessionstatus`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
-    const { isAuthenticated } = await response.json();
+      const { isAuthenticated } = await response.json();
 
-    return isAuthenticated;
-  } catch (error) {
-    console.error("sessionstatus error:", error);
-    return false;
+      return isAuthenticated;
+    } catch (error) {
+      console.error("sessionstatus error:", error);
+      return false;
+    };
   };
-};
 
   // useEffect to check isLoggedIn status via call to /sessionstatus on mount
   useEffect(() => {
@@ -326,20 +311,9 @@ const checkSessionStatus = async (): Promise<boolean> => {
     windowWidth,
     setWindowWidth,
     setPrevScrollYPos,
-    showModal, 
-    setShowModal,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
-    modalType, 
-    setModalType,
-    modalTitle, 
-    setModalTitle,
-    handleOpenModal,
-    handleClearModal,
-    modalConfirmCallback, 
-    setModalConfirmCallback,
-    modalText, 
-    setModalText,
+
     // functions
     loginUser,
     toggleColorMode,

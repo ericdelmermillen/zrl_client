@@ -27,11 +27,10 @@
 		width: 100%;
 	}
 
-	&__content {
-		background: var(--modal-content-bg);
+	&__card {
+		background: var(--modal-card-bg);
 		border-radius: var(--border-radius-card);
 		display: flex;
-		flex-direction: column;
 		height: 100%;
 		left: 50%;
 		max-height: 80vh;
@@ -44,6 +43,15 @@
 		transform: translate(-50%, -50%);
 		width: 85%;
 		z-index: 5;
+		border: 2px solid green;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		margin-inline: auto;
+		max-width: 25rem;
 	}
 
 	&__heading {
@@ -67,6 +75,7 @@
 		margin-bottom: 2rem;
 		max-width: 25rem;
 		text-align: center;
+		text-align: start;
 		white-space: normal;
 		width: 100%;
 		word-break: break-word;
@@ -88,6 +97,26 @@
 		&--numbered {
 			font-weight: 600;
 		}
+	}
+
+	&__inputs {
+		margin-top: 2rem;
+	}
+
+	&__label {
+		@include mx.hiddenLabel;
+	}
+
+	&__input-group {
+		margin-top: 1rem;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__input {
+		@include mx.input;
 	}
 
 	&__button-container {
