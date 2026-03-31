@@ -1,6 +1,6 @@
 import { type FC, useState, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
-import { nameInputHandler, emailInputHandler, staggerToastsByN, validatePhoneNumber, phoneInputHandler } from "../../../utils/utils";
+import { nameInputHandler, emailInputHandler, staggerToastsByN, phoneInputHandler } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { toast } from "react-toastify";
 import { 

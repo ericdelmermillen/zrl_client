@@ -1,7 +1,7 @@
 import { type FC, useState, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
-import { isValidEmail } from "../../../utils/utils";
+import { emailInputHandler } from "../../../utils/utils";
 import { PRIVACY_POLICY_TEXT, PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import { toast } from "react-toastify";
 import "./Subscribe.scss";
@@ -21,13 +21,7 @@ const Subscribe: FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
 
   const handleEmailChange = (): boolean => {
-    const emailValue = emailRef.current?.value ?? "";
-    const emailIsValid = isValidEmail(emailValue);
-
-    setEmail(emailValue);
-    setEmailIsValid(emailIsValid);
-
-    return emailIsValid;
+    return emailInputHandler(emailRef, setEmail, setEmailIsValid);
   };
 
   const handleSubmit = () => {
