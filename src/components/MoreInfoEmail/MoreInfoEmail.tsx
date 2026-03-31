@@ -1,16 +1,20 @@
 import React, { type FC, useState, useRef, useEffect } from "react";
+import type { ModalInput } from "@/typing/types/types";
 import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { 
   focusInputStart, 
   handleFormEnterPress, 
   staggerToastsByN, 
-  parseParagraphLink 
+  parseParagraphLink, 
+  isValidEmail
 } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
+
+
 
 // finish email updating logic
 // set up skeletons
@@ -26,10 +30,9 @@ const MoreInfoEmail:FC = () => {
   
   const { 
     setModalConfirmCallback,
-    handleClearModal
+    handleClearModal,
+    handleOpenModal
   } = useModalContext();
-
-  const { handleOpenModal } = useModalContext();
   
   const [ subject, setSubject ] = useState<string>("");
   const [ greeting, setGreeting ] = useState<string>("");
@@ -49,8 +52,39 @@ const MoreInfoEmail:FC = () => {
   const greetingRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
-  // const testNameRef = useRef<HTMLInputElement | null>(null);
-  // const testEmailRef = useRef<HTMLInputElement | null>(null);
+  const testNameRef = useRef<HTMLInputElement | null>(null);
+  const testEmailRef = useRef<HTMLInputElement | null>(null);
+  const testPhoneRef = useRef<HTMLInputElement | null>(null);
+
+  const modalInputs: ModalInput[] = [
+    { 
+      id: "name", 
+      label: "Name", 
+      placeholder: "Enter Name", 
+      value: "",
+      isValid: true,
+      ref: testNameRef,
+      onChange: (value: string) => value.trim().length > 2
+    },
+    { 
+      id: "email", 
+      label: "Email", 
+      placeholder: "Enter Email", 
+      value: "",
+      isValid: true,
+      ref: testEmailRef,
+      onChange: isValidEmail
+    },
+    { 
+      id: "phone", 
+      label: "Phone", 
+      placeholder: "Enter Phone Number", 
+      value: "",
+      isValid: true,
+      ref: testPhoneRef,
+      onChange: (value: string) => /^[\d\s\-\+\(\)]{7,}$/.test(value)
+    }
+  ];
 
 
   const handleSetIsEditingTrue = (): void => {
@@ -143,14 +177,50 @@ const MoreInfoEmail:FC = () => {
     setModalConfirmCallback(() => sendTestEmail);
     const modalTitle = "Preview Email";
     const modalText = "Enter a name, email and optional phone number to receive a test version of the email template you are editing.";
-    handleOpenModal("sendTest", modalTitle, modalText);
+    handleOpenModal("sendTest", modalTitle, modalText, modalInputs);
   };
 
-  const sendTestEmail = () => {
-    console.log("calling for test email");
-    setTimeout(() => {
-      handleClearModal();
-    }, 2000);
+  const sendTestEmail = async () => {
+    setAppIsLoading(true);
+    let success = false;
+
+    try {
+      const response = await fetch(`${BASE_URL}/moreinfo/sendtest`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: "GenericEric",
+          email: "ericdelmermillen@gmail.com",
+          subject: subject,
+          greeting: greeting,
+          body_content: content
+        })
+      });
+
+      const data = await response.json();
+      success = true;
+
+      console.log(data);
+
+    } catch (error) {
+      console.error("Failed to send test email:", error);
+    } finally {
+
+      if(success) {
+        staggerToastsByN("Test email successfully sent to ___", "success", 0)
+        staggerToastsByN("Don't forget to hit save if you like how it looks.", "success", 1);
+        setTimeout(() => {
+          handleClearModal();
+        // }, MIN_LOADING_INTERVAL);
+        }, 100000);
+      };
+      // setTimeout(() => {
+      //   setAppIsLoading(false);
+      // }, 1000)
+    };
   };
 
   const inputsAreValid = (): boolean => {

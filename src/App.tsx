@@ -31,7 +31,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import WallPaper from "./components/WallPaper/WallPaper"
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
-import { ModalContextProvider } from "./contexts/ModalContext";
 
 
 const navOptions: NavOption[] = [

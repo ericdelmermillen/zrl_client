@@ -4,7 +4,7 @@ import {
   // useEffect, 
   createContext
 } from "react";
-import type { ModalType } from "../typing/types/types";
+import type { ModalType, ModalInput } from "../typing/types/types";
 
 import type { ModalContextProviderProps, ModalContextValue } from "../typing/interfaces/interfaces";
 
@@ -19,22 +19,24 @@ const ModalContextProvider = ({ children }: ModalContextProviderProps) => {
   const [ showModal, setShowModal ] = useState<boolean>(false);
   const [ modalType, setModalType ] = useState<ModalType | null>(null);
   const [ modalTitle, setModalTitle ] = useState<string>("");
-  
+  const [ modalInputs, setModalInputs ] = useState<ModalInput[] | null>(null);
+
   const [ modalConfirmCallback, setModalConfirmCallback ] = useState<(() => void) | null>(null);
   const [ modalText, setModalText ] = useState<string>("");
 
-  const handleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string): void => {
-    setShowModal(true);
-    setModalType(modalType);
-    setModalTitle(modalTitle);
-    setModalText(modalText);
-    setModalType(modalType);
-  };
+const handleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string, inputs?: ModalInput[] | null): void => {
+  setShowModal(true);
+  setModalType(modalType);
+  setModalTitle(modalTitle);
+  setModalText(modalText);
+  setModalInputs(inputs || null);
+};
 
   const handleClearModal = (): void => {
     setShowModal(false);
     setModalTitle("");
     setModalConfirmCallback(null);
+    setModalInputs(null);
   };
 
   const contextValues ={
@@ -48,6 +50,8 @@ const ModalContextProvider = ({ children }: ModalContextProviderProps) => {
     setModalConfirmCallback,
     modalText, 
     setModalText,
+    modalInputs, 
+    setModalInputs,
     handleOpenModal,
     handleClearModal
   }

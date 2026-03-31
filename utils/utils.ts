@@ -1,5 +1,12 @@
-import React, { type ReactNode, type RefObject, type KeyboardEvent } from "react";
+import React, { 
+  type ReactNode, 
+  type RefObject, 
+  type Dispatch, 
+  type SetStateAction,
+  type KeyboardEvent 
+} from "react";
 import type { ToastType } from "../src/typing/types/types";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-toastify";
 
 const MIN_LOADING_INTERVAL = Number(import.meta.env.VITE_MIN_LOADING_INTERVAL);
@@ -16,6 +23,26 @@ const isValidEmail = (email: string): boolean => {
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegex.test(email);
 };
+
+ const validatePhoneNumber = (phoneValue: string): boolean => {
+  if (!phoneValue.length) {
+    return true;
+  };
+
+  let phoneNumberIsValid = false;
+
+  try {
+    phoneNumberIsValid = isValidPhoneNumber(
+      phoneValue.startsWith("+") ? phoneValue : phoneValue,
+      "US"
+    );
+  } catch {
+    phoneNumberIsValid = false;
+  };
+
+  return phoneNumberIsValid;
+};
+
 
 const isValidPassword = (password: unknown): boolean => {
   if (typeof password !== "string") {
@@ -94,15 +121,61 @@ const handleFormEnterPress = (e: KeyboardEvent<HTMLFormElement>, boolean: boolea
     return parts;
   };
 
+  const nameInputHandler = (
+      inputRef: RefObject<HTMLInputElement | null>,
+      setName: Dispatch<SetStateAction<string>>,
+      setNameIsValid: Dispatch<SetStateAction<boolean>>
+    ): boolean => {
+      const nameValue = inputRef.current?.value ?? "";
+      const isValidLength = nameValue.trim().length >= 2;
+
+      setName(nameValue);
+      setNameIsValid(isValidLength);
+
+      return isValidLength;
+    };
+  
+   const emailInputHandler = (
+      inputRef: RefObject<HTMLInputElement | null>,
+      setEmail: Dispatch<SetStateAction<string>>,
+      setEmailIsValid: Dispatch<SetStateAction<boolean>>
+    ): boolean => {
+      const emailValue = inputRef.current?.value ?? "";
+      const emailIsValid = isValidEmail(emailValue);
+
+      setEmail(emailValue);
+      setEmailIsValid(emailIsValid);
+
+      return emailIsValid;
+    };
+
+  const phoneInputHandler = (
+    inputRef: RefObject<HTMLInputElement | null>,
+    setPhone: Dispatch<SetStateAction<string>>,
+    setPhoneIsValid: Dispatch<SetStateAction<boolean>>
+  ): boolean => {
+    const phoneValue = inputRef.current?.value ?? "";
+    const phoneNumberIsValid = validatePhoneNumber(phoneValue);
+
+    setPhone(phoneValue);
+    setPhoneIsValid(phoneNumberIsValid);
+
+    return phoneNumberIsValid;
+  };
+
 
 export {
   scrollToTop,
   isValidEmail,
+  validatePhoneNumber,
   isValidPassword,
   addClassToDiv,
   removeClassFromDiv,
   staggerToastsByN,
   focusInputStart,
   handleFormEnterPress,
-  parseParagraphLink
+  parseParagraphLink,
+  nameInputHandler,
+  emailInputHandler,
+  phoneInputHandler
 };

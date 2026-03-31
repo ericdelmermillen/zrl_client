@@ -4,12 +4,24 @@ export type ColorMode = "light" | "dark";
 
 export type ModalType = "privacy" | "newsletter" | "sendTest";
 
-export type HandleOpenModal = (
-  modalType: ModalType,
-  modalTitle: string,
-  modalText: string,
-  confirmCallback?: () => void
-) => void;
+export type ModalInput = {
+  id: string;
+  label: string;
+  placeholder?: string;
+  value: string;
+  isValid?: boolean;
+  onChange?: (value: string) => boolean;
+  ref: React.RefObject<HTMLInputElement | null>;
+}
+
+// export type HandleOpenModal = (
+//   modalType: ModalType,
+//   modalTitle: string,
+//   modalText: string,
+//   confirmCallback?: () => void
+// ) => void;
+
+export type HandleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string, inputs?: ModalInput[] | null) => void;
 
 export type IconType = FC<{ className?: string }>;
 

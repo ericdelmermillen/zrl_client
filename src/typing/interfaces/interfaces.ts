@@ -1,5 +1,5 @@
 import { type FC, type ReactNode } from "react";
-import type { ColorMode, ModalType, HandleOpenModal } from "../types/types";
+import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "../types/types";
 
 export interface AppContextValue {
   // state and state setting 
@@ -36,10 +36,12 @@ export interface ModalContextValue {
   setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
   modalTitle: string; 
   setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
-  modalConfirmCallback: ((inputValues?: Record<string, string>) => void) | null;
-  setModalConfirmCallback: React.Dispatch<React.SetStateAction<((inputValues?: Record<string, string>) => void) | null>>;
   modalText: string;
   setModalText: React.Dispatch<React.SetStateAction<string | "">>;
+  modalConfirmCallback: ((inputValues?: Record<string, string>) => void) | null;
+  setModalConfirmCallback: React.Dispatch<React.SetStateAction<((inputValues?: Record<string, string>) => void) | null>>;
+  modalInputs: ModalInput[] | null;
+  setModalInputs: React.Dispatch<React.SetStateAction<ModalInput[] | null>>;
   // handlers
   handleOpenModal: HandleOpenModal;
   handleClearModal: () => void;

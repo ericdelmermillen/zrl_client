@@ -15,7 +15,8 @@ const AppContext = createContext<AppContextValue | undefined>(undefined);
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const { 
     setShowModal,
-    setModalType
+    setModalType,
+    handleClearModal
   } = useModalContext();
 
   const navigate = useNavigate();
@@ -263,6 +264,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
           handleUpdateScrollYPos();
           setShowModal(false);
           setModalType(null);
+          handleClearModal();
           ticking = false;
         });
         ticking = true;

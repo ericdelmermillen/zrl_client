@@ -1,8 +1,7 @@
 import { type FC, useState, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
-import { isValidEmail, staggerToastsByN } from "../../../utils/utils";
+import { nameInputHandler, emailInputHandler, staggerToastsByN, validatePhoneNumber, phoneInputHandler } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
-import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-toastify";
 import { 
   PRIVACY_POLICY_TITLE, 
@@ -67,50 +66,16 @@ const MoreInfoForm: FC = () => {
     },
   ];
 
-  const handleNameChange = () => {
-    const nameValue = nameRef.current?.value ?? "";
-    const isValidLength = nameValue.trim().length >= 2;
-  
-    setName(nameValue);
-    setNameIsValid(isValidLength);
-  
-    return isValidLength;
+  const handleNameChange = (): boolean => {
+    return nameInputHandler(nameRef, setName, setNameIsValid);
   };
 
   const handleEmailChange = (): boolean => {
-    const emailValue = emailRef.current?.value ?? "";
-    const emailIsValid = isValidEmail(emailValue);
-
-    setEmail(emailValue);
-    setEmailIsValid(emailIsValid);
-
-    return emailIsValid;
+    return emailInputHandler(emailRef, setEmail, setEmailIsValid)
   };
 
   const handlePhoneChange = (): boolean => {
-    const phoneValue = phoneRef.current?.value ?? "";
-
-    if (!phoneValue.length) {
-      setPhone("");
-      setPhoneIsValid(true);
-      return true;
-    };
-
-    let phoneNumberIsValid = false;
-
-    try {
-      phoneNumberIsValid = isValidPhoneNumber(
-        phoneValue.startsWith("+") ? phoneValue : phoneValue,
-        "US" // fallback country for numbers without + prefix
-      );
-    } catch {
-      phoneNumberIsValid = false;
-    };
-
-    setPhone(phoneValue);
-    setPhoneIsValid(phoneNumberIsValid);
-
-    return phoneNumberIsValid;
+    return phoneInputHandler(phoneRef, setPhone, setPhoneIsValid);
   };
 
   const handleSubmit = async (): Promise<void> => {
