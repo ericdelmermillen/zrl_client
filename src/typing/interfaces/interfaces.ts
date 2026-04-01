@@ -1,22 +1,22 @@
-import { type FC, type ReactNode } from "react";
+import { type FC, type ReactNode, type SetStateAction, type Dispatch } from "react";
 import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "../types/types";
 
 export interface AppContextValue {
   // state and state setting 
   isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
   colorMode: ColorMode;
-  setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>;
+  setColorMode: Dispatch<SetStateAction<ColorMode>>;
   appIsLoading: boolean;
-  setAppIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setAppIsLoading: Dispatch<SetStateAction<boolean>>;
   scrollYPos: number;
-  setScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  setScrollYPos: Dispatch<SetStateAction<number>>;
   windowWidth: number;
-  setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
+  setWindowWidth: Dispatch<SetStateAction<number>>;
   prevScrollYPos: number;
-  setPrevScrollYPos: React.Dispatch<React.SetStateAction<number>>;
+  setPrevScrollYPos: Dispatch<SetStateAction<number>>;
   showDropdownNavOptions: boolean;
-  setShowDropdownNavOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowDropdownNavOptions: Dispatch<SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
   // functions
   handleSetShowAppIsLoadingFalse: () => void;
@@ -29,19 +29,20 @@ export interface AppContextValue {
 };
 
 export interface ModalContextValue {
-  // // state and state setting 
   showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+  setShowModal: Dispatch<SetStateAction<boolean>>
   modalType: ModalType | null;
-  setModalType: React.Dispatch<React.SetStateAction<ModalType | null>>;
+  setModalType: Dispatch<SetStateAction<ModalType | null>>;
   modalTitle: string; 
-  setModalTitle: React.Dispatch<React.SetStateAction<string | "">>;
+  setModalTitle: Dispatch<SetStateAction<string | "">>;
   modalText: string;
-  setModalText: React.Dispatch<React.SetStateAction<string | "">>;
-  modalConfirmCallback: ((inputValues?: Record<string, string>) => void) | null;
-  setModalConfirmCallback: React.Dispatch<React.SetStateAction<((inputValues?: Record<string, string>) => void) | null>>;
+  setModalText: Dispatch<SetStateAction<string | "">>;
+  modalInitialFormCheck: boolean;
+  setModalInitialFormCheck: Dispatch<SetStateAction<boolean>>;
   modalInputs: ModalInput[] | null;
-  setModalInputs: React.Dispatch<React.SetStateAction<ModalInput[] | null>>;
+  setModalInputs: Dispatch<SetStateAction<ModalInput[] | null>>;
+  modalConfirmCallback: ((inputValues?: Record<string, string>) => void) | null;
+  setModalConfirmCallback: Dispatch<SetStateAction<((inputValues?: Record<string, string>) => void) | null>>;
   // handlers
   handleOpenModal: HandleOpenModal;
   handleClearModal: () => void;

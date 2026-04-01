@@ -6,20 +6,14 @@ import {
   handleFormEnterPress, 
   staggerToastsByN, 
   parseParagraphLink, 
-  isValidEmail
+  nameInputHandler,
+  emailInputHandler
 } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const MIN_LOADING_INTERVAL = import.meta.env.VITE_MIN_LOADING_INTERVAL;
-
-
-
-// finish email updating logic
-// set up skeletons
-// adjust responsive styling
-// add Send Test Email --> opens Modal (requires name, email address: can use /send with param or query string to send variation with TEST MESSAGE before subject)
 
 const MoreInfoEmail:FC = () => {
   const { 
@@ -31,7 +25,9 @@ const MoreInfoEmail:FC = () => {
   const { 
     setModalConfirmCallback,
     handleClearModal,
-    handleOpenModal
+    handleOpenModal,
+    setModalInputs,
+    setModalInitialFormCheck
   } = useModalContext();
   
   const [ subject, setSubject ] = useState<string>("");
@@ -48,67 +44,111 @@ const MoreInfoEmail:FC = () => {
   const [ greetingIsValid, setGreetingIsValid ] = useState<boolean>(true);
   const [ emailContentIsValid, setEmailContentIsValid ] = useState<boolean>(true);
 
+  const [ testName, setTestName ] = useState<string>("");
+  const [ testEmail, setTestEmail ] = useState<string>("");
+
+  const [ testNameIsValid, setTestNameIsValid ] = useState<boolean>(true);
+  const [ testEmailIsValid, setTestEmailIsValid ] = useState<boolean>(true);
+
   const subjectRef = useRef<HTMLInputElement | null>(null);
   const greetingRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
   const testNameRef = useRef<HTMLInputElement | null>(null);
   const testEmailRef = useRef<HTMLInputElement | null>(null);
-  const testPhoneRef = useRef<HTMLInputElement | null>(null);
 
   const modalInputs: ModalInput[] = [
     { 
       id: "name", 
       label: "Name", 
       placeholder: "Enter Name", 
-      value: "",
-      isValid: true,
+      value: testName,
+      isValid: testNameIsValid,
+      setIsValid: setTestNameIsValid,
       ref: testNameRef,
-      onChange: (value: string) => value.trim().length > 2
+      onChange: () => nameInputHandler(testNameRef, setTestName, setTestNameIsValid)
     },
     { 
       id: "email", 
       label: "Email", 
       placeholder: "Enter Email", 
-      value: "",
-      isValid: true,
+      value: testEmail,
+      isValid: testEmailIsValid,
+      setIsValid: setTestEmailIsValid,
       ref: testEmailRef,
-      onChange: isValidEmail
-    },
-    { 
-      id: "phone", 
-      label: "Phone", 
-      placeholder: "Enter Phone Number", 
-      value: "",
-      isValid: true,
-      ref: testPhoneRef,
-      onChange: (value: string) => /^[\d\s\-\+\(\)]{7,}$/.test(value)
+      onChange: () => emailInputHandler(testEmailRef, setTestEmail, setTestEmailIsValid)
     }
   ];
 
+  // const handleSetIsEditingTrue = (): void => {
+  //   if (window.getSelection()?.toString()) {
+  //     return;
+  //   };
 
-  const handleSetIsEditingTrue = (): void => {
-    if (window.getSelection()?.toString()) {
-      return;
-    };
-
-    setAppIsLoading(true);
+  //   setAppIsLoading(true);
     
-    setTimeout(() => {
-      handleSetShowAppIsLoadingFalse();
+  //   setTimeout(() => {
+  //     handleSetShowAppIsLoadingFalse();
       
-      setTimeout(() => {
-        setIsEditing(true);
-        toast.info("More Info Email Template ready to edit.");
+  //     setTimeout(() => {
+  //       setIsEditing(true);
+  //       toast.info("More Info Email Template ready to edit.");
 
-        setTimeout(() => {
-          focusInputStart(subjectRef);
-        }, 0);
+  //       setTimeout(() => {
+  //         focusInputStart(subjectRef);
+  //       }, 0);
 
-      }, MIN_LOADING_INTERVAL * 2);
-    }, MIN_LOADING_INTERVAL);
+  //     }, MIN_LOADING_INTERVAL * 2);
+  //   }, MIN_LOADING_INTERVAL);
+  // };
+
+//   const handleSetIsEditingTrue = (
+//     ref: React.RefObject<HTMLInputElement | null>
+//   ): void => {
+//   if (window.getSelection()?.toString()) {
+//     return;
+//   };
+
+//   setAppIsLoading(true);
+  
+//   setTimeout(() => {
+//     handleSetShowAppIsLoadingFalse();
+    
+//     setTimeout(() => {
+//       setIsEditing(true);
+//       toast.info("More Info Email Template ready to edit.");
+
+//       setTimeout(() => {
+//         focusInputStart(ref);
+//       }, 0);
+
+//     }, MIN_LOADING_INTERVAL * 2);
+//   }, MIN_LOADING_INTERVAL);
+// };
+
+const handleSetIsEditingTrue = (
+  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>
+): void => {
+  if (window.getSelection()?.toString()) {
+    return;
   };
 
+  setAppIsLoading(true);
+  
+  setTimeout(() => {
+    handleSetShowAppIsLoadingFalse();
+    
+    setTimeout(() => {
+      setIsEditing(true);
+      toast.info("More Info Email Template ready to edit.");
+
+      setTimeout(() => {
+        focusInputStart(ref);
+      }, 0);
+
+    }, MIN_LOADING_INTERVAL * 2);
+  }, MIN_LOADING_INTERVAL);
+};
 
   const getMoreInfoEmail = async (): Promise<void> => {
     setAppIsLoading(true);
@@ -169,6 +209,7 @@ const MoreInfoEmail:FC = () => {
   };
 
   const handleReceiveTestEmail = ():void => {
+
     if (!inputsAreValid()) {
       toast.error("Please fix the errors before proceeding to test the email.")
       return;
@@ -181,7 +222,25 @@ const MoreInfoEmail:FC = () => {
   };
 
   const sendTestEmail = async () => {
-    setAppIsLoading(true);
+    // setAppIsLoading(true);
+    setModalInitialFormCheck(true)
+
+    let errors = 0;
+
+    if (!nameInputHandler(testNameRef, setTestName, setTestNameIsValid)){
+      staggerToastsByN("Name for Test Email is invalid.", "error", errors);
+      errors++;
+    };
+
+    if (!emailInputHandler(testEmailRef, setTestEmail, setTestEmailIsValid)) {
+      staggerToastsByN("Email for Test Email is invalid.", "error", errors);
+      errors++;
+    };
+  
+    if (errors) {
+      return;
+    };
+
     let success = false;
 
     try {
@@ -192,8 +251,8 @@ const MoreInfoEmail:FC = () => {
         },
         credentials: "include",
         body: JSON.stringify({
-          name: "GenericEric",
-          email: "ericdelmermillen@gmail.com",
+          name: testNameRef.current?.value,
+          email: testEmailRef.current?.value,
           subject: subject,
           greeting: greeting,
           body_content: content
@@ -208,18 +267,13 @@ const MoreInfoEmail:FC = () => {
     } catch (error) {
       console.error("Failed to send test email:", error);
     } finally {
-
       if(success) {
         staggerToastsByN("Test email successfully sent to ___", "success", 0)
         staggerToastsByN("Don't forget to hit save if you like how it looks.", "success", 1);
         setTimeout(() => {
           handleClearModal();
-        // }, MIN_LOADING_INTERVAL);
         }, 100000);
       };
-      // setTimeout(() => {
-      //   setAppIsLoading(false);
-      // }, 1000)
     };
   };
 
@@ -325,10 +379,14 @@ const MoreInfoEmail:FC = () => {
     };
   };
 
-  // useEffect to call for initial MoreInfo email templat content
   useEffect(() => {
     getMoreInfoEmail();
   }, []);
+
+  // useEffect to trigger updating of modalInputs in Modal as the isValid state values used there are stale since they were passed as args inside functions which are part of the ModalInputs the modal maps through
+  useEffect(() => {
+    setModalInputs(modalInputs);
+  }, [testNameIsValid, testEmailIsValid]);
   
   return (
     <>
@@ -359,7 +417,6 @@ const MoreInfoEmail:FC = () => {
               </label>
 
               {isEditing 
-
                 ? <input
                     id="moreInfoEmailSubject"
                     className={`moreInfoEmail__subject ${isEditing && !initialFormCheck
@@ -377,11 +434,10 @@ const MoreInfoEmail:FC = () => {
                 : <p 
                     className="moreInfoEmail__subject" 
                     id="moreInfoEmailSubject"
-                    onMouseUp={handleSetIsEditingTrue}
+                    onMouseUp={() => handleSetIsEditingTrue(subjectRef)}
                   >
                     {subject}
                   </p>
-
               }
 
               <label 
@@ -392,7 +448,6 @@ const MoreInfoEmail:FC = () => {
               </label>
               
               {isEditing
-
                 ? <input
                     id="moreInfoEmailGreeting"
                     className={`moreInfoEmail__greeting ${isEditing && !initialFormCheck
@@ -410,11 +465,10 @@ const MoreInfoEmail:FC = () => {
                 : <p 
                     id="moreInfoEmailGreeting"
                     className="moreInfoEmail__greeting" 
-                    onMouseUp={handleSetIsEditingTrue}
+                    onMouseUp={() => handleSetIsEditingTrue(greetingRef)}
                   >
                     {greeting}
                   </p>
-
               }
 
               <label 
@@ -425,7 +479,6 @@ const MoreInfoEmail:FC = () => {
               </label>
               
               {isEditing
-
                 ? <textarea
                     id="moreInfoEmailBodyContent"
                     className={`moreInfoEmail__body-content ${isEditing && !initialFormCheck
@@ -441,7 +494,7 @@ const MoreInfoEmail:FC = () => {
                 : <div 
                     id="moreInfoEmailBodyContent" 
                     className="moreInfoEmail__body-content"
-                    onMouseUp={handleSetIsEditingTrue}
+                    onMouseUp={() => handleSetIsEditingTrue(contentRef)}
                   >
                     {content.split("\n\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
                       <p key={idx} className="moreInfoEmail__paragraph">
@@ -449,38 +502,32 @@ const MoreInfoEmail:FC = () => {
                       </p>
                     ))}
                   </div>
-
               }
 
               <div className="moreInfoEmail__companyInfo">
-
                 <div className="moreInfoEmail__companyName">
                   {companyName}
                 </div>
-
                 <div className="moreInfoEmail__copyRight">
                   {copyRight}
                 </div>
               </div>
- 
             </div>
 
-              {isEditing
-                ? (
-                    <p 
-                      className="moreInfoEmail__link-button"
-                      onClick={handleReceiveTestEmail}
-                    >
-                      Recieve Test Email
-                    </p>
-                  )
-                : ""
-              }
+            {isEditing
+              ? (
+                  <p 
+                    className="moreInfoEmail__link-button"
+                    onClick={handleReceiveTestEmail}
+                  >
+                    Recieve Test Email
+                  </p>
+                )
+              : ""
+            }
 
             <div className={`moreInfoEmail__button-container ${isEditing ? "editable" : ""}`}>
-
               {isEditing
-
                 ? (
                     <button 
                       className={`moreInfoEmail__button ${appIsLoading ? "disabled" : ""}`}
@@ -490,12 +537,13 @@ const MoreInfoEmail:FC = () => {
                     </button>
                   )
                 : null
-                
               }
             
               <button 
                 className={`moreInfoEmail__button ${appIsLoading ? "disabled" : ""}`}
-                onClick={isEditing ? handleSubmit : handleSetIsEditingTrue}
+                onClick={isEditing 
+                  ? handleSubmit 
+                  : () => handleSetIsEditingTrue(subjectRef)}
               >
                 {isEditing ? "Save" : "Edit"}
               </button>

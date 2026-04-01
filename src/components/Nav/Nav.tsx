@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import type { NavProps } from "../../typing/interfaces/interfaces";
-import { useAppContext } from "../../hooks/hooks";
+import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "../../../utils/utils";
 import NavSocials from "../NavSocials/NavSocials";
@@ -9,7 +9,6 @@ import "./Nav.scss";
 
 const NAV_CLICK_DELAY = import.meta.env.VITE_NAV_CLICK_DELAY;
 const APP_ISLOADING_DELAY = import.meta.env.VITE_APP_ISLOADING_DELAY;
-
 
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
@@ -23,10 +22,15 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     setShowDropdownNavOptions
   } = useAppContext();
 
+  const { setShowModal } = useModalContext();
+
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
 
-  const handleToggleShowDropdownNav = (): void => setShowDropdownNavOptions(prev => !prev);
+  const handleToggleShowDropdownNav = (): void => {
+    setShowDropdownNavOptions(prev => !prev);
+    setShowModal(false);
+  };
 
   const handleHomeClick = (): void => {
     setAppIsLoading(true);
@@ -44,6 +48,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const handleScrollToTop = () => {
     setShowDropdownNavOptions(false);
     scrollToTop();
+    setShowModal(false);
   };
 
   

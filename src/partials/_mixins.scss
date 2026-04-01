@@ -670,6 +670,7 @@
 }
 
 @mixin sectionHeading {
+	// might want to use a custom heading color
 	color: var(--text-color);
 	font-family: var(--heading-font);
 	font-size: var(--font-size-lg);
@@ -682,7 +683,6 @@
 	white-space: nowrap;
 
 	@media (min-width: vars.$tablet) {
-		// probably use general text color
 		display: inline-block;
 		font-size: var(--font-size-xl);
 		margin-inline: auto;
@@ -693,7 +693,6 @@
 		font-size: var(--font-size-2xl);
 		margin-bottom: 2rem;
 		margin-inline: auto;
-		color: purple;
 	}
 
 	@media (min-width: vars.$desktop) {

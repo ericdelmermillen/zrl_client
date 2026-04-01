@@ -1,45 +1,30 @@
-import { type FC, useEffect, useRef, useState } from "react";
+import { type FC, useEffect, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
 import "./Modal.scss";
 
 const Modal: FC = () => {
   const { 
     showModal,
-    modalText,
     modalTitle,
-    handleClearModal, 
+    modalText,
+    modalInitialFormCheck,
     modalConfirmCallback,
-    modalInputs
+    modalInputs,
+    handleClearModal
   } = useModalContext();
-  
-
-  const [ inputValues, setInputValues ] = useState<Record<string, string>>({});
 
   const modalTextRef = useRef<HTMLDivElement | null>(null);
 
+  // useEffect to reset the scroll position of the Modal when the modal opens
   useEffect(() => {
     if (showModal && modalTextRef.current) {
       requestAnimationFrame(() => {
         if (modalTextRef.current) {
           modalTextRef.current.scrollTop = 0;
-        }
+        };
       });
-    }
-  }, [showModal, modalText]);
-
-  useEffect(() => {
-    if (showModal && modalInputs) {
-      const initial = modalInputs.reduce((acc, input) => {
-        acc[input.id] = input.value || "";
-        return acc;
-      }, {} as Record<string, string>);
-      setInputValues(initial);
-    }
+    };
   }, [showModal]);
-
-  const handleInputChange = (id: string, value: string) => {
-    setInputValues(prev => ({ ...prev, [id]: value }));
-  };
 
   return (
     <>
@@ -50,55 +35,53 @@ const Modal: FC = () => {
 
           <div className="modal__content">
 
-              <h2 className="modal__heading">{modalTitle}</h2>
+            <h2 className="modal__heading">{modalTitle}</h2>
 
-              <div
-                ref={modalTextRef}
-                className={`modal__text ${modalConfirmCallback ? "" : "modal__text--informational"}`}
-              >
-                {modalText
-                  .split("\n")
-                  .filter((p) => p.trim() !== "")
-                  .map((paragraph, idx) => (
-                    <p
-                      key={idx}
-                      className={`modal__paragraph ${
-                        /^\s*\d+[\.\):]?\s/.test(paragraph)
-                          ? "modal__paragraph--numbered"
-                          : ""
-                      }`}
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-              
+            <div
+              ref={modalTextRef}
+              className={`modal__text ${modalConfirmCallback ? "" : "modal__text--informational"}`}
+            >
+              {modalText
+                .split("\n")
+                .filter((p) => p.trim() !== "")
+                .map((paragraph, idx) => (
+                  <p
+                    key={idx}
+                    className={`modal__paragraph ${
+                      /^\s*\d+[\.\):]?\s/.test(paragraph)
+                        ? "modal__paragraph--numbered"
+                        : ""
+                    }`}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
 
               {modalInputs && modalInputs.length > 0 
                 ? (
-                    <div className="modal__inputs">
+                    <form className="modal__inputs">
                       {modalInputs.map((input) => (
-
                         <div key={input.id} className="modal__input-group">
                           <label className="modal__label" htmlFor={input.id}>
                             {input.label}
                           </label>
                           <input
-                            className="modal__input"
+                            className={`modal__input 
+                              ${modalInitialFormCheck && !input.isValid 
+                                ? "invalid" 
+                                : ""
+                              }`
+                            }
                             id={input.id}
                             placeholder={input.placeholder}
-                            value={inputValues[input.id] || ""}
                             ref={input.ref}
-                            onChange={(e) => {
-                              handleInputChange(input.id, e.target.value);
-                              console.log(e.target.value);
-                            }}
+                            onChange={() => input.setIsValid(input.onChange())}
                           />
                         </div>
                       ))}
-                    </div>
+                    </form>
                   )
                 : null
-                
               }
             </div>
 
@@ -106,7 +89,7 @@ const Modal: FC = () => {
               {modalConfirmCallback ? (
                 <button
                   className="modal__button"
-                  onClick={() => modalConfirmCallback(inputValues)}
+                  onClick={() => modalConfirmCallback()}
                 >
                   Send
                 </button>

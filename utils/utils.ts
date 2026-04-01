@@ -69,7 +69,7 @@ const staggerToastsByN = (message: string, toastType: ToastType, staggerOffset: 
   }, MIN_LOADING_INTERVAL * staggerOffset);
 };
 
-const focusInputStart = (ref: RefObject<HTMLInputElement | null>): void => {
+const focusInputStart = (ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>): void => {
   ref.current?.focus();
   ref.current?.setSelectionRange(0, 0);
 };
