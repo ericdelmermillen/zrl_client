@@ -1,6 +1,6 @@
 import { type FC, useState, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
-import { nameInputHandler, emailInputHandler, staggerToastsByN, phoneInputHandler } from "../../../utils/utils";
+import { isValidEmail, staggerToastsByN, validatePhoneNumber } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { toast } from "react-toastify";
 import { 
@@ -67,16 +67,35 @@ const MoreInfoForm: FC = () => {
   ];
 
   const handleNameChange = (): boolean => {
-    return nameInputHandler(nameRef, setName, setNameIsValid);
+    const nameValue = nameRef.current?.value ?? "";
+    const isValidLength = nameValue.trim().length >= 2;
+    setName(nameValue);
+    setNameIsValid(isValidLength);
+    return isValidLength;
   };
 
+
   const handleEmailChange = (): boolean => {
-    return emailInputHandler(emailRef, setEmail, setEmailIsValid)
+    const emailValue = emailRef.current?.value ?? "";
+    const emailIsValid = isValidEmail(emailValue);
+
+    setEmail(emailValue);
+    setEmailIsValid(emailIsValid);
+
+    return emailIsValid;
   };
 
   const handlePhoneChange = (): boolean => {
-    return phoneInputHandler(phoneRef, setPhone, setPhoneIsValid);
+    const phoneValue = phoneRef.current?.value ?? "";
+    const phoneNumberIsValid = validatePhoneNumber(phoneValue);
+
+    setPhone(phoneValue);
+    setPhoneIsValid(phoneNumberIsValid);
+
+    return phoneNumberIsValid;
   };
+
+  
 
   const handleSubmit = async (): Promise<void> => {
     setInitialFormCheck(true);

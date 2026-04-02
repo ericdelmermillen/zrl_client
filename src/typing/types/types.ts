@@ -1,4 +1,4 @@
-import { type FC, type Dispatch, type SetStateAction, type RefObject } from "react"
+import { type FC, type RefObject } from "react"
 
 export type ColorMode = "light" | "dark";
 
@@ -8,9 +8,6 @@ export type ModalInput = {
   id: string;
   label: string;
   placeholder: string;
-  value: string;
-  isValid: boolean;
-  setIsValid: Dispatch<SetStateAction<boolean>>;
   onChange: () => boolean;
   ref: RefObject<HTMLInputElement | null>;
 }

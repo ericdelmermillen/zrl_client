@@ -7,7 +7,6 @@ const Modal: FC = () => {
     showModal,
     modalTitle,
     modalText,
-    modalInitialFormCheck,
     modalConfirmCallback,
     modalInputs,
     handleClearModal
@@ -66,16 +65,11 @@ const Modal: FC = () => {
                             {input.label}
                           </label>
                           <input
-                            className={`modal__input 
-                              ${modalInitialFormCheck && !input.isValid 
-                                ? "invalid" 
-                                : ""
-                              }`
-                            }
+                            className="modal__input"
                             id={input.id}
                             placeholder={input.placeholder}
                             ref={input.ref}
-                            onChange={() => input.setIsValid(input.onChange())}
+                            onChange={() => input.onChange()}
                           />
                         </div>
                       ))}

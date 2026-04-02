@@ -1,4 +1,4 @@
-import React, { type FC, useState, useRef, useEffect } from "react";
+import { type FC, type RefObject, useState, useRef, useEffect } from "react";
 import type { ModalInput } from "@/typing/types/types";
 import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { 
@@ -6,8 +6,9 @@ import {
   handleFormEnterPress, 
   staggerToastsByN, 
   parseParagraphLink, 
-  nameInputHandler,
-  emailInputHandler
+  addClassToDiv,
+  removeClassFromDiv,
+  isValidEmail
 } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import "./MoreInfoEmail.scss";
@@ -26,7 +27,6 @@ const MoreInfoEmail:FC = () => {
     setModalConfirmCallback,
     handleClearModal,
     handleOpenModal,
-    setModalInputs,
     setModalInitialFormCheck
   } = useModalContext();
   
@@ -44,41 +44,60 @@ const MoreInfoEmail:FC = () => {
   const [ greetingIsValid, setGreetingIsValid ] = useState<boolean>(true);
   const [ emailContentIsValid, setEmailContentIsValid ] = useState<boolean>(true);
 
-  const [ testName, setTestName ] = useState<string>("");
-  const [ testEmail, setTestEmail ] = useState<string>("");
-
-  const [ testNameIsValid, setTestNameIsValid ] = useState<boolean>(true);
-  const [ testEmailIsValid, setTestEmailIsValid ] = useState<boolean>(true);
-
   const subjectRef = useRef<HTMLInputElement | null>(null);
   const greetingRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
   const testNameRef = useRef<HTMLInputElement | null>(null);
   const testEmailRef = useRef<HTMLInputElement | null>(null);
+  const modalFormInitialCheckRef = useRef<boolean>(false);
 
   const modalInputs: ModalInput[] = [
     { 
-      id: "name", 
+      id: "nameTestModal", 
       label: "Name", 
       placeholder: "Enter Name", 
-      value: testName,
-      isValid: testNameIsValid,
-      setIsValid: setTestNameIsValid,
       ref: testNameRef,
-      onChange: () => nameInputHandler(testNameRef, setTestName, setTestNameIsValid)
+      onChange: () => handleTestNameChange()
     },
     { 
-      id: "email", 
+      id: "emailTestModal", 
       label: "Email", 
       placeholder: "Enter Email", 
-      value: testEmail,
-      isValid: testEmailIsValid,
-      setIsValid: setTestEmailIsValid,
       ref: testEmailRef,
-      onChange: () => emailInputHandler(testEmailRef, setTestEmail, setTestEmailIsValid)
+      onChange: () => handleTestEmailChange()
     }
   ];
+
+  const handleTestNameChange = (): boolean => {
+    const nameValue = testNameRef.current?.value ?? "";
+    const isValidLength = nameValue.trim().length >= 2;
+
+    if (modalFormInitialCheckRef.current) {
+      if (!isValidLength) {
+        addClassToDiv("nameTestModal", "invalid");
+      } else {
+        removeClassFromDiv("nameTestModal", "invalid");
+      };
+    };
+
+    return isValidLength;
+  };
+
+ const handleTestEmailChange = (): boolean => {
+  const emailValue = testEmailRef.current?.value ?? "";
+  const emailIsValid = isValidEmail(emailValue);
+
+    if (modalFormInitialCheckRef.current) {
+      if (!emailIsValid) {
+        addClassToDiv("emailTestModal", "invalid");
+      } else {
+        removeClassFromDiv("emailTestModal", "invalid");
+      };
+    };
+
+    return emailIsValid;
+  };
 
   // const handleSetIsEditingTrue = (): void => {
   //   if (window.getSelection()?.toString()) {
@@ -127,7 +146,7 @@ const MoreInfoEmail:FC = () => {
 // };
 
 const handleSetIsEditingTrue = (
-  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>
+  ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
 ): void => {
   if (window.getSelection()?.toString()) {
     return;
@@ -209,7 +228,6 @@ const handleSetIsEditingTrue = (
   };
 
   const handleReceiveTestEmail = ():void => {
-
     if (!inputsAreValid()) {
       toast.error("Please fix the errors before proceeding to test the email.")
       return;
@@ -223,16 +241,19 @@ const handleSetIsEditingTrue = (
 
   const sendTestEmail = async () => {
     // setAppIsLoading(true);
-    setModalInitialFormCheck(true)
+    setModalInitialFormCheck(true);
+    modalFormInitialCheckRef.current = true;
 
+    
     let errors = 0;
-
-    if (!nameInputHandler(testNameRef, setTestName, setTestNameIsValid)){
+    
+    if (!handleTestNameChange()){
       staggerToastsByN("Name for Test Email is invalid.", "error", errors);
       errors++;
     };
 
-    if (!emailInputHandler(testEmailRef, setTestEmail, setTestEmailIsValid)) {
+    // if (!emailInputHandler(testEmailRef)) {
+    if (!handleTestEmailChange()) {
       staggerToastsByN("Email for Test Email is invalid.", "error", errors);
       errors++;
     };
@@ -382,11 +403,6 @@ const handleSetIsEditingTrue = (
   useEffect(() => {
     getMoreInfoEmail();
   }, []);
-
-  // useEffect to trigger updating of modalInputs in Modal as the isValid state values used there are stale since they were passed as args inside functions which are part of the ModalInputs the modal maps through
-  useEffect(() => {
-    setModalInputs(modalInputs);
-  }, [testNameIsValid, testEmailIsValid]);
   
   return (
     <>
