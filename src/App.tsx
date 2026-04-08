@@ -95,7 +95,6 @@ const notFoundIconOptions: IconType[] = [
 
 const App = (): JSX.Element => {
   const { 
-    appIsLoading,
     isLoggedIn,
     colorMode, 
     // setColorMode,
@@ -109,7 +108,10 @@ const App = (): JSX.Element => {
   return (
     <div className="app" data-color-mode={colorMode}>
 
-      <div className={`app__isLoading ${appIsLoading ? "show" : ""}`}>
+      <div 
+        id="appIsLoading"
+        className="app__isLoading"
+      >
         <IsLoading />
       </div>
 

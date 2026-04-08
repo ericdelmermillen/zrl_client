@@ -145,6 +145,9 @@
 
 	&__link-button {
 		@include mx.textLink;
+		& {
+			margin-inline: auto;
+		}
 	}
 
 	&__button-container {

@@ -1,15 +1,22 @@
-import { type FC } from "react";
+import { type FC, useEffect } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount } from "../../hooks/hooks";
+import { useAppContext, useDocumentTitle, usePageLoading, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import BackButton from "../../components/BackButton/BackButton";
 import "./NotFound.scss";
 
 const NotFound: FC<ChildrenPropsInterface> = ({ children }) => {
-  usePageLoading();
   useDocumentTitle("Zidgy Road Lab's Admin Login Page");
+  usePageLoading();
   useScrollToTopOnPageMount();
 
-  
+  const { appIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
+
+  useEffect(() => {
+    if (appIsLoading) {
+      handleSetShowAppIsLoadingFalse();
+    };
+  }, [appIsLoading]);
+
   return (
     <>
       <div className="notFound">
@@ -26,6 +33,7 @@ const NotFound: FC<ChildrenPropsInterface> = ({ children }) => {
         
       </div>
     </>
-  )};
+  );
+};
 
 export default NotFound;

@@ -19,6 +19,7 @@ export interface AppContextValue {
   setShowDropdownNavOptions: Dispatch<SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
   // functions
+  handleSetShowAppIsLoadingTrue: () => void;
   handleSetShowAppIsLoadingFalse: () => void;
   loginUser: (email: string, password: string) => Promise<boolean>;
   showNav: () => void;

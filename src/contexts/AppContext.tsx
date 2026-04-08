@@ -40,10 +40,25 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? Number(import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY) : 0;
   const PAGE_NAV_CLICK_DELAY = Number(import.meta.env.VITE_PAGE_NAV_CLICK_DELAY);
 
+  const handleSetShowAppIsLoadingTrue = (): void => {
+    setAppIsLoading(true);
+
+    requestAnimationFrame(() => {
+      removeClassFromDiv("appIsLoading", "hide");
+      addClassToDiv("appIsLoading", "show");
+    });
+  };
+
   const handleSetShowAppIsLoadingFalse = (): void => {
+    console.log("setting is loading false")
     setTimeout(() => {
+      removeClassFromDiv("appIsLoading", "show");
       setAppIsLoading(false);
     }, APP_ISLOADING_DELAY);
+    
+    setTimeout(() => {
+      addClassToDiv("appIsLoading", "hide");
+    }, APP_ISLOADING_DELAY * 2);
   };
 
   const handleUpdateScrollYPos = (): void => {
@@ -56,7 +71,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const hideNav = (): void => addClassToDiv("nav-container", "hide");
 
   const logoutUser = async (): Promise<void> => {
-    setAppIsLoading(true);
+    handleSetShowAppIsLoadingTrue();
 
     try {
       const response = await fetch(`${BASE_URL}/auth/logoutuser`, {
@@ -76,13 +91,13 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       setTimeout(() => {
         scrollToTop();
         setIsLoggedIn(false);
-        setAppIsLoading(false);
+        // setAppIsLoading(false);
       }, APP_ISLOADING_DELAY);
 
     } catch (error) {
       console.error('Logout error:', error);
       toast.error("Logout failed. Please try again.");
-      setAppIsLoading(false);
+      // setAppIsLoading(false);
     };
   };
 
@@ -219,16 +234,16 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         if (isOnLogin) {
           localStorage.removeItem("wasLoggedIn");
         } else {
-          setAppIsLoading(true);
+          // setAppIsLoading(true);
           toast.error("Session expired. Logging you out...");
 
           setTimeout(() => {
             localStorage.removeItem("wasLoggedIn");
             navigate("/");
 
-            setTimeout(() => {
-              setAppIsLoading(false);
-            }, MIN_LOADING_INTERVAL);
+            // setTimeout(() => {
+            //   setAppIsLoading(false);
+            // }, MIN_LOADING_INTERVAL);
           }, MIN_LOADING_INTERVAL);
         };
       };
@@ -302,6 +317,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const contextValues = {
     appIsLoading, 
     setAppIsLoading,
+    handleSetShowAppIsLoadingTrue,
     handleSetShowAppIsLoadingFalse,
     isLoggedIn,
     setIsLoggedIn,

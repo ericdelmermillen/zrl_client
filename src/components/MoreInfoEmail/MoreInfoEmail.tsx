@@ -20,6 +20,7 @@ const MoreInfoEmail:FC = () => {
   const { 
     appIsLoading, 
     setAppIsLoading, 
+    handleSetShowAppIsLoadingTrue,
     handleSetShowAppIsLoadingFalse,
   } = useAppContext();
   
@@ -99,52 +100,6 @@ const MoreInfoEmail:FC = () => {
     return emailIsValid;
   };
 
-  // const handleSetIsEditingTrue = (): void => {
-  //   if (window.getSelection()?.toString()) {
-  //     return;
-  //   };
-
-  //   setAppIsLoading(true);
-    
-  //   setTimeout(() => {
-  //     handleSetShowAppIsLoadingFalse();
-      
-  //     setTimeout(() => {
-  //       setIsEditing(true);
-  //       toast.info("More Info Email Template ready to edit.");
-
-  //       setTimeout(() => {
-  //         focusInputStart(subjectRef);
-  //       }, 0);
-
-  //     }, MIN_LOADING_INTERVAL * 2);
-  //   }, MIN_LOADING_INTERVAL);
-  // };
-
-//   const handleSetIsEditingTrue = (
-//     ref: React.RefObject<HTMLInputElement | null>
-//   ): void => {
-//   if (window.getSelection()?.toString()) {
-//     return;
-//   };
-
-//   setAppIsLoading(true);
-  
-//   setTimeout(() => {
-//     handleSetShowAppIsLoadingFalse();
-    
-//     setTimeout(() => {
-//       setIsEditing(true);
-//       toast.info("More Info Email Template ready to edit.");
-
-//       setTimeout(() => {
-//         focusInputStart(ref);
-//       }, 0);
-
-//     }, MIN_LOADING_INTERVAL * 2);
-//   }, MIN_LOADING_INTERVAL);
-// };
-
 const handleSetIsEditingTrue = (
   ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
 ): void => {
@@ -152,25 +107,27 @@ const handleSetIsEditingTrue = (
     return;
   };
 
-  setAppIsLoading(true);
+  handleSetShowAppIsLoadingTrue();
   
   setTimeout(() => {
-    handleSetShowAppIsLoadingFalse();
     
     setTimeout(() => {
       setIsEditing(true);
       toast.info("More Info Email Template ready to edit.");
-
+      
       setTimeout(() => {
         focusInputStart(ref);
       }, 0);
-
+      
+      handleSetShowAppIsLoadingFalse();
     }, MIN_LOADING_INTERVAL * 2);
   }, MIN_LOADING_INTERVAL);
 };
 
   const getMoreInfoEmail = async (): Promise<void> => {
-    setAppIsLoading(true);
+    if(!appIsLoading) {
+      handleSetShowAppIsLoadingTrue();
+    };
     
     try {
       const response = await fetch(`${BASE_URL}/moreinfo`, {
@@ -327,10 +284,11 @@ const handleSetIsEditingTrue = (
   }
 
   const handleSubmit = async (): Promise<void> => {
-    setAppIsLoading(true);
+    // setAppIsLoading(true);
+    handleSetShowAppIsLoadingTrue();
 
     if (!inputsAreValid()){
-      setAppIsLoading(false);
+      // handleSetShowAppIsLoadingFalse();
       return;
     };
 
@@ -354,7 +312,7 @@ const handleSetIsEditingTrue = (
 
       if(!response.ok || !data.success) {
         toast.error(data.message || "Failed to update email template.");
-        setAppIsLoading(false);
+        // handleSetShowAppIsLoadingFalse();
         return;
       };
 
@@ -372,7 +330,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to update email template:", error);
       toast.error("Server error while updating email template");
     } finally {
-      handleSetShowAppIsLoadingFalse();
+      // handleSetShowAppIsLoadingFalse();
     };
   };
 
@@ -396,7 +354,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to refresh email template:", error);
       toast.error("Failed to refresh email template");
     } finally {
-      handleSetShowAppIsLoadingFalse();
+      // handleSetShowAppIsLoadingFalse();
     };
   };
 

@@ -3,8 +3,6 @@ import { AppContext } from "../contexts/AppContext";
 import { ModalContext } from "../contexts/ModalContext";
 import { scrollToTop } from "../../utils/utils";
 
-const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
-
 const useAppContext = () => {
   const context = useContext(AppContext);
   if(!context) {
@@ -23,18 +21,11 @@ const useModalContext = () => {
 
 // isLoading animation for pages with loading delay: simulates call to server
 const usePageLoading = (): void => {
-  const { setAppIsLoading } = useAppContext();
+  const { setAppIsLoading, handleSetShowAppIsLoadingTrue } = useAppContext();
 
   useEffect(() => {
-    setAppIsLoading(true)
-
-    const timeoutId = window.setTimeout(() => {
-      setAppIsLoading(false)
-    }, APP_ISLOADING_DELAY);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    setAppIsLoading(true);
+    handleSetShowAppIsLoadingTrue();
   }, []);
 };
 

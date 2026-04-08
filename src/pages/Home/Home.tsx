@@ -1,5 +1,5 @@
-import { type FC } from "react";
-import { usePageLoading, useDocumentTitle, useScrollToTopOnPageMount  } from "../../hooks/hooks";
+import { type FC, useEffect } from "react";
+import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount, useAppContext } from "../../hooks/hooks";
 import Details from "../../components/Details/Details";
 import Expertise from "../../components/Expertise/Expertise";
 import Header from "../../components/Header/Header";
@@ -10,13 +10,19 @@ import Subscribe from "../../components/Subscribe/Subscribe";
 import Values from "../../components/Values/Values";
 import "./Home.scss";
 
-
 const Home: FC = () => {
-  usePageLoading();
-
   useDocumentTitle("Zidgy Road Labs | Professional Web Development Services");
+  usePageLoading();
   useScrollToTopOnPageMount();
-  
+
+  const { appIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
+
+  useEffect(() => {
+    if (appIsLoading) {
+      handleSetShowAppIsLoadingFalse();
+    };
+  }, [appIsLoading]);
+
   return (
     <>
       <div className="home">
@@ -31,9 +37,7 @@ const Home: FC = () => {
               <Solutions />
               <Details />
               <Expertise />
-
               <Values />
-            
               <Subscribe />
             </div>
             
@@ -41,6 +45,7 @@ const Home: FC = () => {
         </div>
       </div>
     </>
-  )};
+  );
+};
 
 export default Home;

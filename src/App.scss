@@ -23,7 +23,6 @@ body {
 		background: var(--neutral-bg-1);
 		color: var(--text-color);
 		font-family: var(--body-font);
-		// overflow-x: hidden;
 		text-rendering: optimizeLegibility;
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
@@ -94,6 +93,162 @@ img {
 }
 
 .app {
+	--heading-font: "Poppins", "Trebuchet MS", Helvetica, Arial, sans-serif;
+	--body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	// colors
+	// need this for palate
+	--neutral-bg-1: #e6eae7;
+	// --neutral-bg-2: orange;
+
+	// letter spacing
+	--letter-spacing-xs: 0.2px;
+	--letter-spacing-sm: 0.4px;
+	--letter-spacing-md: 0.6px;
+	--letter-spacing-lg: 1px;
+	--letter-spacing-xl: 1.5px;
+	--letter-spacing-2xl: 2px;
+	--letter-spacing-3xl: 3px;
+	--letter-spacing-4xl: 4px;
+	--letter-spacing-nav-items: 6px;
+
+	// line height
+	--line-height-xs: 1.05;
+	--line-height-sm: 1.25;
+	--line-height-base: 1.45;
+	--line-height-md: 1.5;
+	--line-height-lg: 1.75;
+	--line-height-xl: 2;
+	--line-height-2xl: 2.25;
+
+	// border & box shadow
+	--border-radius: 4px;
+	--border-radius-toast: 8px;
+	--border-radius-card: 8px;
+	--border-radius-card-image: 8px;
+	--border-radius-form: 8px;
+	--accent-bar-border-radius: 0.25rem;
+	--text-box-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	--text-box-text-shadow-color: rgba(0, 0, 0, 0.1);
+	--box-bottom-boxShadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+
+	// *** Header Overlay
+	--header-overlay-shadow: 5px 5px 5px rgba(0, 0, 0, 0.95);
+	--header-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.65);
+	--header-small-text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+	--header-text-shadow-lead: 0 3px 6px rgba(0, 0, 0, 0.65);
+	--header-small-text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.75);
+
+	--floating-button-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.65);
+
+	// Timing Variables
+	--transition-interval-lightbox: 450ms;
+	--placeholder-transition: 0.75s;
+	--isLoading-start-transition: 0.75s;
+	--isLoading-end-transition: 0.25s;
+	--nav-timing-transition: 500ms;
+
+	// Font Sizes
+	// header fonts
+	--text-header-heading-xs: 2.3rem; // 30px - headlines
+	--text-header-heading-sm: 2.5rem; // 30px - headlines
+	--text-header-heading-md: 2.75rem; // 30px - headlines
+	--text-header-heading-lg: 3rem; // 30px - headlines
+	--text-header-lead-xs: 1.3rem; // 30px - headlines
+	--text-header-lead-sm: 1.375rem; // 30px - headlines
+	--text-header-lead-md: 1.5rem; // 30px - headlines
+	--text-header-lead-lg: 1.55rem; // 30px - headlines
+	--text-header-lead-xl: 1.6rem; // 30px - headlines
+
+	// font sizes
+	--font-size-xs: 0.75rem; // 12px - fine print, captions
+	--font-size-sm: 0.875rem; // 14px - secondary text
+	--font-size-base: 1rem; // 16px - body text
+	--font-size-md: 1.125rem; // 18px - slightly larger body or subheadings
+	--font-size-lg: 1.25rem; // 20px - callouts, larger buttons
+	--font-size-xl: 1.5rem; // 24px - section titles
+	--font-size-2xl: 1.875rem; // 30px - headlines
+	--font-size-3xl: 2.25rem; // 36px - large headlines
+	--font-size-4xl: 3rem; // 48px - hero text
+	--font-size-5xl: 4rem; // 64px - display
+	--font-size-6xl: 5rem; // 80px - massive display
+	// ***
+
+	// Button font sizes
+	--button-text-xs: 0.75rem; // 12px - compact buttons
+	--button-text-sm: 0.875rem; // 14px - small buttons
+	--button-text-md: var(--font-size-base); // 16px - standard/default buttons
+	--button-text-lg: 1.125rem; // 18px - large buttons
+	--button-text-xl: 1.25rem; // 18px - large buttons
+
+	// Button padding (optional and helpful for spacing consistency)
+	--button-padding-xs: 0.25rem 0.5rem;
+
+	--button-padding-base: 0.75rem 1.25rem;
+	--button-padding-sm: 0.375rem 0.75rem;
+	--button-padding-md: 0.5rem 1rem;
+	--button-padding-lg: 0.75rem 1.5rem;
+	--button-padding-xl: 1rem 1.75rem;
+	--tag-padding: 0.5rem 0.75rem;
+
+	// Button line-height (optional)
+	--button-line-height: 1.25;
+
+	// error styling
+	--error-color: #ff0000;
+
+	// overlay colors
+	--overlay-modal-bg: #333;
+	--modal-card-bg: #fff;
+	--overlay: rgba(0, 0, 0, 0.125);
+	--overlay-dark-bg: rgba(0, 0, 0, 0.5) 0;
+
+	// layout spacing
+	// navHeight - 1 rem = 3rem
+	--section-top-padding: 3rem;
+
+	// UI elements
+	--input-height: 3rem;
+
+	// need:
+	// --box-shadow
+	--app-box-shadow:
+		-6px 0 12px rgba(0, 0, 0, 0.1), 6px 0 12px rgba(0, 0, 0, 0.1);
+	--input-box-shadow: inset 2px 0px 2px rgba(0, 0, 0, 0.1);
+	--text-color: #333;
+	// --border-radius
+	// --background-nav-footer
+	// --navFooterBoxShadow
+	// --text-color-bright(?)
+	// --background-nav-footer
+	// --navFooter-box-shadow
+	// --background-color
+	&[data-color-mode="light"] {
+		color: var((--body-text));
+		--accent-bar-shadow: 4px 0 6px rgba(0, 0, 0, 0.15);
+		--nav-bar-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+		--accent-color: #d27834;
+		//
+		//
+
+		--button-text-color: #f1f0ea;
+		--header-overlay: linear-gradient(
+			to top,
+			rgba(21, 12, 2, 0.8) 0%,
+			rgba(45, 28, 5, 0.65) 25%,
+			rgba(26, 98, 241, 0.33) 90%
+		);
+		--navBoxShadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+		--nav-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+		--nav-footer-bg: #182438;
+		--nav-link-color: #fff;
+		--header-text-color: #f5f2e4;
+	}
+
+	&[data-color-mode="dark"] {
+		color: green;
+	}
+
 	& {
 		@include mx.appLayout;
 	}
@@ -111,7 +266,7 @@ img {
 		height: vars.$navHeight;
 		position: fixed;
 		top: 0;
-		transition: all 500ms ease-in-out;
+		transition: all var(--nav-timing-transition) ease-in-out;
 		width: 100%;
 		z-index: 2;
 

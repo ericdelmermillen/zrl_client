@@ -38,9 +38,11 @@
 	&__accentBar {
 		@include mx.accentBar;
 		& {
-			box-shadow: var(--header-text-shadow);
+			// box-shadow: var(--header-text-shadow);
+			box-shadow: var(--accent-bar-shadow);
 			left: 0;
 			margin-top: -1rem;
+			overflow-x: hidden;
 		}
 	}
 
