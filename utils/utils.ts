@@ -81,42 +81,80 @@ const handleFormEnterPress = (e: KeyboardEvent<HTMLFormElement>, boolean: boolea
   };
 };
 
- const parseParagraphLink = (text: string): ReactNode => {
-    const urlRegex = /(https?:\/\/[^\s\[]+)(?:\[([^\]]+)\])?/g;
-    const parts: ReactNode[] = [];
-    let lastIndex = 0;
-    let match;
+//  const parseParagraphLink = (text: string): ReactNode => {
+//     const urlRegex = /(https?:\/\/[^\s\[]+)(?:\[([^\]]+)\])?/g;
+//     const parts: ReactNode[] = [];
+//     let lastIndex = 0;
+//     let match;
 
-    while ((match = urlRegex.exec(text)) !== null) {
-      const [ full, url, linkText ] = match;
+//     while ((match = urlRegex.exec(text)) !== null) {
+//       const [ full, url, linkText ] = match;
 
-      if (match.index > lastIndex) {
-        parts.push(text.slice(lastIndex, match.index));
-      };
+//       if (match.index > lastIndex) {
+//         parts.push(text.slice(lastIndex, match.index));
+//       };
 
-      parts.push(
-        React.createElement(
-          "a",
-          {
-            key: match.index,
-            href: url,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "moreInfoEmail__link"
-          },
-          linkText ?? url
-        )
-      );
+//       parts.push(
+//         React.createElement(
+//           "a",
+//           {
+//             key: match.index,
+//             href: url,
+//             target: "_blank",
+//             rel: "noopener noreferrer",
+//             className: "moreInfoEmail__link"
+//           },
+//           linkText ?? url
+//         )
+//       );
 
-      lastIndex = match.index + full.length;
-    };
+//       lastIndex = match.index + full.length;
+//     };
 
-    if (lastIndex < text.length) {
-      parts.push(text.slice(lastIndex));
-    };
+//     if (lastIndex < text.length) {
+//       parts.push(text.slice(lastIndex));
+//     };
 
-    return parts;
-  };
+//     return parts;
+//   };
+
+const parseParagraphLink = (text: string): ReactNode => {
+  // const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  const linkRegex = /\[([^\]]+)\]\((https?:\/\/\S+?)\)(?=[\s.,!?]|$)/g;
+  const parts: ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    const [full, linkText, url] = match;
+
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    parts.push(
+      React.createElement(
+        "a",
+        {
+          key: match.index,
+          href: url,
+          target: "_blank",
+          rel: "noopener noreferrer",
+          className: "moreInfoEmail__link"
+        },
+        linkText
+      )
+    );
+
+    lastIndex = match.index + full.length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts;
+};
 
 export {
   scrollToTop,

@@ -8,11 +8,10 @@
     "skipLibCheck": true,
 
     /* Path Aliases & Module Resolution */
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-      },
-      "types": ["vite/client"],
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite/client"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

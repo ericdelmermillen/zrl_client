@@ -559,7 +559,7 @@
 	}
 
 	&:focus {
-		outline: 2px solid rgba(0, 123, 255, 0.5);
+		outline: 2px solid var(--accent-color);
 		outline-offset: 2px;
 	}
 

@@ -135,15 +135,12 @@
 		color: var(--text-color);
 		display: flex;
 		flex-direction: column;
-		font-size: var(--text-size-xs);
-		height: 3.5rem;
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-md);
+		height: 3rem;
 		justify-content: center;
 		opacity: 0.9;
 		text-align: center;
-
-		@media (min-width: vars.$tablet) {
-			height: 3.75rem;
-		}
 	}
 
 	&__link-button {
