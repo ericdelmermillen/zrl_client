@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, createContext } from "react";
+import { type Dispatch, type SetStateAction, useState, useRef, useEffect, createContext } from "react";
 import { useModalContext } from "../hooks/hooks";
 import type { ColorMode } from "../typing/types/types";
 import type { AppContextProviderProps, AppContextValue } from "../typing/interfaces/interfaces";
@@ -40,17 +40,18 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? Number(import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY) : 0;
   const PAGE_NAV_CLICK_DELAY = Number(import.meta.env.VITE_PAGE_NAV_CLICK_DELAY);
 
-  const handleSetShowAppIsLoadingTrue = (): void => {
-    setAppIsLoading(true);
+  const handleSetShowIsLoadingTrue = (isLoadingStateSetter: Dispatch<SetStateAction<boolean>>,
+  divId: string
+  ): void => {
+    isLoadingStateSetter(true);
 
     requestAnimationFrame(() => {
-      removeClassFromDiv("appIsLoading", "hide");
-      addClassToDiv("appIsLoading", "show");
+      removeClassFromDiv(divId, "hide");
+      addClassToDiv(divId, "show");
     });
   };
 
   const handleSetShowAppIsLoadingFalse = (): void => {
-    console.log("setting is loading false")
     setTimeout(() => {
       removeClassFromDiv("appIsLoading", "show");
       setAppIsLoading(false);
@@ -71,7 +72,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const hideNav = (): void => addClassToDiv("nav-container", "hide");
 
   const logoutUser = async (): Promise<void> => {
-    handleSetShowAppIsLoadingTrue();
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
 
     try {
       const response = await fetch(`${BASE_URL}/auth/logoutuser`, {
@@ -91,16 +92,13 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       setTimeout(() => {
         scrollToTop();
         setIsLoggedIn(false);
-        // setAppIsLoading(false);
       }, APP_ISLOADING_DELAY);
 
     } catch (error) {
       console.error('Logout error:', error);
       toast.error("Logout failed. Please try again.");
-      // setAppIsLoading(false);
     };
   };
-
 
   const toggleColorMode = () : void => {
     setColorMode(prev => prev === "light" ? "dark" : "light")
@@ -148,6 +146,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
 
   const loginUser = async (email: string, password: string): Promise<boolean> => {
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
 
     try {
       const response = await fetch(`${BASE_URL}/auth/loginuser`, {
@@ -317,7 +316,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const contextValues = {
     appIsLoading, 
     setAppIsLoading,
-    handleSetShowAppIsLoadingTrue,
+    handleSetShowIsLoadingTrue,
     handleSetShowAppIsLoadingFalse,
     isLoggedIn,
     setIsLoggedIn,

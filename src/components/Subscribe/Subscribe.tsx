@@ -1,5 +1,5 @@
 import { type FC, useState, useRef } from "react";
-import { useModalContext } from "../../hooks/hooks";
+import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { isValidEmail } from "../../../utils/utils";
 import { PRIVACY_POLICY_TEXT, PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import "./Subscribe.scss";
 // need to hide componentIsLoading via adding hide and removing when showing
 
 const Subscribe: FC = () => {
+  const { handleSetShowIsLoadingTrue } = useAppContext();
   const { handleOpenModal } = useModalContext();
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>("");
@@ -44,7 +45,7 @@ const Subscribe: FC = () => {
       return;
     };
 
-    setComponentIsLoading(true);
+    handleSetShowIsLoadingTrue(setComponentIsLoading, "subscribeIsLoading");
 
     setTimeout(() => {
       setComponentIsLoading(false);
@@ -85,7 +86,10 @@ const Subscribe: FC = () => {
 
               <div className="subscribe__input-wrapper">
 
-                <div className={`subscribe__isLoading ${componentIsLoading ? "show" : ""}`}>
+                <div 
+                  id="subscribeIsLoading"
+                  className={`subscribe__isLoading ${componentIsLoading ? "show" : ""}`}
+                >
                   <IsLoading />
                 </div>
 

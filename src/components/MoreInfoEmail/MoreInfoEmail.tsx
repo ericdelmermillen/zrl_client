@@ -20,7 +20,8 @@ const MoreInfoEmail:FC = () => {
   const { 
     appIsLoading, 
     setAppIsLoading, 
-    handleSetShowAppIsLoadingTrue,
+    handleSetShowIsLoadingTrue,
+    // 
     handleSetShowAppIsLoadingFalse,
   } = useAppContext();
   
@@ -104,7 +105,7 @@ const handleSetIsEditingTrue = (
   ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
 ): void => {
 
-  handleSetShowAppIsLoadingTrue();
+  handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
   
   setTimeout(() => {
     
@@ -123,7 +124,7 @@ const handleSetIsEditingTrue = (
 
   const getMoreInfoEmail = async (): Promise<void> => {
     if (!appIsLoading) {
-      handleSetShowAppIsLoadingTrue();
+      handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
     };
     
     try {
@@ -273,7 +274,7 @@ const handleSetIsEditingTrue = (
   };
 
   const handleSubmit = async (): Promise<void> => {
-    handleSetShowAppIsLoadingTrue();
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
     setInitialFormCheck(true);
     
     let errors = 0;

@@ -1,5 +1,5 @@
 import { type FC, useState, useRef } from "react";
-import { useModalContext } from "../../hooks/hooks";
+import { useAppContext, useModalContext } from "../../hooks/hooks";
 import { isValidEmail, staggerToastsByN, validatePhoneNumber } from "../../../utils/utils";
 import type { CheckboxItem, ModalType } from "../../typing/types/types";
 import { toast } from "react-toastify";
@@ -20,6 +20,7 @@ import "./MoreInfoForm.scss";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
+  const { handleSetShowIsLoadingTrue } = useAppContext();
   const { handleOpenModal } = useModalContext();
 
   const [ name, setName ] = useState<string>("");
@@ -122,7 +123,7 @@ const MoreInfoForm: FC = () => {
       return;
     };
 
-    setComponentIsLoading(true);
+    handleSetShowIsLoadingTrue(setComponentIsLoading, "moreInfoFormIsLoading");
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -194,7 +195,10 @@ const MoreInfoForm: FC = () => {
         >
           <div className="moreInfoForm__fields">
 
-            <div className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}>
+            <div 
+              id="moreInfoFormIsLoading"
+              className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}
+            >
               <IsLoading />
             </div>
 

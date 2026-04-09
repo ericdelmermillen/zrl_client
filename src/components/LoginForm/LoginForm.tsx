@@ -14,8 +14,7 @@ const isSafari: boolean =
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
   const { 
     loginUser, 
-    appIsLoading, 
-    handleSetShowAppIsLoadingTrue
+    appIsLoading
    } = useAppContext();
 
   const [ email, setEmail ] = useState<string>("");
@@ -75,8 +74,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
     if(errors){
       return false;
     };
-    
-    handleSetShowAppIsLoadingTrue();
+  
     
     return loginUser(email, password);
   };

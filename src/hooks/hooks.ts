@@ -21,10 +21,11 @@ const useModalContext = () => {
 
 // isLoading animation for pages with loading delay: simulates call to server
 const usePageLoading = (): void => {
-  const { handleSetShowAppIsLoadingTrue } = useAppContext();
+  const { setAppIsLoading, handleSetShowIsLoadingTrue
+   } = useAppContext();
 
   useEffect(() => {
-    handleSetShowAppIsLoadingTrue();
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
   }, []);
 };
 

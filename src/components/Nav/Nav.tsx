@@ -13,6 +13,8 @@ const APP_ISLOADING_DELAY = import.meta.env.VITE_APP_ISLOADING_DELAY;
 const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
     setAppIsLoading,
+    handleSetShowIsLoadingTrue,
+    handleSetShowAppIsLoadingFalse,
     isLoggedIn,
     scrollYPos,
     prevScrollYPos,
@@ -33,7 +35,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   };
 
   const handleHomeClick = (): void => {
-    setAppIsLoading(true);
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
     setTimeout(() => {
       requestAnimationFrame(() => {
         handleScrollToTop();
@@ -41,7 +43,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     }, NAV_CLICK_DELAY);
 
     setTimeout(() => {
-      setAppIsLoading(false);
+      handleSetShowAppIsLoadingFalse();
     }, APP_ISLOADING_DELAY);
   };
 
