@@ -78,6 +78,7 @@ const Carousel: FC<CarouselProps> = ({
         </ul>
       </div>
     </div>
-  )};
+  );
+};
 
 export default Carousel;

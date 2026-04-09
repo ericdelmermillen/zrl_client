@@ -8,6 +8,7 @@ const IsLoading: FC = () => {
         <div className="isLoading__loader"></div>
       </div>
     </>
-  )};
+  );
+};
 
 export default IsLoading;

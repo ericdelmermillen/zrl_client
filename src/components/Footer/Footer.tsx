@@ -5,12 +5,11 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import "./Footer.scss";
 
-
 const footerSocials: FooterSocial[] = [
   { name: "LinkedIn", socialLink: "https://www.linkedin.com/company/zidgy-road-labs-inc/", socialIcon: FaLinkedinIn },
   { name: "Facebook", socialLink: "https://www.facebook.com/ZidgyRoadLabs", socialIcon: FaFacebook },
   { name: "Twitter", socialLink: "http://x.com/zidgyroadlabs", socialIcon: FaTwitter },
-  { name: "Instagram", socialLink: "https://www.instagram.com/zidgyroadlabs/", socialIcon: GrInstagram },
+  { name: "Instagram", socialLink: "https://www.instagram.com/zidgyroadlabs/", socialIcon: GrInstagram }
 ];
 
 const Footer: FC = () => {
@@ -45,6 +44,7 @@ const Footer: FC = () => {
         </div>
       </footer>
     </>
-  )};
+  );
+};
 
 export default Footer;

@@ -18,7 +18,7 @@ import { TbCloudLock, TbError404, TbFaceId, TbScan } from "react-icons/tb";
 import { ToastContainer } from "react-toastify";
 import Admin from "./pages/Admin/Admin";
 import DropdownNav from "./components/DropdownNav/DropdownNav";
-// import FloatingButton from "./components/FloatingButton/FloatingButton";
+import FloatingButton from "./components/FloatingButton/FloatingButton";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import IsLoading from "./components/IsLoading/IsLoading";
@@ -200,7 +200,7 @@ const App = (): JSX.Element => {
 
         </Routes>
 
-        {/* <FloatingButton /> */}
+        <FloatingButton />
  
         <ToastContainer
           position="bottom-center"

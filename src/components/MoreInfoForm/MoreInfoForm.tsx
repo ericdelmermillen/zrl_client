@@ -13,7 +13,6 @@ import IsLoading from "../IsLoading/IsLoading";
 import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import "./MoreInfoForm.scss";
 
-
 // *** need validation state checking when user selects from auto fill
 // *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
 
@@ -39,7 +38,6 @@ const MoreInfoForm: FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
-
 
   const checkboxItems: CheckboxItem[] = [
     {
@@ -74,7 +72,6 @@ const MoreInfoForm: FC = () => {
     return isValidLength;
   };
 
-
   const handleEmailChange = (): boolean => {
     const emailValue = emailRef.current?.value ?? "";
     const emailIsValid = isValidEmail(emailValue);
@@ -94,8 +91,6 @@ const MoreInfoForm: FC = () => {
 
     return phoneNumberIsValid;
   };
-
-  
 
   const handleSubmit = async (): Promise<void> => {
     setInitialFormCheck(true);
@@ -307,6 +302,7 @@ const MoreInfoForm: FC = () => {
       </article>
 
     </>
-  )};
+  );
+};
 
 export default MoreInfoForm;

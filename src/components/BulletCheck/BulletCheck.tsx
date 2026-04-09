@@ -3,7 +3,6 @@ import { type Bullet } from "../../typing/interfaces/interfaces"
 import { FaCheck } from "react-icons/fa6";
 import "./BulletCheck.scss"
 
-
 const BulletCheck: FC<Bullet> = ({ 
   bulletHeadingShort, 
   bulletHeadingFull, 
@@ -32,6 +31,7 @@ const BulletCheck: FC<Bullet> = ({
 
       </li>
     </>
-  )};
+  );
+};
 
 export default BulletCheck;

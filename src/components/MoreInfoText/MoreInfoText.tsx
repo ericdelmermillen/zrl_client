@@ -3,7 +3,6 @@ import type { MoreInfoTextData } from "../../typing/interfaces/interfaces";
 import BulletCheck from "../BulletCheck/BulletCheck";
 import "./MoreInfoText.scss";
 
-
 const moreInfoPoint: MoreInfoTextData[] = [
   {
     titleShort: "Customized Solutions:",
@@ -16,7 +15,6 @@ const moreInfoPoint: MoreInfoTextData[] = [
     description: "We seamlessly integrate our software with your existing systems, minimizing disruptions and optimizing workflows."
   }
 ];
-
 
 const MoreInfoText:FC = () => {
   return (
@@ -46,6 +44,7 @@ const MoreInfoText:FC = () => {
         </div>
       </article>
     </>
-  )};
+  );
+};
 
 export default MoreInfoText;

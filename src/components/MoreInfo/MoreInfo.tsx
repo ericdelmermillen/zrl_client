@@ -3,7 +3,6 @@ import MoreInfoForm from "../MoreInfoForm/MoreInfoForm";
 import MoreInfoText from "../MoreInfoText/MoreInfoText";
 import "./MoreInfo.scss";
 
-
 const MoreInfo:FC = () => {
   return (
     <>
@@ -18,6 +17,7 @@ const MoreInfo:FC = () => {
         </div>
       </section>
     </>
-  )};
+  );
+};
 
 export default MoreInfo;

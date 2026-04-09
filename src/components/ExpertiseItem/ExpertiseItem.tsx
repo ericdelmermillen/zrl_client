@@ -19,6 +19,7 @@ const ExpertiseItem: FC<ExpertiseItemProps> = ({
       <h3 className="expertiseItem__heading">{name}</h3>
       <div className="expertiseItem__desc">{desc}</div>
     </li>
-  )};
+  );
+};
 
 export default ExpertiseItem;

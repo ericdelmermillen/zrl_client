@@ -11,7 +11,7 @@
 	width: 100%;
 
 	&__inner {
-		border: 2px dashed #333;
+		border: 2px dashed var(--text-color);
 		margin-inline: auto;
 		max-width: 99vw;
 	}
@@ -67,7 +67,7 @@
 	&__item {
 		background: yellow;
 		border-radius: 0.5rem;
-		box-shadow: 0 0.5rem 1rem -0.25rem #333;
+		box-shadow: 0 0.5rem 1rem -0.25rem var(--text-color);
 		color: blue;
 		min-width: 200px; // Make sure items have width
 	}

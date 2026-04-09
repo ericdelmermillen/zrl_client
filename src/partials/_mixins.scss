@@ -336,7 +336,7 @@
 	}
 
 	&:disabled {
-		opacity: 0.8;
+		opacity: var(--button-disabled-opacity);
 
 		&:hover {
 			cursor: default;
@@ -364,7 +364,7 @@
 	z-index: 2;
 
 	&.disabled {
-		opacity: 0.5;
+		opacity: var(--button-disabled-opacity);
 		pointer-events: none;
 	}
 
@@ -671,9 +671,14 @@
 }
 
 @mixin textLink {
-	color: var(--accent-color);
+	color: var(--accent-color) !important;
 	cursor: pointer;
 	text-decoration: underline;
+
+	&.disabled {
+		pointer-events: none;
+		opacity: var(--button-disabled-opacity);
+	}
 }
 
 // labels and accessibility

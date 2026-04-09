@@ -103,9 +103,6 @@ const MoreInfoEmail:FC = () => {
 const handleSetIsEditingTrue = (
   ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
 ): void => {
-  if (window.getSelection()?.toString()) {
-    return;
-  };
 
   handleSetShowAppIsLoadingTrue();
   
@@ -120,12 +117,12 @@ const handleSetIsEditingTrue = (
       }, 0);
       
       handleSetShowAppIsLoadingFalse();
-    }, MIN_LOADING_INTERVAL * 2);
+    }, MIN_LOADING_INTERVAL);
   }, MIN_LOADING_INTERVAL);
 };
 
   const getMoreInfoEmail = async (): Promise<void> => {
-    if(!appIsLoading) {
+    if (!appIsLoading) {
       handleSetShowAppIsLoadingTrue();
     };
     
@@ -185,7 +182,31 @@ const handleSetIsEditingTrue = (
   };
 
   const handleReceiveTestEmail = ():void => {
-    if (!inputsAreValid()) {
+    setInitialFormCheck(true);
+    
+    let errors = 0;
+    
+    if (!handleSubjectChange()) {
+      staggerToastsByN("Email subject is invalid", "error", errors);
+      errors++;
+    };
+    
+    if (!handleGreetingChange()) {
+      staggerToastsByN("Email greeting is invalid", "error", errors);
+      errors++;
+    };
+    
+    if (!greeting.includes("<name>")) {
+      staggerToastsByN("Greeting must include <name>.", "error", errors);
+      errors++;
+    };
+
+    if (!handleContentChange()) {
+      staggerToastsByN("Email content is invalid", "error", errors);
+      errors++;
+    };
+
+    if (errors) {
       toast.error("Please fix the errors before proceeding to test the email.")
       return;
     };
@@ -197,11 +218,8 @@ const handleSetIsEditingTrue = (
   };
 
   const sendTestEmail = async () => {
-    // setAppIsLoading(true);
     setModalInitialFormCheck(true);
-    modalFormInitialCheckRef.current = true;
 
-    
     let errors = 0;
     
     if (!handleTestNameChange()){
@@ -209,7 +227,6 @@ const handleSetIsEditingTrue = (
       errors++;
     };
 
-    // if (!emailInputHandler(testEmailRef)) {
     if (!handleTestEmailChange()) {
       staggerToastsByN("Email for Test Email is invalid.", "error", errors);
       errors++;
@@ -245,7 +262,7 @@ const handleSetIsEditingTrue = (
     } catch (error) {
       console.error("Failed to send test email:", error);
     } finally {
-      if(success) {
+      if (success) {
         staggerToastsByN("Test email successfully sent to ___", "success", 0)
         staggerToastsByN("Don't forget to hit save if you like how it looks.", "success", 1);
         setTimeout(() => {
@@ -255,40 +272,34 @@ const handleSetIsEditingTrue = (
     };
   };
 
-  const inputsAreValid = (): boolean => {
+  const handleSubmit = async (): Promise<void> => {
+    handleSetShowAppIsLoadingTrue();
     setInitialFormCheck(true);
     
     let errors = 0;
     
-    if(!handleSubjectChange()) {
+    if (!handleSubjectChange()) {
       staggerToastsByN("Email subject is invalid", "error", errors);
       errors++;
     };
     
-    if(!handleGreetingChange()) {
+    if (!handleGreetingChange()) {
       staggerToastsByN("Email greeting is invalid", "error", errors);
       errors++;
     };
     
-    if(!greeting.includes("<name>")) {
+    if (!greeting.includes("<name>")) {
       staggerToastsByN("Greeting must include <name>.", "error", errors);
       errors++;
     };
 
-    if(!handleContentChange()) {
+    if (!handleContentChange()) {
       staggerToastsByN("Email content is invalid", "error", errors);
       errors++;
     };
-    
-    return errors < 1;
-  }
 
-  const handleSubmit = async (): Promise<void> => {
-    // setAppIsLoading(true);
-    handleSetShowAppIsLoadingTrue();
-
-    if (!inputsAreValid()){
-      // handleSetShowAppIsLoadingFalse();
+    if (errors){
+      handleSetShowAppIsLoadingFalse();
       return;
     };
 
@@ -310,7 +321,7 @@ const handleSetIsEditingTrue = (
 
       const data = await response.json();
 
-      if(!response.ok || !data.success) {
+      if (!response.ok || !data.success) {
         toast.error(data.message || "Failed to update email template.");
         // handleSetShowAppIsLoadingFalse();
         return;
@@ -330,7 +341,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to update email template:", error);
       toast.error("Server error while updating email template");
     } finally {
-      // handleSetShowAppIsLoadingFalse();
+      handleSetShowAppIsLoadingFalse();
     };
   };
 
@@ -408,7 +419,6 @@ const handleSetIsEditingTrue = (
                 : <p 
                     className="moreInfoEmail__subject" 
                     id="moreInfoEmailSubject"
-                    onMouseUp={() => handleSetIsEditingTrue(subjectRef)}
                   >
                     {subject}
                   </p>
@@ -439,7 +449,6 @@ const handleSetIsEditingTrue = (
                 : <p 
                     id="moreInfoEmailGreeting"
                     className="moreInfoEmail__greeting" 
-                    onMouseUp={() => handleSetIsEditingTrue(greetingRef)}
                   >
                     {greeting}
                   </p>
@@ -468,7 +477,6 @@ const handleSetIsEditingTrue = (
                 : <div 
                     id="moreInfoEmailBodyContent" 
                     className="moreInfoEmail__body-content"
-                    onMouseUp={() => handleSetIsEditingTrue(contentRef)}
                   >
                     {content.split("\n\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
                       <p key={idx} className="moreInfoEmail__paragraph">
@@ -491,7 +499,11 @@ const handleSetIsEditingTrue = (
             {isEditing
               ? (
                   <p 
-                    className="moreInfoEmail__link-button"
+                    className={`moreInfoEmail__link-button ${
+                      !subjectIsValid || !greetingIsValid || !emailContentIsValid
+                        ? "disabled" 
+                        : ""
+                    }`}
                     onClick={handleReceiveTestEmail}
                   >
                     Recieve Test Email
@@ -529,6 +541,7 @@ const handleSetIsEditingTrue = (
         
       </section>
     </>
-  )};
+  );
+};
 
 export default MoreInfoEmail;

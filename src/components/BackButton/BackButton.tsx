@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
 import "./BackButton.scss";
 
-
 const BackButton: FC = () => {
   const navigate = useNavigate();
 
@@ -11,7 +10,6 @@ const BackButton: FC = () => {
     e.preventDefault();
     navigate(-1);
   };
-  
   
   return (
     <>
@@ -25,6 +23,7 @@ const BackButton: FC = () => {
         </span>
       </button>
     </>
-  )};
+  );
+};
 
 export default BackButton;

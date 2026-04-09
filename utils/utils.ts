@@ -71,6 +71,7 @@ const focusInputStart = (ref: RefObject<HTMLInputElement | HTMLTextAreaElement |
   ref.current?.setSelectionRange(0, 0);
 };
 
+// need better name for boolean arg
 const handleFormEnterPress = (e: KeyboardEvent<HTMLFormElement>, boolean: boolean, elseCallback: () => void ): void => {
   if(e.key === "Enter" && boolean) {
     if(e.shiftKey) {

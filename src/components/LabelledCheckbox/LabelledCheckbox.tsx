@@ -2,7 +2,6 @@ import { type FC, type ChangeEvent } from "react";
 import type { LabelledCheckboxProps } from "../../typing/types/types";
 import "./LabelledCheckbox.scss";
 
-
 const LabelledCheckbox: FC<LabelledCheckboxProps> = ({
   labelId,
   labelText,
@@ -49,6 +48,7 @@ const LabelledCheckbox: FC<LabelledCheckboxProps> = ({
         </span>
       </span>
     </div>
-  )};
+  );
+};
 
 export default LabelledCheckbox;

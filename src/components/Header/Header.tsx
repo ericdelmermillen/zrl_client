@@ -6,7 +6,6 @@ const solutions: string[] = ["Small Business", "Enterprise", "Startups"];
 
 const Header: FC = () => {
   const { windowWidth } = useAppContext();
-
   const [ solutionIdx, setSolutionIdx ] = useState<number>(0);
 
   // useEffect to setInterval for rotating solutionIdx
@@ -55,6 +54,7 @@ const Header: FC = () => {
       </header>
       
     </>
-  )};
+  );
+};
 
 export default Header;

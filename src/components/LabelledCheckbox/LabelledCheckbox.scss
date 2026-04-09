@@ -13,11 +13,12 @@
 	}
 
 	&__text {
-		font-size: var(--text-size-base);
+		font-size: var(--font-size-sm);
 		letter-spacing: var(--letter-spacing-md);
+		white-space: nowrap;
 
 		@media (min-width: vars.$smallTablet) {
-			font-size: var(--text-size-md);
+			font-size: var(--font-size-md);
 		}
 	}
 

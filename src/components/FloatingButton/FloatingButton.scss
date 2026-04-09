@@ -4,12 +4,12 @@
 .floatingButton {
 	& {
 		align-items: center;
-		bottom: 2.5rem;
+		bottom: 2.25rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		position: fixed;
-		right: 2.5rem;
+		right: 2.25rem;
 		z-index: 2;
 
 		@media (min-width: vars.$ultraWide) {
@@ -20,6 +20,7 @@
 	&__toTheTop {
 		align-items: center;
 		color: #fff;
+		color: var(--neutral-bg-1);
 		display: flex;
 		font-size: 3rem;
 		height: 2.75rem;
@@ -38,7 +39,8 @@
 	&__colorMode-toggle {
 		align-items: center;
 		background: #fff;
-		border: 2px solid #333;
+		background: var(--neutral-bg-1);
+		border: 1px solid var(--text-color);
 		border-radius: 50%;
 		box-shadow: var(--floating-button-box-shadow);
 		cursor: pointer;
@@ -56,10 +58,10 @@
 		&--day,
 		&--night {
 			cursor: pointer;
-			position: absolute;
 			height: 2rem;
 			left: 50%;
 			opacity: 0;
+			position: absolute;
 			top: 50%;
 			transform: translate(-50%, -50%) scale(0.8);
 			transition:

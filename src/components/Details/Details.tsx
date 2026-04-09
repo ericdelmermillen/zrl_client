@@ -5,7 +5,6 @@ import detailsImg_1 from "../../assets/images/details-1.jpg";
 import detailsImg_2 from "../../assets/images/details-2.jpg";
 import "./Details.scss";
 
-
   const details: DetailData[] = [
     {
       detailHeading: "Evaluation & Deployment",
@@ -68,6 +67,7 @@ const Details: FC = () => {
         
       </div>
     </section>
-  )};
+  );
+};
 
 export default Details;

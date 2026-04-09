@@ -64,8 +64,7 @@
 			align-items: center;
 			border: none;
 			border-bottom: 1px solid var(--text-color);
-			border-radius: none;
-			cursor: pointer;
+			border-radius: 0;
 			display: flex;
 			font-size: var(--font-size-sm);
 			height: auto;
@@ -83,7 +82,7 @@
 			align-items: center;
 			border: none;
 			border-bottom: 1px solid var(--text-color);
-			cursor: pointer;
+			border-radius: 0;
 			display: flex;
 			font-size: var(--font-size-sm);
 			min-height: 2.5rem;
@@ -99,7 +98,7 @@
 		& {
 			border: none;
 			border-bottom: 1px solid var(--text-color);
-			cursor: pointer;
+			border-radius: 0;
 			flex: 1;
 			font-size: var(--font-size-sm);
 			height: 100%;

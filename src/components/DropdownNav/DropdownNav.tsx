@@ -85,6 +85,7 @@ const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
         onClick={handleTouchOff}
       ></div> 
     </>
-  )};
+  );
+};
 
 export default DropdownNav;

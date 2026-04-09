@@ -3,7 +3,6 @@ import { type DetailProps } from "../../typing/interfaces/interfaces";
 import BulletCheck from "../BulletCheck/BulletCheck";
 import "./Detail.scss";
 
-
 const Detail: FC<DetailProps> = ({
   detailHeading,
   detailLead,
@@ -38,6 +37,7 @@ const Detail: FC<DetailProps> = ({
         <img className="detail__image" src={detailImg} alt={imgDesc} />
       </div>
     </div>
-  )};
+  );
+};
 
 export default Detail;

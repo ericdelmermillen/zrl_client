@@ -1,9 +1,9 @@
 import { type FC } from "react";
-import ExpertiseItem from "../ExpertiseItem/ExpertiseItem";
 import { FaLightbulb, FaGlasses, FaGraduationCap, FaChartBar, FaCloud } from "react-icons/fa6";
 import { MdMonitor } from "react-icons/md";
 import { PiWifiMediumBold } from "react-icons/pi";
 import { TbSettingsFilled } from "react-icons/tb";
+import ExpertiseItem from "../ExpertiseItem/ExpertiseItem";
 import "./Expertise.scss";
 
 const expertises = [
@@ -86,6 +86,7 @@ const Expertise: FC = () => {
         </div>
       </section>
     </>
-  )};
+  );
+};
 
 export default Expertise;

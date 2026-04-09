@@ -1,4 +1,5 @@
-import { type FC, useEffect, useRef } from "react";
+
+import { type FC, type KeyboardEvent, useEffect, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
 import "./Modal.scss";
 
@@ -13,6 +14,13 @@ const Modal: FC = () => {
   } = useModalContext();
 
   const modalTextRef = useRef<HTMLDivElement | null>(null);
+
+  const handleEnterPress = (e: KeyboardEvent<HTMLFormElement>): void => {
+    if(e.key === "Enter" && modalConfirmCallback) {
+      e.preventDefault();
+      modalConfirmCallback();
+    };
+  };
 
   // useEffect to reset the scroll position of the Modal when the modal opens
   useEffect(() => {
@@ -34,7 +42,9 @@ const Modal: FC = () => {
 
           <div className="modal__content">
 
-            <h2 className="modal__heading">{modalTitle}</h2>
+            <h2 className="modal__heading">
+              {modalTitle}
+            </h2>
 
             <div
               ref={modalTextRef}
@@ -58,7 +68,10 @@ const Modal: FC = () => {
 
               {modalInputs && modalInputs.length > 0 
                 ? (
-                    <form className="modal__inputs">
+                    <form 
+                      className="modal__inputs"
+                      onKeyDown={(e) => handleEnterPress(e)}
+                    >
                       {modalInputs.map((input) => (
                         <div key={input.id} className="modal__input-group">
                           <label className="modal__label" htmlFor={input.id}>
