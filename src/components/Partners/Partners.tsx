@@ -13,7 +13,6 @@ const carouselItems: CarouselItem[] = [
   { itemName: "UI/UX" }
 ];
 
-
 const getLoopDuration = (width: number): number => {
   if (width >= 1024) {
     return 18;
@@ -33,7 +32,7 @@ const getLoopDuration = (width: number): number => {
 const Partners: FC = () => {
   const [ windowWidth, setWindowWidth ] = useState<number>(window.innerWidth);
 
-  // useEffect to handle window 
+  // useEffect to handle window width
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -62,6 +61,7 @@ const Partners: FC = () => {
         />
       </div>
     </div>
-  )};
+  );
+};
 
 export default Partners;

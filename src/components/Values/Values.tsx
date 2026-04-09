@@ -65,6 +65,7 @@ const Values: FC = () => {
       </div>
       
     </>
-  )};
+  );
+};
 
 export default Values;

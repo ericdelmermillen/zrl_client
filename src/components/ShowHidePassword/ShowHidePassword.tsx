@@ -33,6 +33,7 @@ const ShowHidePassword: FC<ShowHidePasswordProps> = ({
         
       </div>
     </>
-  )};
+  );
+};
 
 export default ShowHidePassword;

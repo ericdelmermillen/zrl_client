@@ -11,7 +11,6 @@
 		align-items: center;
 		background: var(--accent-color);
 		border-radius: 50%;
-		color: var(--button-text-color);
 		display: flex;
 		font-size: var(--font-size-lg);
 		height: 1.9rem;
@@ -28,6 +27,7 @@
 	}
 
 	&__icon {
+		fill: var(--nav-link-color);
 		margin-top: 0.35rem;
 
 		&--facebook {

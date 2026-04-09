@@ -7,7 +7,6 @@ import solution_3 from "../../assets/images/solution-3.jpg";
 import solution_4 from "../../assets/images/solution-4.jpg";
 import "./Solutions.scss";
 
-
 const solutions: SolutionsData[] = [
     { 
     image: solution_1,
@@ -76,6 +75,7 @@ const Solutions: FC = () => {
 
       </section>
     </>
-  )};
+  );
+};
 
 export default Solutions;

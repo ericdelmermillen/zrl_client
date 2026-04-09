@@ -117,6 +117,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
         
       </nav>
     </>
-  )};
+  );
+};
 
 export default Nav;

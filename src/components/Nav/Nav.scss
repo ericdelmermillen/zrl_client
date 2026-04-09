@@ -17,8 +17,11 @@
 		height: 100%;
 		margin-inline: auto;
 		max-width: vars.$ultraWide;
-		padding-inline: 6rem;
 		width: 100%;
+
+		@media (min-width: vars.$largeTablet) {
+			padding-inline: 6rem;
+		}
 
 		@media (min-width: vars.$desktop) {
 			padding-inline: 8rem;
@@ -105,7 +108,6 @@
 
 	&__toggle-icon {
 		border: 1.45px solid var(--nav-link-color);
-		color: var(--nav-link-color);
 		border-radius: 2px;
 		min-width: 100%;
 		transform-origin: center;

@@ -1,14 +1,14 @@
 import { type FC, useState, useRef } from "react";
 import { useModalContext } from "../../hooks/hooks";
-import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
 import { isValidEmail } from "../../../utils/utils";
 import { PRIVACY_POLICY_TEXT, PRIVACY_POLICY_TITLE } from "../../textCopy/textCopy";
 import { toast } from "react-toastify";
-import "./Subscribe.scss";
 import IsLoading from "../IsLoading/IsLoading";
+import LabelledCheckbox from "../LabelledCheckbox/LabelledCheckbox";
+import "./Subscribe.scss";
 
-// need email validation handling including invalid stylings
 // need api call logic
+// need to hide componentIsLoading via adding hide and removing when showing
 
 const Subscribe: FC = () => {
   const { handleOpenModal } = useModalContext();
@@ -138,6 +138,7 @@ const Subscribe: FC = () => {
       </div>
       
     </>
-  )};
+  );
+};
 
 export default Subscribe;

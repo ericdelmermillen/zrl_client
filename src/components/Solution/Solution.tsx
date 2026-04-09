@@ -18,9 +18,9 @@ const Solution: FC<SolutionProps> = ({ img, shortTitle, fullTitle, text, tag, al
           <p className="solution__text">{text}</p>
           <span className="solution__tag">{tag}</span>
         </div>
-
       </article>
     </>
-  )};
+  );
+};
 
 export default Solution;

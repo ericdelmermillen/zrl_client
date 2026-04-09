@@ -15,6 +15,7 @@ import "./MoreInfoForm.scss";
 
 // *** need validation state checking when user selects from auto fill
 // *** if user also subscribes here but email is already in database should I just ignore it here but notify that email is already in database in subscribe?
+// need to revise handling of componentIsLoading
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
