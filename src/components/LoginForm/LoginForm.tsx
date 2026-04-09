@@ -5,7 +5,6 @@ import { isValidEmail, isValidPassword, staggerToastsByN } from "../../../utils/
 import ShowHidePassword from "../ShowHidePassword/ShowHidePassword";
 import "./LoginForm.scss";
 
-const APP_ISLOADING_DELAY = Number(import.meta.env.VITE_APP_ISLOADING_DELAY);
 const isSafari: boolean =
   navigator.userAgent.toLowerCase().includes("safari") &&
   !navigator.userAgent.toLowerCase().includes("chrome");
@@ -13,7 +12,11 @@ const isSafari: boolean =
 // adding TOTP to require login verification via google authenticator app estimated at 1-2 days of focussed work (via Claude estimate)
 
 const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
-  const { loginUser, appIsLoading, setAppIsLoading } = useAppContext();
+  const { 
+    loginUser, 
+    appIsLoading, 
+    handleSetShowAppIsLoadingTrue
+   } = useAppContext();
 
   const [ email, setEmail ] = useState<string>("");
   const [ password, setPassword ] = useState<string>("");
@@ -73,11 +76,7 @@ const LoginForm: FC<ChildrenPropsInterface> = ({ children }) => {
       return false;
     };
     
-    setAppIsLoading(true);
-    
-    setTimeout(() => {
-      setAppIsLoading(false);
-    }, APP_ISLOADING_DELAY)
+    handleSetShowAppIsLoadingTrue();
     
     return loginUser(email, password);
   };

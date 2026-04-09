@@ -67,11 +67,13 @@
 			border-radius: 0;
 			display: flex;
 			font-size: var(--font-size-sm);
+			font-weight: 600;
 			height: auto;
 			min-height: 3rem;
 		}
 
 		&.editable {
+			background: var(--editable-input-bg);
 			cursor: text;
 		}
 	}
@@ -80,16 +82,20 @@
 		@include mx.input;
 		& {
 			align-items: center;
+			background: var(--neutral-bg-1);
 			border: none;
 			border-bottom: 1px solid var(--text-color);
 			border-radius: 0;
 			display: flex;
 			font-size: var(--font-size-sm);
+			font-weight: 600;
 			min-height: 2.5rem;
 		}
 
 		&.editable {
+			background: var(--editable-input-bg);
 			cursor: text;
+			font-weight: 500;
 		}
 	}
 
@@ -109,6 +115,7 @@
 
 		&.editable {
 			& {
+				background: var(--editable-input-bg);
 				cursor: text;
 				line-height: var(--line-height-lg);
 				padding-inline-end: none;
