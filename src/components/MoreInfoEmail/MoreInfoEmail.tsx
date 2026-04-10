@@ -21,8 +21,7 @@ const MoreInfoEmail:FC = () => {
     appIsLoading, 
     setAppIsLoading, 
     handleSetShowIsLoadingTrue,
-    // 
-    handleSetShowAppIsLoadingFalse,
+    handleSetShowIsLoadingFalse
   } = useAppContext();
   
   const { 
@@ -116,8 +115,8 @@ const handleSetIsEditingTrue = (
       setTimeout(() => {
         focusInputStart(ref);
       }, 0);
-      
-      handleSetShowAppIsLoadingFalse();
+    
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
     }, MIN_LOADING_INTERVAL);
   }, MIN_LOADING_INTERVAL);
 };
@@ -145,7 +144,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to fetch more info email:", error);
       toast.error("Failed to fetch More Info Email Template");
     } finally {
-      handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
     };
   };
 
@@ -300,7 +299,7 @@ const handleSetIsEditingTrue = (
     };
 
     if (errors){
-      handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
       return;
     };
 
@@ -324,7 +323,7 @@ const handleSetIsEditingTrue = (
 
       if (!response.ok || !data.success) {
         toast.error(data.message || "Failed to update email template.");
-        // handleSetShowAppIsLoadingFalse();
+        handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
         return;
       };
 
@@ -342,7 +341,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to update email template:", error);
       toast.error("Server error while updating email template");
     } finally {
-      handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
     };
   };
 
@@ -366,7 +365,7 @@ const handleSetIsEditingTrue = (
       console.error("Failed to refresh email template:", error);
       toast.error("Failed to refresh email template");
     } finally {
-      // handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
     };
   };
 
@@ -481,7 +480,7 @@ const handleSetIsEditingTrue = (
                   >
                     {content.split("\n\n").filter(p => p.trim() !== "").map((paragraph, idx) => (
                       <p key={idx} className="moreInfoEmail__paragraph">
-                        {parseParagraphLink(paragraph)}
+                        {parseParagraphLink(paragraph, "moreInfoEmail__link")}
                       </p>
                     ))}
                   </div>

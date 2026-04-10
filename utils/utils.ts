@@ -82,7 +82,7 @@ const handleFormEnterPress = (e: KeyboardEvent<HTMLFormElement>, boolean: boolea
   };
 };
 
-const parseParagraphLink = (text: string): ReactNode => {
+const parseParagraphLink = (text: string, linkClassName: string): ReactNode => {
   const linkRegex = /\[([^\]]+)\]\((https?:\/\/\S+?)\)(?=[\s.,!?]|$)/g;
   const parts: ReactNode[] = [];
   let lastIndex = 0;
@@ -103,7 +103,7 @@ const parseParagraphLink = (text: string): ReactNode => {
           href: url,
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "moreInfoEmail__link"
+          className: linkClassName
         },
         linkText
       )

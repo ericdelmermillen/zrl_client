@@ -15,11 +15,11 @@ const Home: FC = () => {
   usePageLoading();
   useScrollToTopOnPageMount();
 
-  const { appIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
+  const { appIsLoading, setAppIsLoading, handleSetShowIsLoadingFalse } = useAppContext();
 
   useEffect(() => {
     if (appIsLoading) {
-      handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
     };
   }, [appIsLoading]);
 

@@ -11,7 +11,7 @@ import "./Subscribe.scss";
 // need to hide componentIsLoading via adding hide and removing when showing
 
 const Subscribe: FC = () => {
-  const { handleSetShowIsLoadingTrue } = useAppContext();
+  const { handleSetShowIsLoadingTrue, handleSetShowIsLoadingFalse } = useAppContext();
   const { handleOpenModal } = useModalContext();
   const [ initialFormCheck , setInitialFormCheck ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>("");
@@ -49,6 +49,7 @@ const Subscribe: FC = () => {
 
     setTimeout(() => {
       setComponentIsLoading(false);
+      handleSetShowIsLoadingFalse(setComponentIsLoading, "subscribeIsLoading");
       toast.success("Successfully subscribed to our Newsletter.");
       setEmail("");
       setEmailIsValid(true);
@@ -88,7 +89,7 @@ const Subscribe: FC = () => {
 
                 <div 
                   id="subscribeIsLoading"
-                  className={`subscribe__isLoading ${componentIsLoading ? "show" : ""}`}
+                  className="subscribe__isLoading hide"
                 >
                   <IsLoading />
                 </div>

@@ -14,7 +14,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
   const { 
     setAppIsLoading,
     handleSetShowIsLoadingTrue,
-    handleSetShowAppIsLoadingFalse,
+    handleSetShowIsLoadingFalse,
     isLoggedIn,
     scrollYPos,
     prevScrollYPos,
@@ -43,7 +43,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     }, NAV_CLICK_DELAY);
 
     setTimeout(() => {
-      handleSetShowAppIsLoadingFalse();
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
     }, APP_ISLOADING_DELAY);
   };
 
@@ -53,7 +53,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     setShowModal(false);
   };
 
-  
+
   return (
     <>
       <nav className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>

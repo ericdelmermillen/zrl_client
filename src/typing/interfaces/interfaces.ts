@@ -23,7 +23,10 @@ export interface AppContextValue {
   isLoadingStateSetter: Dispatch<React.SetStateAction<boolean>>,
   divId: string
 ) => void;
-  handleSetShowAppIsLoadingFalse: () => void;
+  handleSetShowIsLoadingFalse: (
+  isLoadingStateSetter: Dispatch<React.SetStateAction<boolean>>,
+  divId: string
+) => void;
   loginUser: (email: string, password: string) => Promise<boolean>;
   showNav: () => void;
   toggleColorMode: () => void;

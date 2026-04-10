@@ -20,7 +20,7 @@ import "./MoreInfoForm.scss";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MoreInfoForm: FC = () => {
-  const { handleSetShowIsLoadingTrue } = useAppContext();
+  const { handleSetShowIsLoadingTrue, handleSetShowIsLoadingFalse } = useAppContext();
   const { handleOpenModal } = useModalContext();
 
   const [ name, setName ] = useState<string>("");
@@ -170,6 +170,7 @@ const MoreInfoForm: FC = () => {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setComponentIsLoading(false);
+      handleSetShowIsLoadingFalse(setComponentIsLoading, "moreInfoFormIsLoading");
     };
   };
 
@@ -182,7 +183,6 @@ const MoreInfoForm: FC = () => {
       handleOpenModal(modalType, PRIVACY_POLICY_TITLE, PRIVACY_POLICY_TEXT);
     };
   };
-
 
   return (
     <>
@@ -197,7 +197,7 @@ const MoreInfoForm: FC = () => {
 
             <div 
               id="moreInfoFormIsLoading"
-              className={`moreInfoForm__isLoading ${componentIsLoading ? "show": ""}`}
+              className="moreInfoForm__isLoading hide"
             >
               <IsLoading />
             </div>

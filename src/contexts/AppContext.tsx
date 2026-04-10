@@ -47,20 +47,26 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     requestAnimationFrame(() => {
       removeClassFromDiv(divId, "hide");
-      addClassToDiv(divId, "show");
     });
+    addClassToDiv(divId, "show");
   };
 
-  const handleSetShowAppIsLoadingFalse = (): void => {
-    setTimeout(() => {
-      removeClassFromDiv("appIsLoading", "show");
-      setAppIsLoading(false);
-    }, APP_ISLOADING_DELAY);
+  const handleSetShowIsLoadingFalse = (isLoadingStateSetter: Dispatch<SetStateAction<boolean>>,
+  divId: string
+  ): void => {
     
     setTimeout(() => {
-      addClassToDiv("appIsLoading", "hide");
+      requestAnimationFrame(() => {
+        removeClassFromDiv(divId, "show");
+        isLoadingStateSetter(false);
+      });
+    }, APP_ISLOADING_DELAY);
+
+    setTimeout(() => {
+      addClassToDiv(divId, "hide");
     }, APP_ISLOADING_DELAY * 2);
   };
+
 
   const handleUpdateScrollYPos = (): void => {
     setPrevScrollYPos(scrollYPos);
@@ -312,12 +318,12 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     scrollToTop();
   }, []);
 
-
   const contextValues = {
     appIsLoading, 
     setAppIsLoading,
     handleSetShowIsLoadingTrue,
-    handleSetShowAppIsLoadingFalse,
+    handleSetShowIsLoadingFalse,
+    // 
     isLoggedIn,
     setIsLoggedIn,
     colorMode,
