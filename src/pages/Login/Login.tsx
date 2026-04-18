@@ -1,6 +1,6 @@
-import { type FC, useEffect } from "react";
+import { type FC } from "react";
 import { type ChildrenPropsInterface } from "../../typing/interfaces/interfaces";
-import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount, useAppContext } from "../../hooks/hooks";
+import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.scss";
 
@@ -8,15 +8,6 @@ const Login: FC<ChildrenPropsInterface> = ({ children }) => {
   useDocumentTitle("Zidgy Road Lab's Admin Login Page");
   usePageLoading();
   useScrollToTopOnPageMount();
-
-  const { appIsLoading, handleSetShowAppIsLoadingFalse } = useAppContext();
-
-  useEffect(() => {
-    if (appIsLoading) {
-      handleSetShowAppIsLoadingFalse();
-    };
-  }, [appIsLoading]);
-
 
   return (
     <>

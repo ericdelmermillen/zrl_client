@@ -1,5 +1,5 @@
-import { type FC, useEffect } from "react";
-import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount, useAppContext } from "../../hooks/hooks";
+import { type FC } from "react";
+import { useDocumentTitle, usePageLoading, useScrollToTopOnPageMount } from "../../hooks/hooks";
 import Details from "../../components/Details/Details";
 import Expertise from "../../components/Expertise/Expertise";
 import Header from "../../components/Header/Header";
@@ -14,14 +14,6 @@ const Home: FC = () => {
   useDocumentTitle("Zidgy Road Labs | Professional Web Development Services");
   usePageLoading();
   useScrollToTopOnPageMount();
-
-  const { appIsLoading, setAppIsLoading, handleSetShowIsLoadingFalse } = useAppContext();
-
-  useEffect(() => {
-    if (appIsLoading) {
-      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading")
-    };
-  }, [appIsLoading]);
 
   return (
     <>

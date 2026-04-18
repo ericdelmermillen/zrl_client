@@ -1,5 +1,5 @@
 import { type FC, type ReactNode, type SetStateAction, type Dispatch } from "react";
-import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "../types/types";
+import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "@/typing/types/types";
 
 export interface AppContextValue {
   // state and state setting 

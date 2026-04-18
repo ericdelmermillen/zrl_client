@@ -20,13 +20,27 @@ const useModalContext = () => {
 };
 
 // isLoading animation for pages with loading delay: simulates call to server
+// const usePageLoading = (): void => {
+//   const { setAppIsLoading, handleSetShowIsLoadingTrue
+//    } = useAppContext();
+
+//   useEffect(() => {
+//     handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
+//   }, []);
+// };
+
 const usePageLoading = (): void => {
-  const { setAppIsLoading, handleSetShowIsLoadingTrue
-   } = useAppContext();
+  const { appIsLoading, setAppIsLoading, handleSetShowIsLoadingTrue, handleSetShowIsLoadingFalse } = useAppContext();
 
   useEffect(() => {
     handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
   }, []);
+
+  useEffect(() => {
+    if (appIsLoading) {
+      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
+    }
+  }, [appIsLoading]);
 };
 
 const useDocumentTitle = (title: string): void => {

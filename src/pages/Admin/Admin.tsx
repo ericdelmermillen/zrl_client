@@ -10,8 +10,6 @@ const Admin: FC<ChildrenPropsInterface> = ({ children }) => {
   useDocumentTitle("Zidgy Road Lab's Admin Page");
   usePageLoading();
   useScrollToTopOnPageMount();    
-
-  // in future handle using handleSetAppIsLoadingFalse via handlers in the components that cummulatively set state which triggers handleSetAppIsLoadingFalse
   
   return (
     <>
