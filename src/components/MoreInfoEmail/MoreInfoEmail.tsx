@@ -100,26 +100,26 @@ const MoreInfoEmail:FC = () => {
     return emailIsValid;
   };
 
-const handleSetIsEditingTrue = (
-  ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
-): void => {
+  const handleSetIsEditingTrue = (
+    ref: RefObject<HTMLInputElement | HTMLTextAreaElement | null>
+  ): void => {
 
-  handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
-  
-  setTimeout(() => {
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
     
     setTimeout(() => {
-      setIsEditing(true);
-      toast.info("More Info Email Template ready to edit.");
       
       setTimeout(() => {
-        focusInputStart(ref);
-      }, 0);
-    
-      handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
+        setIsEditing(true);
+        toast.info("More Info Email Template ready to edit.");
+        
+        setTimeout(() => {
+          focusInputStart(ref);
+        }, 0);
+      
+        handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
+      }, MIN_LOADING_INTERVAL);
     }, MIN_LOADING_INTERVAL);
-  }, MIN_LOADING_INTERVAL);
-};
+  };
 
   const getMoreInfoEmail = async (): Promise<void> => {
     if (!appIsLoading) {
@@ -236,10 +236,13 @@ const handleSetIsEditingTrue = (
       return;
     };
 
+    handleSetShowIsLoadingTrue(setAppIsLoading, "appIsLoading");
+
     let success = false;
 
     try {
-      const response = await fetch(`${BASE_URL}/moreinfo/sendtest`, {
+      // const response = await fetch(`${BASE_URL}/moreinfo/sendtest`, {
+      await fetch(`${BASE_URL}/moreinfo/sendtest`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -254,20 +257,21 @@ const handleSetIsEditingTrue = (
         })
       });
 
-      const data = await response.json();
+      // const data = await response.json();
       success = true;
 
-      console.log(data);
+      // console.log(data);
 
     } catch (error) {
       console.error("Failed to send test email:", error);
     } finally {
+      console.log("success")
       if (success) {
         staggerToastsByN("Test email successfully sent to ___", "success", 0)
         staggerToastsByN("Don't forget to hit save if you like how it looks.", "success", 1);
         setTimeout(() => {
           handleClearModal();
-        }, 100000);
+        }, MIN_LOADING_INTERVAL);
       };
     };
   };
@@ -506,7 +510,7 @@ const handleSetIsEditingTrue = (
                     }`}
                     onClick={handleReceiveTestEmail}
                   >
-                    Recieve Test Email
+                    Receive Test Email
                   </p>
                 )
               : ""
