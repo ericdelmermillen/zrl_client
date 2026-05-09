@@ -9,7 +9,7 @@ const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
   const {
     isLoggedIn,
     scrollYPos, 
-    prevScrollYPos, 
+    getPrevScrollYPosValue, 
     navLinkClick,
     notFoundNavLinkClick,
     showDropdownNavOptions, 
@@ -20,6 +20,8 @@ const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
 
   const { pathname } = useLocation();
   const isOnHome = pathname === "/";
+
+  const prevScrollYPosValue = getPrevScrollYPosValue();
 
   const handleTouchOff = (): void => {
     setShowDropdownNavOptions(false);
@@ -32,10 +34,10 @@ const DropdownNav: FC<NavProps> = ({ children, navOptions }) => {
 
   // useEffect to close dropdown on scroll
   useEffect(() => {
-    if (scrollYPos > prevScrollYPos) {
+    if (scrollYPos !== prevScrollYPosValue) {
       setShowDropdownNavOptions(false);
     };
-  }, [scrollYPos, prevScrollYPos]);
+  }, [scrollYPos, prevScrollYPosValue]);
   
   return (
     <>

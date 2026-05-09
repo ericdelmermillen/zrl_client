@@ -1,8 +1,8 @@
-import { type FC, type ReactNode, type SetStateAction, type Dispatch } from "react";
+import { type FC, type ReactNode, type SetStateAction, type Dispatch, type RefObject } from "react";
 import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "@/typing/types/types";
 
 export interface AppContextValue {
-  // state and state setting 
+  // state, state setting and ref
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
   colorMode: ColorMode;
@@ -11,10 +11,13 @@ export interface AppContextValue {
   setAppIsLoading: Dispatch<SetStateAction<boolean>>;
   scrollYPos: number;
   setScrollYPos: Dispatch<SetStateAction<number>>;
+  prevScrollYPosRef: RefObject<number | null>;
   windowWidth: number;
   setWindowWidth: Dispatch<SetStateAction<number>>;
-  prevScrollYPos: number;
-  setPrevScrollYPos: Dispatch<SetStateAction<number>>;
+
+  // prevScrollYPos: number;
+  // setPrevScrollYPos: Dispatch<SetStateAction<number>>;
+
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: Dispatch<SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
@@ -29,6 +32,7 @@ export interface AppContextValue {
 ) => void;
   loginUser: (email: string, password: string) => Promise<boolean>;
   showNav: () => void;
+  getPrevScrollYPosValue: () => number;
   toggleColorMode: () => void;
   notFoundNavLinkClick: (to: string) => void;
   hideNav: () => void;

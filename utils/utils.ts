@@ -119,6 +119,7 @@ const parseParagraphLink = (text: string, linkClassName: string): ReactNode => {
   return parts;
 };
 
+
 export {
   scrollToTop,
   isValidEmail,

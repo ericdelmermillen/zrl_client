@@ -97,13 +97,14 @@ const App = (): JSX.Element => {
   const { 
     isLoggedIn,
     colorMode, 
-    // setColorMode,
-    prevScrollYPos,
-    scrollYPos
+    scrollYPos,
+    prevScrollYPosRef
   } = useAppContext();
 
   // local state: used here to prevent showing NotFound page if admin user was logged in and on protected page before refreshing and calling server for session verification
   const [ loginStatusPending ]= useState(localStorage.getItem("wasLoggedIn") === "true");
+
+  const prevScrollYPosValue = prevScrollYPosRef.current ?? 0;
 
   return (
     <div className="app" data-color-mode={colorMode}>
@@ -117,7 +118,7 @@ const App = (): JSX.Element => {
 
       <div 
         id="nav-container" 
-        className={`app__nav-container ${prevScrollYPos < scrollYPos && scrollYPos > 50 
+        className={`app__nav-container ${prevScrollYPosValue < scrollYPos && scrollYPos > 50 
           ? "hide" 
           : ""}`}
       >

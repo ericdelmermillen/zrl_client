@@ -44,7 +44,7 @@ const Values: FC = () => {
               src={embedUrl}
               title="Zidgy Road Labs - Values"
               loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
               allowFullScreen
               referrerPolicy="strict-origin-when-cross-origin"
             />

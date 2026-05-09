@@ -28,13 +28,14 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
 
   const [ scrollYPos, setScrollYPos ] = useState(0);
-  const [ prevScrollYPos, setPrevScrollYPos ] = useState(0);
   const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
 
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
   // used to prevent duplicate toasts in dev
   const hasRunSessionCheck = useRef(false);
+  const prevScrollYPosRef = useRef<number | null>(null);
+  const getPrevScrollYPosValue = () => prevScrollYPosRef.current ?? 0;
 
   const NAV_CLICK_DELAY = windowWidth < 1080  || !isOnHome ? Number(import.meta.env.VITE_NAV_CLICK_DELAY) : 0;
   const NOT_FOUND_NAV_CLICK_DELAY = windowWidth < 900 ? Number(import.meta.env.VITE_NOT_FOUND_NAV_CLICK_DELAY) : 0;
@@ -65,12 +66,6 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setTimeout(() => {
       addClassToDiv(divId, "hide");
     }, APP_ISLOADING_DELAY * 2);
-  };
-
-
-  const handleUpdateScrollYPos = (): void => {
-    setPrevScrollYPos(scrollYPos);
-    setScrollYPos(window.scrollY);
   };
 
   const showNav = (): void => removeClassFromDiv("nav-container", "hide");
@@ -281,7 +276,11 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     const handleScroll = () => {
       if(!ticking) {
         requestAnimationFrame(() => {
-          handleUpdateScrollYPos();
+          setScrollYPos((prev) => {
+            prevScrollYPosRef.current = prev;
+            return window.scrollY;
+          });
+
           setShowModal(false);
           setModalType(null);
           handleClearModal();
@@ -293,7 +292,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollYPos]);
+  }, []);
 
   // useEffect for updating window width
   useEffect(() => {
@@ -330,10 +329,11 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setColorMode,
     scrollYPos, 
     setScrollYPos,
-    prevScrollYPos, 
+
+    prevScrollYPosRef,
+    getPrevScrollYPosValue,
     windowWidth,
     setWindowWidth,
-    setPrevScrollYPos,
     showDropdownNavOptions, 
     setShowDropdownNavOptions,
 

@@ -17,7 +17,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
     handleSetShowIsLoadingFalse,
     isLoggedIn,
     scrollYPos,
-    prevScrollYPos,
+    getPrevScrollYPosValue,
     navLinkClick,
     notFoundNavLinkClick,
     showDropdownNavOptions, 
@@ -28,6 +28,8 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
   const { pathname } = useLocation();
   const isOnHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
+
+  const prevScrollYPosValue = getPrevScrollYPosValue();
 
   const handleToggleShowDropdownNav = (): void => {
     setShowDropdownNavOptions(prev => !prev);
@@ -56,7 +58,7 @@ const Nav: FC<NavProps> = ({ children, navOptions }) => {
 
   return (
     <>
-      <nav className={`nav ${prevScrollYPos < scrollYPos && scrollYPos > 50 ? "hide" : ""}`}>
+      <nav className={`nav ${prevScrollYPosValue < scrollYPos && prevScrollYPosValue > 50 ? "hide" : ""}`}>
         <div className="nav__content">
 
           <div 
