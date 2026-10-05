@@ -12,13 +12,6 @@ export type ModalInput = {
   ref: RefObject<HTMLInputElement | null>;
 }
 
-// export type HandleOpenModal = (
-//   modalType: ModalType,
-//   modalTitle: string,
-//   modalText: string,
-//   confirmCallback?: () => void
-// ) => void;
-
 export type HandleOpenModal = (modalType: ModalType, modalTitle: string, modalText: string, inputs?: ModalInput[] | null) => void;
 
 export type IconType = FC<{ className?: string }>;

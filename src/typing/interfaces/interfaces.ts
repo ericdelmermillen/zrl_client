@@ -1,6 +1,11 @@
 import { type FC, type ReactNode, type SetStateAction, type Dispatch, type RefObject } from "react";
 import type { ColorMode, ModalType, HandleOpenModal, ModalInput } from "@/typing/types/types";
 
+
+export interface AppContextProviderProps {
+  children: ReactNode;
+};
+
 export interface AppContextValue {
   // state, state setting and ref
   isLoggedIn: boolean;
@@ -14,10 +19,6 @@ export interface AppContextValue {
   prevScrollYPosRef: RefObject<number | null>;
   windowWidth: number;
   setWindowWidth: Dispatch<SetStateAction<number>>;
-
-  // prevScrollYPos: number;
-  // setPrevScrollYPos: Dispatch<SetStateAction<number>>;
-
   showDropdownNavOptions: boolean;
   setShowDropdownNavOptions: Dispatch<SetStateAction<boolean>>;
   navLinkClick: (optionName: string) => void;
@@ -57,10 +58,6 @@ export interface ModalContextValue {
   // handlers
   handleOpenModal: HandleOpenModal;
   handleClearModal: () => void;
-};
-
-export interface AppContextProviderProps {
-  children: ReactNode;
 };
 
 export interface ModalContextProviderProps {
@@ -150,4 +147,11 @@ export interface FooterSocial {
   name: string;
   socialLink: string;
   socialIcon: FC<{ className?: string }>;
+}
+
+
+export interface Product {
+  id: number;
+  name: string;
+  quantity: number;
 }

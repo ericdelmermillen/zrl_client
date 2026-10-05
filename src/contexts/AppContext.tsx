@@ -33,7 +33,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [ showDropdownNavOptions, setShowDropdownNavOptions ] = useState<boolean>(false);
 
   // used to prevent duplicate toasts in dev
-  const hasRunSessionCheck = useRef(false);
+  const hasRunSessionCheckRef = useRef(false);
   const prevScrollYPosRef = useRef<number | null>(null);
   const getPrevScrollYPosValue = () => prevScrollYPosRef.current ?? 0;
 
@@ -213,11 +213,11 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   // useEffect to check isLoggedIn status via call to /sessionstatus on mount
   useEffect(() => {
-    if (hasRunSessionCheck.current) {
+    if (hasRunSessionCheckRef.current) {
       return;
     };
     
-    hasRunSessionCheck.current = true;
+    hasRunSessionCheckRef.current = true;
 
     const runSessionCheck = async () => {
       const isAuthenticated = await checkSessionStatus();
@@ -274,7 +274,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
     let ticking = false;
 
     const handleScroll = () => {
-      if(!ticking) {
+      if (!ticking) {
         requestAnimationFrame(() => {
           setScrollYPos((prev) => {
             prevScrollYPosRef.current = prev;

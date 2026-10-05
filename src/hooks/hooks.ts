@@ -5,7 +5,7 @@ import { scrollToTop } from "../../utils/utils";
 
 const useAppContext = () => {
   const context = useContext(AppContext);
-  if(!context) {
+  if (!context) {
     throw new Error("useAppContext must be used within an AppContextProvider");
   };
   return context;
@@ -13,7 +13,7 @@ const useAppContext = () => {
 
 const useModalContext = () => {
   const context = useContext(ModalContext);
-  if(!context) {
+  if (!context) {
     throw new Error("useModalContext must be used within a ModalContextProvider");
   };
   return context;
@@ -29,7 +29,7 @@ const usePageLoading = (): void => {
   useEffect(() => {
     if (appIsLoading) {
       handleSetShowIsLoadingFalse(setAppIsLoading, "appIsLoading");
-    }
+    };
   }, [appIsLoading]);
 };
 

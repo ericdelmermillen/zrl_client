@@ -182,6 +182,7 @@ const MoreInfoEmail:FC = () => {
   };
 
   const handleReceiveTestEmail = ():void => {
+    console.log("here")
     setInitialFormCheck(true);
     
     let errors = 0;

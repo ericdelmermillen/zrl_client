@@ -166,9 +166,7 @@ const App = (): JSX.Element => {
             path="/login"
             element={
               <Login>
-                <WallPaper 
-                  customIcons={LoginIconOptions}
-                />
+                <WallPaper customIcons={LoginIconOptions}/>
               </Login>
             }
           />
@@ -180,8 +178,7 @@ const App = (): JSX.Element => {
                   path="/admin"
                   element={
                     <Admin>
-                      <WallPaper 
-                        customIcons={AdminIconOptions}/>
+                      <WallPaper customIcons={AdminIconOptions}/>
                     </Admin>
                 }/>
               )
@@ -193,8 +190,7 @@ const App = (): JSX.Element => {
             path="/*"
             element={
               <NotFound>
-                <WallPaper 
-                customIcons={notFoundIconOptions}/>
+                <WallPaper customIcons={notFoundIconOptions}/>
               </NotFound>
             }
           />
